@@ -1,0 +1,30 @@
+name: "S3 Extract File"
+description: "Extracts a file from S3 and copies specified files into the working directory"
+author: "Stefan Schulte <stschulte@posteo.de>"
+
+inputs:
+  bucket:
+    description: "The name of the S3 bucket that contains the ZIP file"
+    required: true
+  key:
+    description: "The name of the S3 key of the ZIP file"
+    required: true
+  directory:
+    description: "The base directory for your target paths. If you do not specify a value, all paths are relative to your project directory."
+    required: false
+    default: "."
+  files:
+    description: "A multiline string that specifies which files should be copied to your target directory. Each line should be of the form `source=destination`."
+    required: true
+  fail_on_not_found:
+    description: "Specify true if you want the action to fail when a file cannot be found. Otherwise missing files will be ignored"
+    default: "false"
+
+# Define your outputs here.
+outputs:
+  time:
+    description: "Your output description here"
+
+runs:
+  using: node20
+  main: dist/index.js
