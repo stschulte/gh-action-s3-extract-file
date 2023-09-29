@@ -9,13 +9,20 @@ inputs:
   key:
     description: "The name of the S3 key of the ZIP file"
     required: true
-  directory:
-    description: "The base directory for your target paths. If you do not specify a value, all paths are relative to your project directory."
+  source_base_directory:
+    description: "The base directory for the source path. If you do not specify a value, all paths are relative the the zip extraction"
+    required: false
+    default: "."
+  target_base_directory:
+    description: "The base directory for your target paths. If you do not specify a value, all paths are relative to your project directory"
     required: false
     default: "."
   files:
-    description: "A multiline string that specifies which files should be copied to your target directory. Each line should be of the form `source=destination`."
-    required: true
+    description: "A multiline string that specifies which files should be copied to your target directory. Each line should be of the form `source=destination`"
+    required: false
+  directories:
+    description: "A multiline string that specifies which directories should be copied to your target directory. Each line should be of the form `source=destination`"
+    required: false
   fail_on_not_found:
     description: "Specify true if you want the action to fail when a file cannot be found. Otherwise missing files will be ignored"
     default: "false"

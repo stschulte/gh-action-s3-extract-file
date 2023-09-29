@@ -17,9 +17,11 @@ import { withExtractedS3 } from "../../src/download.js";
 const env = {
   INPUT_BUCKET: undefined,
   INPUT_KEY: undefined,
-  INPUT_DIRECTORY: ".",
   INPUT_FILES: undefined,
+  INPUT_DIRECTORIES: undefined,
   INPUT_FAIL_ON_NOT_FOUND: "false",
+  INPUT_TARGET_BASE_DIRECTORY: ".",
+  INPUT_SOURCE_BASE_DIRECTORY: ".",
 };
 
 vi.spyOn(core, "debug").mockImplementation(vi.fn(() => {}));
@@ -112,73 +114,181 @@ describe("run", () => {
         "Input required and not supplied: key"
       );
     });
+  });
 
-    it("should complain when files is missing", async () => {
+  describe("copy files", () => {
+    it("should copy files", async () => {
+      const encoding = "utf8";
+      const src1 = join("subdir", "not-found.txt");
+      const src2 = join("subdir", "subsubdir", "subsubdir.txt");
+      const src3 = join("subdir", "subdir.txt");
+
+      const dst1 = join(dstDir, "not-found.txt");
+      const dst2 = join(dstDir, "file1.txt");
+      const dst3 = join(dstDir, "bar.txt");
+
       process.env.INPUT_BUCKET = "some-bucket";
       process.env.INPUT_KEY = "some-key";
+      process.env.INPUT_FILES = [
+        `${src1}=${dst1}`,
+        `${src2}=${dst2}`,
+        `${src3}=${dst3}`,
+      ].join("\n");
+
+      const result = await run();
+      expect(result).toStrictEqual({
+        copiedFiles: [dst2, dst3],
+        copiedDirectories: [],
+      });
+      expect(existsSync(dst1)).toBeFalsy();
+      expect(readFileSync(dst2, { encoding })).toStrictEqual(
+        "Welcome in subsubdir.txt"
+      );
+      expect(readFileSync(dst3, { encoding })).toStrictEqual(
+        "Welcome in subdir.txt"
+      );
+    });
+
+    it("should treat paths relative to target directory", async () => {
+      const src = join("subdir", "subsubdir", "subsubdir.txt");
+      const dst = "target.txt";
+
+      process.env.INPUT_BUCKET = "some-bucket";
+      process.env.INPUT_KEY = "some-key";
+      process.env.INPUT_FILES = `${src}=${dst}`;
+      process.env.INPUT_TARGET_BASE_DIRECTORY = dstDir;
+
+      const result = await run();
+      expect(result).toStrictEqual({
+        copiedFiles: [join(dstDir, dst)],
+        copiedDirectories: [],
+      });
+      expect(
+        readFileSync(join(dstDir, dst), { encoding: "utf8" })
+      ).toStrictEqual("Welcome in subsubdir.txt");
+    });
+
+    it("should source paths relative to source directory", async () => {
+      const src = "subsubdir.txt";
+      const dst = join(dstDir, "target.txt");
+
+      process.env.INPUT_BUCKET = "some-bucket";
+      process.env.INPUT_KEY = "some-key";
+      process.env.INPUT_FILES = `${src}=${dst}`;
+      process.env.INPUT_SOURCE_BASE_DIRECTORY = join("subdir", "subsubdir");
+
+      const result = await run();
+      expect(result).toStrictEqual({
+        copiedFiles: [dst],
+        copiedDirectories: [],
+      });
+      expect(readFileSync(dst, { encoding: "utf8" })).toStrictEqual(
+        "Welcome in subsubdir.txt"
+      );
+    });
+
+    it("should fail on missing file when fail_on_not_found is set", async () => {
+      const src = join("subdir", "not-found.txt");
+      const dst = join(dstDir, "not-found.txt");
+
+      process.env.INPUT_BUCKET = "some-bucket";
+      process.env.INPUT_KEY = "some-key";
+      process.env.INPUT_FILES = `${src}=${dst}`;
+      process.env.INPUT_FAIL_ON_NOT_FOUND = "true";
 
       const promise = run();
-      await expect(promise).rejects.toThrow(
-        "Input required and not supplied: files"
-      );
+      await expect(promise).rejects.toThrow(/was not found/);
     });
   });
 
-  it("should copy files", async () => {
-    const encoding = "utf8";
-    const src1 = join("subdir", "not-found.txt");
-    const src2 = join("subdir", "subsubdir", "subsubdir.txt");
-    const src3 = join("subdir", "subdir.txt");
+  describe("copy directories", () => {
+    it("should copy directories", async () => {
+      const encoding = "utf8";
+      const src1 = "subdir";
+      const src2 = "not-found";
+      const dst1 = join(dstDir, "subdir");
+      const dst2 = join(dstDir, "not-found");
 
-    const dst1 = join(dstDir, "not-found.txt");
-    const dst2 = join(dstDir, "file1.txt");
-    const dst3 = join(dstDir, "bar.txt");
+      process.env.INPUT_BUCKET = "some-bucket";
+      process.env.INPUT_KEY = "some-key";
+      process.env.INPUT_DIRECTORIES = [
+        `${src1}=${dst1}`,
+        `${src2}=${dst2}`,
+      ].join("\n");
 
-    process.env.INPUT_BUCKET = "some-bucket";
-    process.env.INPUT_KEY = "some-key";
-    process.env.INPUT_FILES = [
-      `${src1}=${dst1}`,
-      `${src2}=${dst2}`,
-      `${src3}=${dst3}`,
-    ].join("\n");
+      const result = await run();
+      expect(result).toStrictEqual({
+        copiedFiles: [],
+        copiedDirectories: [dst1],
+      });
+      expect(existsSync(dst1)).toBeTruthy();
+      expect(
+        readFileSync(join(dst1, "subdir.txt"), { encoding })
+      ).toStrictEqual("Welcome in subdir.txt");
+      expect(
+        readFileSync(join(dst1, "subsubdir", "subsubdir.txt"), { encoding })
+      ).toStrictEqual("Welcome in subsubdir.txt");
+      expect(existsSync(dst2)).toBeFalsy();
+    });
 
-    const result = await run();
-    expect(result).toStrictEqual({ copiedFiles: [dst2, dst3] });
-    expect(existsSync(dst1)).toBeFalsy();
-    expect(readFileSync(dst2, { encoding })).toStrictEqual(
-      "Welcome in subsubdir.txt"
-    );
-    expect(readFileSync(dst3, { encoding })).toStrictEqual(
-      "Welcome in subdir.txt"
-    );
-  });
+    it("should treat paths relative to target directory", async () => {
+      const src = "subdir";
+      const dst = "targetdir";
 
-  it("should treat paths relative to target directory", async () => {
-    const src = join("subdir", "subsubdir", "subsubdir.txt");
-    const dst = "target.txt";
+      process.env.INPUT_BUCKET = "some-bucket";
+      process.env.INPUT_KEY = "some-key";
+      process.env.INPUT_DIRECTORIES = `${src}=${dst}`;
+      process.env.INPUT_TARGET_BASE_DIRECTORY = dstDir;
 
-    process.env.INPUT_BUCKET = "some-bucket";
-    process.env.INPUT_KEY = "some-key";
-    process.env.INPUT_FILES = `${src}=${dst}`;
-    process.env.INPUT_DIRECTORY = dstDir;
+      const result = await run();
+      expect(result).toStrictEqual({
+        copiedFiles: [],
+        copiedDirectories: [join(dstDir, dst)],
+      });
+      expect(existsSync(join(dstDir, "targetdir"))).toBeTruthy();
+      expect(
+        readFileSync(join(dstDir, "targetdir", "subdir.txt"), {
+          encoding: "utf8",
+        })
+      ).toStrictEqual("Welcome in subdir.txt");
+    });
 
-    const result = await run();
-    expect(result).toStrictEqual({ copiedFiles: [join(dstDir, dst)] });
-    expect(readFileSync(join(dstDir, dst), { encoding: "utf8" })).toStrictEqual(
-      "Welcome in subsubdir.txt"
-    );
-  });
+    it("should source paths relative to source directory", async () => {
+      const src = "subsubdir";
+      const dst = join(dstDir, "targetdir");
 
-  it("should fail on missing file when fail_on_not_found is set", async () => {
-    const src = join("subdir", "not-found.txt");
-    const dst = join(dstDir, "not-found.txt");
+      process.env.INPUT_BUCKET = "some-bucket";
+      process.env.INPUT_KEY = "some-key";
+      process.env.INPUT_DIRECTORIES = `${src}=${dst}`;
+      process.env.INPUT_SOURCE_BASE_DIRECTORY = "subdir";
 
-    process.env.INPUT_BUCKET = "some-bucket";
-    process.env.INPUT_KEY = "some-key";
-    process.env.INPUT_FILES = `${src}=${dst}`;
-    process.env.INPUT_FAIL_ON_NOT_FOUND = "true";
+      const result = await run();
+      expect(result).toStrictEqual({
+        copiedFiles: [],
+        copiedDirectories: [dst],
+      });
+      expect(existsSync(dst)).toBeTruthy();
+      expect(
+        readFileSync(join(dst, "subsubdir.txt"), { encoding: "utf8" })
+      ).toStrictEqual("Welcome in subsubdir.txt");
+    });
 
-    const promise = run();
-    await expect(promise).rejects.toThrow(/was not found/);
+    it("should fail on missing directory when fail_on_not_found is set", async () => {
+      const src1 = "subdir";
+      const src2 = "not-found";
+      const dst1 = join(dstDir, "subdir");
+      const dst2 = join(dstDir, "not-found");
+
+      process.env.INPUT_BUCKET = "some-bucket";
+      process.env.INPUT_KEY = "some-key";
+      process.env.INPUT_DIRECTORIES = [
+        `${src1}=${dst1}`,
+        `${src2}=${dst2}`,
+      ].join("\n");
+      process.env.INPUT_FAIL_ON_NOT_FOUND = "true";
+
+      const promise = run();
+      await expect(promise).rejects.toThrow(/was not found/);
+    });
   });
 });
