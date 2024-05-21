@@ -1,19 +1,16 @@
 /// <reference types="../vitest.d.ts" />
 
-import { describe, it, expect, beforeEach } from "vitest";
-import { mockClient } from "aws-sdk-client-mock";
-
 import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { sdkStreamMixin } from "@smithy/util-stream";
-
-import { readFileSync, existsSync, rmSync, mkdtempSync } from "node:fs";
+import { mockClient } from "aws-sdk-client-mock";
+import jszip from "jszip";
+import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { Readable } from "node:stream";
+import { beforeEach, describe, expect, it } from "vitest";
 
-import jszip from "jszip";
-
-import { assertNotNull, readStream } from "./helper.js";
 import { s3Stream, unzipStream, withExtractedS3 } from "../../src/download.js";
+import { assertNotNull, readStream } from "./helper.js";
 
 const s3Mock = mockClient(S3Client);
 
@@ -31,10 +28,10 @@ function fakeZipStream(): Readable {
 
   return new Readable().wrap(
     zipRoot.generateNodeStream({
-      type: "nodebuffer",
       compression: "DEFLATE",
       compressionOptions: { level: 9 },
       streamFiles: false,
+      type: "nodebuffer",
     })
   );
 }

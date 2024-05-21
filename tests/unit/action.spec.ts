@@ -1,27 +1,26 @@
-import { describe, beforeEach, it, expect, vi } from "vitest";
-import {
-  rmSync,
-  mkdtempSync,
-  mkdirSync,
-  writeFileSync,
-  readFileSync,
-  existsSync,
-} from "node:fs";
-
-import { join } from "node:path";
 import * as core from "@actions/core";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
+import { join } from "node:path";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { run } from "../../src/action.js";
 import { withExtractedS3 } from "../../src/download.js";
 
 const env = {
   INPUT_BUCKET: undefined,
-  INPUT_KEY: undefined,
-  INPUT_FILES: undefined,
   INPUT_DIRECTORIES: undefined,
   INPUT_FAIL_ON_NOT_FOUND: "false",
-  INPUT_TARGET_BASE_DIRECTORY: ".",
+  INPUT_FILES: undefined,
+  INPUT_KEY: undefined,
   INPUT_SOURCE_BASE_DIRECTORY: ".",
+  INPUT_TARGET_BASE_DIRECTORY: ".",
 };
 
 vi.spyOn(core, "debug").mockImplementation(vi.fn(() => {}));
@@ -137,8 +136,8 @@ describe("run", () => {
 
       const result = await run();
       expect(result).toStrictEqual({
-        copiedFiles: [dst2, dst3],
         copiedDirectories: [],
+        copiedFiles: [dst2, dst3],
       });
       expect(existsSync(dst1)).toBeFalsy();
       expect(readFileSync(dst2, { encoding })).toStrictEqual(
@@ -160,8 +159,8 @@ describe("run", () => {
 
       const result = await run();
       expect(result).toStrictEqual({
-        copiedFiles: [join(dstDir, dst)],
         copiedDirectories: [],
+        copiedFiles: [join(dstDir, dst)],
       });
       expect(
         readFileSync(join(dstDir, dst), { encoding: "utf8" })
@@ -179,8 +178,8 @@ describe("run", () => {
 
       const result = await run();
       expect(result).toStrictEqual({
-        copiedFiles: [dst],
         copiedDirectories: [],
+        copiedFiles: [dst],
       });
       expect(readFileSync(dst, { encoding: "utf8" })).toStrictEqual(
         "Welcome in subsubdir.txt"
@@ -218,8 +217,8 @@ describe("run", () => {
 
       const result = await run();
       expect(result).toStrictEqual({
-        copiedFiles: [],
         copiedDirectories: [dst1],
+        copiedFiles: [],
       });
       expect(existsSync(dst1)).toBeTruthy();
       expect(
@@ -242,8 +241,8 @@ describe("run", () => {
 
       const result = await run();
       expect(result).toStrictEqual({
-        copiedFiles: [],
         copiedDirectories: [join(dstDir, dst)],
+        copiedFiles: [],
       });
       expect(existsSync(join(dstDir, "targetdir"))).toBeTruthy();
       expect(
@@ -264,8 +263,8 @@ describe("run", () => {
 
       const result = await run();
       expect(result).toStrictEqual({
-        copiedFiles: [],
         copiedDirectories: [dst],
+        copiedFiles: [],
       });
       expect(existsSync(dst)).toBeTruthy();
       expect(

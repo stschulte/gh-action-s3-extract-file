@@ -1,5 +1,5 @@
-import "vitest";
 import { CustomMatcher } from "aws-sdk-client-mock-vitest";
+import "vitest";
 
 declare module "vitest" {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-explicit-any
