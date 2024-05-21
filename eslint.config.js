@@ -1,10 +1,13 @@
 import eslint from "@eslint/js";
 import gitignore from "eslint-config-flat-gitignore";
-import perfectionistNatural from 'eslint-plugin-perfectionist/configs/recommended-natural'
+import perfectionistNatural from 'eslint-plugin-perfectionist/configs/recommended-natural';
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   gitignore(),
+  {
+    ignores: ["dist/**"],
+  },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {
@@ -16,25 +19,17 @@ export default tseslint.config(
       },
     },
     rules: {
-      "camelcase": "off",
-      "eslint-comments/no-use": "off",
-      "eslint-comments/no-unused-disable": "off",
-      "i18n-text/no-en": "off",
-      "import/no-namespace": "off",
-      "no-console": "off",
-      "no-unused-vars": "off",
-      "semi": "off",
       "@typescript-eslint/array-type": "error",
       "@typescript-eslint/await-thenable": "error",
       "@typescript-eslint/ban-ts-comment": "error",
       "@typescript-eslint/consistent-type-assertions": "error",
-      "@typescript-eslint/explicit-member-accessibility": [
-        "error",
-        { "accessibility": "no-public" }
-      ],
       "@typescript-eslint/explicit-function-return-type": [
         "error",
         { "allowExpressions": true }
+      ],
+      "@typescript-eslint/explicit-member-accessibility": [
+        "error",
+        { "accessibility": "no-public" }
       ],
       "@typescript-eslint/func-call-spacing": ["error", "never"],
       "@typescript-eslint/no-array-constructor": "error",
@@ -62,7 +57,15 @@ export default tseslint.config(
       "@typescript-eslint/semi": "error",
       "@typescript-eslint/space-before-function-paren": "off",
       "@typescript-eslint/type-annotation-spacing": "error",
-      "@typescript-eslint/unbound-method": "error"
+      "@typescript-eslint/unbound-method": "error",
+      "camelcase": "off",
+      "eslint-comments/no-unused-disable": "off",
+      "eslint-comments/no-use": "off",
+      "i18n-text/no-en": "off",
+      "import/no-namespace": "off",
+      "no-console": "off",
+      "no-unused-vars": "off",
+      "semi": "off"
     },
   },
   perfectionistNatural

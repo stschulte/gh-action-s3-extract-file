@@ -1,14 +1,14 @@
 import * as core from "@actions/core";
 import { S3Client } from "@aws-sdk/client-s3";
-import { existsSync, copyFileSync } from "node:fs";
+import { copyFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
-import { copyDirectory } from "./utils.js";
 import { withExtractedS3 } from "./download.js";
+import { copyDirectory } from "./utils.js";
 
 type ActionResult = {
-  copiedFiles: string[];
   copiedDirectories: string[];
+  copiedFiles: string[];
 };
 
 export async function run(): Promise<ActionResult> {
@@ -63,7 +63,7 @@ export async function run(): Promise<ActionResult> {
         }
       }
     }
-    return { copiedFiles, copiedDirectories };
+    return { copiedDirectories, copiedFiles };
   });
 
   return result;

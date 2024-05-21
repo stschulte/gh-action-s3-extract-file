@@ -1,4 +1,4 @@
-import { mkdirSync, readdirSync, copyFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 export function copyDirectory(src: string, dst: string): void {

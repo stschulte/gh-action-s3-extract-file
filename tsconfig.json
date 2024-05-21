@@ -12,11 +12,5 @@
     "strict": true,
     "skipLibCheck": true,
     "newLine": "lf"
-  },
-  "exclude": [
-    "./dist",
-    "./node_modules",
-    "./tests/**/",
-    "./coverage"
-  ]
+  }
 }

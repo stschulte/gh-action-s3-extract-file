@@ -1,5 +1,5 @@
-import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
-import { rmSync, mkdtempSync } from "node:fs";
+import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { mkdtempSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { Readable } from "node:stream";
 import { Extract } from "unzipper";
@@ -34,7 +34,7 @@ export async function withExtractedS3<R>(
   client: S3Client,
   bucket: string,
   key: string,
-  callback: (directory: string) => R | Promise<R>
+  callback: (directory: string) => Promise<R> | R
 ): Promise<Awaited<R>> {
   let tmpDir: string | undefined;
   let result: Awaited<R>;
