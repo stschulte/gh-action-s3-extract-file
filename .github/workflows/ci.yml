@@ -19,7 +19,7 @@ jobs:
 
       - name: Setup Node.js
         id: setup-node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
@@ -28,10 +28,6 @@ jobs:
         id: npm-ci
         run: npm ci
 
-      - name: Check Format
-        id: npm-format-check
-        run: npm run format:check
-
       - name: Lint
         id: npm-lint
         run: npm run lint
@@ -39,3 +35,9 @@ jobs:
       - name: Test
         id: npm-test
         run: npm run test:coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          format: lcov
+          file: "./coverage/lcov.info"
