@@ -22,22 +22,21 @@ RDEPS=(
 # List of buildtime dependencies or developer
 # dependencies
 BDEPS=(
+    "typescript"
     "@smithy/types"
     "@smithy/util-stream"
     "@types/unzipper"
     "aws-sdk-client-mock"
     "aws-sdk-client-mock-vitest"
-    "@typescript-eslint/eslint-plugin"
-    "@typescript-eslint/parser"
     "@vercel/ncc"
-    "eslint"
-    "eslint-plugin-github"
-    "js-yaml"
-    "prettier"
-    "typescript"
     "vitest"
     "@vitest/coverage-v8"
     "jszip"
+    "eslint"
+    "@eslint/js"
+    "eslint-config-flat-gitignore"
+    "eslint-plugin-perfectionist"
+    "typescript-eslint"
 )
 
 if [[ ! -f package.json ]]; then
