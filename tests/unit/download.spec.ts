@@ -68,7 +68,9 @@ describe("s3Stream", () => {
   });
 
   it("should raise an error when body does not include a pipe method", async () => {
-    s3Mock.on(GetObjectCommand).resolves({ Body: undefined });
+    s3Mock
+      .on(GetObjectCommand)
+      .resolves({ Body: sdkStreamMixin(Readable.toWeb(Readable.from("Hello World"))) });
 
     const client = new S3Client({});
     const promise = s3Stream(client, "bucket", "foo");
@@ -132,7 +134,7 @@ describe("withExtractedS3", () => {
       client,
       "some-bucket",
       "foo.zip",
-      async (directory) => {
+      (directory) => {
         const encoding = "utf8";
         const root = readFileSync(join(directory, "root.txt"), { encoding });
         const subdir = readFileSync(join(directory, "subdir", "subdir.txt"), {

@@ -31,7 +31,7 @@ vi.spyOn(core, "error").mockImplementation(vi.fn(() => {}));
 
 vi.mock("../../src/download.js", () => {
   return {
-    withExtractedS3: vi.fn<typeof withExtractedS3>(async (client, bucket, key, callback) => {
+    withExtractedS3: vi.fn<typeof withExtractedS3>(async (_client, _bucket, _key, callback) => {
       let tmpDir: string | undefined;
       let result;
       try {
@@ -170,6 +170,19 @@ describe("run", () => {
       );
     });
 
+    it("should fail on incorrect assignment", async() => {
+      const src = "subsubdir.txt";
+      const dst = join(dstDir, "target.txt");
+
+      vi.stubEnv("INPUT_BUCKET", "some-bucket");
+      vi.stubEnv("INPUT_KEY", "some-key");
+      vi.stubEnv("INPUT_FILES", `${src}:${dst}`);
+      vi.stubEnv("INPUT_SOURCE_BASE_DIRECTORY", join("subdir", "subsubdir"));
+
+      const promise = run();
+      await expect(promise).rejects.toThrow(/Unable to split/)
+    });
+
     it("should fail on missing file when fail_on_not_found is set", async () => {
       const src = join("subdir", "not-found.txt");
       const dst = join(dstDir, "not-found.txt");
@@ -255,6 +268,19 @@ describe("run", () => {
         readFileSync(join(dst, "subsubdir.txt"), { encoding: "utf8" })
       ).toStrictEqual("Welcome in subsubdir.txt");
     });
+
+    it("should fail on incorrect assignment", async() => {
+      const src = "subsubdir";
+      const dst = join(dstDir, "targetdir");
+
+      vi.stubEnv("INPUT_BUCKET", "some-bucket");
+      vi.stubEnv("INPUT_KEY", "some-key");
+      vi.stubEnv("INPUT_DIRECTORIES", `${src}${dst}`);
+      vi.stubEnv("INPUT_SOURCE_BASE_DIRECTORY", "subdir");
+
+      const promise = run();
+      await expect(promise).rejects.toThrow(/Unable to split/);
+    })
 
     it("should fail on missing directory when fail_on_not_found is set", async () => {
       const src1 = "subdir";

@@ -24,12 +24,15 @@ export async function run(): Promise<ActionResult> {
 
   const s3 = new S3Client({});
 
-  const result = await withExtractedS3(s3, bucket, key, async (directory) => {
+  const result = await withExtractedS3(s3, bucket, key, (directory) => {
     const copiedFiles: string[] = [];
     const copiedDirectories: string[] = [];
 
     for (const item of copyDirectories) {
       const [src, dst] = item.split("=");
+      if (src === undefined || dst === undefined) {
+        throw new Error(`Unable to split ${item} in a source and destination path`);
+      }
       const sourcePath = join(directory, baseDirectory, src);
       const destinationPath = join(targetDirectory, dst);
       if (existsSync(sourcePath)) {
@@ -39,15 +42,17 @@ export async function run(): Promise<ActionResult> {
       } else {
         core.info(`Directory ${sourcePath} not found`);
         if (failOnNotFound) {
-          throw new Error(
-            `The directory ${sourcePath} was not found in bucket ${bucket} key ${key}`
-          );
+          throw new Error(`The directory ${sourcePath} was not found in bucket ${bucket} key ${key}`);
         }
       }
     }
 
     for (const item of copyFiles) {
       const [src, dst] = item.split("=");
+      if (src === undefined || dst === undefined) {
+        throw new Error(`Unable to split ${item} in a source and destination path`);
+      }
+
       const sourcePath = join(directory, baseDirectory, src);
       const destinationPath = join(targetDirectory, dst);
       if (existsSync(sourcePath)) {

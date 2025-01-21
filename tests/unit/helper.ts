@@ -1,11 +1,18 @@
 import { Readable } from "node:stream";
 
 export async function readStream(stream: Readable): Promise<string> {
-  const chunks: Buffer[] = [];
-  for await (const chunk of stream) {
-    chunks.push(Buffer.from(chunk));
-  }
-  return Buffer.concat(chunks).toString("utf-8");
+  let result = '';
+  return new Promise((resolve, reject) => {
+    stream.on('data', (chunk: string) => {
+      result += chunk;
+    });
+    stream.on('error', () => {
+      reject(new Error('Unable to read test stream'));
+    });
+    stream.on('end', () => {
+      resolve(result);
+    });
+  });
 }
 
 export function assertNotNull<T>(obj: T | null, msg: string): asserts obj is T {
