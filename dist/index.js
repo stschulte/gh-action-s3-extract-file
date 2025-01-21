@@ -18916,14 +18916,23 @@ var import_util_stream = __nccwpck_require__(4252);
 var getChecksum = /* @__PURE__ */ __name(async (body, { checksumAlgorithmFn, base64Encoder }) => base64Encoder(await stringHasher(checksumAlgorithmFn, body)), "getChecksum");
 
 // src/validateChecksumFromResponse.ts
-var validateChecksumFromResponse = /* @__PURE__ */ __name(async (response, { config, responseAlgorithms }) => {
+var validateChecksumFromResponse = /* @__PURE__ */ __name(async (response, { config, responseAlgorithms, logger }) => {
   const checksumAlgorithms = getChecksumAlgorithmListForResponse(responseAlgorithms);
   const { body: responseBody, headers: responseHeaders } = response;
   for (const algorithm of checksumAlgorithms) {
     const responseHeader = getChecksumLocationName(algorithm);
     const checksumFromResponse = responseHeaders[responseHeader];
     if (checksumFromResponse) {
-      const checksumAlgorithmFn = selectChecksumAlgorithmFunction(algorithm, config);
+      let checksumAlgorithmFn;
+      try {
+        checksumAlgorithmFn = selectChecksumAlgorithmFunction(algorithm, config);
+      } catch (error) {
+        if (algorithm === "CRC64NVME" /* CRC64NVME */) {
+          logger?.warn(`Skipping ${"CRC64NVME" /* CRC64NVME */} checksum validation: ${error.message}`);
+          continue;
+        }
+        throw error;
+      }
       const { base64Encoder } = config;
       if (isStreaming(responseBody)) {
         response.body = (0, import_util_stream.createChecksumStream)({
@@ -18980,7 +18989,8 @@ var flexibleChecksumsResponseMiddleware = /* @__PURE__ */ __name((config, middle
     }
     await validateChecksumFromResponse(result.response, {
       config,
-      responseAlgorithms
+      responseAlgorithms,
+      logger: context.logger
     });
     if (isStreamingBody && collectedStream) {
       response.body = (0, import_create_read_stream_on_buffer.createReadStreamOnBuffer)(collectedStream);
@@ -74915,7 +74925,7 @@ module.exports = parseParams
 /***/ 7413:
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-s3","description":"AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native","version":"3.731.1","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-s3","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo s3","test":"yarn g:vitest run","test:browser":"node ./test/browser-build/esbuild && yarn g:vitest run -c vitest.config.browser.ts","test:browser:watch":"node ./test/browser-build/esbuild && yarn g:vitest watch -c vitest.config.browser.ts","test:e2e":"yarn g:vitest run -c vitest.config.e2e.ts && yarn test:browser","test:e2e:watch":"yarn g:vitest watch -c vitest.config.e2e.ts","test:watch":"yarn g:vitest watch"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha1-browser":"5.2.0","@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.731.0","@aws-sdk/credential-provider-node":"3.731.1","@aws-sdk/middleware-bucket-endpoint":"3.731.0","@aws-sdk/middleware-expect-continue":"3.731.0","@aws-sdk/middleware-flexible-checksums":"3.731.0","@aws-sdk/middleware-host-header":"3.731.0","@aws-sdk/middleware-location-constraint":"3.731.0","@aws-sdk/middleware-logger":"3.731.0","@aws-sdk/middleware-recursion-detection":"3.731.0","@aws-sdk/middleware-sdk-s3":"3.731.0","@aws-sdk/middleware-ssec":"3.731.0","@aws-sdk/middleware-user-agent":"3.731.0","@aws-sdk/region-config-resolver":"3.731.0","@aws-sdk/signature-v4-multi-region":"3.731.0","@aws-sdk/types":"3.731.0","@aws-sdk/util-endpoints":"3.731.0","@aws-sdk/util-user-agent-browser":"3.731.0","@aws-sdk/util-user-agent-node":"3.731.0","@aws-sdk/xml-builder":"3.723.0","@smithy/config-resolver":"^4.0.0","@smithy/core":"^3.0.0","@smithy/eventstream-serde-browser":"^4.0.0","@smithy/eventstream-serde-config-resolver":"^4.0.0","@smithy/eventstream-serde-node":"^4.0.0","@smithy/fetch-http-handler":"^5.0.0","@smithy/hash-blob-browser":"^4.0.0","@smithy/hash-node":"^4.0.0","@smithy/hash-stream-node":"^4.0.0","@smithy/invalid-dependency":"^4.0.0","@smithy/md5-js":"^4.0.0","@smithy/middleware-content-length":"^4.0.0","@smithy/middleware-endpoint":"^4.0.0","@smithy/middleware-retry":"^4.0.0","@smithy/middleware-serde":"^4.0.0","@smithy/middleware-stack":"^4.0.0","@smithy/node-config-provider":"^4.0.0","@smithy/node-http-handler":"^4.0.0","@smithy/protocol-http":"^5.0.0","@smithy/smithy-client":"^4.0.0","@smithy/types":"^4.0.0","@smithy/url-parser":"^4.0.0","@smithy/util-base64":"^4.0.0","@smithy/util-body-length-browser":"^4.0.0","@smithy/util-body-length-node":"^4.0.0","@smithy/util-defaults-mode-browser":"^4.0.0","@smithy/util-defaults-mode-node":"^4.0.0","@smithy/util-endpoints":"^3.0.0","@smithy/util-middleware":"^4.0.0","@smithy/util-retry":"^4.0.0","@smithy/util-stream":"^4.0.0","@smithy/util-utf8":"^4.0.0","@smithy/util-waiter":"^4.0.0","tslib":"^2.6.2"},"devDependencies":{"@aws-sdk/signature-v4-crt":"3.731.0","@tsconfig/node18":"18.2.4","@types/node":"^18.19.69","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.2.2"},"engines":{"node":">=18.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-s3","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-s3"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-s3","description":"AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native","version":"3.732.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-s3","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo s3","test":"yarn g:vitest run","test:browser":"node ./test/browser-build/esbuild && yarn g:vitest run -c vitest.config.browser.ts","test:browser:watch":"node ./test/browser-build/esbuild && yarn g:vitest watch -c vitest.config.browser.ts","test:e2e":"yarn g:vitest run -c vitest.config.e2e.ts && yarn test:browser","test:e2e:watch":"yarn g:vitest watch -c vitest.config.e2e.ts","test:watch":"yarn g:vitest watch"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha1-browser":"5.2.0","@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.731.0","@aws-sdk/credential-provider-node":"3.731.1","@aws-sdk/middleware-bucket-endpoint":"3.731.0","@aws-sdk/middleware-expect-continue":"3.731.0","@aws-sdk/middleware-flexible-checksums":"3.732.0","@aws-sdk/middleware-host-header":"3.731.0","@aws-sdk/middleware-location-constraint":"3.731.0","@aws-sdk/middleware-logger":"3.731.0","@aws-sdk/middleware-recursion-detection":"3.731.0","@aws-sdk/middleware-sdk-s3":"3.731.0","@aws-sdk/middleware-ssec":"3.731.0","@aws-sdk/middleware-user-agent":"3.731.0","@aws-sdk/region-config-resolver":"3.731.0","@aws-sdk/signature-v4-multi-region":"3.731.0","@aws-sdk/types":"3.731.0","@aws-sdk/util-endpoints":"3.731.0","@aws-sdk/util-user-agent-browser":"3.731.0","@aws-sdk/util-user-agent-node":"3.731.0","@aws-sdk/xml-builder":"3.723.0","@smithy/config-resolver":"^4.0.0","@smithy/core":"^3.0.0","@smithy/eventstream-serde-browser":"^4.0.0","@smithy/eventstream-serde-config-resolver":"^4.0.0","@smithy/eventstream-serde-node":"^4.0.0","@smithy/fetch-http-handler":"^5.0.0","@smithy/hash-blob-browser":"^4.0.0","@smithy/hash-node":"^4.0.0","@smithy/hash-stream-node":"^4.0.0","@smithy/invalid-dependency":"^4.0.0","@smithy/md5-js":"^4.0.0","@smithy/middleware-content-length":"^4.0.0","@smithy/middleware-endpoint":"^4.0.0","@smithy/middleware-retry":"^4.0.0","@smithy/middleware-serde":"^4.0.0","@smithy/middleware-stack":"^4.0.0","@smithy/node-config-provider":"^4.0.0","@smithy/node-http-handler":"^4.0.0","@smithy/protocol-http":"^5.0.0","@smithy/smithy-client":"^4.0.0","@smithy/types":"^4.0.0","@smithy/url-parser":"^4.0.0","@smithy/util-base64":"^4.0.0","@smithy/util-body-length-browser":"^4.0.0","@smithy/util-body-length-node":"^4.0.0","@smithy/util-defaults-mode-browser":"^4.0.0","@smithy/util-defaults-mode-node":"^4.0.0","@smithy/util-endpoints":"^3.0.0","@smithy/util-middleware":"^4.0.0","@smithy/util-retry":"^4.0.0","@smithy/util-stream":"^4.0.0","@smithy/util-utf8":"^4.0.0","@smithy/util-waiter":"^4.0.0","tslib":"^2.6.2"},"devDependencies":{"@aws-sdk/signature-v4-crt":"3.731.0","@tsconfig/node18":"18.2.4","@types/node":"^18.19.69","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.2.2"},"engines":{"node":">=18.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-s3","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-s3"}}');
 
 /***/ }),
 
@@ -74981,6 +74991,8 @@ var dist_cjs = __nccwpck_require__(3711);
 const external_node_fs_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:fs");
 ;// CONCATENATED MODULE: external "node:path"
 const external_node_path_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:path");
+// EXTERNAL MODULE: external "node:stream"
+var external_node_stream_ = __nccwpck_require__(7075);
 // EXTERNAL MODULE: ./node_modules/unzipper/unzip.js
 var unzip = __nccwpck_require__(3835);
 ;// CONCATENATED MODULE: ./src/download.ts
@@ -74988,10 +75000,11 @@ var unzip = __nccwpck_require__(3835);
 
 
 
+
 async function s3Stream(client, bucket, key) {
     const command = new dist_cjs.GetObjectCommand({ Bucket: bucket, Key: key });
     const response = await client.send(command);
-    if (response.Body && "pipe" in response.Body) {
+    if (response.Body && 'pipe' in response.Body) {
         return response.Body;
     }
     throw new Error(`Unable to read bucket ${bucket} key ${key}`);
@@ -75000,15 +75013,15 @@ async function unzipStream(stream, path) {
     return new Promise((resolve, reject) => {
         stream
             .pipe((0,unzip.Extract)({ path }))
-            .on("close", () => resolve(path))
-            .on("error", (err) => reject(err));
+            .on('close', () => { resolve(path); })
+            .on('error', (err) => { reject(err); });
     });
 }
 async function withExtractedS3(client, bucket, key, callback) {
     let tmpDir;
     let result;
     try {
-        tmpDir = (0,external_node_fs_namespaceObject.mkdtempSync)((0,external_node_path_namespaceObject.join)(".", "tmp-zip-"));
+        tmpDir = (0,external_node_fs_namespaceObject.mkdtempSync)((0,external_node_path_namespaceObject.join)('.', 'tmp-zip-'));
         const stream = await s3Stream(client, bucket, key);
         const zipDir = await unzipStream(stream, tmpDir);
         result = await Promise.resolve(callback(zipDir));
@@ -75047,21 +75060,24 @@ function copyDirectory(src, dst) {
 
 
 async function run() {
-    const bucket = core.getInput("bucket", { required: true });
-    const key = core.getInput("key", { required: true });
-    const baseDirectory = core.getInput("source_base_directory");
-    const targetDirectory = core.getInput("target_base_directory");
-    const copyFiles = core.getMultilineInput("files", { required: false });
-    const copyDirectories = core.getMultilineInput("directories", {
+    const bucket = core.getInput('bucket', { required: true });
+    const key = core.getInput('key', { required: true });
+    const baseDirectory = core.getInput('source_base_directory');
+    const targetDirectory = core.getInput('target_base_directory');
+    const copyFiles = core.getMultilineInput('files', { required: false });
+    const copyDirectories = core.getMultilineInput('directories', {
         required: false,
     });
-    const failOnNotFound = core.getBooleanInput("fail_on_not_found");
+    const failOnNotFound = core.getBooleanInput('fail_on_not_found');
     const s3 = new dist_cjs.S3Client({});
-    const result = await withExtractedS3(s3, bucket, key, async (directory) => {
+    const result = await withExtractedS3(s3, bucket, key, (directory) => {
         const copiedFiles = [];
         const copiedDirectories = [];
         for (const item of copyDirectories) {
-            const [src, dst] = item.split("=");
+            const [src, dst] = item.split('=');
+            if (src === undefined || dst === undefined) {
+                throw new Error(`Unable to split ${item} in a source and destination path`);
+            }
             const sourcePath = (0,external_node_path_namespaceObject.join)(directory, baseDirectory, src);
             const destinationPath = (0,external_node_path_namespaceObject.join)(targetDirectory, dst);
             if ((0,external_node_fs_namespaceObject.existsSync)(sourcePath)) {
@@ -75077,7 +75093,10 @@ async function run() {
             }
         }
         for (const item of copyFiles) {
-            const [src, dst] = item.split("=");
+            const [src, dst] = item.split('=');
+            if (src === undefined || dst === undefined) {
+                throw new Error(`Unable to split ${item} in a source and destination path`);
+            }
             const sourcePath = (0,external_node_path_namespaceObject.join)(directory, baseDirectory, src);
             const destinationPath = (0,external_node_path_namespaceObject.join)(targetDirectory, dst);
             if ((0,external_node_fs_namespaceObject.existsSync)(sourcePath)) {
