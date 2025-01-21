@@ -41,7 +41,7 @@ describe("s3Stream", () => {
     s3Mock.reset();
   });
 
-  it("should return a readable stream", async () => {
+  it("returns a readable stream", async () => {
     s3Mock
       .on(GetObjectCommand)
       .resolves({ Body: sdkStreamMixin(Readable.from("Hello World")) });
@@ -57,7 +57,7 @@ describe("s3Stream", () => {
     });
   });
 
-  it("should raise an error when result does not include a body", async () => {
+  it("raises an error when result does not include a body", async () => {
     s3Mock.on(GetObjectCommand).resolves({});
 
     const client = new S3Client({});
@@ -67,7 +67,7 @@ describe("s3Stream", () => {
     );
   });
 
-  it("should raise an error when body does not include a pipe method", async () => {
+  it("raises an error when body does not include a pipe method", async () => {
     s3Mock
       .on(GetObjectCommand)
       .resolves({ Body: sdkStreamMixin(Readable.toWeb(Readable.from("Hello World"))) });
@@ -92,7 +92,7 @@ describe("unzipStream", () => {
     };
   });
 
-  it("should unzip a stream", async () => {
+  it("unzips a stream", async () => {
     const stream = fakeZipStream();
     const dir = await unzipStream(stream, tmpDir);
 
@@ -121,7 +121,7 @@ describe("withExtractedS3", () => {
     s3Mock.reset();
   });
 
-  it("should run callback in context of downloaded directory", async () => {
+  it("runs callback in context of downloaded directory", async () => {
     s3Mock.on(GetObjectCommand).resolves({
       Body: sdkStreamMixin(fakeZipStream()),
     });

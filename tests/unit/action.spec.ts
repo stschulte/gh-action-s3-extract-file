@@ -78,7 +78,7 @@ describe("run", () => {
   });
 
   describe("missing parameters", () => {
-    it("should complain when bucket is missing", async () => {
+    it("complains when bucket is missing", async () => {
       vi.stubEnv("INPUT_KEY", "some-key");
       vi.stubEnv("INPUT_FILES", ["a=10"].join("\n"));
 
@@ -88,7 +88,7 @@ describe("run", () => {
       );
     });
 
-    it("should complain when key is missing", async () => {
+    it("complains when key is missing", async () => {
       vi.stubEnv("INPUT_BUCKET", "some-bucket");
       vi.stubEnv("INPUT_FILES", ["a=10"].join("\n"));
 
@@ -100,7 +100,7 @@ describe("run", () => {
   });
 
   describe("copy files", () => {
-    it("should copy files", async () => {
+    it("copies files", async () => {
       const encoding = "utf8";
       const src1 = join("subdir", "not-found.txt");
       const src2 = join("subdir", "subsubdir", "subsubdir.txt");
@@ -132,7 +132,7 @@ describe("run", () => {
       );
     });
 
-    it("should treat paths relative to target directory", async () => {
+    it("treats paths relative to target directory", async () => {
       const src = join("subdir", "subsubdir", "subsubdir.txt");
       const dst = "target.txt";
 
@@ -151,7 +151,7 @@ describe("run", () => {
       ).toStrictEqual("Welcome in subsubdir.txt");
     });
 
-    it("should source paths relative to source directory", async () => {
+    it("sources paths relative to source directory", async () => {
       const src = "subsubdir.txt";
       const dst = join(dstDir, "target.txt");
 
@@ -170,7 +170,7 @@ describe("run", () => {
       );
     });
 
-    it("should fail on incorrect assignment", async() => {
+    it("fails on incorrect assignment", async() => {
       const src = "subsubdir.txt";
       const dst = join(dstDir, "target.txt");
 
@@ -183,7 +183,7 @@ describe("run", () => {
       await expect(promise).rejects.toThrow(/Unable to split/)
     });
 
-    it("should fail on missing file when fail_on_not_found is set", async () => {
+    it("fails on missing file when fail_on_not_found is set", async () => {
       const src = join("subdir", "not-found.txt");
       const dst = join(dstDir, "not-found.txt");
 
@@ -198,7 +198,7 @@ describe("run", () => {
   });
 
   describe("copy directories", () => {
-    it("should copy directories", async () => {
+    it("copies directories", async () => {
       const encoding = "utf8";
       const src1 = "subdir";
       const src2 = "not-found";
@@ -227,7 +227,7 @@ describe("run", () => {
       expect(existsSync(dst2)).toBeFalsy();
     });
 
-    it("should treat paths relative to target directory", async () => {
+    it("treats paths relative to target directory", async () => {
       const src = "subdir";
       const dst = "targetdir";
 
@@ -249,7 +249,7 @@ describe("run", () => {
       ).toStrictEqual("Welcome in subdir.txt");
     });
 
-    it("should source paths relative to source directory", async () => {
+    it("sources paths relative to source directory", async () => {
       const src = "subsubdir";
       const dst = join(dstDir, "targetdir");
 
@@ -269,7 +269,7 @@ describe("run", () => {
       ).toStrictEqual("Welcome in subsubdir.txt");
     });
 
-    it("should fail on incorrect assignment", async() => {
+    it("fails on incorrect assignment", async() => {
       const src = "subsubdir";
       const dst = join(dstDir, "targetdir");
 
@@ -282,7 +282,7 @@ describe("run", () => {
       await expect(promise).rejects.toThrow(/Unable to split/);
     })
 
-    it("should fail on missing directory when fail_on_not_found is set", async () => {
+    it("fails on missing directory when fail_on_not_found is set", async () => {
       const src1 = "subdir";
       const src2 = "not-found";
       const dst1 = join(dstDir, "subdir");
