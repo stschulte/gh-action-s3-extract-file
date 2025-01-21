@@ -1,4 +1,10 @@
-import { Readable } from "node:stream";
+import { Readable } from 'node:stream';
+
+export function assertNotNull<T>(obj: null | T, msg: string): asserts obj is T {
+  if (obj === null) {
+    throw new Error(msg);
+  }
+}
 
 export async function readStream(stream: Readable): Promise<string> {
   let result = '';
@@ -13,10 +19,4 @@ export async function readStream(stream: Readable): Promise<string> {
       resolve(result);
     });
   });
-}
-
-export function assertNotNull<T>(obj: T | null, msg: string): asserts obj is T {
-  if (obj === null) {
-    throw new Error(msg);
-  }
 }

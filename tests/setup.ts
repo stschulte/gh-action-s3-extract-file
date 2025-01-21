@@ -11,8 +11,8 @@ import {
   toReceiveCommandWith,
   toReceiveLastCommandWith,
   toReceiveNthCommandWith,
-} from "aws-sdk-client-mock-vitest";
-import { expect } from "vitest";
+} from 'aws-sdk-client-mock-vitest';
+import { expect } from 'vitest';
 
 expect.extend({
   toHaveReceivedCommand,

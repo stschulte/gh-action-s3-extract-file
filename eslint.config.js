@@ -8,7 +8,7 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
   gitignore(),
   {
-    ignores: ["dist/**"],
+    ignores: ['dist/**'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,

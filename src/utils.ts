@@ -1,5 +1,5 @@
-import { copyFileSync, mkdirSync, readdirSync } from "node:fs";
-import { join } from "node:path";
+import { copyFileSync, mkdirSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
 
 export function copyDirectory(src: string, dst: string): void {
   mkdirSync(dst, { recursive: true });
@@ -11,7 +11,8 @@ export function copyDirectory(src: string, dst: string): void {
 
     if (entry.isDirectory()) {
       copyDirectory(srcPath, dstPath);
-    } else {
+    }
+    else {
       copyFileSync(srcPath, dstPath);
     }
   }
