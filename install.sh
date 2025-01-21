@@ -12,8 +12,10 @@
 # dependencies don't introduce any breaking changes, so use with
 # care!
 
+set -e
+
 # List of runtime dependencies
-RDEPS=(
+RUNTIME_DEPENDENCIES=(
   "@actions/core"
   "@aws-sdk/client-s3"
   "unzipper"
@@ -21,22 +23,29 @@ RDEPS=(
 
 # List of buildtime dependencies or developer
 # dependencies
-BDEPS=(
+BUILDTIME_DEPENDENCIES=(
     "typescript"
+    "@types/node"
+
+    "@types/unzipper"
     "@smithy/types"
     "@smithy/util-stream"
-    "@types/unzipper"
+    "jszip"
     "aws-sdk-client-mock"
     "aws-sdk-client-mock-vitest"
     "@vercel/ncc"
-    "vitest"
-    "@vitest/coverage-v8"
-    "jszip"
+
     "eslint"
     "@eslint/js"
+    "@types/eslint__js"
     "eslint-config-flat-gitignore"
     "eslint-plugin-perfectionist"
+    "@stylistic/eslint-plugin"
     "typescript-eslint"
+    "@vitest/eslint-plugin"
+
+    "vitest"
+    "@vitest/coverage-v8"
 )
 
 if [[ ! -f package.json ]]; then
@@ -45,23 +54,30 @@ if [[ ! -f package.json ]]; then
 fi
 
 echo "Cleanup"
-rm -rf node_modules package-lock.json coverage dist* lib*
-sed -i \
-  -e '/^  "dependencies"/,/^  \}/D' \
-  -e '/^  "devDependencies"/,/^  \}/D' \
-  -e 's/^\(  "homepage".*\),$/\1/' \
-  package.json
+rm -rf node_modules package-lock.json *.tgz coverage dist
 
-echo ">> Installing runtime dependencies"
-for D in "${RDEPS[@]}"; do
-  echo " * ${D}"
-done
-npm install "${RDEPS[@]}"
+NEW_PACKAGE_JSON=`mktemp package.json.XXXXXXXXXX`
+chmod 0644 "$NEW_PACKAGE_JSON"
+jq 'del(.dependencies, .devDependencies)' package.json > "$NEW_PACKAGE_JSON"
+mv "$NEW_PACKAGE_JSON" package.json
 
-echo ">> Installing buildtime dependencies"
-for D in "${BDEPS[@]}"; do
-  echo " * ${D}"
+echo ">> Installing dependencies"
+for PKG in "${RUNTIME_DEPENDENCIES[@]}"; do
+  echo " ● ${PKG}"
 done
-npm install --save-dev "${BDEPS[@]}"
+npm install "${RUNTIME_DEPENDENCIES[@]}"
+
+echo ">> Installing development dependencies"
+for PKG in "${BUILDTIME_DEPENDENCIES[@]}"; do
+  echo " ● ${PKG}"
+done
+npm install --save-dev "${BUILDTIME_DEPENDENCIES[@]}"
 
 echo ">> DONE"
+
+echo ""
+echo "We reinstalled all dependencies. You may want to run"
+echo ""
+echo "    git diff package.json"
+echo ""
+echo "now"

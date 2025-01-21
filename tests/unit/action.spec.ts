@@ -31,12 +31,9 @@ vi.spyOn(core, "error").mockImplementation(vi.fn(() => {}));
 
 vi.mock("../../src/download.js", () => {
   return {
-    withExtractedS3: vi.fn<
-      Parameters<typeof withExtractedS3>,
-      ReturnType<typeof withExtractedS3>
-    >(async (client, bucket, key, callback) => {
+    withExtractedS3: vi.fn<typeof withExtractedS3>(async (client, bucket, key, callback) => {
       let tmpDir: string | undefined;
-      let result: Awaited<unknown>;
+      let result;
       try {
         tmpDir = mkdtempSync(join(".", "tmp-zip-"));
         mkdirSync(join(tmpDir, "subdir"));
@@ -58,7 +55,7 @@ vi.mock("../../src/download.js", () => {
           rmSync(tmpDir, { force: true, recursive: true });
         }
       }
-      return result;
+      return result
     }),
   };
 });
@@ -66,27 +63,14 @@ vi.mock("../../src/download.js", () => {
 describe("run", () => {
   let dstDir: string;
   beforeEach(() => {
-    const oldEnv = { ...process.env };
     for (const [k, v] of Object.entries(env)) {
-      if (v === undefined) {
-        delete process.env[k];
-      } else {
-        process.env[k] = v;
-      }
+      vi.stubEnv(k, v);
     }
 
     dstDir = mkdtempSync(join(".", "tmp-dst-"));
 
     return () => {
-      for (const k of Object.keys(env)) {
-        const oldValue = oldEnv[k];
-        if (oldValue) {
-          process.env[k] = oldValue;
-        } else {
-          delete process.env[k];
-        }
-      }
-
+      vi.unstubAllEnvs();
       if (dstDir) {
         rmSync(dstDir, { force: true, recursive: true });
       }
@@ -95,8 +79,8 @@ describe("run", () => {
 
   describe("missing parameters", () => {
     it("should complain when bucket is missing", async () => {
-      process.env.INPUT_KEY = "some-key";
-      process.env.INPUT_FILES = ["a=10"].join("\n");
+      vi.stubEnv("INPUT_KEY", "some-key");
+      vi.stubEnv("INPUT_FILES", ["a=10"].join("\n"));
 
       const promise = run();
       await expect(promise).rejects.toThrow(
@@ -105,8 +89,8 @@ describe("run", () => {
     });
 
     it("should complain when key is missing", async () => {
-      process.env.INPUT_BUCKET = "some-bucket";
-      process.env.INPUT_FILES = ["a=10"].join("\n");
+      vi.stubEnv("INPUT_BUCKET", "some-bucket");
+      vi.stubEnv("INPUT_FILES", ["a=10"].join("\n"));
 
       const promise = run();
       await expect(promise).rejects.toThrow(
@@ -126,13 +110,13 @@ describe("run", () => {
       const dst2 = join(dstDir, "file1.txt");
       const dst3 = join(dstDir, "bar.txt");
 
-      process.env.INPUT_BUCKET = "some-bucket";
-      process.env.INPUT_KEY = "some-key";
-      process.env.INPUT_FILES = [
+      vi.stubEnv("INPUT_BUCKET", "some-bucket");
+      vi.stubEnv("INPUT_KEY", "some-key");
+      vi.stubEnv("INPUT_FILES", [
         `${src1}=${dst1}`,
         `${src2}=${dst2}`,
         `${src3}=${dst3}`,
-      ].join("\n");
+      ].join("\n"));
 
       const result = await run();
       expect(result).toStrictEqual({
@@ -152,10 +136,10 @@ describe("run", () => {
       const src = join("subdir", "subsubdir", "subsubdir.txt");
       const dst = "target.txt";
 
-      process.env.INPUT_BUCKET = "some-bucket";
-      process.env.INPUT_KEY = "some-key";
-      process.env.INPUT_FILES = `${src}=${dst}`;
-      process.env.INPUT_TARGET_BASE_DIRECTORY = dstDir;
+      vi.stubEnv("INPUT_BUCKET", "some-bucket");
+      vi.stubEnv("INPUT_KEY", "some-key");
+      vi.stubEnv("INPUT_FILES", `${src}=${dst}`);
+      vi.stubEnv("INPUT_TARGET_BASE_DIRECTORY", dstDir);
 
       const result = await run();
       expect(result).toStrictEqual({
@@ -171,10 +155,10 @@ describe("run", () => {
       const src = "subsubdir.txt";
       const dst = join(dstDir, "target.txt");
 
-      process.env.INPUT_BUCKET = "some-bucket";
-      process.env.INPUT_KEY = "some-key";
-      process.env.INPUT_FILES = `${src}=${dst}`;
-      process.env.INPUT_SOURCE_BASE_DIRECTORY = join("subdir", "subsubdir");
+      vi.stubEnv("INPUT_BUCKET", "some-bucket");
+      vi.stubEnv("INPUT_KEY", "some-key");
+      vi.stubEnv("INPUT_FILES", `${src}=${dst}`);
+      vi.stubEnv("INPUT_SOURCE_BASE_DIRECTORY", join("subdir", "subsubdir"));
 
       const result = await run();
       expect(result).toStrictEqual({
@@ -190,10 +174,10 @@ describe("run", () => {
       const src = join("subdir", "not-found.txt");
       const dst = join(dstDir, "not-found.txt");
 
-      process.env.INPUT_BUCKET = "some-bucket";
-      process.env.INPUT_KEY = "some-key";
-      process.env.INPUT_FILES = `${src}=${dst}`;
-      process.env.INPUT_FAIL_ON_NOT_FOUND = "true";
+      vi.stubEnv("INPUT_BUCKET", "some-bucket");
+      vi.stubEnv("INPUT_KEY", "some-key");
+      vi.stubEnv("INPUT_FILES", `${src}=${dst}`);
+      vi.stubEnv("INPUT_FAIL_ON_NOT_FOUND", "true");
 
       const promise = run();
       await expect(promise).rejects.toThrow(/was not found/);
@@ -208,12 +192,12 @@ describe("run", () => {
       const dst1 = join(dstDir, "subdir");
       const dst2 = join(dstDir, "not-found");
 
-      process.env.INPUT_BUCKET = "some-bucket";
-      process.env.INPUT_KEY = "some-key";
-      process.env.INPUT_DIRECTORIES = [
+      vi.stubEnv("INPUT_BUCKET", "some-bucket");
+      vi.stubEnv("INPUT_KEY", "some-key");
+      vi.stubEnv("INPUT_DIRECTORIES", [
         `${src1}=${dst1}`,
         `${src2}=${dst2}`,
-      ].join("\n");
+      ].join("\n"));
 
       const result = await run();
       expect(result).toStrictEqual({
@@ -234,10 +218,10 @@ describe("run", () => {
       const src = "subdir";
       const dst = "targetdir";
 
-      process.env.INPUT_BUCKET = "some-bucket";
-      process.env.INPUT_KEY = "some-key";
-      process.env.INPUT_DIRECTORIES = `${src}=${dst}`;
-      process.env.INPUT_TARGET_BASE_DIRECTORY = dstDir;
+      vi.stubEnv("INPUT_BUCKET", "some-bucket");
+      vi.stubEnv("INPUT_KEY", "some-key");
+      vi.stubEnv("INPUT_DIRECTORIES", `${src}=${dst}`);
+      vi.stubEnv("INPUT_TARGET_BASE_DIRECTORY", dstDir);
 
       const result = await run();
       expect(result).toStrictEqual({
@@ -256,10 +240,10 @@ describe("run", () => {
       const src = "subsubdir";
       const dst = join(dstDir, "targetdir");
 
-      process.env.INPUT_BUCKET = "some-bucket";
-      process.env.INPUT_KEY = "some-key";
-      process.env.INPUT_DIRECTORIES = `${src}=${dst}`;
-      process.env.INPUT_SOURCE_BASE_DIRECTORY = "subdir";
+      vi.stubEnv("INPUT_BUCKET", "some-bucket");
+      vi.stubEnv("INPUT_KEY", "some-key");
+      vi.stubEnv("INPUT_DIRECTORIES", `${src}=${dst}`);
+      vi.stubEnv("INPUT_SOURCE_BASE_DIRECTORY", "subdir");
 
       const result = await run();
       expect(result).toStrictEqual({
@@ -278,13 +262,13 @@ describe("run", () => {
       const dst1 = join(dstDir, "subdir");
       const dst2 = join(dstDir, "not-found");
 
-      process.env.INPUT_BUCKET = "some-bucket";
-      process.env.INPUT_KEY = "some-key";
-      process.env.INPUT_DIRECTORIES = [
+      vi.stubEnv("INPUT_BUCKET", "some-bucket");
+      vi.stubEnv("INPUT_KEY", "some-key");
+      vi.stubEnv("INPUT_DIRECTORIES", [
         `${src1}=${dst1}`,
         `${src2}=${dst2}`,
-      ].join("\n");
-      process.env.INPUT_FAIL_ON_NOT_FOUND = "true";
+      ].join("\n"));
+      vi.stubEnv("INPUT_FAIL_ON_NOT_FOUND", "true");
 
       const promise = run();
       await expect(promise).rejects.toThrow(/was not found/);

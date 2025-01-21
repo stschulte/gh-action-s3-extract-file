@@ -35,7 +35,7 @@ export async function withExtractedS3<R>(
   bucket: string,
   key: string,
   callback: (directory: string) => Promise<R> | R
-): Promise<Awaited<R>> {
+): Promise<R> {
   let tmpDir: string | undefined;
   let result: Awaited<R>;
   try {
