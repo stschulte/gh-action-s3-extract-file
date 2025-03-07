@@ -27,11 +27,6 @@ inputs:
     description: "Specify true if you want the action to fail when a file cannot be found. Otherwise missing files will be ignored"
     default: "false"
 
-# Define your outputs here.
-outputs:
-  time:
-    description: "Your output description here"
-
 runs:
   using: node20
   main: dist/index.js

@@ -9,21 +9,28 @@ zipfile on an S3 bucket.
 A potential usecase is to extract files from a lambda function that
 is deployed to S3.
 
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+<!-- prettier-ignore-start -->
+<!-- BEGIN_GITHUB_ACTION_DOCS -->
 ## Inputs
 
-| Name                                                                                             | Description                                                                                                                                         | Default | Required |
-| ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | :------: |
-| <a name="input_bucket"></a> [bucket](#input_bucket)                                              | The name of the S3 bucket that contains the ZIP file                                                                                                |         |   yes    |
-| <a name="input_key"></a> [key](#input_key)                                                       | The name of the S3 key of the ZIP file                                                                                                              |         |   yes    |
-| <a name="input_target_base_directory"></a> [target_base_directory](#input_target_base_directory) | The base directory for your target paths. If you do not specify a value, all paths are relative to your project directory                           | `.`     |    no    |
-| <a name="input_source_base_directory"></a> [source_base_directory](#input_source_base_directory) | The base directory for the source path. If you do not specify a value, all paths are relative the the zip extraction                                | `.`     |    no    |
-| <a name="input_files"></a> [files](#input_files)                                                 | A multiline string that specifies which files should be copied to your target directory. Each line should be of the form `source=destination`       |         |    no    |
-| <a name="input_directories"></a> [directories](#input_directories)                               | A multiline string that specifies which directories should be copied to your target directory. Each line should be of the form `source=destination` |         |    no    |
-| <a name="input_fail_on_not_found"></a> [fail_on_not_found](#input_fail_on_not_found)             | Specify true if you want the action to fail when a file cannot be found. Otherwise missing files will be ignored                                    | `false` |   yes    |
+| Name | Description | Default | Required |
+|------|-------------|---------|:--------:|
+| <a name="input_bucket"></a> [bucket](#input\_bucket) | The name of the S3 bucket that contains the ZIP file |  | yes |
+| <a name="input_key"></a> [key](#input\_key) | The name of the S3 key of the ZIP file |  | yes |
+| <a name="input_directories"></a> [directories](#input\_directories) | A multiline string that specifies which directories should be copied to your target directory. Each line should be of the form `source=destination` |  | no |
+| <a name="input_fail_on_not_found"></a> [fail\_on\_not\_found](#input\_fail\_on\_not\_found) | Specify true if you want the action to fail when a file cannot be found. Otherwise missing files will be ignored | `false` | no |
+| <a name="input_files"></a> [files](#input\_files) | A multiline string that specifies which files should be copied to your target directory. Each line should be of the form `source=destination` |  | no |
+| <a name="input_source_base_directory"></a> [source\_base\_directory](#input\_source\_base\_directory) | The base directory for the source path. If you do not specify a value, all paths are relative the the zip extraction | `.` | no |
+| <a name="input_target_base_directory"></a> [target\_base\_directory](#input\_target\_base\_directory) | The base directory for your target paths. If you do not specify a value, all paths are relative to your project directory | `.` | no |
 
 ## Outputs
 
-no outputs
+(none)
+<!-- END_GITHUB_ACTION_DOCS -->
+<!-- prettier-ignore-end -->
+<!-- markdownlint-restore -->
 
 ## Example
 

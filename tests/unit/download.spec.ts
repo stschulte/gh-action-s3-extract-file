@@ -1,5 +1,3 @@
-/// <reference types="../vitest.d.ts" />
-
 import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { sdkStreamMixin } from '@smithy/util-stream';
 import { mockClient } from 'aws-sdk-client-mock';

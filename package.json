@@ -16,7 +16,8 @@
     "package": "ncc build src/index.ts --license licenses.txt",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "all": "npm run lint && npm run test:coverage && npm run package"
+    "all": "npm run lint && npm run test:coverage && npm run gen-docs && npm run package",
+    "gen-docs": "github-action-docs --sections inputs outputs --output-file README.md --mode inject action.yml"
   },
   "repository": {
     "type": "git",
@@ -36,28 +37,27 @@
   "homepage": "https://github.com/stschulte/gh-action-s3-extract-file#readme",
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@aws-sdk/client-s3": "^3.732.0",
+    "@aws-sdk/client-s3": "^3.758.0",
     "unzipper": "^0.12.3"
   },
   "devDependencies": {
-    "@eslint/js": "^9.18.0",
-    "@smithy/types": "^4.1.0",
-    "@smithy/util-stream": "^4.0.2",
-    "@stylistic/eslint-plugin": "^2.13.0",
-    "@types/eslint__js": "^8.42.3",
-    "@types/node": "^22.10.7",
-    "@types/unzipper": "^0.10.10",
+    "@eslint/js": "^9.22.0",
+    "@smithy/util-stream": "^4.1.2",
+    "@stylistic/eslint-plugin": "^4.2.0",
+    "@types/node": "^22.13.9",
+    "@types/unzipper": "^0.10.11",
     "@vercel/ncc": "^0.38.3",
-    "@vitest/coverage-v8": "^3.0.3",
-    "@vitest/eslint-plugin": "^1.1.25",
+    "@vitest/coverage-v8": "^3.0.8",
+    "@vitest/eslint-plugin": "^1.1.36",
     "aws-sdk-client-mock": "^4.1.0",
-    "aws-sdk-client-mock-vitest": "^6.0.0",
-    "eslint": "^9.18.0",
-    "eslint-config-flat-gitignore": "^1.0.0",
-    "eslint-plugin-perfectionist": "^4.7.0",
+    "aws-sdk-client-mock-vitest": "^6.1.1",
+    "eslint": "^9.22.0",
+    "eslint-config-flat-gitignore": "^2.1.0",
+    "eslint-plugin-perfectionist": "^4.9.0",
+    "github-action-docs": "^1.1.0",
     "jszip": "^3.10.1",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.21.0",
-    "vitest": "^3.0.3"
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0",
+    "vitest": "^3.0.8"
   }
 }

@@ -28,16 +28,16 @@ BUILDTIME_DEPENDENCIES=(
     "@types/node"
 
     "@types/unzipper"
-    "@smithy/types"
     "@smithy/util-stream"
     "jszip"
     "aws-sdk-client-mock"
     "aws-sdk-client-mock-vitest"
     "@vercel/ncc"
 
+    "github-action-docs"
+
     "eslint"
     "@eslint/js"
-    "@types/eslint__js"
     "eslint-config-flat-gitignore"
     "eslint-plugin-perfectionist"
     "@stylistic/eslint-plugin"
