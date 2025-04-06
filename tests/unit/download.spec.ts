@@ -81,9 +81,7 @@ describe('s3Stream', () => {
 
     const client = new S3Client({});
     const promise = s3Stream(client, 'bucket', 'foo');
-    await expect(promise).rejects.toThrow(
-      'Unable to read bucket bucket key foo',
-    );
+    await expect(promise).rejects.toThrow('Unable to read bucket bucket key foo');
   });
 
   it('raises an error when body does not include a pipe method', async () => {
@@ -93,9 +91,7 @@ describe('s3Stream', () => {
 
     const client = new S3Client({});
     const promise = s3Stream(client, 'bucket', 'foo');
-    await expect(promise).rejects.toThrow(
-      'Unable to read bucket bucket key foo',
-    );
+    await expect(promise).rejects.toThrow('Unable to read bucket bucket key foo');
   });
 });
 
@@ -123,15 +119,8 @@ describe('unzipFile', () => {
 
     const encoding = 'utf8';
     const root = readFileSync(join(targetDir, 'root.txt'), { encoding });
-    const subdir = readFileSync(join(targetDir, 'subdir', 'subdir.txt'), {
-      encoding,
-    });
-    const subsubdir = readFileSync(
-      join(targetDir, 'subdir', 'subsubdir', 'subsubdir.txt'),
-      {
-        encoding,
-      },
-    );
+    const subdir = readFileSync(join(targetDir, 'subdir', 'subdir.txt'), { encoding });
+    const subsubdir = readFileSync(join(targetDir, 'subdir', 'subsubdir', 'subsubdir.txt'), { encoding });
     expect(root).toStrictEqual('Welcome from root.txt\n');
     expect(subdir).toStrictEqual('Welcome from subdir.txt\n');
     expect(subsubdir).toStrictEqual('Welcome from subsubdir.txt\n');
@@ -152,28 +141,17 @@ describe('withExtractedS3', () => {
 
     // We let our callback return the temporary directory to verify it is gone after
     // our function returns
-    const tmpDir = await withExtractedS3(
-      client,
-      'some-bucket',
-      'foo.zip',
-      (directory) => {
-        const encoding = 'utf8';
-        const root = readFileSync(join(directory, 'root.txt'), { encoding });
-        const subdir = readFileSync(join(directory, 'subdir', 'subdir.txt'), {
-          encoding,
-        });
-        const subsubdir = readFileSync(
-          join(directory, 'subdir', 'subsubdir', 'subsubdir.txt'),
-          {
-            encoding,
-          },
-        );
-        expect(existsSync(directory)).toBeTruthy();
-        expect(root).toStrictEqual('Welcome from root.txt\n');
-        expect(subdir).toStrictEqual('Welcome from subdir.txt\n');
-        expect(subsubdir).toStrictEqual('Welcome from subsubdir.txt\n');
-        return directory;
-      },
+    const tmpDir = await withExtractedS3(client, 'some-bucket', 'foo.zip', (directory) => {
+      const encoding = 'utf8';
+      const root = readFileSync(join(directory, 'root.txt'), { encoding });
+      const subdir = readFileSync(join(directory, 'subdir', 'subdir.txt'), { encoding });
+      const subsubdir = readFileSync(join(directory, 'subdir', 'subsubdir', 'subsubdir.txt'), { encoding });
+      expect(existsSync(directory)).toBeTruthy();
+      expect(root).toStrictEqual('Welcome from root.txt\n');
+      expect(subdir).toStrictEqual('Welcome from subdir.txt\n');
+      expect(subsubdir).toStrictEqual('Welcome from subsubdir.txt\n');
+      return directory;
+    },
     );
     expect(existsSync(tmpDir)).toBeFalsy();
     expect(s3Mock).toHaveReceivedCommandWith(GetObjectCommand, {
