@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { Readable } from 'node:stream';
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { s3Stream, unzipStream, withExtractedS3 } from '../../src/download.js';
+import { dumpStream, s3Stream, unzipFile, withExtractedS3 } from '../../src/download.js';
 import { assertNotNull, readStream } from './helper.js';
 
 const s3Mock = mockClient(S3Client);
@@ -33,6 +33,27 @@ function fakeZipStream(): Readable {
     }),
   );
 }
+
+describe('dumpStream', () => {
+  let tmpDir: string;
+  beforeEach(() => {
+    tmpDir = mkdtempSync(join('.', 'test-dumpstream-'));
+
+    return () => {
+      if (tmpDir) {
+        rmSync(tmpDir, { force: true, recursive: true });
+      }
+    };
+  });
+
+  it('dumps the stream to a file', async () => {
+    const stream = Readable.from('Hello World\n');
+    const target = join(tmpDir, 'test.txt');
+    const result = await dumpStream(stream, target);
+    expect(result).toBe(target);
+    expect(readFileSync(result, 'utf8')).toBe('Hello World\n');
+  });
+});
 
 describe('s3Stream', () => {
   beforeEach(() => {
@@ -78,36 +99,39 @@ describe('s3Stream', () => {
   });
 });
 
-describe('unzipStream', () => {
-  let tmpDir: string;
-
+describe('unzipFile', () => {
+  let zipDir: string;
+  let targetDir: string;
   beforeEach(() => {
-    tmpDir = mkdtempSync(join('.', 'tmp-zip-'));
+    zipDir = mkdtempSync(join('.', 'test-unzip-file-zipdir-'));
+    targetDir = mkdtempSync(join('.', 'test-unzip-file-targetdir-'));
+
     return () => {
-      if (tmpDir) {
-        rmSync(tmpDir, { force: true, recursive: true });
+      if (zipDir) {
+        rmSync(zipDir, { force: true, recursive: true });
+      }
+      if (targetDir) {
+        rmSync(targetDir, { force: true, recursive: true });
       }
     };
   });
 
-  it('unzips a stream', async () => {
-    const stream = fakeZipStream();
-    const dir = await unzipStream(stream, tmpDir);
-
-    expect(dir).toStrictEqual(tmpDir);
+  it('extracts a zipfile to a target directory', async () => {
+    const zipFile = await dumpStream(fakeZipStream(), join(zipDir, 'test.zip'));
+    const result = await unzipFile(zipFile, targetDir);
+    expect(result).toBe(targetDir);
 
     const encoding = 'utf8';
-    const root = readFileSync(join(dir, 'root.txt'), { encoding });
-    const subdir = readFileSync(join(dir, 'subdir', 'subdir.txt'), {
+    const root = readFileSync(join(targetDir, 'root.txt'), { encoding });
+    const subdir = readFileSync(join(targetDir, 'subdir', 'subdir.txt'), {
       encoding,
     });
     const subsubdir = readFileSync(
-      join(dir, 'subdir', 'subsubdir', 'subsubdir.txt'),
+      join(targetDir, 'subdir', 'subsubdir', 'subsubdir.txt'),
       {
         encoding,
       },
     );
-
     expect(root).toStrictEqual('Welcome from root.txt\n');
     expect(subdir).toStrictEqual('Welcome from subdir.txt\n');
     expect(subsubdir).toStrictEqual('Welcome from subsubdir.txt\n');

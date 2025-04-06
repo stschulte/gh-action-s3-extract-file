@@ -1,8 +1,20 @@
+import type { Entry } from 'yauzl';
+
 import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
-import { mkdtempSync, rmSync } from 'node:fs';
-import { join } from 'node:path';
+import { createWriteStream, existsSync, mkdirSync, mkdtempSync, rmSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { Readable } from 'node:stream';
-import { Extract } from 'unzipper';
+import yauzl from 'yauzl';
+
+export async function dumpStream(stream: Readable, path: string): Promise<string> {
+  const target = createWriteStream(path);
+  return new Promise((resolve, reject) => {
+    stream
+      .pipe(target)
+      .on('close', () => { resolve(path); })
+      .on('error', (err) => { reject(err); });
+  });
+}
 
 export async function s3Stream(
   client: S3Client,
@@ -18,15 +30,47 @@ export async function s3Stream(
   throw new Error(`Unable to read bucket ${bucket} key ${key}`);
 }
 
-export async function unzipStream<P extends string>(
-  stream: Readable,
-  path: P,
+export async function unzipFile<P extends string>(
+  path: string,
+  targetDir: P,
 ): Promise<P> {
   return new Promise((resolve, reject) => {
-    stream
-      .pipe(Extract({ path }))
-      .on('close', () => { resolve(path); })
-      .on('error', (err) => { reject(err); });
+    yauzl.open(path, { lazyEntries: true }, (err, zipFile) => {
+      if (err) {
+        reject(err);
+      }
+      zipFile.readEntry();
+
+      zipFile.on('entry', (entry: Entry) => {
+        if (/\/$/.test(entry.fileName)) {
+          const directory = join(targetDir, entry.fileName);
+          if (!existsSync(directory)) {
+            mkdirSync(directory, { recursive: true });
+          }
+          zipFile.readEntry();
+        }
+        else {
+          const directory = join(targetDir, dirname(entry.fileName));
+          if (!existsSync(directory)) {
+            mkdirSync(directory, { recursive: true });
+          }
+          zipFile.openReadStream(entry, (rsError, readStream) => {
+            if (rsError) {
+              reject(rsError);
+            }
+            const writeStream = createWriteStream(join(targetDir, entry.fileName));
+            readStream
+              .pipe(writeStream)
+              .on('error', (writeError) => { reject(writeError); })
+              .on('close', () => { zipFile.readEntry(); });
+          });
+        }
+      });
+
+      zipFile.on('close', () => {
+        resolve(targetDir);
+      });
+    });
   });
 }
 
@@ -36,18 +80,24 @@ export async function withExtractedS3<R>(
   key: string,
   callback: (directory: string) => Promise<R> | R,
 ): Promise<R> {
-  let tmpDir: string | undefined;
-  let result: Awaited<R>;
+  let downloadDir: string | undefined;
+  let extractDir: string | undefined;
   try {
-    tmpDir = mkdtempSync(join('.', 'tmp-zip-'));
+    downloadDir = mkdtempSync(join('.', 'tmp-zip-download-'));
+    extractDir = mkdtempSync(join('.', 'tmp-zip-'));
+
     const stream = await s3Stream(client, bucket, key);
-    const zipDir = await unzipStream(stream, tmpDir);
-    result = await Promise.resolve(callback(zipDir));
+    const zipFile = await dumpStream(stream, join(downloadDir, 'download.zip'));
+    const zipDir = await unzipFile(zipFile, extractDir);
+    const result = await Promise.resolve(callback(zipDir));
+    return result;
   }
   finally {
-    if (tmpDir) {
-      rmSync(tmpDir, { force: true, recursive: true });
+    if (extractDir) {
+      rmSync(extractDir, { force: true, recursive: true });
+    }
+    if (downloadDir) {
+      rmSync(downloadDir, { force: true, recursive: true });
     }
   }
-  return result;
 }
