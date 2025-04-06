@@ -3849,9 +3849,7 @@ exports.defaultS3HttpAuthSchemeProvider = createEndpointRuleSetHttpAuthSchemePro
 const resolveHttpAuthSchemeConfig = (config) => {
     const config_0 = (0, core_1.resolveAwsSdkSigV4Config)(config);
     const config_1 = (0, core_1.resolveAwsSdkSigV4AConfig)(config_0);
-    return {
-        ...config_1,
-    };
+    return Object.assign(config_1, {});
 };
 exports.resolveHttpAuthSchemeConfig = resolveHttpAuthSchemeConfig;
 
@@ -3904,9 +3902,9 @@ util_endpoints_2.customEndpointFunctions.aws = util_endpoints_1.awsEndpointFunct
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ruleSet = void 0;
-const ci = "required", cj = "type", ck = "conditions", cl = "fn", cm = "argv", cn = "ref", co = "assign", cp = "url", cq = "properties", cr = "backend", cs = "authSchemes", ct = "disableDoubleEncoding", cu = "signingName", cv = "signingRegion", cw = "headers", cx = "signingRegionSet";
-const a = 6, b = false, c = true, d = "isSet", e = "booleanEquals", f = "error", g = "aws.partition", h = "stringEquals", i = "getAttr", j = "name", k = "substring", l = "bucketSuffix", m = "parseURL", n = "{url#scheme}://{url#authority}/{uri_encoded_bucket}{url#path}", o = "endpoint", p = "tree", q = "aws.isVirtualHostableS3Bucket", r = "{url#scheme}://{Bucket}.{url#authority}{url#path}", s = "not", t = "{url#scheme}://{url#authority}{url#path}", u = "hardwareType", v = "regionPrefix", w = "bucketAliasSuffix", x = "outpostId", y = "isValidHostLabel", z = "sigv4a", A = "s3-outposts", B = "s3", C = "{url#scheme}://{url#authority}{url#normalizedPath}{Bucket}", D = "https://{Bucket}.s3-accelerate.{partitionResult#dnsSuffix}", E = "https://{Bucket}.s3.{partitionResult#dnsSuffix}", F = "aws.parseArn", G = "bucketArn", H = "arnType", I = "", J = "s3-object-lambda", K = "accesspoint", L = "accessPointName", M = "{url#scheme}://{accessPointName}-{bucketArn#accountId}.{url#authority}{url#path}", N = "mrapPartition", O = "outpostType", P = "arnPrefix", Q = "{url#scheme}://{url#authority}{url#normalizedPath}{uri_encoded_bucket}", R = "https://s3.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", S = "https://s3.{partitionResult#dnsSuffix}", T = { [ci]: false, [cj]: "String" }, U = { [ci]: true, "default": false, [cj]: "Boolean" }, V = { [ci]: false, [cj]: "Boolean" }, W = { [cl]: e, [cm]: [{ [cn]: "Accelerate" }, true] }, X = { [cl]: e, [cm]: [{ [cn]: "UseFIPS" }, true] }, Y = { [cl]: e, [cm]: [{ [cn]: "UseDualStack" }, true] }, Z = { [cl]: d, [cm]: [{ [cn]: "Endpoint" }] }, aa = { [cl]: g, [cm]: [{ [cn]: "Region" }], [co]: "partitionResult" }, ab = { [cl]: h, [cm]: [{ [cl]: i, [cm]: [{ [cn]: "partitionResult" }, j] }, "aws-cn"] }, ac = { [cl]: d, [cm]: [{ [cn]: "Bucket" }] }, ad = { [cn]: "Bucket" }, ae = { [cl]: m, [cm]: [{ [cn]: "Endpoint" }], [co]: "url" }, af = { [cl]: e, [cm]: [{ [cl]: i, [cm]: [{ [cn]: "url" }, "isIp"] }, true] }, ag = { [cn]: "url" }, ah = { [cl]: "uriEncode", [cm]: [ad], [co]: "uri_encoded_bucket" }, ai = { [cr]: "S3Express", [cs]: [{ [ct]: true, [j]: "sigv4", [cu]: "s3express", [cv]: "{Region}" }] }, aj = {}, ak = { [cl]: q, [cm]: [ad, false] }, al = { [f]: "S3Express bucket name is not a valid virtual hostable name.", [cj]: f }, am = { [cr]: "S3Express", [cs]: [{ [ct]: true, [j]: "sigv4-s3express", [cu]: "s3express", [cv]: "{Region}" }] }, an = { [cl]: d, [cm]: [{ [cn]: "UseS3ExpressControlEndpoint" }] }, ao = { [cl]: e, [cm]: [{ [cn]: "UseS3ExpressControlEndpoint" }, true] }, ap = { [cl]: s, [cm]: [Z] }, aq = { [f]: "Unrecognized S3Express bucket name format.", [cj]: f }, ar = { [cl]: s, [cm]: [ac] }, as = { [cn]: u }, at = { [ck]: [ap], [f]: "Expected a endpoint to be specified but no endpoint was found", [cj]: f }, au = { [cs]: [{ [ct]: true, [j]: z, [cu]: A, [cx]: ["*"] }, { [ct]: true, [j]: "sigv4", [cu]: A, [cv]: "{Region}" }] }, av = { [cl]: e, [cm]: [{ [cn]: "ForcePathStyle" }, false] }, aw = { [cn]: "ForcePathStyle" }, ax = { [cl]: e, [cm]: [{ [cn]: "Accelerate" }, false] }, ay = { [cl]: h, [cm]: [{ [cn]: "Region" }, "aws-global"] }, az = { [cs]: [{ [ct]: true, [j]: "sigv4", [cu]: B, [cv]: "us-east-1" }] }, aA = { [cl]: s, [cm]: [ay] }, aB = { [cl]: e, [cm]: [{ [cn]: "UseGlobalEndpoint" }, true] }, aC = { [cp]: "https://{Bucket}.s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}", [cq]: { [cs]: [{ [ct]: true, [j]: "sigv4", [cu]: B, [cv]: "{Region}" }] }, [cw]: {} }, aD = { [cs]: [{ [ct]: true, [j]: "sigv4", [cu]: B, [cv]: "{Region}" }] }, aE = { [cl]: e, [cm]: [{ [cn]: "UseGlobalEndpoint" }, false] }, aF = { [cl]: e, [cm]: [{ [cn]: "UseDualStack" }, false] }, aG = { [cp]: "https://{Bucket}.s3-fips.{Region}.{partitionResult#dnsSuffix}", [cq]: aD, [cw]: {} }, aH = { [cl]: e, [cm]: [{ [cn]: "UseFIPS" }, false] }, aI = { [cp]: "https://{Bucket}.s3-accelerate.dualstack.{partitionResult#dnsSuffix}", [cq]: aD, [cw]: {} }, aJ = { [cp]: "https://{Bucket}.s3.dualstack.{Region}.{partitionResult#dnsSuffix}", [cq]: aD, [cw]: {} }, aK = { [cl]: e, [cm]: [{ [cl]: i, [cm]: [ag, "isIp"] }, false] }, aL = { [cp]: C, [cq]: aD, [cw]: {} }, aM = { [cp]: r, [cq]: aD, [cw]: {} }, aN = { [o]: aM, [cj]: o }, aO = { [cp]: D, [cq]: aD, [cw]: {} }, aP = { [cp]: "https://{Bucket}.s3.{Region}.{partitionResult#dnsSuffix}", [cq]: aD, [cw]: {} }, aQ = { [f]: "Invalid region: region was not a valid DNS name.", [cj]: f }, aR = { [cn]: G }, aS = { [cn]: H }, aT = { [cl]: i, [cm]: [aR, "service"] }, aU = { [cn]: L }, aV = { [ck]: [Y], [f]: "S3 Object Lambda does not support Dual-stack", [cj]: f }, aW = { [ck]: [W], [f]: "S3 Object Lambda does not support S3 Accelerate", [cj]: f }, aX = { [ck]: [{ [cl]: d, [cm]: [{ [cn]: "DisableAccessPoints" }] }, { [cl]: e, [cm]: [{ [cn]: "DisableAccessPoints" }, true] }], [f]: "Access points are not supported for this operation", [cj]: f }, aY = { [ck]: [{ [cl]: d, [cm]: [{ [cn]: "UseArnRegion" }] }, { [cl]: e, [cm]: [{ [cn]: "UseArnRegion" }, false] }, { [cl]: s, [cm]: [{ [cl]: h, [cm]: [{ [cl]: i, [cm]: [aR, "region"] }, "{Region}"] }] }], [f]: "Invalid configuration: region from ARN `{bucketArn#region}` does not match client region `{Region}` and UseArnRegion is `false`", [cj]: f }, aZ = { [cl]: i, [cm]: [{ [cn]: "bucketPartition" }, j] }, ba = { [cl]: i, [cm]: [aR, "accountId"] }, bb = { [cs]: [{ [ct]: true, [j]: "sigv4", [cu]: J, [cv]: "{bucketArn#region}" }] }, bc = { [f]: "Invalid ARN: The access point name may only contain a-z, A-Z, 0-9 and `-`. Found: `{accessPointName}`", [cj]: f }, bd = { [f]: "Invalid ARN: The account id may only contain a-z, A-Z, 0-9 and `-`. Found: `{bucketArn#accountId}`", [cj]: f }, be = { [f]: "Invalid region in ARN: `{bucketArn#region}` (invalid DNS name)", [cj]: f }, bf = { [f]: "Client was configured for partition `{partitionResult#name}` but ARN (`{Bucket}`) has `{bucketPartition#name}`", [cj]: f }, bg = { [f]: "Invalid ARN: The ARN may only contain a single resource component after `accesspoint`.", [cj]: f }, bh = { [f]: "Invalid ARN: Expected a resource of the format `accesspoint:<accesspoint name>` but no name was provided", [cj]: f }, bi = { [cs]: [{ [ct]: true, [j]: "sigv4", [cu]: B, [cv]: "{bucketArn#region}" }] }, bj = { [cs]: [{ [ct]: true, [j]: z, [cu]: A, [cx]: ["*"] }, { [ct]: true, [j]: "sigv4", [cu]: A, [cv]: "{bucketArn#region}" }] }, bk = { [cl]: F, [cm]: [ad] }, bl = { [cp]: "https://s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cq]: aD, [cw]: {} }, bm = { [cp]: "https://s3-fips.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cq]: aD, [cw]: {} }, bn = { [cp]: "https://s3.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cq]: aD, [cw]: {} }, bo = { [cp]: Q, [cq]: aD, [cw]: {} }, bp = { [cp]: "https://s3.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cq]: aD, [cw]: {} }, bq = { [cn]: "UseObjectLambdaEndpoint" }, br = { [cs]: [{ [ct]: true, [j]: "sigv4", [cu]: J, [cv]: "{Region}" }] }, bs = { [cp]: "https://s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}", [cq]: aD, [cw]: {} }, bt = { [cp]: "https://s3-fips.{Region}.{partitionResult#dnsSuffix}", [cq]: aD, [cw]: {} }, bu = { [cp]: "https://s3.dualstack.{Region}.{partitionResult#dnsSuffix}", [cq]: aD, [cw]: {} }, bv = { [cp]: t, [cq]: aD, [cw]: {} }, bw = { [cp]: "https://s3.{Region}.{partitionResult#dnsSuffix}", [cq]: aD, [cw]: {} }, bx = [{ [cn]: "Region" }], by = [{ [cn]: "Endpoint" }], bz = [ad], bA = [Y], bB = [W], bC = [Z, ae], bD = [{ [cl]: d, [cm]: [{ [cn]: "DisableS3ExpressSessionAuth" }] }, { [cl]: e, [cm]: [{ [cn]: "DisableS3ExpressSessionAuth" }, true] }], bE = [af], bF = [ah], bG = [ak], bH = [X], bI = [{ [cl]: k, [cm]: [ad, 6, 14, true], [co]: "s3expressAvailabilityZoneId" }, { [cl]: k, [cm]: [ad, 14, 16, true], [co]: "s3expressAvailabilityZoneDelim" }, { [cl]: h, [cm]: [{ [cn]: "s3expressAvailabilityZoneDelim" }, "--"] }], bJ = [{ [ck]: [X], [o]: { [cp]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com", [cq]: ai, [cw]: {} }, [cj]: o }, { [o]: { [cp]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com", [cq]: ai, [cw]: {} }, [cj]: o }], bK = [{ [cl]: k, [cm]: [ad, 6, 15, true], [co]: "s3expressAvailabilityZoneId" }, { [cl]: k, [cm]: [ad, 15, 17, true], [co]: "s3expressAvailabilityZoneDelim" }, { [cl]: h, [cm]: [{ [cn]: "s3expressAvailabilityZoneDelim" }, "--"] }], bL = [{ [cl]: k, [cm]: [ad, 6, 19, true], [co]: "s3expressAvailabilityZoneId" }, { [cl]: k, [cm]: [ad, 19, 21, true], [co]: "s3expressAvailabilityZoneDelim" }, { [cl]: h, [cm]: [{ [cn]: "s3expressAvailabilityZoneDelim" }, "--"] }], bM = [{ [cl]: k, [cm]: [ad, 6, 20, true], [co]: "s3expressAvailabilityZoneId" }, { [cl]: k, [cm]: [ad, 20, 22, true], [co]: "s3expressAvailabilityZoneDelim" }, { [cl]: h, [cm]: [{ [cn]: "s3expressAvailabilityZoneDelim" }, "--"] }], bN = [{ [cl]: k, [cm]: [ad, 6, 26, true], [co]: "s3expressAvailabilityZoneId" }, { [cl]: k, [cm]: [ad, 26, 28, true], [co]: "s3expressAvailabilityZoneDelim" }, { [cl]: h, [cm]: [{ [cn]: "s3expressAvailabilityZoneDelim" }, "--"] }], bO = [{ [ck]: [X], [o]: { [cp]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com", [cq]: am, [cw]: {} }, [cj]: o }, { [o]: { [cp]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com", [cq]: am, [cw]: {} }, [cj]: o }], bP = [ac], bQ = [{ [cl]: y, [cm]: [{ [cn]: x }, false] }], bR = [{ [cl]: h, [cm]: [{ [cn]: v }, "beta"] }], bS = ["*"], bT = [aa], bU = [{ [cl]: y, [cm]: [{ [cn]: "Region" }, false] }], bV = [{ [cl]: h, [cm]: [{ [cn]: "Region" }, "us-east-1"] }], bW = [{ [cl]: h, [cm]: [aS, K] }], bX = [{ [cl]: i, [cm]: [aR, "resourceId[1]"], [co]: L }, { [cl]: s, [cm]: [{ [cl]: h, [cm]: [aU, I] }] }], bY = [aR, "resourceId[1]"], bZ = [{ [cl]: s, [cm]: [{ [cl]: h, [cm]: [{ [cl]: i, [cm]: [aR, "region"] }, I] }] }], ca = [{ [cl]: s, [cm]: [{ [cl]: d, [cm]: [{ [cl]: i, [cm]: [aR, "resourceId[2]"] }] }] }], cb = [aR, "resourceId[2]"], cc = [{ [cl]: g, [cm]: [{ [cl]: i, [cm]: [aR, "region"] }], [co]: "bucketPartition" }], cd = [{ [cl]: h, [cm]: [aZ, { [cl]: i, [cm]: [{ [cn]: "partitionResult" }, j] }] }], ce = [{ [cl]: y, [cm]: [{ [cl]: i, [cm]: [aR, "region"] }, true] }], cf = [{ [cl]: y, [cm]: [ba, false] }], cg = [{ [cl]: y, [cm]: [aU, false] }], ch = [{ [cl]: y, [cm]: [{ [cn]: "Region" }, true] }];
-const _data = { version: "1.0", parameters: { Bucket: T, Region: T, UseFIPS: U, UseDualStack: U, Endpoint: T, ForcePathStyle: U, Accelerate: U, UseGlobalEndpoint: U, UseObjectLambdaEndpoint: V, Key: T, Prefix: T, CopySource: T, DisableAccessPoints: V, DisableMultiRegionAccessPoints: U, UseArnRegion: V, UseS3ExpressControlEndpoint: V, DisableS3ExpressSessionAuth: V }, rules: [{ [ck]: [{ [cl]: d, [cm]: bx }], rules: [{ [ck]: [W, X], error: "Accelerate cannot be used with FIPS", [cj]: f }, { [ck]: [Y, Z], error: "Cannot set dual-stack in combination with a custom endpoint.", [cj]: f }, { [ck]: [Z, X], error: "A custom endpoint cannot be combined with FIPS", [cj]: f }, { [ck]: [Z, W], error: "A custom endpoint cannot be combined with S3 Accelerate", [cj]: f }, { [ck]: [X, aa, ab], error: "Partition does not support FIPS", [cj]: f }, { [ck]: [ac, { [cl]: k, [cm]: [ad, 0, a, c], [co]: l }, { [cl]: h, [cm]: [{ [cn]: l }, "--x-s3"] }], rules: [{ [ck]: bA, error: "S3Express does not support Dual-stack.", [cj]: f }, { [ck]: bB, error: "S3Express does not support S3 Accelerate.", [cj]: f }, { [ck]: bC, rules: [{ [ck]: bD, rules: [{ [ck]: bE, rules: [{ [ck]: bF, rules: [{ endpoint: { [cp]: n, [cq]: ai, [cw]: aj }, [cj]: o }], [cj]: p }], [cj]: p }, { [ck]: bG, rules: [{ endpoint: { [cp]: r, [cq]: ai, [cw]: aj }, [cj]: o }], [cj]: p }, al], [cj]: p }, { [ck]: bE, rules: [{ [ck]: bF, rules: [{ endpoint: { [cp]: n, [cq]: am, [cw]: aj }, [cj]: o }], [cj]: p }], [cj]: p }, { [ck]: bG, rules: [{ endpoint: { [cp]: r, [cq]: am, [cw]: aj }, [cj]: o }], [cj]: p }, al], [cj]: p }, { [ck]: [an, ao], rules: [{ [ck]: [ah, ap], rules: [{ [ck]: bH, endpoint: { [cp]: "https://s3express-control-fips.{Region}.amazonaws.com/{uri_encoded_bucket}", [cq]: ai, [cw]: aj }, [cj]: o }, { endpoint: { [cp]: "https://s3express-control.{Region}.amazonaws.com/{uri_encoded_bucket}", [cq]: ai, [cw]: aj }, [cj]: o }], [cj]: p }], [cj]: p }, { [ck]: bG, rules: [{ [ck]: bD, rules: [{ [ck]: bI, rules: bJ, [cj]: p }, { [ck]: bK, rules: bJ, [cj]: p }, { [ck]: bL, rules: bJ, [cj]: p }, { [ck]: bM, rules: bJ, [cj]: p }, { [ck]: bN, rules: bJ, [cj]: p }, aq], [cj]: p }, { [ck]: bI, rules: bO, [cj]: p }, { [ck]: bK, rules: bO, [cj]: p }, { [ck]: bL, rules: bO, [cj]: p }, { [ck]: bM, rules: bO, [cj]: p }, { [ck]: bN, rules: bO, [cj]: p }, aq], [cj]: p }, al], [cj]: p }, { [ck]: [ar, an, ao], rules: [{ [ck]: bC, endpoint: { [cp]: t, [cq]: ai, [cw]: aj }, [cj]: o }, { [ck]: bH, endpoint: { [cp]: "https://s3express-control-fips.{Region}.amazonaws.com", [cq]: ai, [cw]: aj }, [cj]: o }, { endpoint: { [cp]: "https://s3express-control.{Region}.amazonaws.com", [cq]: ai, [cw]: aj }, [cj]: o }], [cj]: p }, { [ck]: [ac, { [cl]: k, [cm]: [ad, 49, 50, c], [co]: u }, { [cl]: k, [cm]: [ad, 8, 12, c], [co]: v }, { [cl]: k, [cm]: [ad, 0, 7, c], [co]: w }, { [cl]: k, [cm]: [ad, 32, 49, c], [co]: x }, { [cl]: g, [cm]: bx, [co]: "regionPartition" }, { [cl]: h, [cm]: [{ [cn]: w }, "--op-s3"] }], rules: [{ [ck]: bQ, rules: [{ [ck]: [{ [cl]: h, [cm]: [as, "e"] }], rules: [{ [ck]: bR, rules: [at, { [ck]: bC, endpoint: { [cp]: "https://{Bucket}.ec2.{url#authority}", [cq]: au, [cw]: aj }, [cj]: o }], [cj]: p }, { endpoint: { [cp]: "https://{Bucket}.ec2.s3-outposts.{Region}.{regionPartition#dnsSuffix}", [cq]: au, [cw]: aj }, [cj]: o }], [cj]: p }, { [ck]: [{ [cl]: h, [cm]: [as, "o"] }], rules: [{ [ck]: bR, rules: [at, { [ck]: bC, endpoint: { [cp]: "https://{Bucket}.op-{outpostId}.{url#authority}", [cq]: au, [cw]: aj }, [cj]: o }], [cj]: p }, { endpoint: { [cp]: "https://{Bucket}.op-{outpostId}.s3-outposts.{Region}.{regionPartition#dnsSuffix}", [cq]: au, [cw]: aj }, [cj]: o }], [cj]: p }, { error: "Unrecognized hardware type: \"Expected hardware type o or e but got {hardwareType}\"", [cj]: f }], [cj]: p }, { error: "Invalid ARN: The outpost Id must only contain a-z, A-Z, 0-9 and `-`.", [cj]: f }], [cj]: p }, { [ck]: bP, rules: [{ [ck]: [Z, { [cl]: s, [cm]: [{ [cl]: d, [cm]: [{ [cl]: m, [cm]: by }] }] }], error: "Custom endpoint `{Endpoint}` was not a valid URI", [cj]: f }, { [ck]: [av, ak], rules: [{ [ck]: bT, rules: [{ [ck]: bU, rules: [{ [ck]: [W, ab], error: "S3 Accelerate cannot be used in this region", [cj]: f }, { [ck]: [Y, X, ax, ap, ay], endpoint: { [cp]: "https://{Bucket}.s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [Y, X, ax, ap, aA, aB], rules: [{ endpoint: aC, [cj]: o }], [cj]: p }, { [ck]: [Y, X, ax, ap, aA, aE], endpoint: aC, [cj]: o }, { [ck]: [aF, X, ax, ap, ay], endpoint: { [cp]: "https://{Bucket}.s3-fips.us-east-1.{partitionResult#dnsSuffix}", [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [aF, X, ax, ap, aA, aB], rules: [{ endpoint: aG, [cj]: o }], [cj]: p }, { [ck]: [aF, X, ax, ap, aA, aE], endpoint: aG, [cj]: o }, { [ck]: [Y, aH, W, ap, ay], endpoint: { [cp]: "https://{Bucket}.s3-accelerate.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [Y, aH, W, ap, aA, aB], rules: [{ endpoint: aI, [cj]: o }], [cj]: p }, { [ck]: [Y, aH, W, ap, aA, aE], endpoint: aI, [cj]: o }, { [ck]: [Y, aH, ax, ap, ay], endpoint: { [cp]: "https://{Bucket}.s3.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [Y, aH, ax, ap, aA, aB], rules: [{ endpoint: aJ, [cj]: o }], [cj]: p }, { [ck]: [Y, aH, ax, ap, aA, aE], endpoint: aJ, [cj]: o }, { [ck]: [aF, aH, ax, Z, ae, af, ay], endpoint: { [cp]: C, [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [aF, aH, ax, Z, ae, aK, ay], endpoint: { [cp]: r, [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [aF, aH, ax, Z, ae, af, aA, aB], rules: [{ [ck]: bV, endpoint: aL, [cj]: o }, { endpoint: aL, [cj]: o }], [cj]: p }, { [ck]: [aF, aH, ax, Z, ae, aK, aA, aB], rules: [{ [ck]: bV, endpoint: aM, [cj]: o }, aN], [cj]: p }, { [ck]: [aF, aH, ax, Z, ae, af, aA, aE], endpoint: aL, [cj]: o }, { [ck]: [aF, aH, ax, Z, ae, aK, aA, aE], endpoint: aM, [cj]: o }, { [ck]: [aF, aH, W, ap, ay], endpoint: { [cp]: D, [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [aF, aH, W, ap, aA, aB], rules: [{ [ck]: bV, endpoint: aO, [cj]: o }, { endpoint: aO, [cj]: o }], [cj]: p }, { [ck]: [aF, aH, W, ap, aA, aE], endpoint: aO, [cj]: o }, { [ck]: [aF, aH, ax, ap, ay], endpoint: { [cp]: E, [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [aF, aH, ax, ap, aA, aB], rules: [{ [ck]: bV, endpoint: { [cp]: E, [cq]: aD, [cw]: aj }, [cj]: o }, { endpoint: aP, [cj]: o }], [cj]: p }, { [ck]: [aF, aH, ax, ap, aA, aE], endpoint: aP, [cj]: o }], [cj]: p }, aQ], [cj]: p }], [cj]: p }, { [ck]: [Z, ae, { [cl]: h, [cm]: [{ [cl]: i, [cm]: [ag, "scheme"] }, "http"] }, { [cl]: q, [cm]: [ad, c] }, av, aH, aF, ax], rules: [{ [ck]: bT, rules: [{ [ck]: bU, rules: [aN], [cj]: p }, aQ], [cj]: p }], [cj]: p }, { [ck]: [av, { [cl]: F, [cm]: bz, [co]: G }], rules: [{ [ck]: [{ [cl]: i, [cm]: [aR, "resourceId[0]"], [co]: H }, { [cl]: s, [cm]: [{ [cl]: h, [cm]: [aS, I] }] }], rules: [{ [ck]: [{ [cl]: h, [cm]: [aT, J] }], rules: [{ [ck]: bW, rules: [{ [ck]: bX, rules: [aV, aW, { [ck]: bZ, rules: [aX, { [ck]: ca, rules: [aY, { [ck]: cc, rules: [{ [ck]: bT, rules: [{ [ck]: cd, rules: [{ [ck]: ce, rules: [{ [ck]: [{ [cl]: h, [cm]: [ba, I] }], error: "Invalid ARN: Missing account id", [cj]: f }, { [ck]: cf, rules: [{ [ck]: cg, rules: [{ [ck]: bC, endpoint: { [cp]: M, [cq]: bb, [cw]: aj }, [cj]: o }, { [ck]: bH, endpoint: { [cp]: "https://{accessPointName}-{bucketArn#accountId}.s3-object-lambda-fips.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cq]: bb, [cw]: aj }, [cj]: o }, { endpoint: { [cp]: "https://{accessPointName}-{bucketArn#accountId}.s3-object-lambda.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cq]: bb, [cw]: aj }, [cj]: o }], [cj]: p }, bc], [cj]: p }, bd], [cj]: p }, be], [cj]: p }, bf], [cj]: p }], [cj]: p }], [cj]: p }, bg], [cj]: p }, { error: "Invalid ARN: bucket ARN is missing a region", [cj]: f }], [cj]: p }, bh], [cj]: p }, { error: "Invalid ARN: Object Lambda ARNs only support `accesspoint` arn types, but found: `{arnType}`", [cj]: f }], [cj]: p }, { [ck]: bW, rules: [{ [ck]: bX, rules: [{ [ck]: bZ, rules: [{ [ck]: bW, rules: [{ [ck]: bZ, rules: [aX, { [ck]: ca, rules: [aY, { [ck]: cc, rules: [{ [ck]: bT, rules: [{ [ck]: [{ [cl]: h, [cm]: [aZ, "{partitionResult#name}"] }], rules: [{ [ck]: ce, rules: [{ [ck]: [{ [cl]: h, [cm]: [aT, B] }], rules: [{ [ck]: cf, rules: [{ [ck]: cg, rules: [{ [ck]: bB, error: "Access Points do not support S3 Accelerate", [cj]: f }, { [ck]: [X, Y], endpoint: { [cp]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint-fips.dualstack.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cq]: bi, [cw]: aj }, [cj]: o }, { [ck]: [X, aF], endpoint: { [cp]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint-fips.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cq]: bi, [cw]: aj }, [cj]: o }, { [ck]: [aH, Y], endpoint: { [cp]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint.dualstack.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cq]: bi, [cw]: aj }, [cj]: o }, { [ck]: [aH, aF, Z, ae], endpoint: { [cp]: M, [cq]: bi, [cw]: aj }, [cj]: o }, { [ck]: [aH, aF], endpoint: { [cp]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cq]: bi, [cw]: aj }, [cj]: o }], [cj]: p }, bc], [cj]: p }, bd], [cj]: p }, { error: "Invalid ARN: The ARN was not for the S3 service, found: {bucketArn#service}", [cj]: f }], [cj]: p }, be], [cj]: p }, bf], [cj]: p }], [cj]: p }], [cj]: p }, bg], [cj]: p }], [cj]: p }], [cj]: p }, { [ck]: [{ [cl]: y, [cm]: [aU, c] }], rules: [{ [ck]: bA, error: "S3 MRAP does not support dual-stack", [cj]: f }, { [ck]: bH, error: "S3 MRAP does not support FIPS", [cj]: f }, { [ck]: bB, error: "S3 MRAP does not support S3 Accelerate", [cj]: f }, { [ck]: [{ [cl]: e, [cm]: [{ [cn]: "DisableMultiRegionAccessPoints" }, c] }], error: "Invalid configuration: Multi-Region Access Point ARNs are disabled.", [cj]: f }, { [ck]: [{ [cl]: g, [cm]: bx, [co]: N }], rules: [{ [ck]: [{ [cl]: h, [cm]: [{ [cl]: i, [cm]: [{ [cn]: N }, j] }, { [cl]: i, [cm]: [aR, "partition"] }] }], rules: [{ endpoint: { [cp]: "https://{accessPointName}.accesspoint.s3-global.{mrapPartition#dnsSuffix}", [cq]: { [cs]: [{ [ct]: c, name: z, [cu]: B, [cx]: bS }] }, [cw]: aj }, [cj]: o }], [cj]: p }, { error: "Client was configured for partition `{mrapPartition#name}` but bucket referred to partition `{bucketArn#partition}`", [cj]: f }], [cj]: p }], [cj]: p }, { error: "Invalid Access Point Name", [cj]: f }], [cj]: p }, bh], [cj]: p }, { [ck]: [{ [cl]: h, [cm]: [aT, A] }], rules: [{ [ck]: bA, error: "S3 Outposts does not support Dual-stack", [cj]: f }, { [ck]: bH, error: "S3 Outposts does not support FIPS", [cj]: f }, { [ck]: bB, error: "S3 Outposts does not support S3 Accelerate", [cj]: f }, { [ck]: [{ [cl]: d, [cm]: [{ [cl]: i, [cm]: [aR, "resourceId[4]"] }] }], error: "Invalid Arn: Outpost Access Point ARN contains sub resources", [cj]: f }, { [ck]: [{ [cl]: i, [cm]: bY, [co]: x }], rules: [{ [ck]: bQ, rules: [aY, { [ck]: cc, rules: [{ [ck]: bT, rules: [{ [ck]: cd, rules: [{ [ck]: ce, rules: [{ [ck]: cf, rules: [{ [ck]: [{ [cl]: i, [cm]: cb, [co]: O }], rules: [{ [ck]: [{ [cl]: i, [cm]: [aR, "resourceId[3]"], [co]: L }], rules: [{ [ck]: [{ [cl]: h, [cm]: [{ [cn]: O }, K] }], rules: [{ [ck]: bC, endpoint: { [cp]: "https://{accessPointName}-{bucketArn#accountId}.{outpostId}.{url#authority}", [cq]: bj, [cw]: aj }, [cj]: o }, { endpoint: { [cp]: "https://{accessPointName}-{bucketArn#accountId}.{outpostId}.s3-outposts.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cq]: bj, [cw]: aj }, [cj]: o }], [cj]: p }, { error: "Expected an outpost type `accesspoint`, found {outpostType}", [cj]: f }], [cj]: p }, { error: "Invalid ARN: expected an access point name", [cj]: f }], [cj]: p }, { error: "Invalid ARN: Expected a 4-component resource", [cj]: f }], [cj]: p }, bd], [cj]: p }, be], [cj]: p }, bf], [cj]: p }], [cj]: p }], [cj]: p }, { error: "Invalid ARN: The outpost Id may only contain a-z, A-Z, 0-9 and `-`. Found: `{outpostId}`", [cj]: f }], [cj]: p }, { error: "Invalid ARN: The Outpost Id was not set", [cj]: f }], [cj]: p }, { error: "Invalid ARN: Unrecognized format: {Bucket} (type: {arnType})", [cj]: f }], [cj]: p }, { error: "Invalid ARN: No ARN type specified", [cj]: f }], [cj]: p }, { [ck]: [{ [cl]: k, [cm]: [ad, 0, 4, b], [co]: P }, { [cl]: h, [cm]: [{ [cn]: P }, "arn:"] }, { [cl]: s, [cm]: [{ [cl]: d, [cm]: [bk] }] }], error: "Invalid ARN: `{Bucket}` was not a valid ARN", [cj]: f }, { [ck]: [{ [cl]: e, [cm]: [aw, c] }, bk], error: "Path-style addressing cannot be used with ARN buckets", [cj]: f }, { [ck]: bF, rules: [{ [ck]: bT, rules: [{ [ck]: [ax], rules: [{ [ck]: [Y, ap, X, ay], endpoint: { [cp]: "https://s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [Y, ap, X, aA, aB], rules: [{ endpoint: bl, [cj]: o }], [cj]: p }, { [ck]: [Y, ap, X, aA, aE], endpoint: bl, [cj]: o }, { [ck]: [aF, ap, X, ay], endpoint: { [cp]: "https://s3-fips.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [aF, ap, X, aA, aB], rules: [{ endpoint: bm, [cj]: o }], [cj]: p }, { [ck]: [aF, ap, X, aA, aE], endpoint: bm, [cj]: o }, { [ck]: [Y, ap, aH, ay], endpoint: { [cp]: "https://s3.dualstack.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [Y, ap, aH, aA, aB], rules: [{ endpoint: bn, [cj]: o }], [cj]: p }, { [ck]: [Y, ap, aH, aA, aE], endpoint: bn, [cj]: o }, { [ck]: [aF, Z, ae, aH, ay], endpoint: { [cp]: Q, [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [aF, Z, ae, aH, aA, aB], rules: [{ [ck]: bV, endpoint: bo, [cj]: o }, { endpoint: bo, [cj]: o }], [cj]: p }, { [ck]: [aF, Z, ae, aH, aA, aE], endpoint: bo, [cj]: o }, { [ck]: [aF, ap, aH, ay], endpoint: { [cp]: R, [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [aF, ap, aH, aA, aB], rules: [{ [ck]: bV, endpoint: { [cp]: R, [cq]: aD, [cw]: aj }, [cj]: o }, { endpoint: bp, [cj]: o }], [cj]: p }, { [ck]: [aF, ap, aH, aA, aE], endpoint: bp, [cj]: o }], [cj]: p }, { error: "Path-style addressing cannot be used with S3 Accelerate", [cj]: f }], [cj]: p }], [cj]: p }], [cj]: p }, { [ck]: [{ [cl]: d, [cm]: [bq] }, { [cl]: e, [cm]: [bq, c] }], rules: [{ [ck]: bT, rules: [{ [ck]: ch, rules: [aV, aW, { [ck]: bC, endpoint: { [cp]: t, [cq]: br, [cw]: aj }, [cj]: o }, { [ck]: bH, endpoint: { [cp]: "https://s3-object-lambda-fips.{Region}.{partitionResult#dnsSuffix}", [cq]: br, [cw]: aj }, [cj]: o }, { endpoint: { [cp]: "https://s3-object-lambda.{Region}.{partitionResult#dnsSuffix}", [cq]: br, [cw]: aj }, [cj]: o }], [cj]: p }, aQ], [cj]: p }], [cj]: p }, { [ck]: [ar], rules: [{ [ck]: bT, rules: [{ [ck]: ch, rules: [{ [ck]: [X, Y, ap, ay], endpoint: { [cp]: "https://s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [X, Y, ap, aA, aB], rules: [{ endpoint: bs, [cj]: o }], [cj]: p }, { [ck]: [X, Y, ap, aA, aE], endpoint: bs, [cj]: o }, { [ck]: [X, aF, ap, ay], endpoint: { [cp]: "https://s3-fips.us-east-1.{partitionResult#dnsSuffix}", [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [X, aF, ap, aA, aB], rules: [{ endpoint: bt, [cj]: o }], [cj]: p }, { [ck]: [X, aF, ap, aA, aE], endpoint: bt, [cj]: o }, { [ck]: [aH, Y, ap, ay], endpoint: { [cp]: "https://s3.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [aH, Y, ap, aA, aB], rules: [{ endpoint: bu, [cj]: o }], [cj]: p }, { [ck]: [aH, Y, ap, aA, aE], endpoint: bu, [cj]: o }, { [ck]: [aH, aF, Z, ae, ay], endpoint: { [cp]: t, [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [aH, aF, Z, ae, aA, aB], rules: [{ [ck]: bV, endpoint: bv, [cj]: o }, { endpoint: bv, [cj]: o }], [cj]: p }, { [ck]: [aH, aF, Z, ae, aA, aE], endpoint: bv, [cj]: o }, { [ck]: [aH, aF, ap, ay], endpoint: { [cp]: S, [cq]: az, [cw]: aj }, [cj]: o }, { [ck]: [aH, aF, ap, aA, aB], rules: [{ [ck]: bV, endpoint: { [cp]: S, [cq]: aD, [cw]: aj }, [cj]: o }, { endpoint: bw, [cj]: o }], [cj]: p }, { [ck]: [aH, aF, ap, aA, aE], endpoint: bw, [cj]: o }], [cj]: p }, aQ], [cj]: p }], [cj]: p }], [cj]: p }, { error: "A region must be set when sending requests to S3.", [cj]: f }] };
+const cp = "required", cq = "type", cr = "rules", cs = "conditions", ct = "fn", cu = "argv", cv = "ref", cw = "assign", cx = "url", cy = "properties", cz = "backend", cA = "authSchemes", cB = "disableDoubleEncoding", cC = "signingName", cD = "signingRegion", cE = "headers", cF = "signingRegionSet";
+const a = 6, b = false, c = true, d = "isSet", e = "booleanEquals", f = "error", g = "aws.partition", h = "stringEquals", i = "getAttr", j = "name", k = "substring", l = "bucketSuffix", m = "parseURL", n = "endpoint", o = "tree", p = "aws.isVirtualHostableS3Bucket", q = "{url#scheme}://{Bucket}.{url#authority}{url#path}", r = "not", s = "accessPointSuffix", t = "{url#scheme}://{url#authority}{url#path}", u = "hardwareType", v = "regionPrefix", w = "bucketAliasSuffix", x = "outpostId", y = "isValidHostLabel", z = "sigv4a", A = "s3-outposts", B = "s3", C = "{url#scheme}://{url#authority}{url#normalizedPath}{Bucket}", D = "https://{Bucket}.s3-accelerate.{partitionResult#dnsSuffix}", E = "https://{Bucket}.s3.{partitionResult#dnsSuffix}", F = "aws.parseArn", G = "bucketArn", H = "arnType", I = "", J = "s3-object-lambda", K = "accesspoint", L = "accessPointName", M = "{url#scheme}://{accessPointName}-{bucketArn#accountId}.{url#authority}{url#path}", N = "mrapPartition", O = "outpostType", P = "arnPrefix", Q = "{url#scheme}://{url#authority}{url#normalizedPath}{uri_encoded_bucket}", R = "https://s3.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", S = "https://s3.{partitionResult#dnsSuffix}", T = { [cp]: false, [cq]: "String" }, U = { [cp]: true, "default": false, [cq]: "Boolean" }, V = { [cp]: false, [cq]: "Boolean" }, W = { [ct]: e, [cu]: [{ [cv]: "Accelerate" }, true] }, X = { [ct]: e, [cu]: [{ [cv]: "UseFIPS" }, true] }, Y = { [ct]: e, [cu]: [{ [cv]: "UseDualStack" }, true] }, Z = { [ct]: d, [cu]: [{ [cv]: "Endpoint" }] }, aa = { [ct]: g, [cu]: [{ [cv]: "Region" }], [cw]: "partitionResult" }, ab = { [ct]: h, [cu]: [{ [ct]: i, [cu]: [{ [cv]: "partitionResult" }, j] }, "aws-cn"] }, ac = { [ct]: d, [cu]: [{ [cv]: "Bucket" }] }, ad = { [cv]: "Bucket" }, ae = { [cs]: [Y], [f]: "S3Express does not support Dual-stack.", [cq]: f }, af = { [cs]: [W], [f]: "S3Express does not support S3 Accelerate.", [cq]: f }, ag = { [cs]: [Z, { [ct]: m, [cu]: [{ [cv]: "Endpoint" }], [cw]: "url" }], [cr]: [{ [cs]: [{ [ct]: d, [cu]: [{ [cv]: "DisableS3ExpressSessionAuth" }] }, { [ct]: e, [cu]: [{ [cv]: "DisableS3ExpressSessionAuth" }, true] }], [cr]: [{ [cs]: [{ [ct]: e, [cu]: [{ [ct]: i, [cu]: [{ [cv]: "url" }, "isIp"] }, true] }], [cr]: [{ [cs]: [{ [ct]: "uriEncode", [cu]: [ad], [cw]: "uri_encoded_bucket" }], [cr]: [{ [n]: { [cx]: "{url#scheme}://{url#authority}/{uri_encoded_bucket}{url#path}", [cy]: { [cz]: "S3Express", [cA]: [{ [cB]: true, [j]: "sigv4", [cC]: "s3express", [cD]: "{Region}" }] }, [cE]: {} }, [cq]: n }], [cq]: o }], [cq]: o }, { [cs]: [{ [ct]: p, [cu]: [ad, false] }], [cr]: [{ [n]: { [cx]: q, [cy]: { [cz]: "S3Express", [cA]: [{ [cB]: true, [j]: "sigv4", [cC]: "s3express", [cD]: "{Region}" }] }, [cE]: {} }, [cq]: n }], [cq]: o }, { [f]: "S3Express bucket name is not a valid virtual hostable name.", [cq]: f }], [cq]: o }, { [cs]: [{ [ct]: e, [cu]: [{ [ct]: i, [cu]: [{ [cv]: "url" }, "isIp"] }, true] }], [cr]: [{ [cs]: [{ [ct]: "uriEncode", [cu]: [ad], [cw]: "uri_encoded_bucket" }], [cr]: [{ [n]: { [cx]: "{url#scheme}://{url#authority}/{uri_encoded_bucket}{url#path}", [cy]: { [cz]: "S3Express", [cA]: [{ [cB]: true, [j]: "sigv4-s3express", [cC]: "s3express", [cD]: "{Region}" }] }, [cE]: {} }, [cq]: n }], [cq]: o }], [cq]: o }, { [cs]: [{ [ct]: p, [cu]: [ad, false] }], [cr]: [{ [n]: { [cx]: q, [cy]: { [cz]: "S3Express", [cA]: [{ [cB]: true, [j]: "sigv4-s3express", [cC]: "s3express", [cD]: "{Region}" }] }, [cE]: {} }, [cq]: n }], [cq]: o }, { [f]: "S3Express bucket name is not a valid virtual hostable name.", [cq]: f }], [cq]: o }, ah = { [ct]: m, [cu]: [{ [cv]: "Endpoint" }], [cw]: "url" }, ai = { [ct]: e, [cu]: [{ [ct]: i, [cu]: [{ [cv]: "url" }, "isIp"] }, true] }, aj = { [cv]: "url" }, ak = { [ct]: "uriEncode", [cu]: [ad], [cw]: "uri_encoded_bucket" }, al = { [cz]: "S3Express", [cA]: [{ [cB]: true, [j]: "sigv4", [cC]: "s3express", [cD]: "{Region}" }] }, am = {}, an = { [ct]: p, [cu]: [ad, false] }, ao = { [f]: "S3Express bucket name is not a valid virtual hostable name.", [cq]: f }, ap = { [ct]: d, [cu]: [{ [cv]: "UseS3ExpressControlEndpoint" }] }, aq = { [ct]: e, [cu]: [{ [cv]: "UseS3ExpressControlEndpoint" }, true] }, ar = { [ct]: r, [cu]: [Z] }, as = { [f]: "Unrecognized S3Express bucket name format.", [cq]: f }, at = { [ct]: r, [cu]: [ac] }, au = { [cv]: u }, av = { [cs]: [ar], [f]: "Expected a endpoint to be specified but no endpoint was found", [cq]: f }, aw = { [cA]: [{ [cB]: true, [j]: z, [cC]: A, [cF]: ["*"] }, { [cB]: true, [j]: "sigv4", [cC]: A, [cD]: "{Region}" }] }, ax = { [ct]: e, [cu]: [{ [cv]: "ForcePathStyle" }, false] }, ay = { [cv]: "ForcePathStyle" }, az = { [ct]: e, [cu]: [{ [cv]: "Accelerate" }, false] }, aA = { [ct]: h, [cu]: [{ [cv]: "Region" }, "aws-global"] }, aB = { [cA]: [{ [cB]: true, [j]: "sigv4", [cC]: B, [cD]: "us-east-1" }] }, aC = { [ct]: r, [cu]: [aA] }, aD = { [ct]: e, [cu]: [{ [cv]: "UseGlobalEndpoint" }, true] }, aE = { [cx]: "https://{Bucket}.s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}", [cy]: { [cA]: [{ [cB]: true, [j]: "sigv4", [cC]: B, [cD]: "{Region}" }] }, [cE]: {} }, aF = { [cA]: [{ [cB]: true, [j]: "sigv4", [cC]: B, [cD]: "{Region}" }] }, aG = { [ct]: e, [cu]: [{ [cv]: "UseGlobalEndpoint" }, false] }, aH = { [ct]: e, [cu]: [{ [cv]: "UseDualStack" }, false] }, aI = { [cx]: "https://{Bucket}.s3-fips.{Region}.{partitionResult#dnsSuffix}", [cy]: aF, [cE]: {} }, aJ = { [ct]: e, [cu]: [{ [cv]: "UseFIPS" }, false] }, aK = { [cx]: "https://{Bucket}.s3-accelerate.dualstack.{partitionResult#dnsSuffix}", [cy]: aF, [cE]: {} }, aL = { [cx]: "https://{Bucket}.s3.dualstack.{Region}.{partitionResult#dnsSuffix}", [cy]: aF, [cE]: {} }, aM = { [ct]: e, [cu]: [{ [ct]: i, [cu]: [aj, "isIp"] }, false] }, aN = { [cx]: C, [cy]: aF, [cE]: {} }, aO = { [cx]: q, [cy]: aF, [cE]: {} }, aP = { [n]: aO, [cq]: n }, aQ = { [cx]: D, [cy]: aF, [cE]: {} }, aR = { [cx]: "https://{Bucket}.s3.{Region}.{partitionResult#dnsSuffix}", [cy]: aF, [cE]: {} }, aS = { [f]: "Invalid region: region was not a valid DNS name.", [cq]: f }, aT = { [cv]: G }, aU = { [cv]: H }, aV = { [ct]: i, [cu]: [aT, "service"] }, aW = { [cv]: L }, aX = { [cs]: [Y], [f]: "S3 Object Lambda does not support Dual-stack", [cq]: f }, aY = { [cs]: [W], [f]: "S3 Object Lambda does not support S3 Accelerate", [cq]: f }, aZ = { [cs]: [{ [ct]: d, [cu]: [{ [cv]: "DisableAccessPoints" }] }, { [ct]: e, [cu]: [{ [cv]: "DisableAccessPoints" }, true] }], [f]: "Access points are not supported for this operation", [cq]: f }, ba = { [cs]: [{ [ct]: d, [cu]: [{ [cv]: "UseArnRegion" }] }, { [ct]: e, [cu]: [{ [cv]: "UseArnRegion" }, false] }, { [ct]: r, [cu]: [{ [ct]: h, [cu]: [{ [ct]: i, [cu]: [aT, "region"] }, "{Region}"] }] }], [f]: "Invalid configuration: region from ARN `{bucketArn#region}` does not match client region `{Region}` and UseArnRegion is `false`", [cq]: f }, bb = { [ct]: i, [cu]: [{ [cv]: "bucketPartition" }, j] }, bc = { [ct]: i, [cu]: [aT, "accountId"] }, bd = { [cA]: [{ [cB]: true, [j]: "sigv4", [cC]: J, [cD]: "{bucketArn#region}" }] }, be = { [f]: "Invalid ARN: The access point name may only contain a-z, A-Z, 0-9 and `-`. Found: `{accessPointName}`", [cq]: f }, bf = { [f]: "Invalid ARN: The account id may only contain a-z, A-Z, 0-9 and `-`. Found: `{bucketArn#accountId}`", [cq]: f }, bg = { [f]: "Invalid region in ARN: `{bucketArn#region}` (invalid DNS name)", [cq]: f }, bh = { [f]: "Client was configured for partition `{partitionResult#name}` but ARN (`{Bucket}`) has `{bucketPartition#name}`", [cq]: f }, bi = { [f]: "Invalid ARN: The ARN may only contain a single resource component after `accesspoint`.", [cq]: f }, bj = { [f]: "Invalid ARN: Expected a resource of the format `accesspoint:<accesspoint name>` but no name was provided", [cq]: f }, bk = { [cA]: [{ [cB]: true, [j]: "sigv4", [cC]: B, [cD]: "{bucketArn#region}" }] }, bl = { [cA]: [{ [cB]: true, [j]: z, [cC]: A, [cF]: ["*"] }, { [cB]: true, [j]: "sigv4", [cC]: A, [cD]: "{bucketArn#region}" }] }, bm = { [ct]: F, [cu]: [ad] }, bn = { [cx]: "https://s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cy]: aF, [cE]: {} }, bo = { [cx]: "https://s3-fips.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cy]: aF, [cE]: {} }, bp = { [cx]: "https://s3.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cy]: aF, [cE]: {} }, bq = { [cx]: Q, [cy]: aF, [cE]: {} }, br = { [cx]: "https://s3.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cy]: aF, [cE]: {} }, bs = { [cv]: "UseObjectLambdaEndpoint" }, bt = { [cA]: [{ [cB]: true, [j]: "sigv4", [cC]: J, [cD]: "{Region}" }] }, bu = { [cx]: "https://s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}", [cy]: aF, [cE]: {} }, bv = { [cx]: "https://s3-fips.{Region}.{partitionResult#dnsSuffix}", [cy]: aF, [cE]: {} }, bw = { [cx]: "https://s3.dualstack.{Region}.{partitionResult#dnsSuffix}", [cy]: aF, [cE]: {} }, bx = { [cx]: t, [cy]: aF, [cE]: {} }, by = { [cx]: "https://s3.{Region}.{partitionResult#dnsSuffix}", [cy]: aF, [cE]: {} }, bz = [{ [cv]: "Region" }], bA = [{ [cv]: "Endpoint" }], bB = [ad], bC = [Y], bD = [W], bE = [Z, ah], bF = [{ [ct]: d, [cu]: [{ [cv]: "DisableS3ExpressSessionAuth" }] }, { [ct]: e, [cu]: [{ [cv]: "DisableS3ExpressSessionAuth" }, true] }], bG = [ak], bH = [an], bI = [aa], bJ = [X], bK = [{ [ct]: k, [cu]: [ad, 6, 14, true], [cw]: "s3expressAvailabilityZoneId" }, { [ct]: k, [cu]: [ad, 14, 16, true], [cw]: "s3expressAvailabilityZoneDelim" }, { [ct]: h, [cu]: [{ [cv]: "s3expressAvailabilityZoneDelim" }, "--"] }], bL = [{ [cs]: [X], [n]: { [cx]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.{partitionResult#dnsSuffix}", [cy]: al, [cE]: {} }, [cq]: n }, { [n]: { [cx]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.{partitionResult#dnsSuffix}", [cy]: al, [cE]: {} }, [cq]: n }], bM = [{ [ct]: k, [cu]: [ad, 6, 15, true], [cw]: "s3expressAvailabilityZoneId" }, { [ct]: k, [cu]: [ad, 15, 17, true], [cw]: "s3expressAvailabilityZoneDelim" }, { [ct]: h, [cu]: [{ [cv]: "s3expressAvailabilityZoneDelim" }, "--"] }], bN = [{ [ct]: k, [cu]: [ad, 6, 19, true], [cw]: "s3expressAvailabilityZoneId" }, { [ct]: k, [cu]: [ad, 19, 21, true], [cw]: "s3expressAvailabilityZoneDelim" }, { [ct]: h, [cu]: [{ [cv]: "s3expressAvailabilityZoneDelim" }, "--"] }], bO = [{ [ct]: k, [cu]: [ad, 6, 20, true], [cw]: "s3expressAvailabilityZoneId" }, { [ct]: k, [cu]: [ad, 20, 22, true], [cw]: "s3expressAvailabilityZoneDelim" }, { [ct]: h, [cu]: [{ [cv]: "s3expressAvailabilityZoneDelim" }, "--"] }], bP = [{ [ct]: k, [cu]: [ad, 6, 26, true], [cw]: "s3expressAvailabilityZoneId" }, { [ct]: k, [cu]: [ad, 26, 28, true], [cw]: "s3expressAvailabilityZoneDelim" }, { [ct]: h, [cu]: [{ [cv]: "s3expressAvailabilityZoneDelim" }, "--"] }], bQ = [{ [cs]: [X], [n]: { [cx]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.{partitionResult#dnsSuffix}", [cy]: { [cz]: "S3Express", [cA]: [{ [cB]: true, [j]: "sigv4-s3express", [cC]: "s3express", [cD]: "{Region}" }] }, [cE]: {} }, [cq]: n }, { [n]: { [cx]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.{partitionResult#dnsSuffix}", [cy]: { [cz]: "S3Express", [cA]: [{ [cB]: true, [j]: "sigv4-s3express", [cC]: "s3express", [cD]: "{Region}" }] }, [cE]: {} }, [cq]: n }], bR = [ad, 0, 7, true], bS = [{ [ct]: k, [cu]: [ad, 7, 15, true], [cw]: "s3expressAvailabilityZoneId" }, { [ct]: k, [cu]: [ad, 15, 17, true], [cw]: "s3expressAvailabilityZoneDelim" }, { [ct]: h, [cu]: [{ [cv]: "s3expressAvailabilityZoneDelim" }, "--"] }], bT = [{ [ct]: k, [cu]: [ad, 7, 16, true], [cw]: "s3expressAvailabilityZoneId" }, { [ct]: k, [cu]: [ad, 16, 18, true], [cw]: "s3expressAvailabilityZoneDelim" }, { [ct]: h, [cu]: [{ [cv]: "s3expressAvailabilityZoneDelim" }, "--"] }], bU = [{ [ct]: k, [cu]: [ad, 7, 20, true], [cw]: "s3expressAvailabilityZoneId" }, { [ct]: k, [cu]: [ad, 20, 22, true], [cw]: "s3expressAvailabilityZoneDelim" }, { [ct]: h, [cu]: [{ [cv]: "s3expressAvailabilityZoneDelim" }, "--"] }], bV = [{ [ct]: k, [cu]: [ad, 7, 21, true], [cw]: "s3expressAvailabilityZoneId" }, { [ct]: k, [cu]: [ad, 21, 23, true], [cw]: "s3expressAvailabilityZoneDelim" }, { [ct]: h, [cu]: [{ [cv]: "s3expressAvailabilityZoneDelim" }, "--"] }], bW = [{ [ct]: k, [cu]: [ad, 7, 27, true], [cw]: "s3expressAvailabilityZoneId" }, { [ct]: k, [cu]: [ad, 27, 29, true], [cw]: "s3expressAvailabilityZoneDelim" }, { [ct]: h, [cu]: [{ [cv]: "s3expressAvailabilityZoneDelim" }, "--"] }], bX = [ac], bY = [{ [ct]: y, [cu]: [{ [cv]: x }, false] }], bZ = [{ [ct]: h, [cu]: [{ [cv]: v }, "beta"] }], ca = ["*"], cb = [{ [ct]: y, [cu]: [{ [cv]: "Region" }, false] }], cc = [{ [ct]: h, [cu]: [{ [cv]: "Region" }, "us-east-1"] }], cd = [{ [ct]: h, [cu]: [aU, K] }], ce = [{ [ct]: i, [cu]: [aT, "resourceId[1]"], [cw]: L }, { [ct]: r, [cu]: [{ [ct]: h, [cu]: [aW, I] }] }], cf = [aT, "resourceId[1]"], cg = [{ [ct]: r, [cu]: [{ [ct]: h, [cu]: [{ [ct]: i, [cu]: [aT, "region"] }, I] }] }], ch = [{ [ct]: r, [cu]: [{ [ct]: d, [cu]: [{ [ct]: i, [cu]: [aT, "resourceId[2]"] }] }] }], ci = [aT, "resourceId[2]"], cj = [{ [ct]: g, [cu]: [{ [ct]: i, [cu]: [aT, "region"] }], [cw]: "bucketPartition" }], ck = [{ [ct]: h, [cu]: [bb, { [ct]: i, [cu]: [{ [cv]: "partitionResult" }, j] }] }], cl = [{ [ct]: y, [cu]: [{ [ct]: i, [cu]: [aT, "region"] }, true] }], cm = [{ [ct]: y, [cu]: [bc, false] }], cn = [{ [ct]: y, [cu]: [aW, false] }], co = [{ [ct]: y, [cu]: [{ [cv]: "Region" }, true] }];
+const _data = { version: "1.0", parameters: { Bucket: T, Region: T, UseFIPS: U, UseDualStack: U, Endpoint: T, ForcePathStyle: U, Accelerate: U, UseGlobalEndpoint: U, UseObjectLambdaEndpoint: V, Key: T, Prefix: T, CopySource: T, DisableAccessPoints: V, DisableMultiRegionAccessPoints: U, UseArnRegion: V, UseS3ExpressControlEndpoint: V, DisableS3ExpressSessionAuth: V }, [cr]: [{ [cs]: [{ [ct]: d, [cu]: bz }], [cr]: [{ [cs]: [W, X], error: "Accelerate cannot be used with FIPS", [cq]: f }, { [cs]: [Y, Z], error: "Cannot set dual-stack in combination with a custom endpoint.", [cq]: f }, { [cs]: [Z, X], error: "A custom endpoint cannot be combined with FIPS", [cq]: f }, { [cs]: [Z, W], error: "A custom endpoint cannot be combined with S3 Accelerate", [cq]: f }, { [cs]: [X, aa, ab], error: "Partition does not support FIPS", [cq]: f }, { [cs]: [ac, { [ct]: k, [cu]: [ad, 0, a, c], [cw]: l }, { [ct]: h, [cu]: [{ [cv]: l }, "--x-s3"] }], [cr]: [ae, af, ag, { [cs]: [ap, aq], [cr]: [{ [cs]: bI, [cr]: [{ [cs]: [ak, ar], [cr]: [{ [cs]: bJ, endpoint: { [cx]: "https://s3express-control-fips.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cy]: al, [cE]: am }, [cq]: n }, { endpoint: { [cx]: "https://s3express-control.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cy]: al, [cE]: am }, [cq]: n }], [cq]: o }], [cq]: o }], [cq]: o }, { [cs]: bH, [cr]: [{ [cs]: bI, [cr]: [{ [cs]: bF, [cr]: [{ [cs]: bK, [cr]: bL, [cq]: o }, { [cs]: bM, [cr]: bL, [cq]: o }, { [cs]: bN, [cr]: bL, [cq]: o }, { [cs]: bO, [cr]: bL, [cq]: o }, { [cs]: bP, [cr]: bL, [cq]: o }, as], [cq]: o }, { [cs]: bK, [cr]: bQ, [cq]: o }, { [cs]: bM, [cr]: bQ, [cq]: o }, { [cs]: bN, [cr]: bQ, [cq]: o }, { [cs]: bO, [cr]: bQ, [cq]: o }, { [cs]: bP, [cr]: bQ, [cq]: o }, as], [cq]: o }], [cq]: o }, ao], [cq]: o }, { [cs]: [ac, { [ct]: k, [cu]: bR, [cw]: s }, { [ct]: h, [cu]: [{ [cv]: s }, "--xa-s3"] }], [cr]: [ae, af, ag, { [cs]: bH, [cr]: [{ [cs]: bI, [cr]: [{ [cs]: bF, [cr]: [{ [cs]: bS, [cr]: bL, [cq]: o }, { [cs]: bT, [cr]: bL, [cq]: o }, { [cs]: bU, [cr]: bL, [cq]: o }, { [cs]: bV, [cr]: bL, [cq]: o }, { [cs]: bW, [cr]: bL, [cq]: o }, as], [cq]: o }, { [cs]: bS, [cr]: bQ, [cq]: o }, { [cs]: bT, [cr]: bQ, [cq]: o }, { [cs]: bU, [cr]: bQ, [cq]: o }, { [cs]: bV, [cr]: bQ, [cq]: o }, { [cs]: bW, [cr]: bQ, [cq]: o }, as], [cq]: o }], [cq]: o }, ao], [cq]: o }, { [cs]: [at, ap, aq], [cr]: [{ [cs]: bI, [cr]: [{ [cs]: bE, endpoint: { [cx]: t, [cy]: al, [cE]: am }, [cq]: n }, { [cs]: bJ, endpoint: { [cx]: "https://s3express-control-fips.{Region}.{partitionResult#dnsSuffix}", [cy]: al, [cE]: am }, [cq]: n }, { endpoint: { [cx]: "https://s3express-control.{Region}.{partitionResult#dnsSuffix}", [cy]: al, [cE]: am }, [cq]: n }], [cq]: o }], [cq]: o }, { [cs]: [ac, { [ct]: k, [cu]: [ad, 49, 50, c], [cw]: u }, { [ct]: k, [cu]: [ad, 8, 12, c], [cw]: v }, { [ct]: k, [cu]: bR, [cw]: w }, { [ct]: k, [cu]: [ad, 32, 49, c], [cw]: x }, { [ct]: g, [cu]: bz, [cw]: "regionPartition" }, { [ct]: h, [cu]: [{ [cv]: w }, "--op-s3"] }], [cr]: [{ [cs]: bY, [cr]: [{ [cs]: [{ [ct]: h, [cu]: [au, "e"] }], [cr]: [{ [cs]: bZ, [cr]: [av, { [cs]: bE, endpoint: { [cx]: "https://{Bucket}.ec2.{url#authority}", [cy]: aw, [cE]: am }, [cq]: n }], [cq]: o }, { endpoint: { [cx]: "https://{Bucket}.ec2.s3-outposts.{Region}.{regionPartition#dnsSuffix}", [cy]: aw, [cE]: am }, [cq]: n }], [cq]: o }, { [cs]: [{ [ct]: h, [cu]: [au, "o"] }], [cr]: [{ [cs]: bZ, [cr]: [av, { [cs]: bE, endpoint: { [cx]: "https://{Bucket}.op-{outpostId}.{url#authority}", [cy]: aw, [cE]: am }, [cq]: n }], [cq]: o }, { endpoint: { [cx]: "https://{Bucket}.op-{outpostId}.s3-outposts.{Region}.{regionPartition#dnsSuffix}", [cy]: aw, [cE]: am }, [cq]: n }], [cq]: o }, { error: "Unrecognized hardware type: \"Expected hardware type o or e but got {hardwareType}\"", [cq]: f }], [cq]: o }, { error: "Invalid ARN: The outpost Id must only contain a-z, A-Z, 0-9 and `-`.", [cq]: f }], [cq]: o }, { [cs]: bX, [cr]: [{ [cs]: [Z, { [ct]: r, [cu]: [{ [ct]: d, [cu]: [{ [ct]: m, [cu]: bA }] }] }], error: "Custom endpoint `{Endpoint}` was not a valid URI", [cq]: f }, { [cs]: [ax, an], [cr]: [{ [cs]: bI, [cr]: [{ [cs]: cb, [cr]: [{ [cs]: [W, ab], error: "S3 Accelerate cannot be used in this region", [cq]: f }, { [cs]: [Y, X, az, ar, aA], endpoint: { [cx]: "https://{Bucket}.s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [Y, X, az, ar, aC, aD], [cr]: [{ endpoint: aE, [cq]: n }], [cq]: o }, { [cs]: [Y, X, az, ar, aC, aG], endpoint: aE, [cq]: n }, { [cs]: [aH, X, az, ar, aA], endpoint: { [cx]: "https://{Bucket}.s3-fips.us-east-1.{partitionResult#dnsSuffix}", [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [aH, X, az, ar, aC, aD], [cr]: [{ endpoint: aI, [cq]: n }], [cq]: o }, { [cs]: [aH, X, az, ar, aC, aG], endpoint: aI, [cq]: n }, { [cs]: [Y, aJ, W, ar, aA], endpoint: { [cx]: "https://{Bucket}.s3-accelerate.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [Y, aJ, W, ar, aC, aD], [cr]: [{ endpoint: aK, [cq]: n }], [cq]: o }, { [cs]: [Y, aJ, W, ar, aC, aG], endpoint: aK, [cq]: n }, { [cs]: [Y, aJ, az, ar, aA], endpoint: { [cx]: "https://{Bucket}.s3.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [Y, aJ, az, ar, aC, aD], [cr]: [{ endpoint: aL, [cq]: n }], [cq]: o }, { [cs]: [Y, aJ, az, ar, aC, aG], endpoint: aL, [cq]: n }, { [cs]: [aH, aJ, az, Z, ah, ai, aA], endpoint: { [cx]: C, [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [aH, aJ, az, Z, ah, aM, aA], endpoint: { [cx]: q, [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [aH, aJ, az, Z, ah, ai, aC, aD], [cr]: [{ [cs]: cc, endpoint: aN, [cq]: n }, { endpoint: aN, [cq]: n }], [cq]: o }, { [cs]: [aH, aJ, az, Z, ah, aM, aC, aD], [cr]: [{ [cs]: cc, endpoint: aO, [cq]: n }, aP], [cq]: o }, { [cs]: [aH, aJ, az, Z, ah, ai, aC, aG], endpoint: aN, [cq]: n }, { [cs]: [aH, aJ, az, Z, ah, aM, aC, aG], endpoint: aO, [cq]: n }, { [cs]: [aH, aJ, W, ar, aA], endpoint: { [cx]: D, [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [aH, aJ, W, ar, aC, aD], [cr]: [{ [cs]: cc, endpoint: aQ, [cq]: n }, { endpoint: aQ, [cq]: n }], [cq]: o }, { [cs]: [aH, aJ, W, ar, aC, aG], endpoint: aQ, [cq]: n }, { [cs]: [aH, aJ, az, ar, aA], endpoint: { [cx]: E, [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [aH, aJ, az, ar, aC, aD], [cr]: [{ [cs]: cc, endpoint: { [cx]: E, [cy]: aF, [cE]: am }, [cq]: n }, { endpoint: aR, [cq]: n }], [cq]: o }, { [cs]: [aH, aJ, az, ar, aC, aG], endpoint: aR, [cq]: n }], [cq]: o }, aS], [cq]: o }], [cq]: o }, { [cs]: [Z, ah, { [ct]: h, [cu]: [{ [ct]: i, [cu]: [aj, "scheme"] }, "http"] }, { [ct]: p, [cu]: [ad, c] }, ax, aJ, aH, az], [cr]: [{ [cs]: bI, [cr]: [{ [cs]: cb, [cr]: [aP], [cq]: o }, aS], [cq]: o }], [cq]: o }, { [cs]: [ax, { [ct]: F, [cu]: bB, [cw]: G }], [cr]: [{ [cs]: [{ [ct]: i, [cu]: [aT, "resourceId[0]"], [cw]: H }, { [ct]: r, [cu]: [{ [ct]: h, [cu]: [aU, I] }] }], [cr]: [{ [cs]: [{ [ct]: h, [cu]: [aV, J] }], [cr]: [{ [cs]: cd, [cr]: [{ [cs]: ce, [cr]: [aX, aY, { [cs]: cg, [cr]: [aZ, { [cs]: ch, [cr]: [ba, { [cs]: cj, [cr]: [{ [cs]: bI, [cr]: [{ [cs]: ck, [cr]: [{ [cs]: cl, [cr]: [{ [cs]: [{ [ct]: h, [cu]: [bc, I] }], error: "Invalid ARN: Missing account id", [cq]: f }, { [cs]: cm, [cr]: [{ [cs]: cn, [cr]: [{ [cs]: bE, endpoint: { [cx]: M, [cy]: bd, [cE]: am }, [cq]: n }, { [cs]: bJ, endpoint: { [cx]: "https://{accessPointName}-{bucketArn#accountId}.s3-object-lambda-fips.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cy]: bd, [cE]: am }, [cq]: n }, { endpoint: { [cx]: "https://{accessPointName}-{bucketArn#accountId}.s3-object-lambda.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cy]: bd, [cE]: am }, [cq]: n }], [cq]: o }, be], [cq]: o }, bf], [cq]: o }, bg], [cq]: o }, bh], [cq]: o }], [cq]: o }], [cq]: o }, bi], [cq]: o }, { error: "Invalid ARN: bucket ARN is missing a region", [cq]: f }], [cq]: o }, bj], [cq]: o }, { error: "Invalid ARN: Object Lambda ARNs only support `accesspoint` arn types, but found: `{arnType}`", [cq]: f }], [cq]: o }, { [cs]: cd, [cr]: [{ [cs]: ce, [cr]: [{ [cs]: cg, [cr]: [{ [cs]: cd, [cr]: [{ [cs]: cg, [cr]: [aZ, { [cs]: ch, [cr]: [ba, { [cs]: cj, [cr]: [{ [cs]: bI, [cr]: [{ [cs]: [{ [ct]: h, [cu]: [bb, "{partitionResult#name}"] }], [cr]: [{ [cs]: cl, [cr]: [{ [cs]: [{ [ct]: h, [cu]: [aV, B] }], [cr]: [{ [cs]: cm, [cr]: [{ [cs]: cn, [cr]: [{ [cs]: bD, error: "Access Points do not support S3 Accelerate", [cq]: f }, { [cs]: [X, Y], endpoint: { [cx]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint-fips.dualstack.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cy]: bk, [cE]: am }, [cq]: n }, { [cs]: [X, aH], endpoint: { [cx]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint-fips.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cy]: bk, [cE]: am }, [cq]: n }, { [cs]: [aJ, Y], endpoint: { [cx]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint.dualstack.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cy]: bk, [cE]: am }, [cq]: n }, { [cs]: [aJ, aH, Z, ah], endpoint: { [cx]: M, [cy]: bk, [cE]: am }, [cq]: n }, { [cs]: [aJ, aH], endpoint: { [cx]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cy]: bk, [cE]: am }, [cq]: n }], [cq]: o }, be], [cq]: o }, bf], [cq]: o }, { error: "Invalid ARN: The ARN was not for the S3 service, found: {bucketArn#service}", [cq]: f }], [cq]: o }, bg], [cq]: o }, bh], [cq]: o }], [cq]: o }], [cq]: o }, bi], [cq]: o }], [cq]: o }], [cq]: o }, { [cs]: [{ [ct]: y, [cu]: [aW, c] }], [cr]: [{ [cs]: bC, error: "S3 MRAP does not support dual-stack", [cq]: f }, { [cs]: bJ, error: "S3 MRAP does not support FIPS", [cq]: f }, { [cs]: bD, error: "S3 MRAP does not support S3 Accelerate", [cq]: f }, { [cs]: [{ [ct]: e, [cu]: [{ [cv]: "DisableMultiRegionAccessPoints" }, c] }], error: "Invalid configuration: Multi-Region Access Point ARNs are disabled.", [cq]: f }, { [cs]: [{ [ct]: g, [cu]: bz, [cw]: N }], [cr]: [{ [cs]: [{ [ct]: h, [cu]: [{ [ct]: i, [cu]: [{ [cv]: N }, j] }, { [ct]: i, [cu]: [aT, "partition"] }] }], [cr]: [{ endpoint: { [cx]: "https://{accessPointName}.accesspoint.s3-global.{mrapPartition#dnsSuffix}", [cy]: { [cA]: [{ [cB]: c, name: z, [cC]: B, [cF]: ca }] }, [cE]: am }, [cq]: n }], [cq]: o }, { error: "Client was configured for partition `{mrapPartition#name}` but bucket referred to partition `{bucketArn#partition}`", [cq]: f }], [cq]: o }], [cq]: o }, { error: "Invalid Access Point Name", [cq]: f }], [cq]: o }, bj], [cq]: o }, { [cs]: [{ [ct]: h, [cu]: [aV, A] }], [cr]: [{ [cs]: bC, error: "S3 Outposts does not support Dual-stack", [cq]: f }, { [cs]: bJ, error: "S3 Outposts does not support FIPS", [cq]: f }, { [cs]: bD, error: "S3 Outposts does not support S3 Accelerate", [cq]: f }, { [cs]: [{ [ct]: d, [cu]: [{ [ct]: i, [cu]: [aT, "resourceId[4]"] }] }], error: "Invalid Arn: Outpost Access Point ARN contains sub resources", [cq]: f }, { [cs]: [{ [ct]: i, [cu]: cf, [cw]: x }], [cr]: [{ [cs]: bY, [cr]: [ba, { [cs]: cj, [cr]: [{ [cs]: bI, [cr]: [{ [cs]: ck, [cr]: [{ [cs]: cl, [cr]: [{ [cs]: cm, [cr]: [{ [cs]: [{ [ct]: i, [cu]: ci, [cw]: O }], [cr]: [{ [cs]: [{ [ct]: i, [cu]: [aT, "resourceId[3]"], [cw]: L }], [cr]: [{ [cs]: [{ [ct]: h, [cu]: [{ [cv]: O }, K] }], [cr]: [{ [cs]: bE, endpoint: { [cx]: "https://{accessPointName}-{bucketArn#accountId}.{outpostId}.{url#authority}", [cy]: bl, [cE]: am }, [cq]: n }, { endpoint: { [cx]: "https://{accessPointName}-{bucketArn#accountId}.{outpostId}.s3-outposts.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cy]: bl, [cE]: am }, [cq]: n }], [cq]: o }, { error: "Expected an outpost type `accesspoint`, found {outpostType}", [cq]: f }], [cq]: o }, { error: "Invalid ARN: expected an access point name", [cq]: f }], [cq]: o }, { error: "Invalid ARN: Expected a 4-component resource", [cq]: f }], [cq]: o }, bf], [cq]: o }, bg], [cq]: o }, bh], [cq]: o }], [cq]: o }], [cq]: o }, { error: "Invalid ARN: The outpost Id may only contain a-z, A-Z, 0-9 and `-`. Found: `{outpostId}`", [cq]: f }], [cq]: o }, { error: "Invalid ARN: The Outpost Id was not set", [cq]: f }], [cq]: o }, { error: "Invalid ARN: Unrecognized format: {Bucket} (type: {arnType})", [cq]: f }], [cq]: o }, { error: "Invalid ARN: No ARN type specified", [cq]: f }], [cq]: o }, { [cs]: [{ [ct]: k, [cu]: [ad, 0, 4, b], [cw]: P }, { [ct]: h, [cu]: [{ [cv]: P }, "arn:"] }, { [ct]: r, [cu]: [{ [ct]: d, [cu]: [bm] }] }], error: "Invalid ARN: `{Bucket}` was not a valid ARN", [cq]: f }, { [cs]: [{ [ct]: e, [cu]: [ay, c] }, bm], error: "Path-style addressing cannot be used with ARN buckets", [cq]: f }, { [cs]: bG, [cr]: [{ [cs]: bI, [cr]: [{ [cs]: [az], [cr]: [{ [cs]: [Y, ar, X, aA], endpoint: { [cx]: "https://s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [Y, ar, X, aC, aD], [cr]: [{ endpoint: bn, [cq]: n }], [cq]: o }, { [cs]: [Y, ar, X, aC, aG], endpoint: bn, [cq]: n }, { [cs]: [aH, ar, X, aA], endpoint: { [cx]: "https://s3-fips.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [aH, ar, X, aC, aD], [cr]: [{ endpoint: bo, [cq]: n }], [cq]: o }, { [cs]: [aH, ar, X, aC, aG], endpoint: bo, [cq]: n }, { [cs]: [Y, ar, aJ, aA], endpoint: { [cx]: "https://s3.dualstack.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [Y, ar, aJ, aC, aD], [cr]: [{ endpoint: bp, [cq]: n }], [cq]: o }, { [cs]: [Y, ar, aJ, aC, aG], endpoint: bp, [cq]: n }, { [cs]: [aH, Z, ah, aJ, aA], endpoint: { [cx]: Q, [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [aH, Z, ah, aJ, aC, aD], [cr]: [{ [cs]: cc, endpoint: bq, [cq]: n }, { endpoint: bq, [cq]: n }], [cq]: o }, { [cs]: [aH, Z, ah, aJ, aC, aG], endpoint: bq, [cq]: n }, { [cs]: [aH, ar, aJ, aA], endpoint: { [cx]: R, [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [aH, ar, aJ, aC, aD], [cr]: [{ [cs]: cc, endpoint: { [cx]: R, [cy]: aF, [cE]: am }, [cq]: n }, { endpoint: br, [cq]: n }], [cq]: o }, { [cs]: [aH, ar, aJ, aC, aG], endpoint: br, [cq]: n }], [cq]: o }, { error: "Path-style addressing cannot be used with S3 Accelerate", [cq]: f }], [cq]: o }], [cq]: o }], [cq]: o }, { [cs]: [{ [ct]: d, [cu]: [bs] }, { [ct]: e, [cu]: [bs, c] }], [cr]: [{ [cs]: bI, [cr]: [{ [cs]: co, [cr]: [aX, aY, { [cs]: bE, endpoint: { [cx]: t, [cy]: bt, [cE]: am }, [cq]: n }, { [cs]: bJ, endpoint: { [cx]: "https://s3-object-lambda-fips.{Region}.{partitionResult#dnsSuffix}", [cy]: bt, [cE]: am }, [cq]: n }, { endpoint: { [cx]: "https://s3-object-lambda.{Region}.{partitionResult#dnsSuffix}", [cy]: bt, [cE]: am }, [cq]: n }], [cq]: o }, aS], [cq]: o }], [cq]: o }, { [cs]: [at], [cr]: [{ [cs]: bI, [cr]: [{ [cs]: co, [cr]: [{ [cs]: [X, Y, ar, aA], endpoint: { [cx]: "https://s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [X, Y, ar, aC, aD], [cr]: [{ endpoint: bu, [cq]: n }], [cq]: o }, { [cs]: [X, Y, ar, aC, aG], endpoint: bu, [cq]: n }, { [cs]: [X, aH, ar, aA], endpoint: { [cx]: "https://s3-fips.us-east-1.{partitionResult#dnsSuffix}", [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [X, aH, ar, aC, aD], [cr]: [{ endpoint: bv, [cq]: n }], [cq]: o }, { [cs]: [X, aH, ar, aC, aG], endpoint: bv, [cq]: n }, { [cs]: [aJ, Y, ar, aA], endpoint: { [cx]: "https://s3.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [aJ, Y, ar, aC, aD], [cr]: [{ endpoint: bw, [cq]: n }], [cq]: o }, { [cs]: [aJ, Y, ar, aC, aG], endpoint: bw, [cq]: n }, { [cs]: [aJ, aH, Z, ah, aA], endpoint: { [cx]: t, [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [aJ, aH, Z, ah, aC, aD], [cr]: [{ [cs]: cc, endpoint: bx, [cq]: n }, { endpoint: bx, [cq]: n }], [cq]: o }, { [cs]: [aJ, aH, Z, ah, aC, aG], endpoint: bx, [cq]: n }, { [cs]: [aJ, aH, ar, aA], endpoint: { [cx]: S, [cy]: aB, [cE]: am }, [cq]: n }, { [cs]: [aJ, aH, ar, aC, aD], [cr]: [{ [cs]: cc, endpoint: { [cx]: S, [cy]: aF, [cE]: am }, [cq]: n }, { endpoint: by, [cq]: n }], [cq]: o }, { [cs]: [aJ, aH, ar, aC, aG], endpoint: by, [cq]: n }], [cq]: o }, aS], [cq]: o }], [cq]: o }], [cq]: o }, { error: "A region must be set when sending requests to S3.", [cq]: f }] };
 exports.ruleSet = _data;
 
 
@@ -3936,8 +3934,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   AbortMultipartUploadCommand: () => AbortMultipartUploadCommand,
   AnalyticsFilter: () => AnalyticsFilter,
   AnalyticsS3ExportFileFormat: () => AnalyticsS3ExportFileFormat,
@@ -4179,7 +4177,7 @@ __export(src_exports, {
   waitUntilObjectExists: () => waitUntilObjectExists,
   waitUntilObjectNotExists: () => waitUntilObjectNotExists
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/S3Client.ts
 var import_middleware_expect_continue = __nccwpck_require__(4745);
@@ -4206,8 +4204,7 @@ var import_middleware_serde = __nccwpck_require__(3255);
 
 // src/endpoint/EndpointParameters.ts
 var resolveClientEndpointParameters = /* @__PURE__ */ __name((options) => {
-  return {
-    ...options,
+  return Object.assign(options, {
     useFipsEndpoint: options.useFipsEndpoint ?? false,
     useDualstackEndpoint: options.useDualstackEndpoint ?? false,
     forcePathStyle: options.forcePathStyle ?? false,
@@ -4215,7 +4212,7 @@ var resolveClientEndpointParameters = /* @__PURE__ */ __name((options) => {
     useGlobalEndpoint: options.useGlobalEndpoint ?? false,
     disableMultiregionAccessPoints: options.disableMultiregionAccessPoints ?? false,
     defaultSigningName: "s3"
-  };
+  });
 }, "resolveClientEndpointParameters");
 var commonParams = {
   ForcePathStyle: { type: "clientContextParams", name: "forcePathStyle" },
@@ -4482,12 +4479,9 @@ var NoSuchBucket = class _NoSuchBucket extends S3ServiceException {
 var AnalyticsFilter;
 ((AnalyticsFilter2) => {
   AnalyticsFilter2.visit = /* @__PURE__ */ __name((value, visitor) => {
-    if (value.Prefix !== void 0)
-      return visitor.Prefix(value.Prefix);
-    if (value.Tag !== void 0)
-      return visitor.Tag(value.Tag);
-    if (value.And !== void 0)
-      return visitor.And(value.And);
+    if (value.Prefix !== void 0) return visitor.Prefix(value.Prefix);
+    if (value.Tag !== void 0) return visitor.Tag(value.Tag);
+    if (value.And !== void 0) return visitor.And(value.And);
     return visitor._(value.$unknown[0], value.$unknown[1]);
   }, "visit");
 })(AnalyticsFilter || (AnalyticsFilter = {}));
@@ -4563,14 +4557,10 @@ var PartitionDateSource = {
 var MetricsFilter;
 ((MetricsFilter2) => {
   MetricsFilter2.visit = /* @__PURE__ */ __name((value, visitor) => {
-    if (value.Prefix !== void 0)
-      return visitor.Prefix(value.Prefix);
-    if (value.Tag !== void 0)
-      return visitor.Tag(value.Tag);
-    if (value.AccessPointArn !== void 0)
-      return visitor.AccessPointArn(value.AccessPointArn);
-    if (value.And !== void 0)
-      return visitor.And(value.And);
+    if (value.Prefix !== void 0) return visitor.Prefix(value.Prefix);
+    if (value.Tag !== void 0) return visitor.Tag(value.Tag);
+    if (value.AccessPointArn !== void 0) return visitor.AccessPointArn(value.AccessPointArn);
+    if (value.And !== void 0) return visitor.And(value.And);
     return visitor._(value.$unknown[0], value.$unknown[1]);
   }, "visit");
 })(MetricsFilter || (MetricsFilter = {}));
@@ -5029,16 +5019,11 @@ var RestoreRequestType = {
 var SelectObjectContentEventStream;
 ((SelectObjectContentEventStream3) => {
   SelectObjectContentEventStream3.visit = /* @__PURE__ */ __name((value, visitor) => {
-    if (value.Records !== void 0)
-      return visitor.Records(value.Records);
-    if (value.Stats !== void 0)
-      return visitor.Stats(value.Stats);
-    if (value.Progress !== void 0)
-      return visitor.Progress(value.Progress);
-    if (value.Cont !== void 0)
-      return visitor.Cont(value.Cont);
-    if (value.End !== void 0)
-      return visitor.End(value.End);
+    if (value.Records !== void 0) return visitor.Records(value.Records);
+    if (value.Stats !== void 0) return visitor.Stats(value.Stats);
+    if (value.Progress !== void 0) return visitor.Progress(value.Progress);
+    if (value.Cont !== void 0) return visitor.Cont(value.Cont);
+    if (value.End !== void 0) return visitor.End(value.End);
     return visitor._(value.$unknown[0], value.$unknown[1]);
   }, "visit");
 })(SelectObjectContentEventStream || (SelectObjectContentEventStream = {}));
@@ -5088,18 +5073,12 @@ var RestoreObjectRequestFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
   ...obj.RestoreRequest && { RestoreRequest: RestoreRequestFilterSensitiveLog(obj.RestoreRequest) }
 }), "RestoreObjectRequestFilterSensitiveLog");
 var SelectObjectContentEventStreamFilterSensitiveLog = /* @__PURE__ */ __name((obj) => {
-  if (obj.Records !== void 0)
-    return { Records: obj.Records };
-  if (obj.Stats !== void 0)
-    return { Stats: obj.Stats };
-  if (obj.Progress !== void 0)
-    return { Progress: obj.Progress };
-  if (obj.Cont !== void 0)
-    return { Cont: obj.Cont };
-  if (obj.End !== void 0)
-    return { End: obj.End };
-  if (obj.$unknown !== void 0)
-    return { [obj.$unknown[0]]: "UNKNOWN" };
+  if (obj.Records !== void 0) return { Records: obj.Records };
+  if (obj.Stats !== void 0) return { Stats: obj.Stats };
+  if (obj.Progress !== void 0) return { Progress: obj.Progress };
+  if (obj.Cont !== void 0) return { Cont: obj.Cont };
+  if (obj.End !== void 0) return { End: obj.End };
+  if (obj.$unknown !== void 0) return { [obj.$unknown[0]]: "UNKNOWN" };
 }, "SelectObjectContentEventStreamFilterSensitiveLog");
 var SelectObjectContentOutputFilterSensitiveLog = /* @__PURE__ */ __name((obj) => ({
   ...obj,
@@ -9151,27 +9130,27 @@ var se_AnalyticsExportDestination = /* @__PURE__ */ __name((input, context) => {
 var se_AnalyticsFilter = /* @__PURE__ */ __name((input, context) => {
   const bn = new import_xml_builder.XmlNode(_AF);
   AnalyticsFilter.visit(input, {
-    Prefix: (value) => {
+    Prefix: /* @__PURE__ */ __name((value) => {
       if (input[_P] != null) {
         bn.c(import_xml_builder.XmlNode.of(_P, value).n(_P));
       }
-    },
-    Tag: (value) => {
+    }, "Prefix"),
+    Tag: /* @__PURE__ */ __name((value) => {
       if (input[_Ta] != null) {
         bn.c(se_Tag(value, context).n(_Ta));
       }
-    },
-    And: (value) => {
+    }, "Tag"),
+    And: /* @__PURE__ */ __name((value) => {
       if (input[_A] != null) {
         bn.c(se_AnalyticsAndOperator(value, context).n(_A));
       }
-    },
-    _: (name, value) => {
+    }, "And"),
+    _: /* @__PURE__ */ __name((name, value) => {
       if (!(value instanceof import_xml_builder.XmlNode || value instanceof import_xml_builder.XmlText)) {
         throw new Error("Unable to serialize unknown union members in XML.");
       }
       bn.c(new import_xml_builder.XmlNode(name).c(value));
-    }
+    }, "_")
   });
   return bn;
 }, "se_AnalyticsFilter");
@@ -9738,32 +9717,32 @@ var se_MetricsConfiguration = /* @__PURE__ */ __name((input, context) => {
 var se_MetricsFilter = /* @__PURE__ */ __name((input, context) => {
   const bn = new import_xml_builder.XmlNode(_MF);
   MetricsFilter.visit(input, {
-    Prefix: (value) => {
+    Prefix: /* @__PURE__ */ __name((value) => {
       if (input[_P] != null) {
         bn.c(import_xml_builder.XmlNode.of(_P, value).n(_P));
       }
-    },
-    Tag: (value) => {
+    }, "Prefix"),
+    Tag: /* @__PURE__ */ __name((value) => {
       if (input[_Ta] != null) {
         bn.c(se_Tag(value, context).n(_Ta));
       }
-    },
-    AccessPointArn: (value) => {
+    }, "Tag"),
+    AccessPointArn: /* @__PURE__ */ __name((value) => {
       if (input[_APAc] != null) {
         bn.c(import_xml_builder.XmlNode.of(_APAc, value).n(_APAc));
       }
-    },
-    And: (value) => {
+    }, "AccessPointArn"),
+    And: /* @__PURE__ */ __name((value) => {
       if (input[_A] != null) {
         bn.c(se_MetricsAndOperator(value, context).n(_A));
       }
-    },
-    _: (name, value) => {
+    }, "And"),
+    _: /* @__PURE__ */ __name((name, value) => {
       if (!(value instanceof import_xml_builder.XmlNode || value instanceof import_xml_builder.XmlText)) {
         throw new Error("Unable to serialize unknown union members in XML.");
       }
       bn.c(new import_xml_builder.XmlNode(name).c(value));
-    }
+    }, "_")
   });
   return bn;
 }, "se_MetricsFilter");
@@ -12712,22 +12691,21 @@ var resolveHttpAuthRuntimeConfig = /* @__PURE__ */ __name((config) => {
 }, "resolveHttpAuthRuntimeConfig");
 
 // src/runtimeExtensions.ts
-var asPartial = /* @__PURE__ */ __name((t) => t, "asPartial");
 var resolveRuntimeExtensions = /* @__PURE__ */ __name((runtimeConfig, extensions) => {
-  const extensionConfiguration = {
-    ...asPartial((0, import_region_config_resolver.getAwsRegionExtensionConfiguration)(runtimeConfig)),
-    ...asPartial((0, import_smithy_client.getDefaultExtensionConfiguration)(runtimeConfig)),
-    ...asPartial((0, import_protocol_http.getHttpHandlerExtensionConfiguration)(runtimeConfig)),
-    ...asPartial(getHttpAuthExtensionConfiguration(runtimeConfig))
-  };
+  const extensionConfiguration = Object.assign(
+    (0, import_region_config_resolver.getAwsRegionExtensionConfiguration)(runtimeConfig),
+    (0, import_smithy_client.getDefaultExtensionConfiguration)(runtimeConfig),
+    (0, import_protocol_http.getHttpHandlerExtensionConfiguration)(runtimeConfig),
+    getHttpAuthExtensionConfiguration(runtimeConfig)
+  );
   extensions.forEach((extension) => extension.configure(extensionConfiguration));
-  return {
-    ...runtimeConfig,
-    ...(0, import_region_config_resolver.resolveAwsRegionExtensionConfiguration)(extensionConfiguration),
-    ...(0, import_smithy_client.resolveDefaultRuntimeConfig)(extensionConfiguration),
-    ...(0, import_protocol_http.resolveHttpHandlerRuntimeConfig)(extensionConfiguration),
-    ...resolveHttpAuthRuntimeConfig(extensionConfiguration)
-  };
+  return Object.assign(
+    runtimeConfig,
+    (0, import_region_config_resolver.resolveAwsRegionExtensionConfiguration)(extensionConfiguration),
+    (0, import_smithy_client.resolveDefaultRuntimeConfig)(extensionConfiguration),
+    (0, import_protocol_http.resolveHttpHandlerRuntimeConfig)(extensionConfiguration),
+    resolveHttpAuthRuntimeConfig(extensionConfiguration)
+  );
 }, "resolveRuntimeExtensions");
 
 // src/S3Client.ts
@@ -12741,6 +12719,8 @@ var S3Client = class extends import_smithy_client.Client {
   config;
   constructor(...[configuration]) {
     const _config_0 = (0, import_runtimeConfig.getRuntimeConfig)(configuration || {});
+    super(_config_0);
+    this.initConfig = _config_0;
     const _config_1 = resolveClientEndpointParameters(_config_0);
     const _config_2 = (0, import_middleware_user_agent.resolveUserAgentConfig)(_config_1);
     const _config_3 = (0, import_middleware_flexible_checksums.resolveFlexibleChecksumsConfig)(_config_2);
@@ -12752,7 +12732,6 @@ var S3Client = class extends import_smithy_client.Client {
     const _config_9 = (0, import_httpAuthSchemeProvider.resolveHttpAuthSchemeConfig)(_config_8);
     const _config_10 = (0, import_middleware_sdk_s32.resolveS3Config)(_config_9, { session: [() => this, CreateSessionCommand] });
     const _config_11 = resolveRuntimeExtensions(_config_10, configuration?.extensions || []);
-    super(_config_11);
     this.config = _config_11;
     this.middlewareStack.use((0, import_middleware_user_agent.getUserAgentPlugin)(this.config));
     this.middlewareStack.use((0, import_middleware_retry.getRetryPlugin)(this.config));
@@ -12763,10 +12742,10 @@ var S3Client = class extends import_smithy_client.Client {
     this.middlewareStack.use(
       (0, import_core3.getHttpAuthSchemeEndpointRuleSetPlugin)(this.config, {
         httpAuthSchemeParametersProvider: import_httpAuthSchemeProvider.defaultS3HttpAuthSchemeParametersProvider,
-        identityProviderConfigProvider: async (config) => new import_core3.DefaultIdentityProviderConfig({
+        identityProviderConfigProvider: /* @__PURE__ */ __name(async (config) => new import_core3.DefaultIdentityProviderConfig({
           "aws.auth#sigv4": config.credentials,
           "aws.auth#sigv4a": config.credentials
-        })
+        }), "identityProviderConfigProvider")
       })
     );
     this.middlewareStack.use((0, import_core3.getHttpSigningPlugin)(this.config));
@@ -15321,9 +15300,7 @@ const defaultSSOHttpAuthSchemeProvider = (authParameters) => {
 exports.defaultSSOHttpAuthSchemeProvider = defaultSSOHttpAuthSchemeProvider;
 const resolveHttpAuthSchemeConfig = (config) => {
     const config_0 = (0, core_1.resolveAwsSdkSigV4Config)(config);
-    return {
-        ...config_0,
-    };
+    return Object.assign(config_0, {});
 };
 exports.resolveHttpAuthSchemeConfig = resolveHttpAuthSchemeConfig;
 
@@ -15393,8 +15370,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   GetRoleCredentialsCommand: () => GetRoleCredentialsCommand,
   GetRoleCredentialsRequestFilterSensitiveLog: () => GetRoleCredentialsRequestFilterSensitiveLog,
   GetRoleCredentialsResponseFilterSensitiveLog: () => GetRoleCredentialsResponseFilterSensitiveLog,
@@ -15416,7 +15393,7 @@ __export(src_exports, {
   paginateListAccountRoles: () => paginateListAccountRoles,
   paginateListAccounts: () => paginateListAccounts
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/SSOClient.ts
 var import_middleware_host_header = __nccwpck_require__(2590);
@@ -15433,12 +15410,11 @@ var import_httpAuthSchemeProvider = __nccwpck_require__(2041);
 
 // src/endpoint/EndpointParameters.ts
 var resolveClientEndpointParameters = /* @__PURE__ */ __name((options) => {
-  return {
-    ...options,
+  return Object.assign(options, {
     useDualstackEndpoint: options.useDualstackEndpoint ?? false,
     useFipsEndpoint: options.useFipsEndpoint ?? false,
     defaultSigningName: "awsssoportal"
-  };
+  });
 }, "resolveClientEndpointParameters");
 var commonParams = {
   UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -15495,22 +15471,21 @@ var resolveHttpAuthRuntimeConfig = /* @__PURE__ */ __name((config) => {
 }, "resolveHttpAuthRuntimeConfig");
 
 // src/runtimeExtensions.ts
-var asPartial = /* @__PURE__ */ __name((t) => t, "asPartial");
 var resolveRuntimeExtensions = /* @__PURE__ */ __name((runtimeConfig, extensions) => {
-  const extensionConfiguration = {
-    ...asPartial((0, import_region_config_resolver.getAwsRegionExtensionConfiguration)(runtimeConfig)),
-    ...asPartial((0, import_smithy_client.getDefaultExtensionConfiguration)(runtimeConfig)),
-    ...asPartial((0, import_protocol_http.getHttpHandlerExtensionConfiguration)(runtimeConfig)),
-    ...asPartial(getHttpAuthExtensionConfiguration(runtimeConfig))
-  };
+  const extensionConfiguration = Object.assign(
+    (0, import_region_config_resolver.getAwsRegionExtensionConfiguration)(runtimeConfig),
+    (0, import_smithy_client.getDefaultExtensionConfiguration)(runtimeConfig),
+    (0, import_protocol_http.getHttpHandlerExtensionConfiguration)(runtimeConfig),
+    getHttpAuthExtensionConfiguration(runtimeConfig)
+  );
   extensions.forEach((extension) => extension.configure(extensionConfiguration));
-  return {
-    ...runtimeConfig,
-    ...(0, import_region_config_resolver.resolveAwsRegionExtensionConfiguration)(extensionConfiguration),
-    ...(0, import_smithy_client.resolveDefaultRuntimeConfig)(extensionConfiguration),
-    ...(0, import_protocol_http.resolveHttpHandlerRuntimeConfig)(extensionConfiguration),
-    ...resolveHttpAuthRuntimeConfig(extensionConfiguration)
-  };
+  return Object.assign(
+    runtimeConfig,
+    (0, import_region_config_resolver.resolveAwsRegionExtensionConfiguration)(extensionConfiguration),
+    (0, import_smithy_client.resolveDefaultRuntimeConfig)(extensionConfiguration),
+    (0, import_protocol_http.resolveHttpHandlerRuntimeConfig)(extensionConfiguration),
+    resolveHttpAuthRuntimeConfig(extensionConfiguration)
+  );
 }, "resolveRuntimeExtensions");
 
 // src/SSOClient.ts
@@ -15524,6 +15499,8 @@ var SSOClient = class extends import_smithy_client.Client {
   config;
   constructor(...[configuration]) {
     const _config_0 = (0, import_runtimeConfig.getRuntimeConfig)(configuration || {});
+    super(_config_0);
+    this.initConfig = _config_0;
     const _config_1 = resolveClientEndpointParameters(_config_0);
     const _config_2 = (0, import_middleware_user_agent.resolveUserAgentConfig)(_config_1);
     const _config_3 = (0, import_middleware_retry.resolveRetryConfig)(_config_2);
@@ -15532,7 +15509,6 @@ var SSOClient = class extends import_smithy_client.Client {
     const _config_6 = (0, import_middleware_endpoint.resolveEndpointConfig)(_config_5);
     const _config_7 = (0, import_httpAuthSchemeProvider.resolveHttpAuthSchemeConfig)(_config_6);
     const _config_8 = resolveRuntimeExtensions(_config_7, configuration?.extensions || []);
-    super(_config_8);
     this.config = _config_8;
     this.middlewareStack.use((0, import_middleware_user_agent.getUserAgentPlugin)(this.config));
     this.middlewareStack.use((0, import_middleware_retry.getRetryPlugin)(this.config));
@@ -15543,9 +15519,9 @@ var SSOClient = class extends import_smithy_client.Client {
     this.middlewareStack.use(
       (0, import_core.getHttpAuthSchemeEndpointRuleSetPlugin)(this.config, {
         httpAuthSchemeParametersProvider: import_httpAuthSchemeProvider.defaultSSOHttpAuthSchemeParametersProvider,
-        identityProviderConfigProvider: async (config) => new import_core.DefaultIdentityProviderConfig({
+        identityProviderConfigProvider: /* @__PURE__ */ __name(async (config) => new import_core.DefaultIdentityProviderConfig({
           "aws.auth#sigv4": config.credentials
-        })
+        }), "identityProviderConfigProvider")
       })
     );
     this.middlewareStack.use((0, import_core.getHttpSigningPlugin)(this.config));
@@ -16121,14 +16097,14 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/submodules/client/index.ts
-var client_exports = {};
-__export(client_exports, {
+var index_exports = {};
+__export(index_exports, {
   emitWarningIfUnsupportedVersion: () => emitWarningIfUnsupportedVersion,
   setCredentialFeature: () => setCredentialFeature,
   setFeature: () => setFeature,
   state: () => state
 });
-module.exports = __toCommonJS(client_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/submodules/client/emitWarningIfUnsupportedVersion.ts
 var state = {
@@ -16201,8 +16177,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/submodules/httpAuthSchemes/index.ts
-var httpAuthSchemes_exports = {};
-__export(httpAuthSchemes_exports, {
+var index_exports = {};
+__export(index_exports, {
   AWSSDKSigV4Signer: () => AWSSDKSigV4Signer,
   AwsSdkSigV4ASigner: () => AwsSdkSigV4ASigner,
   AwsSdkSigV4Signer: () => AwsSdkSigV4Signer,
@@ -16212,7 +16188,7 @@ __export(httpAuthSchemes_exports, {
   resolveAwsSdkSigV4Config: () => resolveAwsSdkSigV4Config,
   validateSigningProperties: () => validateSigningProperties
 });
-module.exports = __toCommonJS(httpAuthSchemes_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/submodules/httpAuthSchemes/aws_sdk/AwsSdkSigV4Signer.ts
 var import_protocol_http2 = __nccwpck_require__(2356);
@@ -16373,28 +16349,38 @@ var import_client = __nccwpck_require__(5152);
 var import_core2 = __nccwpck_require__(402);
 var import_signature_v4 = __nccwpck_require__(5118);
 var resolveAwsSdkSigV4Config = /* @__PURE__ */ __name((config) => {
-  let isUserSupplied = false;
-  let credentialsProvider;
-  if (config.credentials) {
-    isUserSupplied = true;
-    credentialsProvider = (0, import_core2.memoizeIdentityProvider)(config.credentials, import_core2.isIdentityExpired, import_core2.doesIdentityRequireRefresh);
-  }
-  if (!credentialsProvider) {
-    if (config.credentialDefaultProvider) {
-      credentialsProvider = (0, import_core2.normalizeProvider)(
-        config.credentialDefaultProvider(
-          Object.assign({}, config, {
-            parentClientConfig: config
-          })
-        )
-      );
-    } else {
-      credentialsProvider = /* @__PURE__ */ __name(async () => {
-        throw new Error("`credentials` is missing");
-      }, "credentialsProvider");
-    }
-  }
-  const boundCredentialsProvider = /* @__PURE__ */ __name(async () => credentialsProvider({ callerClientConfig: config }), "boundCredentialsProvider");
+  let inputCredentials = config.credentials;
+  let isUserSupplied = !!config.credentials;
+  let resolvedCredentials = void 0;
+  Object.defineProperty(config, "credentials", {
+    set(credentials) {
+      if (credentials && credentials !== inputCredentials && credentials !== resolvedCredentials) {
+        isUserSupplied = true;
+      }
+      inputCredentials = credentials;
+      const memoizedProvider = normalizeCredentialProvider(config, {
+        credentials: inputCredentials,
+        credentialDefaultProvider: config.credentialDefaultProvider
+      });
+      const boundProvider = bindCallerConfig(config, memoizedProvider);
+      if (isUserSupplied && !boundProvider.attributed) {
+        resolvedCredentials = /* @__PURE__ */ __name(async (options) => boundProvider(options).then(
+          (creds) => (0, import_client.setCredentialFeature)(creds, "CREDENTIALS_CODE", "e")
+        ), "resolvedCredentials");
+        resolvedCredentials.memoized = boundProvider.memoized;
+        resolvedCredentials.configBound = boundProvider.configBound;
+        resolvedCredentials.attributed = true;
+      } else {
+        resolvedCredentials = boundProvider;
+      }
+    },
+    get() {
+      return resolvedCredentials;
+    },
+    enumerable: true,
+    configurable: true
+  });
+  config.credentials = inputCredentials;
   const {
     // Default for signingEscapePath
     signingEscapePath = true,
@@ -16421,7 +16407,7 @@ var resolveAwsSdkSigV4Config = /* @__PURE__ */ __name((config) => {
       config.signingName = config.signingName || signingService || config.serviceId;
       const params = {
         ...config,
-        credentials: boundCredentialsProvider,
+        credentials: config.credentials,
         region: config.signingRegion,
         service: config.signingName,
         sha256,
@@ -16448,7 +16434,7 @@ var resolveAwsSdkSigV4Config = /* @__PURE__ */ __name((config) => {
       config.signingName = config.signingName || signingService || config.serviceId;
       const params = {
         ...config,
-        credentials: boundCredentialsProvider,
+        credentials: config.credentials,
         region: config.signingRegion,
         service: config.signingName,
         sha256,
@@ -16458,17 +16444,56 @@ var resolveAwsSdkSigV4Config = /* @__PURE__ */ __name((config) => {
       return new SignerCtor(params);
     }, "signer");
   }
-  return {
-    ...config,
+  const resolvedConfig = Object.assign(config, {
     systemClockOffset,
     signingEscapePath,
-    credentials: isUserSupplied ? async () => boundCredentialsProvider().then(
-      (creds) => (0, import_client.setCredentialFeature)(creds, "CREDENTIALS_CODE", "e")
-    ) : boundCredentialsProvider,
     signer
-  };
+  });
+  return resolvedConfig;
 }, "resolveAwsSdkSigV4Config");
 var resolveAWSSDKSigV4Config = resolveAwsSdkSigV4Config;
+function normalizeCredentialProvider(config, {
+  credentials,
+  credentialDefaultProvider
+}) {
+  let credentialsProvider;
+  if (credentials) {
+    if (!credentials?.memoized) {
+      credentialsProvider = (0, import_core2.memoizeIdentityProvider)(credentials, import_core2.isIdentityExpired, import_core2.doesIdentityRequireRefresh);
+    } else {
+      credentialsProvider = credentials;
+    }
+  } else {
+    if (credentialDefaultProvider) {
+      credentialsProvider = (0, import_core2.normalizeProvider)(
+        credentialDefaultProvider(
+          Object.assign({}, config, {
+            parentClientConfig: config
+          })
+        )
+      );
+    } else {
+      credentialsProvider = /* @__PURE__ */ __name(async () => {
+        throw new Error(
+          "@aws-sdk/core::resolveAwsSdkSigV4Config - `credentials` not provided and no credentialDefaultProvider was configured."
+        );
+      }, "credentialsProvider");
+    }
+  }
+  credentialsProvider.memoized = true;
+  return credentialsProvider;
+}
+__name(normalizeCredentialProvider, "normalizeCredentialProvider");
+function bindCallerConfig(config, credentialsProvider) {
+  if (credentialsProvider.configBound) {
+    return credentialsProvider;
+  }
+  const fn = /* @__PURE__ */ __name(async (options) => credentialsProvider({ ...options, callerClientConfig: config }), "fn");
+  fn.memoized = credentialsProvider.memoized;
+  fn.configBound = true;
+  return fn;
+}
+__name(bindCallerConfig, "bindCallerConfig");
 // Annotate the CommonJS export names for ESM import in node:
 0 && (0);
 
@@ -16499,8 +16524,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/submodules/protocols/index.ts
-var protocols_exports = {};
-__export(protocols_exports, {
+var index_exports = {};
+__export(index_exports, {
   _toBool: () => _toBool,
   _toNum: () => _toNum,
   _toStr: () => _toStr,
@@ -16512,7 +16537,7 @@ __export(protocols_exports, {
   parseXmlBody: () => parseXmlBody,
   parseXmlErrorBody: () => parseXmlErrorBody
 });
-module.exports = __toCommonJS(protocols_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/submodules/protocols/coercing-serializers.ts
 var _toStr = /* @__PURE__ */ __name((val) => {
@@ -16648,7 +16673,7 @@ var parseXmlBody = /* @__PURE__ */ __name((streamBody, context) => collectBodySt
       ignoreDeclaration: true,
       parseTagValue: false,
       trimValues: false,
-      tagValueProcessor: (_, val) => val.trim() === "" && val.includes("\n") ? "" : void 0
+      tagValueProcessor: /* @__PURE__ */ __name((_, val) => val.trim() === "" && val.includes("\n") ? "" : void 0, "tagValueProcessor")
     });
     parser.addEntity("#xD", "\r");
     parser.addEntity("#10", "\n");
@@ -16722,8 +16747,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   ENV_ACCOUNT_ID: () => ENV_ACCOUNT_ID,
   ENV_CREDENTIAL_SCOPE: () => ENV_CREDENTIAL_SCOPE,
   ENV_EXPIRATION: () => ENV_EXPIRATION,
@@ -16732,7 +16757,7 @@ __export(src_exports, {
   ENV_SESSION: () => ENV_SESSION,
   fromEnv: () => fromEnv
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/fromEnv.ts
 var import_client = __nccwpck_require__(5152);
@@ -17032,11 +17057,11 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   fromIni: () => fromIni
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/fromIni.ts
 
@@ -17054,22 +17079,22 @@ var import_client = __nccwpck_require__(5152);
 var import_property_provider = __nccwpck_require__(1238);
 var resolveCredentialSource = /* @__PURE__ */ __name((credentialSource, profileName, logger) => {
   const sourceProvidersMap = {
-    EcsContainer: async (options) => {
+    EcsContainer: /* @__PURE__ */ __name(async (options) => {
       const { fromHttp } = await Promise.resolve().then(() => __toESM(__nccwpck_require__(8605)));
       const { fromContainerMetadata } = await Promise.resolve().then(() => __toESM(__nccwpck_require__(566)));
       logger?.debug("@aws-sdk/credential-provider-ini - credential_source is EcsContainer");
       return async () => (0, import_property_provider.chain)(fromHttp(options ?? {}), fromContainerMetadata(options))().then(setNamedProvider);
-    },
-    Ec2InstanceMetadata: async (options) => {
+    }, "EcsContainer"),
+    Ec2InstanceMetadata: /* @__PURE__ */ __name(async (options) => {
       logger?.debug("@aws-sdk/credential-provider-ini - credential_source is Ec2InstanceMetadata");
       const { fromInstanceMetadata } = await Promise.resolve().then(() => __toESM(__nccwpck_require__(566)));
       return async () => fromInstanceMetadata(options)().then(setNamedProvider);
-    },
-    Environment: async (options) => {
+    }, "Ec2InstanceMetadata"),
+    Environment: /* @__PURE__ */ __name(async (options) => {
       logger?.debug("@aws-sdk/credential-provider-ini - credential_source is Environment");
       const { fromEnv } = await Promise.resolve().then(() => __toESM(__nccwpck_require__(5606)));
       return async () => fromEnv(options)().then(setNamedProvider);
-    }
+    }, "Environment")
   };
   if (credentialSource in sourceProvidersMap) {
     return sourceProvidersMap[credentialSource];
@@ -17313,13 +17338,13 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   credentialsTreatedAsExpired: () => credentialsTreatedAsExpired,
   credentialsWillNeedRefresh: () => credentialsWillNeedRefresh,
   defaultProvider: () => defaultProvider
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/defaultProvider.ts
 var import_credential_provider_env = __nccwpck_require__(5606);
@@ -17453,11 +17478,11 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   fromProcess: () => fromProcess
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/fromProcess.ts
 var import_shared_ini_file_loader = __nccwpck_require__(4964);
@@ -17589,13 +17614,13 @@ var init_loadSso = __esm({
 });
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   fromSSO: () => fromSSO,
   isSsoProfile: () => isSsoProfile,
   validateSsoProfile: () => validateSsoProfile
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/fromSSO.ts
 
@@ -17915,10 +17940,10 @@ var __reExport = (target, mod, secondTarget) => (__copyProps(target, mod, "defau
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-module.exports = __toCommonJS(src_exports);
-__reExport(src_exports, __nccwpck_require__(8079), module.exports);
-__reExport(src_exports, __nccwpck_require__(4453), module.exports);
+var index_exports = {};
+module.exports = __toCommonJS(index_exports);
+__reExport(index_exports, __nccwpck_require__(8079), module.exports);
+__reExport(index_exports, __nccwpck_require__(4453), module.exports);
 // Annotate the CommonJS export names for ESM import in node:
 
 0 && (0);
@@ -17951,8 +17976,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   NODE_DISABLE_MULTIREGION_ACCESS_POINT_CONFIG_OPTIONS: () => NODE_DISABLE_MULTIREGION_ACCESS_POINT_CONFIG_OPTIONS,
   NODE_DISABLE_MULTIREGION_ACCESS_POINT_ENV_NAME: () => NODE_DISABLE_MULTIREGION_ACCESS_POINT_ENV_NAME,
   NODE_DISABLE_MULTIREGION_ACCESS_POINT_INI_NAME: () => NODE_DISABLE_MULTIREGION_ACCESS_POINT_INI_NAME,
@@ -17974,15 +17999,15 @@ __export(src_exports, {
   validatePartition: () => validatePartition,
   validateRegion: () => validateRegion
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/NodeDisableMultiregionAccessPointConfigOptions.ts
 var import_util_config_provider = __nccwpck_require__(6716);
 var NODE_DISABLE_MULTIREGION_ACCESS_POINT_ENV_NAME = "AWS_S3_DISABLE_MULTIREGION_ACCESS_POINTS";
 var NODE_DISABLE_MULTIREGION_ACCESS_POINT_INI_NAME = "s3_disable_multiregion_access_points";
 var NODE_DISABLE_MULTIREGION_ACCESS_POINT_CONFIG_OPTIONS = {
-  environmentVariableSelector: (env) => (0, import_util_config_provider.booleanSelector)(env, NODE_DISABLE_MULTIREGION_ACCESS_POINT_ENV_NAME, import_util_config_provider.SelectorType.ENV),
-  configFileSelector: (profile) => (0, import_util_config_provider.booleanSelector)(profile, NODE_DISABLE_MULTIREGION_ACCESS_POINT_INI_NAME, import_util_config_provider.SelectorType.CONFIG),
+  environmentVariableSelector: /* @__PURE__ */ __name((env) => (0, import_util_config_provider.booleanSelector)(env, NODE_DISABLE_MULTIREGION_ACCESS_POINT_ENV_NAME, import_util_config_provider.SelectorType.ENV), "environmentVariableSelector"),
+  configFileSelector: /* @__PURE__ */ __name((profile) => (0, import_util_config_provider.booleanSelector)(profile, NODE_DISABLE_MULTIREGION_ACCESS_POINT_INI_NAME, import_util_config_provider.SelectorType.CONFIG), "configFileSelector"),
   default: false
 };
 
@@ -17991,8 +18016,8 @@ var NODE_DISABLE_MULTIREGION_ACCESS_POINT_CONFIG_OPTIONS = {
 var NODE_USE_ARN_REGION_ENV_NAME = "AWS_S3_USE_ARN_REGION";
 var NODE_USE_ARN_REGION_INI_NAME = "s3_use_arn_region";
 var NODE_USE_ARN_REGION_CONFIG_OPTIONS = {
-  environmentVariableSelector: (env) => (0, import_util_config_provider.booleanSelector)(env, NODE_USE_ARN_REGION_ENV_NAME, import_util_config_provider.SelectorType.ENV),
-  configFileSelector: (profile) => (0, import_util_config_provider.booleanSelector)(profile, NODE_USE_ARN_REGION_INI_NAME, import_util_config_provider.SelectorType.CONFIG),
+  environmentVariableSelector: /* @__PURE__ */ __name((env) => (0, import_util_config_provider.booleanSelector)(env, NODE_USE_ARN_REGION_ENV_NAME, import_util_config_provider.SelectorType.ENV), "environmentVariableSelector"),
+  configFileSelector: /* @__PURE__ */ __name((profile) => (0, import_util_config_provider.booleanSelector)(profile, NODE_USE_ARN_REGION_INI_NAME, import_util_config_provider.SelectorType.CONFIG), "configFileSelector"),
   default: false
 };
 
@@ -18080,10 +18105,8 @@ var validateDNSHostLabel = /* @__PURE__ */ __name((label, options = { tlsCompati
 }, "validateDNSHostLabel");
 var validateCustomEndpoint = /* @__PURE__ */ __name((options) => {
   if (options.isCustomEndpoint) {
-    if (options.dualstackEndpoint)
-      throw new Error("Dualstack endpoint is not supported with custom endpoint");
-    if (options.accelerateEndpoint)
-      throw new Error("Accelerate endpoint is not supported with custom endpoint");
+    if (options.dualstackEndpoint) throw new Error("Dualstack endpoint is not supported with custom endpoint");
+    if (options.accelerateEndpoint) throw new Error("Accelerate endpoint is not supported with custom endpoint");
   }
 }, "validateCustomEndpoint");
 var getArnResources = /* @__PURE__ */ __name((resource) => {
@@ -18111,8 +18134,7 @@ var validateNoDualstack = /* @__PURE__ */ __name((dualstackEndpoint) => {
     throw new Error("Dualstack endpoint is not supported with Outpost or Multi-region Access Point ARN.");
 }, "validateNoDualstack");
 var validateNoFIPS = /* @__PURE__ */ __name((useFipsEndpoint) => {
-  if (useFipsEndpoint)
-    throw new Error(`FIPS region is not supported with Outpost.`);
+  if (useFipsEndpoint) throw new Error(`FIPS region is not supported with Outpost.`);
 }, "validateNoFIPS");
 var validateMrapAlias = /* @__PURE__ */ __name((name) => {
   try {
@@ -18382,9 +18404,9 @@ var bucketEndpointMiddlewareOptions = {
   override: true
 };
 var getBucketEndpointPlugin = /* @__PURE__ */ __name((options) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.addRelativeTo(bucketEndpointMiddleware(options), bucketEndpointMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getBucketEndpointPlugin");
 
 // src/configurations.ts
@@ -18396,14 +18418,13 @@ function resolveBucketEndpointConfig(input) {
     useArnRegion = false,
     disableMultiregionAccessPoints = false
   } = input;
-  return {
-    ...input,
+  return Object.assign(input, {
     bucketEndpoint,
     forcePathStyle,
     useAccelerateEndpoint,
     useArnRegion: typeof useArnRegion === "function" ? useArnRegion : () => Promise.resolve(useArnRegion),
     disableMultiregionAccessPoints: typeof disableMultiregionAccessPoints === "function" ? disableMultiregionAccessPoints : () => Promise.resolve(disableMultiregionAccessPoints)
-  };
+  });
 }
 __name(resolveBucketEndpointConfig, "resolveBucketEndpointConfig");
 // Annotate the CommonJS export names for ESM import in node:
@@ -18438,13 +18459,13 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   addExpectContinueMiddleware: () => addExpectContinueMiddleware,
   addExpectContinueMiddlewareOptions: () => addExpectContinueMiddlewareOptions,
   getAddExpectContinuePlugin: () => getAddExpectContinuePlugin
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 var import_protocol_http = __nccwpck_require__(2356);
 function addExpectContinueMiddleware(options) {
   return (next) => async (args) => {
@@ -18471,9 +18492,9 @@ var addExpectContinueMiddlewareOptions = {
   override: true
 };
 var getAddExpectContinuePlugin = /* @__PURE__ */ __name((options) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.add(addExpectContinueMiddleware(options), addExpectContinueMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getAddExpectContinuePlugin");
 // Annotate the CommonJS export names for ESM import in node:
 
@@ -18540,8 +18561,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   CONFIG_REQUEST_CHECKSUM_CALCULATION: () => CONFIG_REQUEST_CHECKSUM_CALCULATION,
   CONFIG_RESPONSE_CHECKSUM_VALIDATION: () => CONFIG_RESPONSE_CHECKSUM_VALIDATION,
   ChecksumAlgorithm: () => ChecksumAlgorithm,
@@ -18561,7 +18582,7 @@ __export(src_exports, {
   getFlexibleChecksumsPlugin: () => getFlexibleChecksumsPlugin,
   resolveFlexibleChecksumsConfig: () => resolveFlexibleChecksumsConfig
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/constants.ts
 var RequestChecksumCalculation = {
@@ -18616,8 +18637,7 @@ var DEFAULT_CHECKSUM_ALGORITHM = "CRC32" /* CRC32 */;
 
 // src/stringUnionSelector.ts
 var stringUnionSelector = /* @__PURE__ */ __name((obj, key, union, type) => {
-  if (!(key in obj))
-    return void 0;
+  if (!(key in obj)) return void 0;
   const value = obj[key].toUpperCase();
   if (!Object.values(union).includes(value)) {
     throw new TypeError(`Cannot load ${type} '${key}'. Expected one of ${Object.values(union)}, got '${obj[key]}'.`);
@@ -18629,8 +18649,8 @@ var stringUnionSelector = /* @__PURE__ */ __name((obj, key, union, type) => {
 var ENV_REQUEST_CHECKSUM_CALCULATION = "AWS_REQUEST_CHECKSUM_CALCULATION";
 var CONFIG_REQUEST_CHECKSUM_CALCULATION = "request_checksum_calculation";
 var NODE_REQUEST_CHECKSUM_CALCULATION_CONFIG_OPTIONS = {
-  environmentVariableSelector: (env) => stringUnionSelector(env, ENV_REQUEST_CHECKSUM_CALCULATION, RequestChecksumCalculation, "env" /* ENV */),
-  configFileSelector: (profile) => stringUnionSelector(profile, CONFIG_REQUEST_CHECKSUM_CALCULATION, RequestChecksumCalculation, "shared config entry" /* CONFIG */),
+  environmentVariableSelector: /* @__PURE__ */ __name((env) => stringUnionSelector(env, ENV_REQUEST_CHECKSUM_CALCULATION, RequestChecksumCalculation, "env" /* ENV */), "environmentVariableSelector"),
+  configFileSelector: /* @__PURE__ */ __name((profile) => stringUnionSelector(profile, CONFIG_REQUEST_CHECKSUM_CALCULATION, RequestChecksumCalculation, "shared config entry" /* CONFIG */), "configFileSelector"),
   default: DEFAULT_REQUEST_CHECKSUM_CALCULATION
 };
 
@@ -18638,8 +18658,8 @@ var NODE_REQUEST_CHECKSUM_CALCULATION_CONFIG_OPTIONS = {
 var ENV_RESPONSE_CHECKSUM_VALIDATION = "AWS_RESPONSE_CHECKSUM_VALIDATION";
 var CONFIG_RESPONSE_CHECKSUM_VALIDATION = "response_checksum_validation";
 var NODE_RESPONSE_CHECKSUM_VALIDATION_CONFIG_OPTIONS = {
-  environmentVariableSelector: (env) => stringUnionSelector(env, ENV_RESPONSE_CHECKSUM_VALIDATION, ResponseChecksumValidation, "env" /* ENV */),
-  configFileSelector: (profile) => stringUnionSelector(profile, CONFIG_RESPONSE_CHECKSUM_VALIDATION, ResponseChecksumValidation, "shared config entry" /* CONFIG */),
+  environmentVariableSelector: /* @__PURE__ */ __name((env) => stringUnionSelector(env, ENV_RESPONSE_CHECKSUM_VALIDATION, ResponseChecksumValidation, "env" /* ENV */), "environmentVariableSelector"),
+  configFileSelector: /* @__PURE__ */ __name((profile) => stringUnionSelector(profile, CONFIG_RESPONSE_CHECKSUM_VALIDATION, ResponseChecksumValidation, "shared config entry" /* CONFIG */), "configFileSelector"),
   default: DEFAULT_RESPONSE_CHECKSUM_VALIDATION
 };
 
@@ -18999,7 +19019,7 @@ var flexibleChecksumsResponseMiddleware = /* @__PURE__ */ __name((config, middle
 
 // src/getFlexibleChecksumsPlugin.ts
 var getFlexibleChecksumsPlugin = /* @__PURE__ */ __name((config, middlewareConfig) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.add(flexibleChecksumsMiddleware(config, middlewareConfig), flexibleChecksumsMiddlewareOptions);
     clientStack.addRelativeTo(
       flexibleChecksumsInputMiddleware(config, middlewareConfig),
@@ -19009,21 +19029,19 @@ var getFlexibleChecksumsPlugin = /* @__PURE__ */ __name((config, middlewareConfi
       flexibleChecksumsResponseMiddleware(config, middlewareConfig),
       flexibleChecksumsResponseMiddlewareOptions
     );
-  }
+  }, "applyToStack")
 }), "getFlexibleChecksumsPlugin");
 
 // src/resolveFlexibleChecksumsConfig.ts
 var import_util_middleware = __nccwpck_require__(6324);
-var resolveFlexibleChecksumsConfig = /* @__PURE__ */ __name((input) => ({
-  ...input,
-  requestChecksumCalculation: (0, import_util_middleware.normalizeProvider)(
-    input.requestChecksumCalculation ?? DEFAULT_REQUEST_CHECKSUM_CALCULATION
-  ),
-  responseChecksumValidation: (0, import_util_middleware.normalizeProvider)(
-    input.responseChecksumValidation ?? DEFAULT_RESPONSE_CHECKSUM_VALIDATION
-  ),
-  requestStreamBufferSize: Number(input.requestStreamBufferSize ?? 0)
-}), "resolveFlexibleChecksumsConfig");
+var resolveFlexibleChecksumsConfig = /* @__PURE__ */ __name((input) => {
+  const { requestChecksumCalculation, responseChecksumValidation, requestStreamBufferSize } = input;
+  return Object.assign(input, {
+    requestChecksumCalculation: (0, import_util_middleware.normalizeProvider)(requestChecksumCalculation ?? DEFAULT_REQUEST_CHECKSUM_CALCULATION),
+    responseChecksumValidation: (0, import_util_middleware.normalizeProvider)(responseChecksumValidation ?? DEFAULT_RESPONSE_CHECKSUM_VALIDATION),
+    requestStreamBufferSize: Number(requestStreamBufferSize ?? 0)
+  });
+}, "resolveFlexibleChecksumsConfig");
 // Annotate the CommonJS export names for ESM import in node:
 
 0 && (0);
@@ -19056,22 +19074,21 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   getHostHeaderPlugin: () => getHostHeaderPlugin,
   hostHeaderMiddleware: () => hostHeaderMiddleware,
   hostHeaderMiddlewareOptions: () => hostHeaderMiddlewareOptions,
   resolveHostHeaderConfig: () => resolveHostHeaderConfig
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 var import_protocol_http = __nccwpck_require__(2356);
 function resolveHostHeaderConfig(input) {
   return input;
 }
 __name(resolveHostHeaderConfig, "resolveHostHeaderConfig");
 var hostHeaderMiddleware = /* @__PURE__ */ __name((options) => (next) => async (args) => {
-  if (!import_protocol_http.HttpRequest.isInstance(args.request))
-    return next(args);
+  if (!import_protocol_http.HttpRequest.isInstance(args.request)) return next(args);
   const { request } = args;
   const { handlerProtocol = "" } = options.requestHandler.metadata || {};
   if (handlerProtocol.indexOf("h2") >= 0 && !request.headers[":authority"]) {
@@ -19079,8 +19096,7 @@ var hostHeaderMiddleware = /* @__PURE__ */ __name((options) => (next) => async (
     request.headers[":authority"] = request.hostname + (request.port ? ":" + request.port : "");
   } else if (!request.headers["host"]) {
     let host = request.hostname;
-    if (request.port != null)
-      host += `:${request.port}`;
+    if (request.port != null) host += `:${request.port}`;
     request.headers["host"] = host;
   }
   return next(args);
@@ -19093,9 +19109,9 @@ var hostHeaderMiddlewareOptions = {
   override: true
 };
 var getHostHeaderPlugin = /* @__PURE__ */ __name((options) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.add(hostHeaderMiddleware(options), hostHeaderMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getHostHeaderPlugin");
 // Annotate the CommonJS export names for ESM import in node:
 
@@ -19129,13 +19145,13 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   getLocationConstraintPlugin: () => getLocationConstraintPlugin,
   locationConstraintMiddleware: () => locationConstraintMiddleware,
   locationConstraintMiddlewareOptions: () => locationConstraintMiddlewareOptions
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 function locationConstraintMiddleware(options) {
   return (next) => async (args) => {
     const { CreateBucketConfiguration } = args.input;
@@ -19160,9 +19176,9 @@ var locationConstraintMiddlewareOptions = {
   override: true
 };
 var getLocationConstraintPlugin = /* @__PURE__ */ __name((config) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.add(locationConstraintMiddleware(config), locationConstraintMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getLocationConstraintPlugin");
 // Annotate the CommonJS export names for ESM import in node:
 
@@ -19196,13 +19212,13 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   getLoggerPlugin: () => getLoggerPlugin,
   loggerMiddleware: () => loggerMiddleware,
   loggerMiddlewareOptions: () => loggerMiddlewareOptions
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/loggerMiddleware.ts
 var loggerMiddleware = /* @__PURE__ */ __name(() => (next, context) => async (args) => {
@@ -19242,9 +19258,9 @@ var loggerMiddlewareOptions = {
   override: true
 };
 var getLoggerPlugin = /* @__PURE__ */ __name((options) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.add(loggerMiddleware(), loggerMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getLoggerPlugin");
 // Annotate the CommonJS export names for ESM import in node:
 
@@ -19278,20 +19294,24 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   addRecursionDetectionMiddlewareOptions: () => addRecursionDetectionMiddlewareOptions,
   getRecursionDetectionPlugin: () => getRecursionDetectionPlugin,
   recursionDetectionMiddleware: () => recursionDetectionMiddleware
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 var import_protocol_http = __nccwpck_require__(2356);
 var TRACE_ID_HEADER_NAME = "X-Amzn-Trace-Id";
 var ENV_LAMBDA_FUNCTION_NAME = "AWS_LAMBDA_FUNCTION_NAME";
 var ENV_TRACE_ID = "_X_AMZN_TRACE_ID";
 var recursionDetectionMiddleware = /* @__PURE__ */ __name((options) => (next) => async (args) => {
   const { request } = args;
-  if (!import_protocol_http.HttpRequest.isInstance(request) || options.runtime !== "node" || request.headers.hasOwnProperty(TRACE_ID_HEADER_NAME)) {
+  if (!import_protocol_http.HttpRequest.isInstance(request) || options.runtime !== "node") {
+    return next(args);
+  }
+  const traceIdHeader = Object.keys(request.headers ?? {}).find((h) => h.toLowerCase() === TRACE_ID_HEADER_NAME.toLowerCase()) ?? TRACE_ID_HEADER_NAME;
+  if (request.headers.hasOwnProperty(traceIdHeader)) {
     return next(args);
   }
   const functionName = process.env[ENV_LAMBDA_FUNCTION_NAME];
@@ -19313,9 +19333,9 @@ var addRecursionDetectionMiddlewareOptions = {
   priority: "low"
 };
 var getRecursionDetectionPlugin = /* @__PURE__ */ __name((options) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.add(recursionDetectionMiddleware(options), addRecursionDetectionMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getRecursionDetectionPlugin");
 // Annotate the CommonJS export names for ESM import in node:
 
@@ -19349,8 +19369,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_OPTIONS: () => NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_OPTIONS,
   S3ExpressIdentityCache: () => S3ExpressIdentityCache,
   S3ExpressIdentityCacheEntry: () => S3ExpressIdentityCacheEntry,
@@ -19381,7 +19401,7 @@ __export(src_exports, {
   validateBucketNameMiddleware: () => validateBucketNameMiddleware,
   validateBucketNameMiddlewareOptions: () => validateBucketNameMiddlewareOptions
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/check-content-length-header.ts
 var import_protocol_http = __nccwpck_require__(2356);
@@ -19412,9 +19432,9 @@ var checkContentLengthHeaderMiddlewareOptions = {
   override: true
 };
 var getCheckContentLengthHeaderPlugin = /* @__PURE__ */ __name((unused) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.add(checkContentLengthHeader(), checkContentLengthHeaderMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getCheckContentLengthHeaderPlugin");
 
 // src/region-redirect-endpoint-middleware.ts
@@ -19427,9 +19447,9 @@ var regionRedirectEndpointMiddleware = /* @__PURE__ */ __name((config) => {
     if (context.__s3RegionRedirect) {
       Object.defineProperty(config, "region", {
         writable: false,
-        value: async () => {
+        value: /* @__PURE__ */ __name(async () => {
           return context.__s3RegionRedirect;
-        }
+        }, "value")
       });
       unlock = /* @__PURE__ */ __name(() => Object.defineProperty(config, "region", {
         writable: true,
@@ -19491,10 +19511,10 @@ var regionRedirectMiddlewareOptions = {
   override: true
 };
 var getRegionRedirectMiddlewarePlugin = /* @__PURE__ */ __name((clientConfig) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.add(regionRedirectMiddleware(clientConfig), regionRedirectMiddlewareOptions);
     clientStack.addRelativeTo(regionRedirectEndpointMiddleware(clientConfig), regionRedirectEndpointMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getRegionRedirectMiddlewarePlugin");
 
 // src/s3-expires-middleware.ts
@@ -19528,9 +19548,9 @@ var s3ExpiresMiddlewareOptions = {
   toMiddleware: "deserializerMiddleware"
 };
 var getS3ExpiresMiddlewarePlugin = /* @__PURE__ */ __name((clientConfig) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.addRelativeTo(s3ExpiresMiddleware(clientConfig), s3ExpiresMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getS3ExpiresMiddlewarePlugin");
 
 // src/s3-express/classes/S3ExpressIdentityCache.ts
@@ -19660,8 +19680,8 @@ var SESSION_TOKEN_HEADER = SESSION_TOKEN_QUERY_PARAM.toLowerCase();
 var NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_ENV_NAME = "AWS_S3_DISABLE_EXPRESS_SESSION_AUTH";
 var NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_INI_NAME = "s3_disable_express_session_auth";
 var NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_OPTIONS = {
-  environmentVariableSelector: (env) => (0, import_util_config_provider.booleanSelector)(env, NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_ENV_NAME, import_util_config_provider.SelectorType.ENV),
-  configFileSelector: (profile) => (0, import_util_config_provider.booleanSelector)(profile, NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_INI_NAME, import_util_config_provider.SelectorType.CONFIG),
+  environmentVariableSelector: /* @__PURE__ */ __name((env) => (0, import_util_config_provider.booleanSelector)(env, NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_ENV_NAME, import_util_config_provider.SelectorType.ENV), "environmentVariableSelector"),
+  configFileSelector: /* @__PURE__ */ __name((profile) => (0, import_util_config_provider.booleanSelector)(profile, NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_INI_NAME, import_util_config_provider.SelectorType.CONFIG), "configFileSelector"),
   default: false
 };
 
@@ -19760,9 +19780,9 @@ var s3ExpressMiddlewareOptions = {
   override: true
 };
 var getS3ExpressPlugin = /* @__PURE__ */ __name((options) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.add(s3ExpressMiddleware(options), s3ExpressMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getS3ExpressPlugin");
 
 // src/s3-express/functions/s3ExpressHttpSigningMiddleware.ts
@@ -19819,12 +19839,12 @@ var s3ExpressHttpSigningMiddleware = /* @__PURE__ */ __name((config) => (next, c
   return output;
 }, "s3ExpressHttpSigningMiddleware");
 var getS3ExpressHttpSigningPlugin = /* @__PURE__ */ __name((config) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.addRelativeTo(
       s3ExpressHttpSigningMiddleware(config),
       import_core2.httpSigningMiddlewareOptions
     );
-  }
+  }, "applyToStack")
 }), "getS3ExpressHttpSigningPlugin");
 
 // src/s3Configuration.ts
@@ -19832,21 +19852,28 @@ var resolveS3Config = /* @__PURE__ */ __name((input, {
   session
 }) => {
   const [s3ClientProvider, CreateSessionCommandCtor] = session;
-  return {
-    ...input,
-    forcePathStyle: input.forcePathStyle ?? false,
-    useAccelerateEndpoint: input.useAccelerateEndpoint ?? false,
-    disableMultiregionAccessPoints: input.disableMultiregionAccessPoints ?? false,
-    followRegionRedirects: input.followRegionRedirects ?? false,
-    s3ExpressIdentityProvider: input.s3ExpressIdentityProvider ?? new S3ExpressIdentityProviderImpl(
+  const {
+    forcePathStyle,
+    useAccelerateEndpoint,
+    disableMultiregionAccessPoints,
+    followRegionRedirects,
+    s3ExpressIdentityProvider,
+    bucketEndpoint
+  } = input;
+  return Object.assign(input, {
+    forcePathStyle: forcePathStyle ?? false,
+    useAccelerateEndpoint: useAccelerateEndpoint ?? false,
+    disableMultiregionAccessPoints: disableMultiregionAccessPoints ?? false,
+    followRegionRedirects: followRegionRedirects ?? false,
+    s3ExpressIdentityProvider: s3ExpressIdentityProvider ?? new S3ExpressIdentityProviderImpl(
       async (key) => s3ClientProvider().send(
         new CreateSessionCommandCtor({
           Bucket: key
         })
       )
     ),
-    bucketEndpoint: input.bucketEndpoint ?? false
-  };
+    bucketEndpoint: bucketEndpoint ?? false
+  });
 }, "resolveS3Config");
 
 // src/throw-200-exceptions.ts
@@ -19879,9 +19906,9 @@ var throw200ExceptionsMiddleware = /* @__PURE__ */ __name((config) => (next, con
   }
   response.body = body;
   const bodyBytes = await collectBody(bodyCopy, {
-    streamCollector: async (stream) => {
+    streamCollector: /* @__PURE__ */ __name(async (stream) => {
       return (0, import_util_stream.headStream)(stream, MAX_BYTES_TO_INSPECT);
-    }
+    }, "streamCollector")
   });
   if (typeof bodyCopy?.destroy === "function") {
     bodyCopy.destroy();
@@ -19911,9 +19938,9 @@ var throw200ExceptionsMiddlewareOptions = {
   override: true
 };
 var getThrow200ExceptionsPlugin = /* @__PURE__ */ __name((config) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.addRelativeTo(throw200ExceptionsMiddleware(config), throw200ExceptionsMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getThrow200ExceptionsPlugin");
 
 // src/validate-bucket-name.ts
@@ -19978,10 +20005,10 @@ var validateBucketNameMiddlewareOptions = {
   override: true
 };
 var getValidateBucketNamePlugin = /* @__PURE__ */ __name((options) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.add(validateBucketNameMiddleware(options), validateBucketNameMiddlewareOptions);
     clientStack.addRelativeTo(bucketEndpointMiddleware(options), bucketEndpointMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getValidateBucketNamePlugin");
 // Annotate the CommonJS export names for ESM import in node:
 
@@ -20015,14 +20042,14 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   getSsecPlugin: () => getSsecPlugin,
   isValidBase64EncodedSSECustomerKey: () => isValidBase64EncodedSSECustomerKey,
   ssecMiddleware: () => ssecMiddleware,
   ssecMiddlewareOptions: () => ssecMiddlewareOptions
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 function ssecMiddleware(options) {
   return (next) => async (args) => {
     const input = { ...args.input };
@@ -20070,14 +20097,13 @@ var ssecMiddlewareOptions = {
   override: true
 };
 var getSsecPlugin = /* @__PURE__ */ __name((config) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.add(ssecMiddleware(config), ssecMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getSsecPlugin");
 function isValidBase64EncodedSSECustomerKey(str, options) {
   const base64Regex = /^(?:[A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
-  if (!base64Regex.test(str))
-    return false;
+  if (!base64Regex.test(str)) return false;
   try {
     const decodedBytes = options.base64Decoder(str);
     return decodedBytes.length === 32;
@@ -20118,15 +20144,15 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   DEFAULT_UA_APP_ID: () => DEFAULT_UA_APP_ID,
   getUserAgentMiddlewareOptions: () => getUserAgentMiddlewareOptions,
   getUserAgentPlugin: () => getUserAgentPlugin,
   resolveUserAgentConfig: () => resolveUserAgentConfig,
   userAgentMiddleware: () => userAgentMiddleware
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/configurations.ts
 var import_core = __nccwpck_require__(402);
@@ -20140,10 +20166,10 @@ function isValidUserAgentAppId(appId) {
 __name(isValidUserAgentAppId, "isValidUserAgentAppId");
 function resolveUserAgentConfig(input) {
   const normalizedAppIdProvider = (0, import_core.normalizeProvider)(input.userAgentAppId ?? DEFAULT_UA_APP_ID);
-  return {
-    ...input,
-    customUserAgent: typeof input.customUserAgent === "string" ? [[input.customUserAgent]] : input.customUserAgent,
-    userAgentAppId: async () => {
+  const { customUserAgent } = input;
+  return Object.assign(input, {
+    customUserAgent: typeof customUserAgent === "string" ? [[customUserAgent]] : customUserAgent,
+    userAgentAppId: /* @__PURE__ */ __name(async () => {
       const appId = await normalizedAppIdProvider();
       if (!isValidUserAgentAppId(appId)) {
         const logger = input.logger?.constructor?.name === "NoOpLogger" || !input.logger ? console : input.logger;
@@ -20154,8 +20180,8 @@ function resolveUserAgentConfig(input) {
         }
       }
       return appId;
-    }
-  };
+    }, "userAgentAppId")
+  });
 }
 __name(resolveUserAgentConfig, "resolveUserAgentConfig");
 
@@ -20310,9 +20336,9 @@ var getUserAgentMiddlewareOptions = {
   override: true
 };
 var getUserAgentPlugin = /* @__PURE__ */ __name((config) => ({
-  applyToStack: (clientStack) => {
+  applyToStack: /* @__PURE__ */ __name((clientStack) => {
     clientStack.add(userAgentMiddleware(config), getUserAgentMiddlewareOptions);
-  }
+  }, "applyToStack")
 }), "getUserAgentPlugin");
 // Annotate the CommonJS export names for ESM import in node:
 
@@ -20376,9 +20402,7 @@ const defaultSSOOIDCHttpAuthSchemeProvider = (authParameters) => {
 exports.defaultSSOOIDCHttpAuthSchemeProvider = defaultSSOOIDCHttpAuthSchemeProvider;
 const resolveHttpAuthSchemeConfig = (config) => {
     const config_0 = (0, core_1.resolveAwsSdkSigV4Config)(config);
-    return {
-        ...config_0,
-    };
+    return Object.assign(config_0, {});
 };
 exports.resolveHttpAuthSchemeConfig = resolveHttpAuthSchemeConfig;
 
@@ -20448,8 +20472,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/submodules/sso-oidc/index.ts
-var sso_oidc_exports = {};
-__export(sso_oidc_exports, {
+var index_exports = {};
+__export(index_exports, {
   $Command: () => import_smithy_client6.Command,
   AccessDeniedException: () => AccessDeniedException,
   AuthorizationPendingException: () => AuthorizationPendingException,
@@ -20470,7 +20494,7 @@ __export(sso_oidc_exports, {
   UnsupportedGrantTypeException: () => UnsupportedGrantTypeException,
   __Client: () => import_smithy_client2.Client
 });
-module.exports = __toCommonJS(sso_oidc_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/submodules/sso-oidc/SSOOIDCClient.ts
 var import_middleware_host_header = __nccwpck_require__(2590);
@@ -20487,12 +20511,11 @@ var import_httpAuthSchemeProvider = __nccwpck_require__(8396);
 
 // src/submodules/sso-oidc/endpoint/EndpointParameters.ts
 var resolveClientEndpointParameters = /* @__PURE__ */ __name((options) => {
-  return {
-    ...options,
+  return Object.assign(options, {
     useDualstackEndpoint: options.useDualstackEndpoint ?? false,
     useFipsEndpoint: options.useFipsEndpoint ?? false,
     defaultSigningName: "sso-oauth"
-  };
+  });
 }, "resolveClientEndpointParameters");
 var commonParams = {
   UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -20549,22 +20572,21 @@ var resolveHttpAuthRuntimeConfig = /* @__PURE__ */ __name((config) => {
 }, "resolveHttpAuthRuntimeConfig");
 
 // src/submodules/sso-oidc/runtimeExtensions.ts
-var asPartial = /* @__PURE__ */ __name((t) => t, "asPartial");
 var resolveRuntimeExtensions = /* @__PURE__ */ __name((runtimeConfig, extensions) => {
-  const extensionConfiguration = {
-    ...asPartial((0, import_region_config_resolver.getAwsRegionExtensionConfiguration)(runtimeConfig)),
-    ...asPartial((0, import_smithy_client.getDefaultExtensionConfiguration)(runtimeConfig)),
-    ...asPartial((0, import_protocol_http.getHttpHandlerExtensionConfiguration)(runtimeConfig)),
-    ...asPartial(getHttpAuthExtensionConfiguration(runtimeConfig))
-  };
+  const extensionConfiguration = Object.assign(
+    (0, import_region_config_resolver.getAwsRegionExtensionConfiguration)(runtimeConfig),
+    (0, import_smithy_client.getDefaultExtensionConfiguration)(runtimeConfig),
+    (0, import_protocol_http.getHttpHandlerExtensionConfiguration)(runtimeConfig),
+    getHttpAuthExtensionConfiguration(runtimeConfig)
+  );
   extensions.forEach((extension) => extension.configure(extensionConfiguration));
-  return {
-    ...runtimeConfig,
-    ...(0, import_region_config_resolver.resolveAwsRegionExtensionConfiguration)(extensionConfiguration),
-    ...(0, import_smithy_client.resolveDefaultRuntimeConfig)(extensionConfiguration),
-    ...(0, import_protocol_http.resolveHttpHandlerRuntimeConfig)(extensionConfiguration),
-    ...resolveHttpAuthRuntimeConfig(extensionConfiguration)
-  };
+  return Object.assign(
+    runtimeConfig,
+    (0, import_region_config_resolver.resolveAwsRegionExtensionConfiguration)(extensionConfiguration),
+    (0, import_smithy_client.resolveDefaultRuntimeConfig)(extensionConfiguration),
+    (0, import_protocol_http.resolveHttpHandlerRuntimeConfig)(extensionConfiguration),
+    resolveHttpAuthRuntimeConfig(extensionConfiguration)
+  );
 }, "resolveRuntimeExtensions");
 
 // src/submodules/sso-oidc/SSOOIDCClient.ts
@@ -20578,6 +20600,8 @@ var SSOOIDCClient = class extends import_smithy_client2.Client {
   config;
   constructor(...[configuration]) {
     const _config_0 = (0, import_runtimeConfig.getRuntimeConfig)(configuration || {});
+    super(_config_0);
+    this.initConfig = _config_0;
     const _config_1 = resolveClientEndpointParameters(_config_0);
     const _config_2 = (0, import_middleware_user_agent.resolveUserAgentConfig)(_config_1);
     const _config_3 = (0, import_middleware_retry.resolveRetryConfig)(_config_2);
@@ -20586,7 +20610,6 @@ var SSOOIDCClient = class extends import_smithy_client2.Client {
     const _config_6 = (0, import_middleware_endpoint.resolveEndpointConfig)(_config_5);
     const _config_7 = (0, import_httpAuthSchemeProvider.resolveHttpAuthSchemeConfig)(_config_6);
     const _config_8 = resolveRuntimeExtensions(_config_7, configuration?.extensions || []);
-    super(_config_8);
     this.config = _config_8;
     this.middlewareStack.use((0, import_middleware_user_agent.getUserAgentPlugin)(this.config));
     this.middlewareStack.use((0, import_middleware_retry.getRetryPlugin)(this.config));
@@ -20597,9 +20620,9 @@ var SSOOIDCClient = class extends import_smithy_client2.Client {
     this.middlewareStack.use(
       (0, import_core.getHttpAuthSchemeEndpointRuleSetPlugin)(this.config, {
         httpAuthSchemeParametersProvider: import_httpAuthSchemeProvider.defaultSSOOIDCHttpAuthSchemeParametersProvider,
-        identityProviderConfigProvider: async (config) => new import_core.DefaultIdentityProviderConfig({
+        identityProviderConfigProvider: /* @__PURE__ */ __name(async (config) => new import_core.DefaultIdentityProviderConfig({
           "aws.auth#sigv4": config.credentials
-        })
+        }), "identityProviderConfigProvider")
       })
     );
     this.middlewareStack.use((0, import_core.getHttpSigningPlugin)(this.config));
@@ -21021,7 +21044,7 @@ var se_CreateTokenCommand = /* @__PURE__ */ __name(async (input, context) => {
       grantType: [],
       redirectUri: [],
       refreshToken: [],
-      scope: (_) => (0, import_smithy_client5._json)(_)
+      scope: /* @__PURE__ */ __name((_) => (0, import_smithy_client5._json)(_), "scope")
     })
   );
   b.m("POST").h(headers).b(body);
@@ -21413,6 +21436,8 @@ class STSClient extends smithy_client_1.Client {
     config;
     constructor(...[configuration]) {
         const _config_0 = (0, runtimeConfig_1.getRuntimeConfig)(configuration || {});
+        super(_config_0);
+        this.initConfig = _config_0;
         const _config_1 = (0, EndpointParameters_1.resolveClientEndpointParameters)(_config_0);
         const _config_2 = (0, middleware_user_agent_1.resolveUserAgentConfig)(_config_1);
         const _config_3 = (0, middleware_retry_1.resolveRetryConfig)(_config_2);
@@ -21421,7 +21446,6 @@ class STSClient extends smithy_client_1.Client {
         const _config_6 = (0, middleware_endpoint_1.resolveEndpointConfig)(_config_5);
         const _config_7 = (0, httpAuthSchemeProvider_1.resolveHttpAuthSchemeConfig)(_config_6);
         const _config_8 = (0, runtimeExtensions_1.resolveRuntimeExtensions)(_config_7, configuration?.extensions || []);
-        super(_config_8);
         this.config = _config_8;
         this.middlewareStack.use((0, middleware_user_agent_1.getUserAgentPlugin)(this.config));
         this.middlewareStack.use((0, middleware_retry_1.getRetryPlugin)(this.config));
@@ -21549,17 +21573,14 @@ const defaultSTSHttpAuthSchemeProvider = (authParameters) => {
     return options;
 };
 exports.defaultSTSHttpAuthSchemeProvider = defaultSTSHttpAuthSchemeProvider;
-const resolveStsAuthConfig = (input) => ({
-    ...input,
+const resolveStsAuthConfig = (input) => Object.assign(input, {
     stsClientCtor: STSClient_1.STSClient,
 });
 exports.resolveStsAuthConfig = resolveStsAuthConfig;
 const resolveHttpAuthSchemeConfig = (config) => {
     const config_0 = (0, exports.resolveStsAuthConfig)(config);
     const config_1 = (0, core_1.resolveAwsSdkSigV4Config)(config_0);
-    return {
-        ...config_1,
-    };
+    return Object.assign(config_1, {});
 };
 exports.resolveHttpAuthSchemeConfig = resolveHttpAuthSchemeConfig;
 
@@ -21573,13 +21594,12 @@ exports.resolveHttpAuthSchemeConfig = resolveHttpAuthSchemeConfig;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.commonParams = exports.resolveClientEndpointParameters = void 0;
 const resolveClientEndpointParameters = (options) => {
-    return {
-        ...options,
+    return Object.assign(options, {
         useDualstackEndpoint: options.useDualstackEndpoint ?? false,
         useFipsEndpoint: options.useFipsEndpoint ?? false,
         useGlobalEndpoint: options.useGlobalEndpoint ?? false,
         defaultSigningName: "sts",
-    };
+    });
 };
 exports.resolveClientEndpointParameters = resolveClientEndpointParameters;
 exports.commonParams = {
@@ -21657,8 +21677,8 @@ var __reExport = (target, mod, secondTarget) => (__copyProps(target, mod, "defau
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/submodules/sts/index.ts
-var sts_exports = {};
-__export(sts_exports, {
+var index_exports = {};
+__export(index_exports, {
   AssumeRoleCommand: () => AssumeRoleCommand,
   AssumeRoleResponseFilterSensitiveLog: () => AssumeRoleResponseFilterSensitiveLog,
   AssumeRoleWithWebIdentityCommand: () => AssumeRoleWithWebIdentityCommand,
@@ -21679,8 +21699,8 @@ __export(sts_exports, {
   getDefaultRoleAssumer: () => getDefaultRoleAssumer2,
   getDefaultRoleAssumerWithWebIdentity: () => getDefaultRoleAssumerWithWebIdentity2
 });
-module.exports = __toCommonJS(sts_exports);
-__reExport(sts_exports, __nccwpck_require__(3723), module.exports);
+module.exports = __toCommonJS(index_exports);
+__reExport(index_exports, __nccwpck_require__(3723), module.exports);
 
 // src/submodules/sts/STS.ts
 var import_smithy_client6 = __nccwpck_require__(1411);
@@ -22467,7 +22487,7 @@ var getDefaultRoleAssumer = /* @__PURE__ */ __name((stsOptions, STSClient3) => {
       stsClient = new STSClient3({
         profile: stsOptions?.parentClientConfig?.profile,
         // A hack to make sts client uses the credential in current closure.
-        credentialDefaultProvider: () => async () => closureSourceCreds,
+        credentialDefaultProvider: /* @__PURE__ */ __name(() => async () => closureSourceCreds, "credentialDefaultProvider"),
         region: resolvedRegion,
         requestHandler: isCompatibleRequestHandler ? requestHandler : void 0,
         logger
@@ -22542,8 +22562,7 @@ var isH2 = /* @__PURE__ */ __name((requestHandler) => {
 // src/submodules/sts/defaultRoleAssumers.ts
 var import_STSClient2 = __nccwpck_require__(3723);
 var getCustomizableStsClientCtor = /* @__PURE__ */ __name((baseCtor, customizations) => {
-  if (!customizations)
-    return baseCtor;
+  if (!customizations) return baseCtor;
   else
     return class CustomizableSTSClient extends baseCtor {
       static {
@@ -22698,22 +22717,10 @@ const region_config_resolver_1 = __nccwpck_require__(6463);
 const protocol_http_1 = __nccwpck_require__(2356);
 const smithy_client_1 = __nccwpck_require__(1411);
 const httpAuthExtensionConfiguration_1 = __nccwpck_require__(4532);
-const asPartial = (t) => t;
 const resolveRuntimeExtensions = (runtimeConfig, extensions) => {
-    const extensionConfiguration = {
-        ...asPartial((0, region_config_resolver_1.getAwsRegionExtensionConfiguration)(runtimeConfig)),
-        ...asPartial((0, smithy_client_1.getDefaultExtensionConfiguration)(runtimeConfig)),
-        ...asPartial((0, protocol_http_1.getHttpHandlerExtensionConfiguration)(runtimeConfig)),
-        ...asPartial((0, httpAuthExtensionConfiguration_1.getHttpAuthExtensionConfiguration)(runtimeConfig)),
-    };
+    const extensionConfiguration = Object.assign((0, region_config_resolver_1.getAwsRegionExtensionConfiguration)(runtimeConfig), (0, smithy_client_1.getDefaultExtensionConfiguration)(runtimeConfig), (0, protocol_http_1.getHttpHandlerExtensionConfiguration)(runtimeConfig), (0, httpAuthExtensionConfiguration_1.getHttpAuthExtensionConfiguration)(runtimeConfig));
     extensions.forEach((extension) => extension.configure(extensionConfiguration));
-    return {
-        ...runtimeConfig,
-        ...(0, region_config_resolver_1.resolveAwsRegionExtensionConfiguration)(extensionConfiguration),
-        ...(0, smithy_client_1.resolveDefaultRuntimeConfig)(extensionConfiguration),
-        ...(0, protocol_http_1.resolveHttpHandlerRuntimeConfig)(extensionConfiguration),
-        ...(0, httpAuthExtensionConfiguration_1.resolveHttpAuthRuntimeConfig)(extensionConfiguration),
-    };
+    return Object.assign(runtimeConfig, (0, region_config_resolver_1.resolveAwsRegionExtensionConfiguration)(extensionConfiguration), (0, smithy_client_1.resolveDefaultRuntimeConfig)(extensionConfiguration), (0, protocol_http_1.resolveHttpHandlerRuntimeConfig)(extensionConfiguration), (0, httpAuthExtensionConfiguration_1.resolveHttpAuthRuntimeConfig)(extensionConfiguration));
 };
 exports.resolveRuntimeExtensions = resolveRuntimeExtensions;
 
@@ -22744,8 +22751,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   NODE_REGION_CONFIG_FILE_OPTIONS: () => NODE_REGION_CONFIG_FILE_OPTIONS,
   NODE_REGION_CONFIG_OPTIONS: () => NODE_REGION_CONFIG_OPTIONS,
   REGION_ENV_NAME: () => REGION_ENV_NAME,
@@ -22754,26 +22761,16 @@ __export(src_exports, {
   resolveAwsRegionExtensionConfiguration: () => resolveAwsRegionExtensionConfiguration,
   resolveRegionConfig: () => resolveRegionConfig
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/extensions/index.ts
 var getAwsRegionExtensionConfiguration = /* @__PURE__ */ __name((runtimeConfig) => {
-  let runtimeConfigRegion = /* @__PURE__ */ __name(async () => {
-    if (runtimeConfig.region === void 0) {
-      throw new Error("Region is missing from runtimeConfig");
-    }
-    const region = runtimeConfig.region;
-    if (typeof region === "string") {
-      return region;
-    }
-    return region();
-  }, "runtimeConfigRegion");
   return {
     setRegion(region) {
-      runtimeConfigRegion = region;
+      runtimeConfig.region = region;
     },
     region() {
-      return runtimeConfigRegion;
+      return runtimeConfig.region;
     }
   };
 }, "getAwsRegionExtensionConfiguration");
@@ -22787,11 +22784,11 @@ var resolveAwsRegionExtensionConfiguration = /* @__PURE__ */ __name((awsRegionEx
 var REGION_ENV_NAME = "AWS_REGION";
 var REGION_INI_NAME = "region";
 var NODE_REGION_CONFIG_OPTIONS = {
-  environmentVariableSelector: (env) => env[REGION_ENV_NAME],
-  configFileSelector: (profile) => profile[REGION_INI_NAME],
-  default: () => {
+  environmentVariableSelector: /* @__PURE__ */ __name((env) => env[REGION_ENV_NAME], "environmentVariableSelector"),
+  configFileSelector: /* @__PURE__ */ __name((profile) => profile[REGION_INI_NAME], "configFileSelector"),
+  default: /* @__PURE__ */ __name(() => {
     throw new Error("Region is missing");
-  }
+  }, "default")
 };
 var NODE_REGION_CONFIG_FILE_OPTIONS = {
   preferredFile: "credentials"
@@ -22809,23 +22806,22 @@ var resolveRegionConfig = /* @__PURE__ */ __name((input) => {
   if (!region) {
     throw new Error("Region is missing");
   }
-  return {
-    ...input,
-    region: async () => {
+  return Object.assign(input, {
+    region: /* @__PURE__ */ __name(async () => {
       if (typeof region === "string") {
         return getRealRegion(region);
       }
       const providedRegion = await region();
       return getRealRegion(providedRegion);
-    },
-    useFipsEndpoint: async () => {
+    }, "region"),
+    useFipsEndpoint: /* @__PURE__ */ __name(async () => {
       const providedRegion = typeof region === "string" ? region : await region();
       if (isFipsRegion(providedRegion)) {
         return true;
       }
       return typeof useFipsEndpoint !== "function" ? Promise.resolve(!!useFipsEndpoint) : useFipsEndpoint();
-    }
-  };
+    }, "useFipsEndpoint")
+  });
 }, "resolveRegionConfig");
 // Annotate the CommonJS export names for ESM import in node:
 
@@ -22859,12 +22855,12 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   SignatureV4MultiRegion: () => SignatureV4MultiRegion,
   signatureV4CrtContainer: () => signatureV4CrtContainer
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/SignatureV4MultiRegion.ts
 var import_middleware_sdk_s3 = __nccwpck_require__(7445);
@@ -22924,8 +22920,7 @@ var SignatureV4MultiRegion = class {
       let CrtSignerV4 = null;
       try {
         CrtSignerV4 = signatureV4CrtContainer.CrtSignerV4;
-        if (typeof CrtSignerV4 !== "function")
-          throw new Error();
+        if (typeof CrtSignerV4 !== "function") throw new Error();
       } catch (e) {
         e.message = `${e.message}
 Please check whether you have installed the "@aws-sdk/signature-v4-crt" package explicitly. 
@@ -22983,13 +22978,13 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   fromSso: () => fromSso,
   fromStatic: () => fromStatic,
   nodeProvider: () => nodeProvider
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/fromSso.ts
 
@@ -23261,8 +23256,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   ConditionObject: () => import_util_endpoints.ConditionObject,
   DeprecatedObject: () => import_util_endpoints.DeprecatedObject,
   EndpointError: () => import_util_endpoints.EndpointError,
@@ -23292,7 +23287,7 @@ __export(src_exports, {
   setPartitionInfo: () => setPartitionInfo,
   useDefaultPartitionInfo: () => useDefaultPartitionInfo
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/aws.ts
 
@@ -23333,11 +23328,9 @@ var ARN_DELIMITER = ":";
 var RESOURCE_DELIMITER = "/";
 var parseArn = /* @__PURE__ */ __name((value) => {
   const segments = value.split(ARN_DELIMITER);
-  if (segments.length < 6)
-    return null;
+  if (segments.length < 6) return null;
   const [arn, partition2, service, region, accountId, ...resourcePath] = segments;
-  if (arn !== "arn" || partition2 === "" || service === "" || resourcePath.join(ARN_DELIMITER) === "")
-    return null;
+  if (arn !== "arn" || partition2 === "" || service === "" || resourcePath.join(ARN_DELIMITER) === "") return null;
   const resourceId = resourcePath.map((resource) => resource.split(RESOURCE_DELIMITER)).flat();
   return {
     partition: partition2,
@@ -23585,6 +23578,22 @@ var partitions_default = {
         description: "US ISOF SOUTH"
       }
     }
+  }, {
+    id: "aws-eusc",
+    outputs: {
+      dnsSuffix: "amazonaws.eu",
+      dualStackDnsSuffix: "amazonaws.eu",
+      implicitGlobalRegion: "eusc-de-east-1",
+      name: "aws-eusc",
+      supportsDualStack: false,
+      supportsFIPS: true
+    },
+    regionRegex: "^eusc\\-(de)\\-\\w+\\-\\d+$",
+    regions: {
+      "eusc-de-east-1": {
+        description: "EU (Germany)"
+      }
+    }
   }],
   version: "1.1"
 };
@@ -23692,8 +23701,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   NODE_APP_ID_CONFIG_OPTIONS: () => NODE_APP_ID_CONFIG_OPTIONS,
   UA_APP_ID_ENV_NAME: () => UA_APP_ID_ENV_NAME,
   UA_APP_ID_INI_NAME: () => UA_APP_ID_INI_NAME,
@@ -23701,7 +23710,7 @@ __export(src_exports, {
   crtAvailability: () => crtAvailability,
   defaultUserAgent: () => defaultUserAgent
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/defaultUserAgent.ts
 var import_os = __nccwpck_require__(857);
@@ -23758,8 +23767,8 @@ var UA_APP_ID_ENV_NAME = "AWS_SDK_UA_APP_ID";
 var UA_APP_ID_INI_NAME = "sdk_ua_app_id";
 var UA_APP_ID_INI_NAME_DEPRECATED = "sdk-ua-app-id";
 var NODE_APP_ID_CONFIG_OPTIONS = {
-  environmentVariableSelector: (env2) => env2[UA_APP_ID_ENV_NAME],
-  configFileSelector: (profile) => profile[UA_APP_ID_INI_NAME] ?? profile[UA_APP_ID_INI_NAME_DEPRECATED],
+  environmentVariableSelector: /* @__PURE__ */ __name((env2) => env2[UA_APP_ID_ENV_NAME], "environmentVariableSelector"),
+  configFileSelector: /* @__PURE__ */ __name((profile) => profile[UA_APP_ID_INI_NAME] ?? profile[UA_APP_ID_INI_NAME_DEPRECATED], "configFileSelector"),
   default: import_middleware_user_agent.DEFAULT_UA_APP_ID
 };
 // Annotate the CommonJS export names for ESM import in node:
@@ -23794,12 +23803,12 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   XmlNode: () => XmlNode,
   XmlText: () => XmlText
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/escape-attribute.ts
 function escapeAttribute(value) {
@@ -24016,14 +24025,13 @@ var NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS = {
 // src/endpointsConfig/resolveCustomEndpointsConfig.ts
 var import_util_middleware = __nccwpck_require__(6324);
 var resolveCustomEndpointsConfig = /* @__PURE__ */ __name((input) => {
-  const { endpoint, urlParser } = input;
-  return {
-    ...input,
-    tls: input.tls ?? true,
+  const { tls, endpoint, urlParser, useDualstackEndpoint } = input;
+  return Object.assign(input, {
+    tls: tls ?? true,
     endpoint: (0, import_util_middleware.normalizeProvider)(typeof endpoint === "string" ? urlParser(endpoint) : endpoint),
     isCustomEndpoint: true,
-    useDualstackEndpoint: (0, import_util_middleware.normalizeProvider)(input.useDualstackEndpoint ?? false)
-  };
+    useDualstackEndpoint: (0, import_util_middleware.normalizeProvider)(useDualstackEndpoint ?? false)
+  });
 }, "resolveCustomEndpointsConfig");
 
 // src/endpointsConfig/resolveEndpointsConfig.ts
@@ -24049,14 +24057,13 @@ var getEndpointFromRegion = /* @__PURE__ */ __name(async (input) => {
 // src/endpointsConfig/resolveEndpointsConfig.ts
 var resolveEndpointsConfig = /* @__PURE__ */ __name((input) => {
   const useDualstackEndpoint = (0, import_util_middleware.normalizeProvider)(input.useDualstackEndpoint ?? false);
-  const { endpoint, useFipsEndpoint, urlParser } = input;
-  return {
-    ...input,
-    tls: input.tls ?? true,
+  const { endpoint, useFipsEndpoint, urlParser, tls } = input;
+  return Object.assign(input, {
+    tls: tls ?? true,
     endpoint: endpoint ? (0, import_util_middleware.normalizeProvider)(typeof endpoint === "string" ? urlParser(endpoint) : endpoint) : () => getEndpointFromRegion({ ...input, useDualstackEndpoint, useFipsEndpoint }),
     isCustomEndpoint: !!endpoint,
     useDualstackEndpoint
-  };
+  });
 }, "resolveEndpointsConfig");
 
 // src/regionConfig/config.ts
@@ -24085,8 +24092,7 @@ var resolveRegionConfig = /* @__PURE__ */ __name((input) => {
   if (!region) {
     throw new Error("Region is missing");
   }
-  return {
-    ...input,
+  return Object.assign(input, {
     region: async () => {
       if (typeof region === "string") {
         return getRealRegion(region);
@@ -24101,7 +24107,7 @@ var resolveRegionConfig = /* @__PURE__ */ __name((input) => {
       }
       return typeof useFipsEndpoint !== "function" ? Promise.resolve(!!useFipsEndpoint) : useFipsEndpoint();
     }
-  };
+  });
 }, "resolveRegionConfig");
 
 // src/regionInfo/getHostnameFromVariants.ts
@@ -25689,8 +25695,7 @@ __export(src_exports, {
 module.exports = __toCommonJS(src_exports);
 
 // src/EventStreamSerdeConfig.ts
-var resolveEventStreamSerdeConfig = /* @__PURE__ */ __name((input) => ({
-  ...input,
+var resolveEventStreamSerdeConfig = /* @__PURE__ */ __name((input) => Object.assign(input, {
   eventStreamMarshaller: input.eventStreamSerdeProvider(input)
 }), "resolveEventStreamSerdeConfig");
 // Annotate the CommonJS export names for ESM import in node:
@@ -26843,17 +26848,16 @@ var getEndpointPlugin = /* @__PURE__ */ __name((config, instructions) => ({
 var import_getEndpointFromConfig2 = __nccwpck_require__(6041);
 var resolveEndpointConfig = /* @__PURE__ */ __name((input) => {
   const tls = input.tls ?? true;
-  const { endpoint } = input;
+  const { endpoint, useDualstackEndpoint, useFipsEndpoint } = input;
   const customEndpointProvider = endpoint != null ? async () => toEndpointV1(await (0, import_util_middleware.normalizeProvider)(endpoint)()) : void 0;
   const isCustomEndpoint = !!endpoint;
-  const resolvedConfig = {
-    ...input,
+  const resolvedConfig = Object.assign(input, {
     endpoint: customEndpointProvider,
     tls,
     isCustomEndpoint,
-    useDualstackEndpoint: (0, import_util_middleware.normalizeProvider)(input.useDualstackEndpoint ?? false),
-    useFipsEndpoint: (0, import_util_middleware.normalizeProvider)(input.useFipsEndpoint ?? false)
-  };
+    useDualstackEndpoint: (0, import_util_middleware.normalizeProvider)(useDualstackEndpoint ?? false),
+    useFipsEndpoint: (0, import_util_middleware.normalizeProvider)(useFipsEndpoint ?? false)
+  });
   let configuredEndpointPromise = void 0;
   resolvedConfig.serviceConfiguredEndpoint = async () => {
     if (input.serviceId && !configuredEndpointPromise) {
@@ -27119,22 +27123,21 @@ var NODE_MAX_ATTEMPT_CONFIG_OPTIONS = {
   default: import_util_retry.DEFAULT_MAX_ATTEMPTS
 };
 var resolveRetryConfig = /* @__PURE__ */ __name((input) => {
-  const { retryStrategy } = input;
-  const maxAttempts = (0, import_util_middleware.normalizeProvider)(input.maxAttempts ?? import_util_retry.DEFAULT_MAX_ATTEMPTS);
-  return {
-    ...input,
+  const { retryStrategy, retryMode: _retryMode, maxAttempts: _maxAttempts } = input;
+  const maxAttempts = (0, import_util_middleware.normalizeProvider)(_maxAttempts ?? import_util_retry.DEFAULT_MAX_ATTEMPTS);
+  return Object.assign(input, {
     maxAttempts,
     retryStrategy: async () => {
       if (retryStrategy) {
         return retryStrategy;
       }
-      const retryMode = await (0, import_util_middleware.normalizeProvider)(input.retryMode)();
+      const retryMode = await (0, import_util_middleware.normalizeProvider)(_retryMode)();
       if (retryMode === import_util_retry.RETRY_MODES.ADAPTIVE) {
         return new import_util_retry.AdaptiveRetryStrategy(maxAttempts);
       }
       return new import_util_retry.StandardRetryStrategy(maxAttempts);
     }
-  };
+  });
 }, "resolveRetryConfig");
 var ENV_RETRY_MODE = "AWS_RETRY_MODE";
 var CONFIG_RETRY_MODE = "retry_mode";
@@ -28853,19 +28856,18 @@ module.exports = __toCommonJS(src_exports);
 
 // src/extensions/httpExtensionConfiguration.ts
 var getHttpHandlerExtensionConfiguration = /* @__PURE__ */ __name((runtimeConfig) => {
-  let httpHandler = runtimeConfig.httpHandler;
   return {
     setHttpHandler(handler) {
-      httpHandler = handler;
+      runtimeConfig.httpHandler = handler;
     },
     httpHandler() {
-      return httpHandler;
+      return runtimeConfig.httpHandler;
     },
     updateHttpClientConfig(key, value) {
-      httpHandler.updateHttpClientConfig(key, value);
+      runtimeConfig.httpHandler?.updateHttpClientConfig(key, value);
     },
     httpHandlerConfigs() {
-      return httpHandler.httpHandlerConfigs();
+      return runtimeConfig.httpHandler.httpHandlerConfigs();
     }
   };
 }, "getHttpHandlerExtensionConfiguration");
@@ -31090,12 +31092,11 @@ var getChecksumConfiguration = /* @__PURE__ */ __name((runtimeConfig) => {
     });
   }
   return {
-    _checksumAlgorithms: checksumAlgorithms,
     addChecksumAlgorithm(algo) {
-      this._checksumAlgorithms.push(algo);
+      checksumAlgorithms.push(algo);
     },
     checksumAlgorithms() {
-      return this._checksumAlgorithms;
+      return checksumAlgorithms;
     }
   };
 }, "getChecksumConfiguration");
@@ -31109,13 +31110,12 @@ var resolveChecksumRuntimeConfig = /* @__PURE__ */ __name((clientConfig) => {
 
 // src/extensions/retry.ts
 var getRetryConfiguration = /* @__PURE__ */ __name((runtimeConfig) => {
-  let _retryStrategy = runtimeConfig.retryStrategy;
   return {
     setRetryStrategy(retryStrategy) {
-      _retryStrategy = retryStrategy;
+      runtimeConfig.retryStrategy = retryStrategy;
     },
     retryStrategy() {
-      return _retryStrategy;
+      return runtimeConfig.retryStrategy;
     }
   };
 }, "getRetryConfiguration");
@@ -31127,17 +31127,11 @@ var resolveRetryRuntimeConfig = /* @__PURE__ */ __name((retryStrategyConfigurati
 
 // src/extensions/defaultExtensionConfiguration.ts
 var getDefaultExtensionConfiguration = /* @__PURE__ */ __name((runtimeConfig) => {
-  return {
-    ...getChecksumConfiguration(runtimeConfig),
-    ...getRetryConfiguration(runtimeConfig)
-  };
+  return Object.assign(getChecksumConfiguration(runtimeConfig), getRetryConfiguration(runtimeConfig));
 }, "getDefaultExtensionConfiguration");
 var getDefaultClientConfiguration = getDefaultExtensionConfiguration;
 var resolveDefaultRuntimeConfig = /* @__PURE__ */ __name((config) => {
-  return {
-    ...resolveChecksumRuntimeConfig(config),
-    ...resolveRetryRuntimeConfig(config)
-  };
+  return Object.assign(resolveChecksumRuntimeConfig(config), resolveRetryRuntimeConfig(config));
 }, "resolveDefaultRuntimeConfig");
 
 // src/get-array-if-single-item.ts
@@ -31505,12 +31499,11 @@ var getChecksumConfiguration = /* @__PURE__ */ __name((runtimeConfig) => {
     });
   }
   return {
-    _checksumAlgorithms: checksumAlgorithms,
     addChecksumAlgorithm(algo) {
-      this._checksumAlgorithms.push(algo);
+      checksumAlgorithms.push(algo);
     },
     checksumAlgorithms() {
-      return this._checksumAlgorithms;
+      return checksumAlgorithms;
     }
   };
 }, "getChecksumConfiguration");
@@ -31524,14 +31517,10 @@ var resolveChecksumRuntimeConfig = /* @__PURE__ */ __name((clientConfig) => {
 
 // src/extensions/defaultClientConfiguration.ts
 var getDefaultClientConfiguration = /* @__PURE__ */ __name((runtimeConfig) => {
-  return {
-    ...getChecksumConfiguration(runtimeConfig)
-  };
+  return getChecksumConfiguration(runtimeConfig);
 }, "getDefaultClientConfiguration");
 var resolveDefaultRuntimeConfig = /* @__PURE__ */ __name((config) => {
-  return {
-    ...resolveChecksumRuntimeConfig(config)
-  };
+  return resolveChecksumRuntimeConfig(config);
 }, "resolveDefaultRuntimeConfig");
 
 // src/http.ts
@@ -33216,7 +33205,7 @@ function createBufferedReadable(upstream, size, logger) {
     ];
     let mode = -1;
     upstream.on("data", (chunk) => {
-        const chunkMode = (0, createBufferedReadableStream_1.modeOf)(chunk);
+        const chunkMode = (0, createBufferedReadableStream_1.modeOf)(chunk, true);
         if (mode !== chunkMode) {
             if (mode >= 0) {
                 downstream.push((0, createBufferedReadableStream_1.flush)(buffers, mode));
@@ -33286,7 +33275,7 @@ function createBufferedReadableStream(upstream, size, logger) {
             controller.close();
         }
         else {
-            const chunkMode = modeOf(chunk);
+            const chunkMode = modeOf(chunk, false);
             if (mode !== chunkMode) {
                 if (mode >= 0) {
                     controller.enqueue(flush(buffers, mode));
@@ -33354,8 +33343,8 @@ function sizeOf(chunk) {
     return (_b = (_a = chunk === null || chunk === void 0 ? void 0 : chunk.byteLength) !== null && _a !== void 0 ? _a : chunk === null || chunk === void 0 ? void 0 : chunk.length) !== null && _b !== void 0 ? _b : 0;
 }
 exports.sizeOf = sizeOf;
-function modeOf(chunk) {
-    if (typeof Buffer !== "undefined" && chunk instanceof Buffer) {
+function modeOf(chunk, allowBuffer = true) {
+    if (allowBuffer && typeof Buffer !== "undefined" && chunk instanceof Buffer) {
         return 2;
     }
     if (chunk instanceof Uint8Array) {
@@ -34106,6127 +34095,120 @@ var createWaiter = /* @__PURE__ */ __name(async (options, input, acceptorChecks)
 
 /***/ }),
 
-/***/ 7707:
-/***/ ((module) => {
-
-
-module.exports = function(Promise) {
-var SomePromiseArray = Promise._SomePromiseArray;
-function any(promises) {
-    var ret = new SomePromiseArray(promises);
-    var promise = ret.promise();
-    ret.setHowMany(1);
-    ret.setUnwrap();
-    ret.init();
-    return promise;
-}
-
-Promise.any = function (promises) {
-    return any(promises);
-};
-
-Promise.prototype.any = function () {
-    return any(this);
-};
-
-};
-
-
-/***/ }),
-
-/***/ 1281:
+/***/ 9776:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-
-var firstLineError;
-try {throw new Error(); } catch (e) {firstLineError = e;}
-var schedule = __nccwpck_require__(8108);
-var Queue = __nccwpck_require__(2670);
-
-function Async() {
-    this._customScheduler = false;
-    this._isTickUsed = false;
-    this._lateQueue = new Queue(16);
-    this._normalQueue = new Queue(16);
-    this._haveDrainedQueues = false;
-    var self = this;
-    this.drainQueues = function () {
-        self._drainQueues();
-    };
-    this._schedule = schedule;
-}
-
-Async.prototype.setScheduler = function(fn) {
-    var prev = this._schedule;
-    this._schedule = fn;
-    this._customScheduler = true;
-    return prev;
-};
-
-Async.prototype.hasCustomScheduler = function() {
-    return this._customScheduler;
-};
-
-Async.prototype.haveItemsQueued = function () {
-    return this._isTickUsed || this._haveDrainedQueues;
-};
-
-
-Async.prototype.fatalError = function(e, isNode) {
-    if (isNode) {
-        process.stderr.write("Fatal " + (e instanceof Error ? e.stack : e) +
-            "\n");
-        process.exit(2);
-    } else {
-        this.throwLater(e);
-    }
-};
-
-Async.prototype.throwLater = function(fn, arg) {
-    if (arguments.length === 1) {
-        arg = fn;
-        fn = function () { throw arg; };
-    }
-    if (typeof setTimeout !== "undefined") {
-        setTimeout(function() {
-            fn(arg);
-        }, 0);
-    } else try {
-        this._schedule(function() {
-            fn(arg);
-        });
-    } catch (e) {
-        throw new Error("No async scheduler available\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-    }
-};
-
-function AsyncInvokeLater(fn, receiver, arg) {
-    this._lateQueue.push(fn, receiver, arg);
-    this._queueTick();
-}
-
-function AsyncInvoke(fn, receiver, arg) {
-    this._normalQueue.push(fn, receiver, arg);
-    this._queueTick();
-}
-
-function AsyncSettlePromises(promise) {
-    this._normalQueue._pushOne(promise);
-    this._queueTick();
-}
-
-Async.prototype.invokeLater = AsyncInvokeLater;
-Async.prototype.invoke = AsyncInvoke;
-Async.prototype.settlePromises = AsyncSettlePromises;
-
-
-function _drainQueue(queue) {
-    while (queue.length() > 0) {
-        _drainQueueStep(queue);
-    }
-}
-
-function _drainQueueStep(queue) {
-    var fn = queue.shift();
-    if (typeof fn !== "function") {
-        fn._settlePromises();
-    } else {
-        var receiver = queue.shift();
-        var arg = queue.shift();
-        fn.call(receiver, arg);
-    }
-}
-
-Async.prototype._drainQueues = function () {
-    _drainQueue(this._normalQueue);
-    this._reset();
-    this._haveDrainedQueues = true;
-    _drainQueue(this._lateQueue);
-};
-
-Async.prototype._queueTick = function () {
-    if (!this._isTickUsed) {
-        this._isTickUsed = true;
-        this._schedule(this.drainQueues);
-    }
-};
-
-Async.prototype._reset = function () {
-    this._isTickUsed = false;
-};
-
-module.exports = Async;
-module.exports.firstLineError = firstLineError;
-
-
-/***/ }),
-
-/***/ 4330:
-/***/ ((module) => {
-
-
-module.exports = function(Promise, INTERNAL, tryConvertToPromise, debug) {
-var calledBind = false;
-var rejectThis = function(_, e) {
-    this._reject(e);
-};
-
-var targetRejected = function(e, context) {
-    context.promiseRejectionQueued = true;
-    context.bindingPromise._then(rejectThis, rejectThis, null, this, e);
-};
-
-var bindingResolved = function(thisArg, context) {
-    if (((this._bitField & 50397184) === 0)) {
-        this._resolveCallback(context.target);
-    }
-};
-
-var bindingRejected = function(e, context) {
-    if (!context.promiseRejectionQueued) this._reject(e);
-};
-
-Promise.prototype.bind = function (thisArg) {
-    if (!calledBind) {
-        calledBind = true;
-        Promise.prototype._propagateFrom = debug.propagateFromFunction();
-        Promise.prototype._boundValue = debug.boundValueFunction();
-    }
-    var maybePromise = tryConvertToPromise(thisArg);
-    var ret = new Promise(INTERNAL);
-    ret._propagateFrom(this, 1);
-    var target = this._target();
-    ret._setBoundTo(maybePromise);
-    if (maybePromise instanceof Promise) {
-        var context = {
-            promiseRejectionQueued: false,
-            promise: ret,
-            target: target,
-            bindingPromise: maybePromise
-        };
-        target._then(INTERNAL, targetRejected, undefined, ret, context);
-        maybePromise._then(
-            bindingResolved, bindingRejected, undefined, ret, context);
-        ret._setOnCancel(maybePromise);
-    } else {
-        ret._resolveCallback(target);
-    }
-    return ret;
-};
-
-Promise.prototype._setBoundTo = function (obj) {
-    if (obj !== undefined) {
-        this._bitField = this._bitField | 2097152;
-        this._boundTo = obj;
-    } else {
-        this._bitField = this._bitField & (~2097152);
-    }
-};
-
-Promise.prototype._isBound = function () {
-    return (this._bitField & 2097152) === 2097152;
-};
-
-Promise.bind = function (thisArg, value) {
-    return Promise.resolve(value).bind(thisArg);
-};
-};
-
-
-/***/ }),
-
-/***/ 4366:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-var old;
-if (typeof Promise !== "undefined") old = Promise;
-function noConflict() {
-    try { if (Promise === bluebird) Promise = old; }
-    catch (e) {}
-    return bluebird;
-}
-var bluebird = __nccwpck_require__(3096)();
-bluebird.noConflict = noConflict;
-module.exports = bluebird;
-
-
-/***/ }),
-
-/***/ 4454:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-var cr = Object.create;
-if (cr) {
-    var callerCache = cr(null);
-    var getterCache = cr(null);
-    callerCache[" size"] = getterCache[" size"] = 0;
-}
-
-module.exports = function(Promise) {
-var util = __nccwpck_require__(409);
-var canEvaluate = util.canEvaluate;
-var isIdentifier = util.isIdentifier;
-
-var getMethodCaller;
-var getGetter;
-if (true) {
-var makeMethodCaller = function (methodName) {
-    return new Function("ensureMethod", "                                    \n\
-        return function(obj) {                                               \n\
-            'use strict'                                                     \n\
-            var len = this.length;                                           \n\
-            ensureMethod(obj, 'methodName');                                 \n\
-            switch(len) {                                                    \n\
-                case 1: return obj.methodName(this[0]);                      \n\
-                case 2: return obj.methodName(this[0], this[1]);             \n\
-                case 3: return obj.methodName(this[0], this[1], this[2]);    \n\
-                case 0: return obj.methodName();                             \n\
-                default:                                                     \n\
-                    return obj.methodName.apply(obj, this);                  \n\
-            }                                                                \n\
-        };                                                                   \n\
-        ".replace(/methodName/g, methodName))(ensureMethod);
-};
-
-var makeGetter = function (propertyName) {
-    return new Function("obj", "                                             \n\
-        'use strict';                                                        \n\
-        return obj.propertyName;                                             \n\
-        ".replace("propertyName", propertyName));
-};
-
-var getCompiled = function(name, compiler, cache) {
-    var ret = cache[name];
-    if (typeof ret !== "function") {
-        if (!isIdentifier(name)) {
-            return null;
-        }
-        ret = compiler(name);
-        cache[name] = ret;
-        cache[" size"]++;
-        if (cache[" size"] > 512) {
-            var keys = Object.keys(cache);
-            for (var i = 0; i < 256; ++i) delete cache[keys[i]];
-            cache[" size"] = keys.length - 256;
-        }
-    }
-    return ret;
-};
-
-getMethodCaller = function(name) {
-    return getCompiled(name, makeMethodCaller, callerCache);
-};
-
-getGetter = function(name) {
-    return getCompiled(name, makeGetter, getterCache);
-};
-}
-
-function ensureMethod(obj, methodName) {
-    var fn;
-    if (obj != null) fn = obj[methodName];
-    if (typeof fn !== "function") {
-        var message = "Object " + util.classString(obj) + " has no method '" +
-            util.toString(methodName) + "'";
-        throw new Promise.TypeError(message);
-    }
-    return fn;
-}
-
-function caller(obj) {
-    var methodName = this.pop();
-    var fn = ensureMethod(obj, methodName);
-    return fn.apply(obj, this);
-}
-Promise.prototype.call = function (methodName) {
-    var $_len = arguments.length;var args = new Array(Math.max($_len - 1, 0)); for(var $_i = 1; $_i < $_len; ++$_i) {args[$_i - 1] = arguments[$_i];};
-    if (true) {
-        if (canEvaluate) {
-            var maybeCaller = getMethodCaller(methodName);
-            if (maybeCaller !== null) {
-                return this._then(
-                    maybeCaller, undefined, undefined, args, undefined);
-            }
-        }
-    }
-    args.push(methodName);
-    return this._then(caller, undefined, undefined, args, undefined);
-};
-
-function namedGetter(obj) {
-    return obj[this];
-}
-function indexedGetter(obj) {
-    var index = +this;
-    if (index < 0) index = Math.max(0, index + obj.length);
-    return obj[index];
-}
-Promise.prototype.get = function (propertyName) {
-    var isIndex = (typeof propertyName === "number");
-    var getter;
-    if (!isIndex) {
-        if (canEvaluate) {
-            var maybeGetter = getGetter(propertyName);
-            getter = maybeGetter !== null ? maybeGetter : namedGetter;
-        } else {
-            getter = namedGetter;
-        }
-    } else {
-        getter = indexedGetter;
-    }
-    return this._then(getter, undefined, undefined, propertyName, undefined);
-};
-};
-
-
-/***/ }),
-
-/***/ 2855:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(Promise, PromiseArray, apiRejection, debug) {
-var util = __nccwpck_require__(409);
-var tryCatch = util.tryCatch;
-var errorObj = util.errorObj;
-var async = Promise._async;
-
-Promise.prototype["break"] = Promise.prototype.cancel = function() {
-    if (!debug.cancellation()) return this._warn("cancellation is disabled");
-
-    var promise = this;
-    var child = promise;
-    while (promise._isCancellable()) {
-        if (!promise._cancelBy(child)) {
-            if (child._isFollowing()) {
-                child._followee().cancel();
-            } else {
-                child._cancelBranched();
-            }
-            break;
-        }
-
-        var parent = promise._cancellationParent;
-        if (parent == null || !parent._isCancellable()) {
-            if (promise._isFollowing()) {
-                promise._followee().cancel();
-            } else {
-                promise._cancelBranched();
-            }
-            break;
-        } else {
-            if (promise._isFollowing()) promise._followee().cancel();
-            promise._setWillBeCancelled();
-            child = promise;
-            promise = parent;
-        }
-    }
-};
-
-Promise.prototype._branchHasCancelled = function() {
-    this._branchesRemainingToCancel--;
-};
-
-Promise.prototype._enoughBranchesHaveCancelled = function() {
-    return this._branchesRemainingToCancel === undefined ||
-           this._branchesRemainingToCancel <= 0;
-};
-
-Promise.prototype._cancelBy = function(canceller) {
-    if (canceller === this) {
-        this._branchesRemainingToCancel = 0;
-        this._invokeOnCancel();
-        return true;
-    } else {
-        this._branchHasCancelled();
-        if (this._enoughBranchesHaveCancelled()) {
-            this._invokeOnCancel();
-            return true;
-        }
-    }
-    return false;
-};
-
-Promise.prototype._cancelBranched = function() {
-    if (this._enoughBranchesHaveCancelled()) {
-        this._cancel();
-    }
-};
-
-Promise.prototype._cancel = function() {
-    if (!this._isCancellable()) return;
-    this._setCancelled();
-    async.invoke(this._cancelPromises, this, undefined);
-};
-
-Promise.prototype._cancelPromises = function() {
-    if (this._length() > 0) this._settlePromises();
-};
-
-Promise.prototype._unsetOnCancel = function() {
-    this._onCancelField = undefined;
-};
-
-Promise.prototype._isCancellable = function() {
-    return this.isPending() && !this._isCancelled();
-};
-
-Promise.prototype.isCancellable = function() {
-    return this.isPending() && !this.isCancelled();
-};
-
-Promise.prototype._doInvokeOnCancel = function(onCancelCallback, internalOnly) {
-    if (util.isArray(onCancelCallback)) {
-        for (var i = 0; i < onCancelCallback.length; ++i) {
-            this._doInvokeOnCancel(onCancelCallback[i], internalOnly);
-        }
-    } else if (onCancelCallback !== undefined) {
-        if (typeof onCancelCallback === "function") {
-            if (!internalOnly) {
-                var e = tryCatch(onCancelCallback).call(this._boundValue());
-                if (e === errorObj) {
-                    this._attachExtraTrace(e.e);
-                    async.throwLater(e.e);
-                }
-            }
-        } else {
-            onCancelCallback._resultCancelled(this);
-        }
-    }
-};
-
-Promise.prototype._invokeOnCancel = function() {
-    var onCancelCallback = this._onCancel();
-    this._unsetOnCancel();
-    async.invoke(this._doInvokeOnCancel, this, onCancelCallback);
-};
-
-Promise.prototype._invokeInternalOnCancel = function() {
-    if (this._isCancellable()) {
-        this._doInvokeOnCancel(this._onCancel(), true);
-        this._unsetOnCancel();
-    }
-};
-
-Promise.prototype._resultCancelled = function() {
-    this.cancel();
-};
-
-};
-
-
-/***/ }),
-
-/***/ 4519:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(NEXT_FILTER) {
-var util = __nccwpck_require__(409);
-var getKeys = (__nccwpck_require__(8974).keys);
-var tryCatch = util.tryCatch;
-var errorObj = util.errorObj;
-
-function catchFilter(instances, cb, promise) {
-    return function(e) {
-        var boundTo = promise._boundValue();
-        predicateLoop: for (var i = 0; i < instances.length; ++i) {
-            var item = instances[i];
-
-            if (item === Error ||
-                (item != null && item.prototype instanceof Error)) {
-                if (e instanceof item) {
-                    return tryCatch(cb).call(boundTo, e);
-                }
-            } else if (typeof item === "function") {
-                var matchesPredicate = tryCatch(item).call(boundTo, e);
-                if (matchesPredicate === errorObj) {
-                    return matchesPredicate;
-                } else if (matchesPredicate) {
-                    return tryCatch(cb).call(boundTo, e);
-                }
-            } else if (util.isObject(e)) {
-                var keys = getKeys(item);
-                for (var j = 0; j < keys.length; ++j) {
-                    var key = keys[j];
-                    if (item[key] != e[key]) {
-                        continue predicateLoop;
-                    }
-                }
-                return tryCatch(cb).call(boundTo, e);
-            }
-        }
-        return NEXT_FILTER;
-    };
-}
-
-return catchFilter;
-};
-
-
-/***/ }),
-
-/***/ 7790:
-/***/ ((module) => {
-
-
-module.exports = function(Promise) {
-var longStackTraces = false;
-var contextStack = [];
-
-Promise.prototype._promiseCreated = function() {};
-Promise.prototype._pushContext = function() {};
-Promise.prototype._popContext = function() {return null;};
-Promise._peekContext = Promise.prototype._peekContext = function() {};
-
-function Context() {
-    this._trace = new Context.CapturedTrace(peekContext());
-}
-Context.prototype._pushContext = function () {
-    if (this._trace !== undefined) {
-        this._trace._promiseCreated = null;
-        contextStack.push(this._trace);
-    }
-};
-
-Context.prototype._popContext = function () {
-    if (this._trace !== undefined) {
-        var trace = contextStack.pop();
-        var ret = trace._promiseCreated;
-        trace._promiseCreated = null;
-        return ret;
-    }
-    return null;
-};
-
-function createContext() {
-    if (longStackTraces) return new Context();
-}
-
-function peekContext() {
-    var lastIndex = contextStack.length - 1;
-    if (lastIndex >= 0) {
-        return contextStack[lastIndex];
-    }
-    return undefined;
-}
-Context.CapturedTrace = null;
-Context.create = createContext;
-Context.deactivateLongStackTraces = function() {};
-Context.activateLongStackTraces = function() {
-    var Promise_pushContext = Promise.prototype._pushContext;
-    var Promise_popContext = Promise.prototype._popContext;
-    var Promise_PeekContext = Promise._peekContext;
-    var Promise_peekContext = Promise.prototype._peekContext;
-    var Promise_promiseCreated = Promise.prototype._promiseCreated;
-    Context.deactivateLongStackTraces = function() {
-        Promise.prototype._pushContext = Promise_pushContext;
-        Promise.prototype._popContext = Promise_popContext;
-        Promise._peekContext = Promise_PeekContext;
-        Promise.prototype._peekContext = Promise_peekContext;
-        Promise.prototype._promiseCreated = Promise_promiseCreated;
-        longStackTraces = false;
-    };
-    longStackTraces = true;
-    Promise.prototype._pushContext = Context.prototype._pushContext;
-    Promise.prototype._popContext = Context.prototype._popContext;
-    Promise._peekContext = Promise.prototype._peekContext = peekContext;
-    Promise.prototype._promiseCreated = function() {
-        var ctx = this._peekContext();
-        if (ctx && ctx._promiseCreated == null) ctx._promiseCreated = this;
-    };
-};
-return Context;
-};
-
-
-/***/ }),
-
-/***/ 7979:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(Promise, Context,
-    enableAsyncHooks, disableAsyncHooks) {
-var async = Promise._async;
-var Warning = (__nccwpck_require__(9318).Warning);
-var util = __nccwpck_require__(409);
-var es5 = __nccwpck_require__(8974);
-var canAttachTrace = util.canAttachTrace;
-var unhandledRejectionHandled;
-var possiblyUnhandledRejection;
-var bluebirdFramePattern =
-    /[\\\/]bluebird[\\\/]js[\\\/](release|debug|instrumented)/;
-var nodeFramePattern = /\((?:timers\.js):\d+:\d+\)/;
-var parseLinePattern = /[\/<\(](.+?):(\d+):(\d+)\)?\s*$/;
-var stackFramePattern = null;
-var formatStack = null;
-var indentStackFrames = false;
-var printWarning;
-var debugging = !!(util.env("BLUEBIRD_DEBUG") != 0 &&
-                        ( false ||
-                         util.env("BLUEBIRD_DEBUG") ||
-                         util.env("NODE_ENV") === "development"));
-
-var warnings = !!(util.env("BLUEBIRD_WARNINGS") != 0 &&
-    (debugging || util.env("BLUEBIRD_WARNINGS")));
-
-var longStackTraces = !!(util.env("BLUEBIRD_LONG_STACK_TRACES") != 0 &&
-    (debugging || util.env("BLUEBIRD_LONG_STACK_TRACES")));
-
-var wForgottenReturn = util.env("BLUEBIRD_W_FORGOTTEN_RETURN") != 0 &&
-    (warnings || !!util.env("BLUEBIRD_W_FORGOTTEN_RETURN"));
-
-var deferUnhandledRejectionCheck;
-(function() {
-    var promises = [];
-
-    function unhandledRejectionCheck() {
-        for (var i = 0; i < promises.length; ++i) {
-            promises[i]._notifyUnhandledRejection();
-        }
-        unhandledRejectionClear();
-    }
-
-    function unhandledRejectionClear() {
-        promises.length = 0;
-    }
-
-    deferUnhandledRejectionCheck = function(promise) {
-        promises.push(promise);
-        setTimeout(unhandledRejectionCheck, 1);
-    };
-
-    es5.defineProperty(Promise, "_unhandledRejectionCheck", {
-        value: unhandledRejectionCheck
-    });
-    es5.defineProperty(Promise, "_unhandledRejectionClear", {
-        value: unhandledRejectionClear
-    });
-})();
-
-Promise.prototype.suppressUnhandledRejections = function() {
-    var target = this._target();
-    target._bitField = ((target._bitField & (~1048576)) |
-                      524288);
-};
-
-Promise.prototype._ensurePossibleRejectionHandled = function () {
-    if ((this._bitField & 524288) !== 0) return;
-    this._setRejectionIsUnhandled();
-    deferUnhandledRejectionCheck(this);
-};
-
-Promise.prototype._notifyUnhandledRejectionIsHandled = function () {
-    fireRejectionEvent("rejectionHandled",
-                                  unhandledRejectionHandled, undefined, this);
-};
-
-Promise.prototype._setReturnedNonUndefined = function() {
-    this._bitField = this._bitField | 268435456;
-};
-
-Promise.prototype._returnedNonUndefined = function() {
-    return (this._bitField & 268435456) !== 0;
-};
-
-Promise.prototype._notifyUnhandledRejection = function () {
-    if (this._isRejectionUnhandled()) {
-        var reason = this._settledValue();
-        this._setUnhandledRejectionIsNotified();
-        fireRejectionEvent("unhandledRejection",
-                                      possiblyUnhandledRejection, reason, this);
-    }
-};
-
-Promise.prototype._setUnhandledRejectionIsNotified = function () {
-    this._bitField = this._bitField | 262144;
-};
-
-Promise.prototype._unsetUnhandledRejectionIsNotified = function () {
-    this._bitField = this._bitField & (~262144);
-};
-
-Promise.prototype._isUnhandledRejectionNotified = function () {
-    return (this._bitField & 262144) > 0;
-};
-
-Promise.prototype._setRejectionIsUnhandled = function () {
-    this._bitField = this._bitField | 1048576;
-};
-
-Promise.prototype._unsetRejectionIsUnhandled = function () {
-    this._bitField = this._bitField & (~1048576);
-    if (this._isUnhandledRejectionNotified()) {
-        this._unsetUnhandledRejectionIsNotified();
-        this._notifyUnhandledRejectionIsHandled();
-    }
-};
-
-Promise.prototype._isRejectionUnhandled = function () {
-    return (this._bitField & 1048576) > 0;
-};
-
-Promise.prototype._warn = function(message, shouldUseOwnTrace, promise) {
-    return warn(message, shouldUseOwnTrace, promise || this);
-};
-
-Promise.onPossiblyUnhandledRejection = function (fn) {
-    var context = Promise._getContext();
-    possiblyUnhandledRejection = util.contextBind(context, fn);
-};
-
-Promise.onUnhandledRejectionHandled = function (fn) {
-    var context = Promise._getContext();
-    unhandledRejectionHandled = util.contextBind(context, fn);
-};
-
-var disableLongStackTraces = function() {};
-Promise.longStackTraces = function () {
-    if (async.haveItemsQueued() && !config.longStackTraces) {
-        throw new Error("cannot enable long stack traces after promises have been created\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-    }
-    if (!config.longStackTraces && longStackTracesIsSupported()) {
-        var Promise_captureStackTrace = Promise.prototype._captureStackTrace;
-        var Promise_attachExtraTrace = Promise.prototype._attachExtraTrace;
-        var Promise_dereferenceTrace = Promise.prototype._dereferenceTrace;
-        config.longStackTraces = true;
-        disableLongStackTraces = function() {
-            if (async.haveItemsQueued() && !config.longStackTraces) {
-                throw new Error("cannot enable long stack traces after promises have been created\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-            }
-            Promise.prototype._captureStackTrace = Promise_captureStackTrace;
-            Promise.prototype._attachExtraTrace = Promise_attachExtraTrace;
-            Promise.prototype._dereferenceTrace = Promise_dereferenceTrace;
-            Context.deactivateLongStackTraces();
-            config.longStackTraces = false;
-        };
-        Promise.prototype._captureStackTrace = longStackTracesCaptureStackTrace;
-        Promise.prototype._attachExtraTrace = longStackTracesAttachExtraTrace;
-        Promise.prototype._dereferenceTrace = longStackTracesDereferenceTrace;
-        Context.activateLongStackTraces();
-    }
-};
-
-Promise.hasLongStackTraces = function () {
-    return config.longStackTraces && longStackTracesIsSupported();
-};
-
-
-var legacyHandlers = {
-    unhandledrejection: {
-        before: function() {
-            var ret = util.global.onunhandledrejection;
-            util.global.onunhandledrejection = null;
-            return ret;
-        },
-        after: function(fn) {
-            util.global.onunhandledrejection = fn;
-        }
-    },
-    rejectionhandled: {
-        before: function() {
-            var ret = util.global.onrejectionhandled;
-            util.global.onrejectionhandled = null;
-            return ret;
-        },
-        after: function(fn) {
-            util.global.onrejectionhandled = fn;
-        }
-    }
-};
-
-var fireDomEvent = (function() {
-    var dispatch = function(legacy, e) {
-        if (legacy) {
-            var fn;
-            try {
-                fn = legacy.before();
-                return !util.global.dispatchEvent(e);
-            } finally {
-                legacy.after(fn);
-            }
-        } else {
-            return !util.global.dispatchEvent(e);
-        }
-    };
-    try {
-        if (typeof CustomEvent === "function") {
-            var event = new CustomEvent("CustomEvent");
-            util.global.dispatchEvent(event);
-            return function(name, event) {
-                name = name.toLowerCase();
-                var eventData = {
-                    detail: event,
-                    cancelable: true
-                };
-                var domEvent = new CustomEvent(name, eventData);
-                es5.defineProperty(
-                    domEvent, "promise", {value: event.promise});
-                es5.defineProperty(
-                    domEvent, "reason", {value: event.reason});
-
-                return dispatch(legacyHandlers[name], domEvent);
-            };
-        } else if (typeof Event === "function") {
-            var event = new Event("CustomEvent");
-            util.global.dispatchEvent(event);
-            return function(name, event) {
-                name = name.toLowerCase();
-                var domEvent = new Event(name, {
-                    cancelable: true
-                });
-                domEvent.detail = event;
-                es5.defineProperty(domEvent, "promise", {value: event.promise});
-                es5.defineProperty(domEvent, "reason", {value: event.reason});
-                return dispatch(legacyHandlers[name], domEvent);
-            };
-        } else {
-            var event = document.createEvent("CustomEvent");
-            event.initCustomEvent("testingtheevent", false, true, {});
-            util.global.dispatchEvent(event);
-            return function(name, event) {
-                name = name.toLowerCase();
-                var domEvent = document.createEvent("CustomEvent");
-                domEvent.initCustomEvent(name, false, true,
-                    event);
-                return dispatch(legacyHandlers[name], domEvent);
-            };
-        }
-    } catch (e) {}
-    return function() {
-        return false;
-    };
-})();
-
-var fireGlobalEvent = (function() {
-    if (util.isNode) {
-        return function() {
-            return process.emit.apply(process, arguments);
-        };
-    } else {
-        if (!util.global) {
-            return function() {
-                return false;
-            };
-        }
-        return function(name) {
-            var methodName = "on" + name.toLowerCase();
-            var method = util.global[methodName];
-            if (!method) return false;
-            method.apply(util.global, [].slice.call(arguments, 1));
-            return true;
-        };
-    }
-})();
-
-function generatePromiseLifecycleEventObject(name, promise) {
-    return {promise: promise};
-}
-
-var eventToObjectGenerator = {
-    promiseCreated: generatePromiseLifecycleEventObject,
-    promiseFulfilled: generatePromiseLifecycleEventObject,
-    promiseRejected: generatePromiseLifecycleEventObject,
-    promiseResolved: generatePromiseLifecycleEventObject,
-    promiseCancelled: generatePromiseLifecycleEventObject,
-    promiseChained: function(name, promise, child) {
-        return {promise: promise, child: child};
-    },
-    warning: function(name, warning) {
-        return {warning: warning};
-    },
-    unhandledRejection: function (name, reason, promise) {
-        return {reason: reason, promise: promise};
-    },
-    rejectionHandled: generatePromiseLifecycleEventObject
-};
-
-var activeFireEvent = function (name) {
-    var globalEventFired = false;
-    try {
-        globalEventFired = fireGlobalEvent.apply(null, arguments);
-    } catch (e) {
-        async.throwLater(e);
-        globalEventFired = true;
-    }
-
-    var domEventFired = false;
-    try {
-        domEventFired = fireDomEvent(name,
-                    eventToObjectGenerator[name].apply(null, arguments));
-    } catch (e) {
-        async.throwLater(e);
-        domEventFired = true;
-    }
-
-    return domEventFired || globalEventFired;
-};
-
-Promise.config = function(opts) {
-    opts = Object(opts);
-    if ("longStackTraces" in opts) {
-        if (opts.longStackTraces) {
-            Promise.longStackTraces();
-        } else if (!opts.longStackTraces && Promise.hasLongStackTraces()) {
-            disableLongStackTraces();
-        }
-    }
-    if ("warnings" in opts) {
-        var warningsOption = opts.warnings;
-        config.warnings = !!warningsOption;
-        wForgottenReturn = config.warnings;
-
-        if (util.isObject(warningsOption)) {
-            if ("wForgottenReturn" in warningsOption) {
-                wForgottenReturn = !!warningsOption.wForgottenReturn;
-            }
-        }
-    }
-    if ("cancellation" in opts && opts.cancellation && !config.cancellation) {
-        if (async.haveItemsQueued()) {
-            throw new Error(
-                "cannot enable cancellation after promises are in use");
-        }
-        Promise.prototype._clearCancellationData =
-            cancellationClearCancellationData;
-        Promise.prototype._propagateFrom = cancellationPropagateFrom;
-        Promise.prototype._onCancel = cancellationOnCancel;
-        Promise.prototype._setOnCancel = cancellationSetOnCancel;
-        Promise.prototype._attachCancellationCallback =
-            cancellationAttachCancellationCallback;
-        Promise.prototype._execute = cancellationExecute;
-        propagateFromFunction = cancellationPropagateFrom;
-        config.cancellation = true;
-    }
-    if ("monitoring" in opts) {
-        if (opts.monitoring && !config.monitoring) {
-            config.monitoring = true;
-            Promise.prototype._fireEvent = activeFireEvent;
-        } else if (!opts.monitoring && config.monitoring) {
-            config.monitoring = false;
-            Promise.prototype._fireEvent = defaultFireEvent;
-        }
-    }
-    if ("asyncHooks" in opts && util.nodeSupportsAsyncResource) {
-        var prev = config.asyncHooks;
-        var cur = !!opts.asyncHooks;
-        if (prev !== cur) {
-            config.asyncHooks = cur;
-            if (cur) {
-                enableAsyncHooks();
-            } else {
-                disableAsyncHooks();
-            }
-        }
-    }
-    return Promise;
-};
-
-function defaultFireEvent() { return false; }
-
-Promise.prototype._fireEvent = defaultFireEvent;
-Promise.prototype._execute = function(executor, resolve, reject) {
-    try {
-        executor(resolve, reject);
-    } catch (e) {
-        return e;
-    }
-};
-Promise.prototype._onCancel = function () {};
-Promise.prototype._setOnCancel = function (handler) { ; };
-Promise.prototype._attachCancellationCallback = function(onCancel) {
-    ;
-};
-Promise.prototype._captureStackTrace = function () {};
-Promise.prototype._attachExtraTrace = function () {};
-Promise.prototype._dereferenceTrace = function () {};
-Promise.prototype._clearCancellationData = function() {};
-Promise.prototype._propagateFrom = function (parent, flags) {
-    ;
-    ;
-};
-
-function cancellationExecute(executor, resolve, reject) {
-    var promise = this;
-    try {
-        executor(resolve, reject, function(onCancel) {
-            if (typeof onCancel !== "function") {
-                throw new TypeError("onCancel must be a function, got: " +
-                                    util.toString(onCancel));
-            }
-            promise._attachCancellationCallback(onCancel);
-        });
-    } catch (e) {
-        return e;
-    }
-}
-
-function cancellationAttachCancellationCallback(onCancel) {
-    if (!this._isCancellable()) return this;
-
-    var previousOnCancel = this._onCancel();
-    if (previousOnCancel !== undefined) {
-        if (util.isArray(previousOnCancel)) {
-            previousOnCancel.push(onCancel);
-        } else {
-            this._setOnCancel([previousOnCancel, onCancel]);
-        }
-    } else {
-        this._setOnCancel(onCancel);
-    }
-}
-
-function cancellationOnCancel() {
-    return this._onCancelField;
-}
-
-function cancellationSetOnCancel(onCancel) {
-    this._onCancelField = onCancel;
-}
-
-function cancellationClearCancellationData() {
-    this._cancellationParent = undefined;
-    this._onCancelField = undefined;
-}
-
-function cancellationPropagateFrom(parent, flags) {
-    if ((flags & 1) !== 0) {
-        this._cancellationParent = parent;
-        var branchesRemainingToCancel = parent._branchesRemainingToCancel;
-        if (branchesRemainingToCancel === undefined) {
-            branchesRemainingToCancel = 0;
-        }
-        parent._branchesRemainingToCancel = branchesRemainingToCancel + 1;
-    }
-    if ((flags & 2) !== 0 && parent._isBound()) {
-        this._setBoundTo(parent._boundTo);
-    }
-}
-
-function bindingPropagateFrom(parent, flags) {
-    if ((flags & 2) !== 0 && parent._isBound()) {
-        this._setBoundTo(parent._boundTo);
-    }
-}
-var propagateFromFunction = bindingPropagateFrom;
-
-function boundValueFunction() {
-    var ret = this._boundTo;
-    if (ret !== undefined) {
-        if (ret instanceof Promise) {
-            if (ret.isFulfilled()) {
-                return ret.value();
-            } else {
-                return undefined;
-            }
-        }
-    }
-    return ret;
-}
-
-function longStackTracesCaptureStackTrace() {
-    this._trace = new CapturedTrace(this._peekContext());
-}
-
-function longStackTracesAttachExtraTrace(error, ignoreSelf) {
-    if (canAttachTrace(error)) {
-        var trace = this._trace;
-        if (trace !== undefined) {
-            if (ignoreSelf) trace = trace._parent;
-        }
-        if (trace !== undefined) {
-            trace.attachExtraTrace(error);
-        } else if (!error.__stackCleaned__) {
-            var parsed = parseStackAndMessage(error);
-            util.notEnumerableProp(error, "stack",
-                parsed.message + "\n" + parsed.stack.join("\n"));
-            util.notEnumerableProp(error, "__stackCleaned__", true);
-        }
-    }
-}
-
-function longStackTracesDereferenceTrace() {
-    this._trace = undefined;
-}
-
-function checkForgottenReturns(returnValue, promiseCreated, name, promise,
-                               parent) {
-    if (returnValue === undefined && promiseCreated !== null &&
-        wForgottenReturn) {
-        if (parent !== undefined && parent._returnedNonUndefined()) return;
-        if ((promise._bitField & 65535) === 0) return;
-
-        if (name) name = name + " ";
-        var handlerLine = "";
-        var creatorLine = "";
-        if (promiseCreated._trace) {
-            var traceLines = promiseCreated._trace.stack.split("\n");
-            var stack = cleanStack(traceLines);
-            for (var i = stack.length - 1; i >= 0; --i) {
-                var line = stack[i];
-                if (!nodeFramePattern.test(line)) {
-                    var lineMatches = line.match(parseLinePattern);
-                    if (lineMatches) {
-                        handlerLine  = "at " + lineMatches[1] +
-                            ":" + lineMatches[2] + ":" + lineMatches[3] + " ";
-                    }
-                    break;
-                }
-            }
-
-            if (stack.length > 0) {
-                var firstUserLine = stack[0];
-                for (var i = 0; i < traceLines.length; ++i) {
-
-                    if (traceLines[i] === firstUserLine) {
-                        if (i > 0) {
-                            creatorLine = "\n" + traceLines[i - 1];
-                        }
-                        break;
-                    }
-                }
-
-            }
-        }
-        var msg = "a promise was created in a " + name +
-            "handler " + handlerLine + "but was not returned from it, " +
-            "see http://goo.gl/rRqMUw" +
-            creatorLine;
-        promise._warn(msg, true, promiseCreated);
-    }
-}
-
-function deprecated(name, replacement) {
-    var message = name +
-        " is deprecated and will be removed in a future version.";
-    if (replacement) message += " Use " + replacement + " instead.";
-    return warn(message);
-}
-
-function warn(message, shouldUseOwnTrace, promise) {
-    if (!config.warnings) return;
-    var warning = new Warning(message);
-    var ctx;
-    if (shouldUseOwnTrace) {
-        promise._attachExtraTrace(warning);
-    } else if (config.longStackTraces && (ctx = Promise._peekContext())) {
-        ctx.attachExtraTrace(warning);
-    } else {
-        var parsed = parseStackAndMessage(warning);
-        warning.stack = parsed.message + "\n" + parsed.stack.join("\n");
-    }
-
-    if (!activeFireEvent("warning", warning)) {
-        formatAndLogError(warning, "", true);
-    }
-}
-
-function reconstructStack(message, stacks) {
-    for (var i = 0; i < stacks.length - 1; ++i) {
-        stacks[i].push("From previous event:");
-        stacks[i] = stacks[i].join("\n");
-    }
-    if (i < stacks.length) {
-        stacks[i] = stacks[i].join("\n");
-    }
-    return message + "\n" + stacks.join("\n");
-}
-
-function removeDuplicateOrEmptyJumps(stacks) {
-    for (var i = 0; i < stacks.length; ++i) {
-        if (stacks[i].length === 0 ||
-            ((i + 1 < stacks.length) && stacks[i][0] === stacks[i+1][0])) {
-            stacks.splice(i, 1);
-            i--;
-        }
-    }
-}
-
-function removeCommonRoots(stacks) {
-    var current = stacks[0];
-    for (var i = 1; i < stacks.length; ++i) {
-        var prev = stacks[i];
-        var currentLastIndex = current.length - 1;
-        var currentLastLine = current[currentLastIndex];
-        var commonRootMeetPoint = -1;
-
-        for (var j = prev.length - 1; j >= 0; --j) {
-            if (prev[j] === currentLastLine) {
-                commonRootMeetPoint = j;
-                break;
-            }
-        }
-
-        for (var j = commonRootMeetPoint; j >= 0; --j) {
-            var line = prev[j];
-            if (current[currentLastIndex] === line) {
-                current.pop();
-                currentLastIndex--;
-            } else {
-                break;
-            }
-        }
-        current = prev;
-    }
-}
-
-function cleanStack(stack) {
-    var ret = [];
-    for (var i = 0; i < stack.length; ++i) {
-        var line = stack[i];
-        var isTraceLine = "    (No stack trace)" === line ||
-            stackFramePattern.test(line);
-        var isInternalFrame = isTraceLine && shouldIgnore(line);
-        if (isTraceLine && !isInternalFrame) {
-            if (indentStackFrames && line.charAt(0) !== " ") {
-                line = "    " + line;
-            }
-            ret.push(line);
-        }
-    }
-    return ret;
-}
-
-function stackFramesAsArray(error) {
-    var stack = error.stack.replace(/\s+$/g, "").split("\n");
-    for (var i = 0; i < stack.length; ++i) {
-        var line = stack[i];
-        if ("    (No stack trace)" === line || stackFramePattern.test(line)) {
-            break;
-        }
-    }
-    if (i > 0 && error.name != "SyntaxError") {
-        stack = stack.slice(i);
-    }
-    return stack;
-}
-
-function parseStackAndMessage(error) {
-    var stack = error.stack;
-    var message = error.toString();
-    stack = typeof stack === "string" && stack.length > 0
-                ? stackFramesAsArray(error) : ["    (No stack trace)"];
-    return {
-        message: message,
-        stack: error.name == "SyntaxError" ? stack : cleanStack(stack)
-    };
-}
-
-function formatAndLogError(error, title, isSoft) {
-    if (typeof console !== "undefined") {
-        var message;
-        if (util.isObject(error)) {
-            var stack = error.stack;
-            message = title + formatStack(stack, error);
-        } else {
-            message = title + String(error);
-        }
-        if (typeof printWarning === "function") {
-            printWarning(message, isSoft);
-        } else if (typeof console.log === "function" ||
-            typeof console.log === "object") {
-            console.log(message);
-        }
-    }
-}
-
-function fireRejectionEvent(name, localHandler, reason, promise) {
-    var localEventFired = false;
-    try {
-        if (typeof localHandler === "function") {
-            localEventFired = true;
-            if (name === "rejectionHandled") {
-                localHandler(promise);
-            } else {
-                localHandler(reason, promise);
-            }
-        }
-    } catch (e) {
-        async.throwLater(e);
-    }
-
-    if (name === "unhandledRejection") {
-        if (!activeFireEvent(name, reason, promise) && !localEventFired) {
-            formatAndLogError(reason, "Unhandled rejection ");
-        }
-    } else {
-        activeFireEvent(name, promise);
-    }
-}
-
-function formatNonError(obj) {
-    var str;
-    if (typeof obj === "function") {
-        str = "[function " +
-            (obj.name || "anonymous") +
-            "]";
-    } else {
-        str = obj && typeof obj.toString === "function"
-            ? obj.toString() : util.toString(obj);
-        var ruselessToString = /\[object [a-zA-Z0-9$_]+\]/;
-        if (ruselessToString.test(str)) {
-            try {
-                var newStr = JSON.stringify(obj);
-                str = newStr;
-            }
-            catch(e) {
-
-            }
-        }
-        if (str.length === 0) {
-            str = "(empty array)";
-        }
-    }
-    return ("(<" + snip(str) + ">, no stack trace)");
-}
-
-function snip(str) {
-    var maxChars = 41;
-    if (str.length < maxChars) {
-        return str;
-    }
-    return str.substr(0, maxChars - 3) + "...";
-}
-
-function longStackTracesIsSupported() {
-    return typeof captureStackTrace === "function";
-}
-
-var shouldIgnore = function() { return false; };
-var parseLineInfoRegex = /[\/<\(]([^:\/]+):(\d+):(?:\d+)\)?\s*$/;
-function parseLineInfo(line) {
-    var matches = line.match(parseLineInfoRegex);
-    if (matches) {
-        return {
-            fileName: matches[1],
-            line: parseInt(matches[2], 10)
-        };
-    }
-}
-
-function setBounds(firstLineError, lastLineError) {
-    if (!longStackTracesIsSupported()) return;
-    var firstStackLines = (firstLineError.stack || "").split("\n");
-    var lastStackLines = (lastLineError.stack || "").split("\n");
-    var firstIndex = -1;
-    var lastIndex = -1;
-    var firstFileName;
-    var lastFileName;
-    for (var i = 0; i < firstStackLines.length; ++i) {
-        var result = parseLineInfo(firstStackLines[i]);
-        if (result) {
-            firstFileName = result.fileName;
-            firstIndex = result.line;
-            break;
-        }
-    }
-    for (var i = 0; i < lastStackLines.length; ++i) {
-        var result = parseLineInfo(lastStackLines[i]);
-        if (result) {
-            lastFileName = result.fileName;
-            lastIndex = result.line;
-            break;
-        }
-    }
-    if (firstIndex < 0 || lastIndex < 0 || !firstFileName || !lastFileName ||
-        firstFileName !== lastFileName || firstIndex >= lastIndex) {
-        return;
-    }
-
-    shouldIgnore = function(line) {
-        if (bluebirdFramePattern.test(line)) return true;
-        var info = parseLineInfo(line);
-        if (info) {
-            if (info.fileName === firstFileName &&
-                (firstIndex <= info.line && info.line <= lastIndex)) {
-                return true;
-            }
-        }
-        return false;
-    };
-}
-
-function CapturedTrace(parent) {
-    this._parent = parent;
-    this._promisesCreated = 0;
-    var length = this._length = 1 + (parent === undefined ? 0 : parent._length);
-    captureStackTrace(this, CapturedTrace);
-    if (length > 32) this.uncycle();
-}
-util.inherits(CapturedTrace, Error);
-Context.CapturedTrace = CapturedTrace;
-
-CapturedTrace.prototype.uncycle = function() {
-    var length = this._length;
-    if (length < 2) return;
-    var nodes = [];
-    var stackToIndex = {};
-
-    for (var i = 0, node = this; node !== undefined; ++i) {
-        nodes.push(node);
-        node = node._parent;
-    }
-    length = this._length = i;
-    for (var i = length - 1; i >= 0; --i) {
-        var stack = nodes[i].stack;
-        if (stackToIndex[stack] === undefined) {
-            stackToIndex[stack] = i;
-        }
-    }
-    for (var i = 0; i < length; ++i) {
-        var currentStack = nodes[i].stack;
-        var index = stackToIndex[currentStack];
-        if (index !== undefined && index !== i) {
-            if (index > 0) {
-                nodes[index - 1]._parent = undefined;
-                nodes[index - 1]._length = 1;
-            }
-            nodes[i]._parent = undefined;
-            nodes[i]._length = 1;
-            var cycleEdgeNode = i > 0 ? nodes[i - 1] : this;
-
-            if (index < length - 1) {
-                cycleEdgeNode._parent = nodes[index + 1];
-                cycleEdgeNode._parent.uncycle();
-                cycleEdgeNode._length =
-                    cycleEdgeNode._parent._length + 1;
-            } else {
-                cycleEdgeNode._parent = undefined;
-                cycleEdgeNode._length = 1;
-            }
-            var currentChildLength = cycleEdgeNode._length + 1;
-            for (var j = i - 2; j >= 0; --j) {
-                nodes[j]._length = currentChildLength;
-                currentChildLength++;
-            }
-            return;
-        }
-    }
-};
-
-CapturedTrace.prototype.attachExtraTrace = function(error) {
-    if (error.__stackCleaned__) return;
-    this.uncycle();
-    var parsed = parseStackAndMessage(error);
-    var message = parsed.message;
-    var stacks = [parsed.stack];
-
-    var trace = this;
-    while (trace !== undefined) {
-        stacks.push(cleanStack(trace.stack.split("\n")));
-        trace = trace._parent;
-    }
-    removeCommonRoots(stacks);
-    removeDuplicateOrEmptyJumps(stacks);
-    util.notEnumerableProp(error, "stack", reconstructStack(message, stacks));
-    util.notEnumerableProp(error, "__stackCleaned__", true);
-};
-
-var captureStackTrace = (function stackDetection() {
-    var v8stackFramePattern = /^\s*at\s*/;
-    var v8stackFormatter = function(stack, error) {
-        if (typeof stack === "string") return stack;
-
-        if (error.name !== undefined &&
-            error.message !== undefined) {
-            return error.toString();
-        }
-        return formatNonError(error);
-    };
-
-    if (typeof Error.stackTraceLimit === "number" &&
-        typeof Error.captureStackTrace === "function") {
-        Error.stackTraceLimit += 6;
-        stackFramePattern = v8stackFramePattern;
-        formatStack = v8stackFormatter;
-        var captureStackTrace = Error.captureStackTrace;
-
-        shouldIgnore = function(line) {
-            return bluebirdFramePattern.test(line);
-        };
-        return function(receiver, ignoreUntil) {
-            Error.stackTraceLimit += 6;
-            captureStackTrace(receiver, ignoreUntil);
-            Error.stackTraceLimit -= 6;
-        };
-    }
-    var err = new Error();
-
-    if (typeof err.stack === "string" &&
-        err.stack.split("\n")[0].indexOf("stackDetection@") >= 0) {
-        stackFramePattern = /@/;
-        formatStack = v8stackFormatter;
-        indentStackFrames = true;
-        return function captureStackTrace(o) {
-            o.stack = new Error().stack;
-        };
-    }
-
-    var hasStackAfterThrow;
-    try { throw new Error(); }
-    catch(e) {
-        hasStackAfterThrow = ("stack" in e);
-    }
-    if (!("stack" in err) && hasStackAfterThrow &&
-        typeof Error.stackTraceLimit === "number") {
-        stackFramePattern = v8stackFramePattern;
-        formatStack = v8stackFormatter;
-        return function captureStackTrace(o) {
-            Error.stackTraceLimit += 6;
-            try { throw new Error(); }
-            catch(e) { o.stack = e.stack; }
-            Error.stackTraceLimit -= 6;
-        };
-    }
-
-    formatStack = function(stack, error) {
-        if (typeof stack === "string") return stack;
-
-        if ((typeof error === "object" ||
-            typeof error === "function") &&
-            error.name !== undefined &&
-            error.message !== undefined) {
-            return error.toString();
-        }
-        return formatNonError(error);
-    };
-
-    return null;
-
-})([]);
-
-if (typeof console !== "undefined" && typeof console.warn !== "undefined") {
-    printWarning = function (message) {
-        console.warn(message);
-    };
-    if (util.isNode && process.stderr.isTTY) {
-        printWarning = function(message, isSoft) {
-            var color = isSoft ? "\u001b[33m" : "\u001b[31m";
-            console.warn(color + message + "\u001b[0m\n");
-        };
-    } else if (!util.isNode && typeof (new Error().stack) === "string") {
-        printWarning = function(message, isSoft) {
-            console.warn("%c" + message,
-                        isSoft ? "color: darkorange" : "color: red");
-        };
-    }
-}
-
-var config = {
-    warnings: warnings,
-    longStackTraces: false,
-    cancellation: false,
-    monitoring: false,
-    asyncHooks: false
-};
-
-if (longStackTraces) Promise.longStackTraces();
-
-return {
-    asyncHooks: function() {
-        return config.asyncHooks;
-    },
-    longStackTraces: function() {
-        return config.longStackTraces;
-    },
-    warnings: function() {
-        return config.warnings;
-    },
-    cancellation: function() {
-        return config.cancellation;
-    },
-    monitoring: function() {
-        return config.monitoring;
-    },
-    propagateFromFunction: function() {
-        return propagateFromFunction;
-    },
-    boundValueFunction: function() {
-        return boundValueFunction;
-    },
-    checkForgottenReturns: checkForgottenReturns,
-    setBounds: setBounds,
-    warn: warn,
-    deprecated: deprecated,
-    CapturedTrace: CapturedTrace,
-    fireDomEvent: fireDomEvent,
-    fireGlobalEvent: fireGlobalEvent
-};
-};
-
-
-/***/ }),
-
-/***/ 6535:
-/***/ ((module) => {
-
-
-module.exports = function(Promise) {
-function returner() {
-    return this.value;
-}
-function thrower() {
-    throw this.reason;
-}
-
-Promise.prototype["return"] =
-Promise.prototype.thenReturn = function (value) {
-    if (value instanceof Promise) value.suppressUnhandledRejections();
-    return this._then(
-        returner, undefined, undefined, {value: value}, undefined);
-};
-
-Promise.prototype["throw"] =
-Promise.prototype.thenThrow = function (reason) {
-    return this._then(
-        thrower, undefined, undefined, {reason: reason}, undefined);
-};
-
-Promise.prototype.catchThrow = function (reason) {
-    if (arguments.length <= 1) {
-        return this._then(
-            undefined, thrower, undefined, {reason: reason}, undefined);
-    } else {
-        var _reason = arguments[1];
-        var handler = function() {throw _reason;};
-        return this.caught(reason, handler);
-    }
-};
-
-Promise.prototype.catchReturn = function (value) {
-    if (arguments.length <= 1) {
-        if (value instanceof Promise) value.suppressUnhandledRejections();
-        return this._then(
-            undefined, returner, undefined, {value: value}, undefined);
-    } else {
-        var _value = arguments[1];
-        if (_value instanceof Promise) _value.suppressUnhandledRejections();
-        var handler = function() {return _value;};
-        return this.caught(value, handler);
-    }
-};
-};
-
-
-/***/ }),
-
-/***/ 3207:
-/***/ ((module) => {
-
-
-module.exports = function(Promise, INTERNAL) {
-var PromiseReduce = Promise.reduce;
-var PromiseAll = Promise.all;
-
-function promiseAllThis() {
-    return PromiseAll(this);
-}
-
-function PromiseMapSeries(promises, fn) {
-    return PromiseReduce(promises, fn, INTERNAL, INTERNAL);
-}
-
-Promise.prototype.each = function (fn) {
-    return PromiseReduce(this, fn, INTERNAL, 0)
-              ._then(promiseAllThis, undefined, undefined, this, undefined);
-};
-
-Promise.prototype.mapSeries = function (fn) {
-    return PromiseReduce(this, fn, INTERNAL, INTERNAL);
-};
-
-Promise.each = function (promises, fn) {
-    return PromiseReduce(promises, fn, INTERNAL, 0)
-              ._then(promiseAllThis, undefined, undefined, promises, undefined);
-};
-
-Promise.mapSeries = PromiseMapSeries;
-};
-
-
-
-/***/ }),
-
-/***/ 9318:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-var es5 = __nccwpck_require__(8974);
-var Objectfreeze = es5.freeze;
-var util = __nccwpck_require__(409);
-var inherits = util.inherits;
-var notEnumerableProp = util.notEnumerableProp;
-
-function subError(nameProperty, defaultMessage) {
-    function SubError(message) {
-        if (!(this instanceof SubError)) return new SubError(message);
-        notEnumerableProp(this, "message",
-            typeof message === "string" ? message : defaultMessage);
-        notEnumerableProp(this, "name", nameProperty);
-        if (Error.captureStackTrace) {
-            Error.captureStackTrace(this, this.constructor);
-        } else {
-            Error.call(this);
-        }
-    }
-    inherits(SubError, Error);
-    return SubError;
-}
-
-var _TypeError, _RangeError;
-var Warning = subError("Warning", "warning");
-var CancellationError = subError("CancellationError", "cancellation error");
-var TimeoutError = subError("TimeoutError", "timeout error");
-var AggregateError = subError("AggregateError", "aggregate error");
-try {
-    _TypeError = TypeError;
-    _RangeError = RangeError;
-} catch(e) {
-    _TypeError = subError("TypeError", "type error");
-    _RangeError = subError("RangeError", "range error");
-}
-
-var methods = ("join pop push shift unshift slice filter forEach some " +
-    "every map indexOf lastIndexOf reduce reduceRight sort reverse").split(" ");
-
-for (var i = 0; i < methods.length; ++i) {
-    if (typeof Array.prototype[methods[i]] === "function") {
-        AggregateError.prototype[methods[i]] = Array.prototype[methods[i]];
-    }
-}
-
-es5.defineProperty(AggregateError.prototype, "length", {
-    value: 0,
-    configurable: false,
-    writable: true,
-    enumerable: true
-});
-AggregateError.prototype["isOperational"] = true;
-var level = 0;
-AggregateError.prototype.toString = function() {
-    var indent = Array(level * 4 + 1).join(" ");
-    var ret = "\n" + indent + "AggregateError of:" + "\n";
-    level++;
-    indent = Array(level * 4 + 1).join(" ");
-    for (var i = 0; i < this.length; ++i) {
-        var str = this[i] === this ? "[Circular AggregateError]" : this[i] + "";
-        var lines = str.split("\n");
-        for (var j = 0; j < lines.length; ++j) {
-            lines[j] = indent + lines[j];
-        }
-        str = lines.join("\n");
-        ret += str + "\n";
-    }
-    level--;
-    return ret;
-};
-
-function OperationalError(message) {
-    if (!(this instanceof OperationalError))
-        return new OperationalError(message);
-    notEnumerableProp(this, "name", "OperationalError");
-    notEnumerableProp(this, "message", message);
-    this.cause = message;
-    this["isOperational"] = true;
-
-    if (message instanceof Error) {
-        notEnumerableProp(this, "message", message.message);
-        notEnumerableProp(this, "stack", message.stack);
-    } else if (Error.captureStackTrace) {
-        Error.captureStackTrace(this, this.constructor);
-    }
-
-}
-inherits(OperationalError, Error);
-
-var errorTypes = Error["__BluebirdErrorTypes__"];
-if (!errorTypes) {
-    errorTypes = Objectfreeze({
-        CancellationError: CancellationError,
-        TimeoutError: TimeoutError,
-        OperationalError: OperationalError,
-        RejectionError: OperationalError,
-        AggregateError: AggregateError
-    });
-    es5.defineProperty(Error, "__BluebirdErrorTypes__", {
-        value: errorTypes,
-        writable: false,
-        enumerable: false,
-        configurable: false
-    });
-}
-
-module.exports = {
-    Error: Error,
-    TypeError: _TypeError,
-    RangeError: _RangeError,
-    CancellationError: errorTypes.CancellationError,
-    OperationalError: errorTypes.OperationalError,
-    TimeoutError: errorTypes.TimeoutError,
-    AggregateError: errorTypes.AggregateError,
-    Warning: Warning
-};
-
-
-/***/ }),
-
-/***/ 8974:
-/***/ ((module) => {
-
-var isES5 = (function(){
-    "use strict";
-    return this === undefined;
-})();
-
-if (isES5) {
-    module.exports = {
-        freeze: Object.freeze,
-        defineProperty: Object.defineProperty,
-        getDescriptor: Object.getOwnPropertyDescriptor,
-        keys: Object.keys,
-        names: Object.getOwnPropertyNames,
-        getPrototypeOf: Object.getPrototypeOf,
-        isArray: Array.isArray,
-        isES5: isES5,
-        propertyIsWritable: function(obj, prop) {
-            var descriptor = Object.getOwnPropertyDescriptor(obj, prop);
-            return !!(!descriptor || descriptor.writable || descriptor.set);
-        }
-    };
-} else {
-    var has = {}.hasOwnProperty;
-    var str = {}.toString;
-    var proto = {}.constructor.prototype;
-
-    var ObjectKeys = function (o) {
-        var ret = [];
-        for (var key in o) {
-            if (has.call(o, key)) {
-                ret.push(key);
-            }
-        }
-        return ret;
-    };
-
-    var ObjectGetDescriptor = function(o, key) {
-        return {value: o[key]};
-    };
-
-    var ObjectDefineProperty = function (o, key, desc) {
-        o[key] = desc.value;
-        return o;
-    };
-
-    var ObjectFreeze = function (obj) {
-        return obj;
-    };
-
-    var ObjectGetPrototypeOf = function (obj) {
-        try {
-            return Object(obj).constructor.prototype;
-        }
-        catch (e) {
-            return proto;
-        }
-    };
-
-    var ArrayIsArray = function (obj) {
-        try {
-            return str.call(obj) === "[object Array]";
-        }
-        catch(e) {
-            return false;
-        }
-    };
-
-    module.exports = {
-        isArray: ArrayIsArray,
-        keys: ObjectKeys,
-        names: ObjectKeys,
-        defineProperty: ObjectDefineProperty,
-        getDescriptor: ObjectGetDescriptor,
-        freeze: ObjectFreeze,
-        getPrototypeOf: ObjectGetPrototypeOf,
-        isES5: isES5,
-        propertyIsWritable: function() {
-            return true;
-        }
-    };
-}
-
-
-/***/ }),
-
-/***/ 8595:
-/***/ ((module) => {
-
-
-module.exports = function(Promise, INTERNAL) {
-var PromiseMap = Promise.map;
-
-Promise.prototype.filter = function (fn, options) {
-    return PromiseMap(this, fn, options, INTERNAL);
-};
-
-Promise.filter = function (promises, fn, options) {
-    return PromiseMap(promises, fn, options, INTERNAL);
-};
-};
-
-
-/***/ }),
-
-/***/ 2198:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(Promise, tryConvertToPromise, NEXT_FILTER) {
-var util = __nccwpck_require__(409);
-var CancellationError = Promise.CancellationError;
-var errorObj = util.errorObj;
-var catchFilter = __nccwpck_require__(4519)(NEXT_FILTER);
-
-function PassThroughHandlerContext(promise, type, handler) {
-    this.promise = promise;
-    this.type = type;
-    this.handler = handler;
-    this.called = false;
-    this.cancelPromise = null;
-}
-
-PassThroughHandlerContext.prototype.isFinallyHandler = function() {
-    return this.type === 0;
-};
-
-function FinallyHandlerCancelReaction(finallyHandler) {
-    this.finallyHandler = finallyHandler;
-}
-
-FinallyHandlerCancelReaction.prototype._resultCancelled = function() {
-    checkCancel(this.finallyHandler);
-};
-
-function checkCancel(ctx, reason) {
-    if (ctx.cancelPromise != null) {
-        if (arguments.length > 1) {
-            ctx.cancelPromise._reject(reason);
-        } else {
-            ctx.cancelPromise._cancel();
-        }
-        ctx.cancelPromise = null;
-        return true;
-    }
-    return false;
-}
-
-function succeed() {
-    return finallyHandler.call(this, this.promise._target()._settledValue());
-}
-function fail(reason) {
-    if (checkCancel(this, reason)) return;
-    errorObj.e = reason;
-    return errorObj;
-}
-function finallyHandler(reasonOrValue) {
-    var promise = this.promise;
-    var handler = this.handler;
-
-    if (!this.called) {
-        this.called = true;
-        var ret = this.isFinallyHandler()
-            ? handler.call(promise._boundValue())
-            : handler.call(promise._boundValue(), reasonOrValue);
-        if (ret === NEXT_FILTER) {
-            return ret;
-        } else if (ret !== undefined) {
-            promise._setReturnedNonUndefined();
-            var maybePromise = tryConvertToPromise(ret, promise);
-            if (maybePromise instanceof Promise) {
-                if (this.cancelPromise != null) {
-                    if (maybePromise._isCancelled()) {
-                        var reason =
-                            new CancellationError("late cancellation observer");
-                        promise._attachExtraTrace(reason);
-                        errorObj.e = reason;
-                        return errorObj;
-                    } else if (maybePromise.isPending()) {
-                        maybePromise._attachCancellationCallback(
-                            new FinallyHandlerCancelReaction(this));
-                    }
-                }
-                return maybePromise._then(
-                    succeed, fail, undefined, this, undefined);
-            }
-        }
-    }
-
-    if (promise.isRejected()) {
-        checkCancel(this);
-        errorObj.e = reasonOrValue;
-        return errorObj;
-    } else {
-        checkCancel(this);
-        return reasonOrValue;
-    }
-}
-
-Promise.prototype._passThrough = function(handler, type, success, fail) {
-    if (typeof handler !== "function") return this.then();
-    return this._then(success,
-                      fail,
-                      undefined,
-                      new PassThroughHandlerContext(this, type, handler),
-                      undefined);
-};
-
-Promise.prototype.lastly =
-Promise.prototype["finally"] = function (handler) {
-    return this._passThrough(handler,
-                             0,
-                             finallyHandler,
-                             finallyHandler);
-};
-
-
-Promise.prototype.tap = function (handler) {
-    return this._passThrough(handler, 1, finallyHandler);
-};
-
-Promise.prototype.tapCatch = function (handlerOrPredicate) {
-    var len = arguments.length;
-    if(len === 1) {
-        return this._passThrough(handlerOrPredicate,
-                                 1,
-                                 undefined,
-                                 finallyHandler);
-    } else {
-         var catchInstances = new Array(len - 1),
-            j = 0, i;
-        for (i = 0; i < len - 1; ++i) {
-            var item = arguments[i];
-            if (util.isObject(item)) {
-                catchInstances[j++] = item;
-            } else {
-                return Promise.reject(new TypeError(
-                    "tapCatch statement predicate: "
-                    + "expecting an object but got " + util.classString(item)
-                ));
-            }
-        }
-        catchInstances.length = j;
-        var handler = arguments[i];
-        return this._passThrough(catchFilter(catchInstances, handler, this),
-                                 1,
-                                 undefined,
-                                 finallyHandler);
-    }
-
-};
-
-return PassThroughHandlerContext;
-};
-
-
-/***/ }),
-
-/***/ 1595:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(Promise,
-                          apiRejection,
-                          INTERNAL,
-                          tryConvertToPromise,
-                          Proxyable,
-                          debug) {
-var errors = __nccwpck_require__(9318);
-var TypeError = errors.TypeError;
-var util = __nccwpck_require__(409);
-var errorObj = util.errorObj;
-var tryCatch = util.tryCatch;
-var yieldHandlers = [];
-
-function promiseFromYieldHandler(value, yieldHandlers, traceParent) {
-    for (var i = 0; i < yieldHandlers.length; ++i) {
-        traceParent._pushContext();
-        var result = tryCatch(yieldHandlers[i])(value);
-        traceParent._popContext();
-        if (result === errorObj) {
-            traceParent._pushContext();
-            var ret = Promise.reject(errorObj.e);
-            traceParent._popContext();
-            return ret;
-        }
-        var maybePromise = tryConvertToPromise(result, traceParent);
-        if (maybePromise instanceof Promise) return maybePromise;
-    }
-    return null;
-}
-
-function PromiseSpawn(generatorFunction, receiver, yieldHandler, stack) {
-    if (debug.cancellation()) {
-        var internal = new Promise(INTERNAL);
-        var _finallyPromise = this._finallyPromise = new Promise(INTERNAL);
-        this._promise = internal.lastly(function() {
-            return _finallyPromise;
-        });
-        internal._captureStackTrace();
-        internal._setOnCancel(this);
-    } else {
-        var promise = this._promise = new Promise(INTERNAL);
-        promise._captureStackTrace();
-    }
-    this._stack = stack;
-    this._generatorFunction = generatorFunction;
-    this._receiver = receiver;
-    this._generator = undefined;
-    this._yieldHandlers = typeof yieldHandler === "function"
-        ? [yieldHandler].concat(yieldHandlers)
-        : yieldHandlers;
-    this._yieldedPromise = null;
-    this._cancellationPhase = false;
-}
-util.inherits(PromiseSpawn, Proxyable);
-
-PromiseSpawn.prototype._isResolved = function() {
-    return this._promise === null;
-};
-
-PromiseSpawn.prototype._cleanup = function() {
-    this._promise = this._generator = null;
-    if (debug.cancellation() && this._finallyPromise !== null) {
-        this._finallyPromise._fulfill();
-        this._finallyPromise = null;
-    }
-};
-
-PromiseSpawn.prototype._promiseCancelled = function() {
-    if (this._isResolved()) return;
-    var implementsReturn = typeof this._generator["return"] !== "undefined";
-
-    var result;
-    if (!implementsReturn) {
-        var reason = new Promise.CancellationError(
-            "generator .return() sentinel");
-        Promise.coroutine.returnSentinel = reason;
-        this._promise._attachExtraTrace(reason);
-        this._promise._pushContext();
-        result = tryCatch(this._generator["throw"]).call(this._generator,
-                                                         reason);
-        this._promise._popContext();
-    } else {
-        this._promise._pushContext();
-        result = tryCatch(this._generator["return"]).call(this._generator,
-                                                          undefined);
-        this._promise._popContext();
-    }
-    this._cancellationPhase = true;
-    this._yieldedPromise = null;
-    this._continue(result);
-};
-
-PromiseSpawn.prototype._promiseFulfilled = function(value) {
-    this._yieldedPromise = null;
-    this._promise._pushContext();
-    var result = tryCatch(this._generator.next).call(this._generator, value);
-    this._promise._popContext();
-    this._continue(result);
-};
-
-PromiseSpawn.prototype._promiseRejected = function(reason) {
-    this._yieldedPromise = null;
-    this._promise._attachExtraTrace(reason);
-    this._promise._pushContext();
-    var result = tryCatch(this._generator["throw"])
-        .call(this._generator, reason);
-    this._promise._popContext();
-    this._continue(result);
-};
-
-PromiseSpawn.prototype._resultCancelled = function() {
-    if (this._yieldedPromise instanceof Promise) {
-        var promise = this._yieldedPromise;
-        this._yieldedPromise = null;
-        promise.cancel();
-    }
-};
-
-PromiseSpawn.prototype.promise = function () {
-    return this._promise;
-};
-
-PromiseSpawn.prototype._run = function () {
-    this._generator = this._generatorFunction.call(this._receiver);
-    this._receiver =
-        this._generatorFunction = undefined;
-    this._promiseFulfilled(undefined);
-};
-
-PromiseSpawn.prototype._continue = function (result) {
-    var promise = this._promise;
-    if (result === errorObj) {
-        this._cleanup();
-        if (this._cancellationPhase) {
-            return promise.cancel();
-        } else {
-            return promise._rejectCallback(result.e, false);
-        }
-    }
-
-    var value = result.value;
-    if (result.done === true) {
-        this._cleanup();
-        if (this._cancellationPhase) {
-            return promise.cancel();
-        } else {
-            return promise._resolveCallback(value);
-        }
-    } else {
-        var maybePromise = tryConvertToPromise(value, this._promise);
-        if (!(maybePromise instanceof Promise)) {
-            maybePromise =
-                promiseFromYieldHandler(maybePromise,
-                                        this._yieldHandlers,
-                                        this._promise);
-            if (maybePromise === null) {
-                this._promiseRejected(
-                    new TypeError(
-                        "A value %s was yielded that could not be treated as a promise\u000a\u000a    See http://goo.gl/MqrFmX\u000a\u000a".replace("%s", String(value)) +
-                        "From coroutine:\u000a" +
-                        this._stack.split("\n").slice(1, -7).join("\n")
-                    )
-                );
-                return;
-            }
-        }
-        maybePromise = maybePromise._target();
-        var bitField = maybePromise._bitField;
-        ;
-        if (((bitField & 50397184) === 0)) {
-            this._yieldedPromise = maybePromise;
-            maybePromise._proxy(this, null);
-        } else if (((bitField & 33554432) !== 0)) {
-            Promise._async.invoke(
-                this._promiseFulfilled, this, maybePromise._value()
-            );
-        } else if (((bitField & 16777216) !== 0)) {
-            Promise._async.invoke(
-                this._promiseRejected, this, maybePromise._reason()
-            );
-        } else {
-            this._promiseCancelled();
-        }
-    }
-};
-
-Promise.coroutine = function (generatorFunction, options) {
-    if (typeof generatorFunction !== "function") {
-        throw new TypeError("generatorFunction must be a function\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-    }
-    var yieldHandler = Object(options).yieldHandler;
-    var PromiseSpawn$ = PromiseSpawn;
-    var stack = new Error().stack;
-    return function () {
-        var generator = generatorFunction.apply(this, arguments);
-        var spawn = new PromiseSpawn$(undefined, undefined, yieldHandler,
-                                      stack);
-        var ret = spawn.promise();
-        spawn._generator = generator;
-        spawn._promiseFulfilled(undefined);
-        return ret;
-    };
-};
-
-Promise.coroutine.addYieldHandler = function(fn) {
-    if (typeof fn !== "function") {
-        throw new TypeError("expecting a function but got " + util.classString(fn));
-    }
-    yieldHandlers.push(fn);
-};
-
-Promise.spawn = function (generatorFunction) {
-    debug.deprecated("Promise.spawn()", "Promise.coroutine()");
-    if (typeof generatorFunction !== "function") {
-        return apiRejection("generatorFunction must be a function\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-    }
-    var spawn = new PromiseSpawn(generatorFunction, this);
-    var ret = spawn.promise();
-    spawn._run(Promise.spawn);
-    return ret;
-};
-};
-
-
-/***/ }),
-
-/***/ 5702:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports =
-function(Promise, PromiseArray, tryConvertToPromise, INTERNAL, async) {
-var util = __nccwpck_require__(409);
-var canEvaluate = util.canEvaluate;
-var tryCatch = util.tryCatch;
-var errorObj = util.errorObj;
-var reject;
-
-if (true) {
-if (canEvaluate) {
-    var thenCallback = function(i) {
-        return new Function("value", "holder", "                             \n\
-            'use strict';                                                    \n\
-            holder.pIndex = value;                                           \n\
-            holder.checkFulfillment(this);                                   \n\
-            ".replace(/Index/g, i));
-    };
-
-    var promiseSetter = function(i) {
-        return new Function("promise", "holder", "                           \n\
-            'use strict';                                                    \n\
-            holder.pIndex = promise;                                         \n\
-            ".replace(/Index/g, i));
-    };
-
-    var generateHolderClass = function(total) {
-        var props = new Array(total);
-        for (var i = 0; i < props.length; ++i) {
-            props[i] = "this.p" + (i+1);
-        }
-        var assignment = props.join(" = ") + " = null;";
-        var cancellationCode= "var promise;\n" + props.map(function(prop) {
-            return "                                                         \n\
-                promise = " + prop + ";                                      \n\
-                if (promise instanceof Promise) {                            \n\
-                    promise.cancel();                                        \n\
-                }                                                            \n\
-            ";
-        }).join("\n");
-        var passedArguments = props.join(", ");
-        var name = "Holder$" + total;
-
-
-        var code = "return function(tryCatch, errorObj, Promise, async) {    \n\
-            'use strict';                                                    \n\
-            function [TheName](fn) {                                         \n\
-                [TheProperties]                                              \n\
-                this.fn = fn;                                                \n\
-                this.asyncNeeded = true;                                     \n\
-                this.now = 0;                                                \n\
-            }                                                                \n\
-                                                                             \n\
-            [TheName].prototype._callFunction = function(promise) {          \n\
-                promise._pushContext();                                      \n\
-                var ret = tryCatch(this.fn)([ThePassedArguments]);           \n\
-                promise._popContext();                                       \n\
-                if (ret === errorObj) {                                      \n\
-                    promise._rejectCallback(ret.e, false);                   \n\
-                } else {                                                     \n\
-                    promise._resolveCallback(ret);                           \n\
-                }                                                            \n\
-            };                                                               \n\
-                                                                             \n\
-            [TheName].prototype.checkFulfillment = function(promise) {       \n\
-                var now = ++this.now;                                        \n\
-                if (now === [TheTotal]) {                                    \n\
-                    if (this.asyncNeeded) {                                  \n\
-                        async.invoke(this._callFunction, this, promise);     \n\
-                    } else {                                                 \n\
-                        this._callFunction(promise);                         \n\
-                    }                                                        \n\
-                                                                             \n\
-                }                                                            \n\
-            };                                                               \n\
-                                                                             \n\
-            [TheName].prototype._resultCancelled = function() {              \n\
-                [CancellationCode]                                           \n\
-            };                                                               \n\
-                                                                             \n\
-            return [TheName];                                                \n\
-        }(tryCatch, errorObj, Promise, async);                               \n\
-        ";
-
-        code = code.replace(/\[TheName\]/g, name)
-            .replace(/\[TheTotal\]/g, total)
-            .replace(/\[ThePassedArguments\]/g, passedArguments)
-            .replace(/\[TheProperties\]/g, assignment)
-            .replace(/\[CancellationCode\]/g, cancellationCode);
-
-        return new Function("tryCatch", "errorObj", "Promise", "async", code)
-                           (tryCatch, errorObj, Promise, async);
-    };
-
-    var holderClasses = [];
-    var thenCallbacks = [];
-    var promiseSetters = [];
-
-    for (var i = 0; i < 8; ++i) {
-        holderClasses.push(generateHolderClass(i + 1));
-        thenCallbacks.push(thenCallback(i + 1));
-        promiseSetters.push(promiseSetter(i + 1));
-    }
-
-    reject = function (reason) {
-        this._reject(reason);
-    };
-}}
-
-Promise.join = function () {
-    var last = arguments.length - 1;
-    var fn;
-    if (last > 0 && typeof arguments[last] === "function") {
-        fn = arguments[last];
-        if (true) {
-            if (last <= 8 && canEvaluate) {
-                var ret = new Promise(INTERNAL);
-                ret._captureStackTrace();
-                var HolderClass = holderClasses[last - 1];
-                var holder = new HolderClass(fn);
-                var callbacks = thenCallbacks;
-
-                for (var i = 0; i < last; ++i) {
-                    var maybePromise = tryConvertToPromise(arguments[i], ret);
-                    if (maybePromise instanceof Promise) {
-                        maybePromise = maybePromise._target();
-                        var bitField = maybePromise._bitField;
-                        ;
-                        if (((bitField & 50397184) === 0)) {
-                            maybePromise._then(callbacks[i], reject,
-                                               undefined, ret, holder);
-                            promiseSetters[i](maybePromise, holder);
-                            holder.asyncNeeded = false;
-                        } else if (((bitField & 33554432) !== 0)) {
-                            callbacks[i].call(ret,
-                                              maybePromise._value(), holder);
-                        } else if (((bitField & 16777216) !== 0)) {
-                            ret._reject(maybePromise._reason());
-                        } else {
-                            ret._cancel();
-                        }
-                    } else {
-                        callbacks[i].call(ret, maybePromise, holder);
-                    }
-                }
-
-                if (!ret._isFateSealed()) {
-                    if (holder.asyncNeeded) {
-                        var context = Promise._getContext();
-                        holder.fn = util.contextBind(context, holder.fn);
-                    }
-                    ret._setAsyncGuaranteed();
-                    ret._setOnCancel(holder);
-                }
-                return ret;
-            }
-        }
-    }
-    var $_len = arguments.length;var args = new Array($_len); for(var $_i = 0; $_i < $_len ; ++$_i) {args[$_i] = arguments[$_i ];};
-    if (fn) args.pop();
-    var ret = new PromiseArray(args).promise();
-    return fn !== undefined ? ret.spread(fn) : ret;
-};
-
-};
-
-
-/***/ }),
-
-/***/ 9651:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(Promise,
-                          PromiseArray,
-                          apiRejection,
-                          tryConvertToPromise,
-                          INTERNAL,
-                          debug) {
-var util = __nccwpck_require__(409);
-var tryCatch = util.tryCatch;
-var errorObj = util.errorObj;
-var async = Promise._async;
-
-function MappingPromiseArray(promises, fn, limit, _filter) {
-    this.constructor$(promises);
-    this._promise._captureStackTrace();
-    var context = Promise._getContext();
-    this._callback = util.contextBind(context, fn);
-    this._preservedValues = _filter === INTERNAL
-        ? new Array(this.length())
-        : null;
-    this._limit = limit;
-    this._inFlight = 0;
-    this._queue = [];
-    async.invoke(this._asyncInit, this, undefined);
-    if (util.isArray(promises)) {
-        for (var i = 0; i < promises.length; ++i) {
-            var maybePromise = promises[i];
-            if (maybePromise instanceof Promise) {
-                maybePromise.suppressUnhandledRejections();
-            }
-        }
-    }
-}
-util.inherits(MappingPromiseArray, PromiseArray);
-
-MappingPromiseArray.prototype._asyncInit = function() {
-    this._init$(undefined, -2);
-};
-
-MappingPromiseArray.prototype._init = function () {};
-
-MappingPromiseArray.prototype._promiseFulfilled = function (value, index) {
-    var values = this._values;
-    var length = this.length();
-    var preservedValues = this._preservedValues;
-    var limit = this._limit;
-
-    if (index < 0) {
-        index = (index * -1) - 1;
-        values[index] = value;
-        if (limit >= 1) {
-            this._inFlight--;
-            this._drainQueue();
-            if (this._isResolved()) return true;
-        }
-    } else {
-        if (limit >= 1 && this._inFlight >= limit) {
-            values[index] = value;
-            this._queue.push(index);
-            return false;
-        }
-        if (preservedValues !== null) preservedValues[index] = value;
-
-        var promise = this._promise;
-        var callback = this._callback;
-        var receiver = promise._boundValue();
-        promise._pushContext();
-        var ret = tryCatch(callback).call(receiver, value, index, length);
-        var promiseCreated = promise._popContext();
-        debug.checkForgottenReturns(
-            ret,
-            promiseCreated,
-            preservedValues !== null ? "Promise.filter" : "Promise.map",
-            promise
-        );
-        if (ret === errorObj) {
-            this._reject(ret.e);
-            return true;
-        }
-
-        var maybePromise = tryConvertToPromise(ret, this._promise);
-        if (maybePromise instanceof Promise) {
-            maybePromise = maybePromise._target();
-            var bitField = maybePromise._bitField;
-            ;
-            if (((bitField & 50397184) === 0)) {
-                if (limit >= 1) this._inFlight++;
-                values[index] = maybePromise;
-                maybePromise._proxy(this, (index + 1) * -1);
-                return false;
-            } else if (((bitField & 33554432) !== 0)) {
-                ret = maybePromise._value();
-            } else if (((bitField & 16777216) !== 0)) {
-                this._reject(maybePromise._reason());
-                return true;
-            } else {
-                this._cancel();
-                return true;
-            }
-        }
-        values[index] = ret;
-    }
-    var totalResolved = ++this._totalResolved;
-    if (totalResolved >= length) {
-        if (preservedValues !== null) {
-            this._filter(values, preservedValues);
-        } else {
-            this._resolve(values);
-        }
-        return true;
-    }
-    return false;
-};
-
-MappingPromiseArray.prototype._drainQueue = function () {
-    var queue = this._queue;
-    var limit = this._limit;
-    var values = this._values;
-    while (queue.length > 0 && this._inFlight < limit) {
-        if (this._isResolved()) return;
-        var index = queue.pop();
-        this._promiseFulfilled(values[index], index);
-    }
-};
-
-MappingPromiseArray.prototype._filter = function (booleans, values) {
-    var len = values.length;
-    var ret = new Array(len);
-    var j = 0;
-    for (var i = 0; i < len; ++i) {
-        if (booleans[i]) ret[j++] = values[i];
-    }
-    ret.length = j;
-    this._resolve(ret);
-};
-
-MappingPromiseArray.prototype.preservedValues = function () {
-    return this._preservedValues;
-};
-
-function map(promises, fn, options, _filter) {
-    if (typeof fn !== "function") {
-        return apiRejection("expecting a function but got " + util.classString(fn));
-    }
-
-    var limit = 0;
-    if (options !== undefined) {
-        if (typeof options === "object" && options !== null) {
-            if (typeof options.concurrency !== "number") {
-                return Promise.reject(
-                    new TypeError("'concurrency' must be a number but it is " +
-                                    util.classString(options.concurrency)));
-            }
-            limit = options.concurrency;
-        } else {
-            return Promise.reject(new TypeError(
-                            "options argument must be an object but it is " +
-                             util.classString(options)));
-        }
-    }
-    limit = typeof limit === "number" &&
-        isFinite(limit) && limit >= 1 ? limit : 0;
-    return new MappingPromiseArray(promises, fn, limit, _filter).promise();
-}
-
-Promise.prototype.map = function (fn, options) {
-    return map(this, fn, options, null);
-};
-
-Promise.map = function (promises, fn, options, _filter) {
-    return map(promises, fn, options, _filter);
-};
-
-
-};
-
-
-/***/ }),
-
-/***/ 5588:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports =
-function(Promise, INTERNAL, tryConvertToPromise, apiRejection, debug) {
-var util = __nccwpck_require__(409);
-var tryCatch = util.tryCatch;
-
-Promise.method = function (fn) {
-    if (typeof fn !== "function") {
-        throw new Promise.TypeError("expecting a function but got " + util.classString(fn));
-    }
-    return function () {
-        var ret = new Promise(INTERNAL);
-        ret._captureStackTrace();
-        ret._pushContext();
-        var value = tryCatch(fn).apply(this, arguments);
-        var promiseCreated = ret._popContext();
-        debug.checkForgottenReturns(
-            value, promiseCreated, "Promise.method", ret);
-        ret._resolveFromSyncValue(value);
-        return ret;
-    };
-};
-
-Promise.attempt = Promise["try"] = function (fn) {
-    if (typeof fn !== "function") {
-        return apiRejection("expecting a function but got " + util.classString(fn));
-    }
-    var ret = new Promise(INTERNAL);
-    ret._captureStackTrace();
-    ret._pushContext();
-    var value;
-    if (arguments.length > 1) {
-        debug.deprecated("calling Promise.try with more than 1 argument");
-        var arg = arguments[1];
-        var ctx = arguments[2];
-        value = util.isArray(arg) ? tryCatch(fn).apply(ctx, arg)
-                                  : tryCatch(fn).call(ctx, arg);
-    } else {
-        value = tryCatch(fn)();
-    }
-    var promiseCreated = ret._popContext();
-    debug.checkForgottenReturns(
-        value, promiseCreated, "Promise.try", ret);
-    ret._resolveFromSyncValue(value);
-    return ret;
-};
-
-Promise.prototype._resolveFromSyncValue = function (value) {
-    if (value === util.errorObj) {
-        this._rejectCallback(value.e, false);
-    } else {
-        this._resolveCallback(value, true);
-    }
-};
-};
-
-
-/***/ }),
-
-/***/ 1774:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-var util = __nccwpck_require__(409);
-var maybeWrapAsError = util.maybeWrapAsError;
-var errors = __nccwpck_require__(9318);
-var OperationalError = errors.OperationalError;
-var es5 = __nccwpck_require__(8974);
-
-function isUntypedError(obj) {
-    return obj instanceof Error &&
-        es5.getPrototypeOf(obj) === Error.prototype;
-}
-
-var rErrorKey = /^(?:name|message|stack|cause)$/;
-function wrapAsOperationalError(obj) {
-    var ret;
-    if (isUntypedError(obj)) {
-        ret = new OperationalError(obj);
-        ret.name = obj.name;
-        ret.message = obj.message;
-        ret.stack = obj.stack;
-        var keys = es5.keys(obj);
-        for (var i = 0; i < keys.length; ++i) {
-            var key = keys[i];
-            if (!rErrorKey.test(key)) {
-                ret[key] = obj[key];
-            }
-        }
-        return ret;
-    }
-    util.markAsOriginatingFromRejection(obj);
-    return obj;
-}
-
-function nodebackForPromise(promise, multiArgs) {
-    return function(err, value) {
-        if (promise === null) return;
-        if (err) {
-            var wrapped = wrapAsOperationalError(maybeWrapAsError(err));
-            promise._attachExtraTrace(wrapped);
-            promise._reject(wrapped);
-        } else if (!multiArgs) {
-            promise._fulfill(value);
-        } else {
-            var $_len = arguments.length;var args = new Array(Math.max($_len - 1, 0)); for(var $_i = 1; $_i < $_len; ++$_i) {args[$_i - 1] = arguments[$_i];};
-            promise._fulfill(args);
-        }
-        promise = null;
-    };
-}
-
-module.exports = nodebackForPromise;
-
-
-/***/ }),
-
-/***/ 3327:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(Promise) {
-var util = __nccwpck_require__(409);
-var async = Promise._async;
-var tryCatch = util.tryCatch;
-var errorObj = util.errorObj;
-
-function spreadAdapter(val, nodeback) {
-    var promise = this;
-    if (!util.isArray(val)) return successAdapter.call(promise, val, nodeback);
-    var ret =
-        tryCatch(nodeback).apply(promise._boundValue(), [null].concat(val));
-    if (ret === errorObj) {
-        async.throwLater(ret.e);
-    }
-}
-
-function successAdapter(val, nodeback) {
-    var promise = this;
-    var receiver = promise._boundValue();
-    var ret = val === undefined
-        ? tryCatch(nodeback).call(receiver, null)
-        : tryCatch(nodeback).call(receiver, null, val);
-    if (ret === errorObj) {
-        async.throwLater(ret.e);
-    }
-}
-function errorAdapter(reason, nodeback) {
-    var promise = this;
-    if (!reason) {
-        var newReason = new Error(reason + "");
-        newReason.cause = reason;
-        reason = newReason;
-    }
-    var ret = tryCatch(nodeback).call(promise._boundValue(), reason);
-    if (ret === errorObj) {
-        async.throwLater(ret.e);
-    }
-}
-
-Promise.prototype.asCallback = Promise.prototype.nodeify = function (nodeback,
-                                                                     options) {
-    if (typeof nodeback == "function") {
-        var adapter = successAdapter;
-        if (options !== undefined && Object(options).spread) {
-            adapter = spreadAdapter;
-        }
-        this._then(
-            adapter,
-            errorAdapter,
-            undefined,
-            this,
-            nodeback
-        );
-    }
-    return this;
-};
-};
-
-
-/***/ }),
-
-/***/ 3096:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function() {
-var makeSelfResolutionError = function () {
-    return new TypeError("circular promise resolution chain\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-};
-var reflectHandler = function() {
-    return new Promise.PromiseInspection(this._target());
-};
-var apiRejection = function(msg) {
-    return Promise.reject(new TypeError(msg));
-};
-function Proxyable() {}
-var UNDEFINED_BINDING = {};
-var util = __nccwpck_require__(409);
-util.setReflectHandler(reflectHandler);
-
-var getDomain = function() {
-    var domain = process.domain;
-    if (domain === undefined) {
-        return null;
-    }
-    return domain;
-};
-var getContextDefault = function() {
-    return null;
-};
-var getContextDomain = function() {
-    return {
-        domain: getDomain(),
-        async: null
-    };
-};
-var AsyncResource = util.isNode && util.nodeSupportsAsyncResource ?
-    (__nccwpck_require__(290).AsyncResource) : null;
-var getContextAsyncHooks = function() {
-    return {
-        domain: getDomain(),
-        async: new AsyncResource("Bluebird::Promise")
-    };
-};
-var getContext = util.isNode ? getContextDomain : getContextDefault;
-util.notEnumerableProp(Promise, "_getContext", getContext);
-var enableAsyncHooks = function() {
-    getContext = getContextAsyncHooks;
-    util.notEnumerableProp(Promise, "_getContext", getContextAsyncHooks);
-};
-var disableAsyncHooks = function() {
-    getContext = getContextDomain;
-    util.notEnumerableProp(Promise, "_getContext", getContextDomain);
-};
-
-var es5 = __nccwpck_require__(8974);
-var Async = __nccwpck_require__(1281);
-var async = new Async();
-es5.defineProperty(Promise, "_async", {value: async});
-var errors = __nccwpck_require__(9318);
-var TypeError = Promise.TypeError = errors.TypeError;
-Promise.RangeError = errors.RangeError;
-var CancellationError = Promise.CancellationError = errors.CancellationError;
-Promise.TimeoutError = errors.TimeoutError;
-Promise.OperationalError = errors.OperationalError;
-Promise.RejectionError = errors.OperationalError;
-Promise.AggregateError = errors.AggregateError;
-var INTERNAL = function(){};
-var APPLY = {};
-var NEXT_FILTER = {};
-var tryConvertToPromise = __nccwpck_require__(1565)(Promise, INTERNAL);
-var PromiseArray =
-    __nccwpck_require__(554)(Promise, INTERNAL,
-                               tryConvertToPromise, apiRejection, Proxyable);
-var Context = __nccwpck_require__(7790)(Promise);
- /*jshint unused:false*/
-var createContext = Context.create;
-
-var debug = __nccwpck_require__(7979)(Promise, Context,
-    enableAsyncHooks, disableAsyncHooks);
-var CapturedTrace = debug.CapturedTrace;
-var PassThroughHandlerContext =
-    __nccwpck_require__(2198)(Promise, tryConvertToPromise, NEXT_FILTER);
-var catchFilter = __nccwpck_require__(4519)(NEXT_FILTER);
-var nodebackForPromise = __nccwpck_require__(1774);
-var errorObj = util.errorObj;
-var tryCatch = util.tryCatch;
-function check(self, executor) {
-    if (self == null || self.constructor !== Promise) {
-        throw new TypeError("the promise constructor cannot be invoked directly\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-    }
-    if (typeof executor !== "function") {
-        throw new TypeError("expecting a function but got " + util.classString(executor));
-    }
-
-}
-
-function Promise(executor) {
-    if (executor !== INTERNAL) {
-        check(this, executor);
-    }
-    this._bitField = 0;
-    this._fulfillmentHandler0 = undefined;
-    this._rejectionHandler0 = undefined;
-    this._promise0 = undefined;
-    this._receiver0 = undefined;
-    this._resolveFromExecutor(executor);
-    this._promiseCreated();
-    this._fireEvent("promiseCreated", this);
-}
-
-Promise.prototype.toString = function () {
-    return "[object Promise]";
-};
-
-Promise.prototype.caught = Promise.prototype["catch"] = function (fn) {
-    var len = arguments.length;
-    if (len > 1) {
-        var catchInstances = new Array(len - 1),
-            j = 0, i;
-        for (i = 0; i < len - 1; ++i) {
-            var item = arguments[i];
-            if (util.isObject(item)) {
-                catchInstances[j++] = item;
-            } else {
-                return apiRejection("Catch statement predicate: " +
-                    "expecting an object but got " + util.classString(item));
-            }
-        }
-        catchInstances.length = j;
-        fn = arguments[i];
-
-        if (typeof fn !== "function") {
-            throw new TypeError("The last argument to .catch() " +
-                "must be a function, got " + util.toString(fn));
-        }
-        return this.then(undefined, catchFilter(catchInstances, fn, this));
-    }
-    return this.then(undefined, fn);
-};
-
-Promise.prototype.reflect = function () {
-    return this._then(reflectHandler,
-        reflectHandler, undefined, this, undefined);
-};
-
-Promise.prototype.then = function (didFulfill, didReject) {
-    if (debug.warnings() && arguments.length > 0 &&
-        typeof didFulfill !== "function" &&
-        typeof didReject !== "function") {
-        var msg = ".then() only accepts functions but was passed: " +
-                util.classString(didFulfill);
-        if (arguments.length > 1) {
-            msg += ", " + util.classString(didReject);
-        }
-        this._warn(msg);
-    }
-    return this._then(didFulfill, didReject, undefined, undefined, undefined);
-};
-
-Promise.prototype.done = function (didFulfill, didReject) {
-    var promise =
-        this._then(didFulfill, didReject, undefined, undefined, undefined);
-    promise._setIsFinal();
-};
-
-Promise.prototype.spread = function (fn) {
-    if (typeof fn !== "function") {
-        return apiRejection("expecting a function but got " + util.classString(fn));
-    }
-    return this.all()._then(fn, undefined, undefined, APPLY, undefined);
-};
-
-Promise.prototype.toJSON = function () {
-    var ret = {
-        isFulfilled: false,
-        isRejected: false,
-        fulfillmentValue: undefined,
-        rejectionReason: undefined
-    };
-    if (this.isFulfilled()) {
-        ret.fulfillmentValue = this.value();
-        ret.isFulfilled = true;
-    } else if (this.isRejected()) {
-        ret.rejectionReason = this.reason();
-        ret.isRejected = true;
-    }
-    return ret;
-};
-
-Promise.prototype.all = function () {
-    if (arguments.length > 0) {
-        this._warn(".all() was passed arguments but it does not take any");
-    }
-    return new PromiseArray(this).promise();
-};
-
-Promise.prototype.error = function (fn) {
-    return this.caught(util.originatesFromRejection, fn);
-};
-
-Promise.getNewLibraryCopy = module.exports;
-
-Promise.is = function (val) {
-    return val instanceof Promise;
-};
-
-Promise.fromNode = Promise.fromCallback = function(fn) {
-    var ret = new Promise(INTERNAL);
-    ret._captureStackTrace();
-    var multiArgs = arguments.length > 1 ? !!Object(arguments[1]).multiArgs
-                                         : false;
-    var result = tryCatch(fn)(nodebackForPromise(ret, multiArgs));
-    if (result === errorObj) {
-        ret._rejectCallback(result.e, true);
-    }
-    if (!ret._isFateSealed()) ret._setAsyncGuaranteed();
-    return ret;
-};
-
-Promise.all = function (promises) {
-    return new PromiseArray(promises).promise();
-};
-
-Promise.cast = function (obj) {
-    var ret = tryConvertToPromise(obj);
-    if (!(ret instanceof Promise)) {
-        ret = new Promise(INTERNAL);
-        ret._captureStackTrace();
-        ret._setFulfilled();
-        ret._rejectionHandler0 = obj;
-    }
-    return ret;
-};
-
-Promise.resolve = Promise.fulfilled = Promise.cast;
-
-Promise.reject = Promise.rejected = function (reason) {
-    var ret = new Promise(INTERNAL);
-    ret._captureStackTrace();
-    ret._rejectCallback(reason, true);
-    return ret;
-};
-
-Promise.setScheduler = function(fn) {
-    if (typeof fn !== "function") {
-        throw new TypeError("expecting a function but got " + util.classString(fn));
-    }
-    return async.setScheduler(fn);
-};
-
-Promise.prototype._then = function (
-    didFulfill,
-    didReject,
-    _,    receiver,
-    internalData
-) {
-    var haveInternalData = internalData !== undefined;
-    var promise = haveInternalData ? internalData : new Promise(INTERNAL);
-    var target = this._target();
-    var bitField = target._bitField;
-
-    if (!haveInternalData) {
-        promise._propagateFrom(this, 3);
-        promise._captureStackTrace();
-        if (receiver === undefined &&
-            ((this._bitField & 2097152) !== 0)) {
-            if (!((bitField & 50397184) === 0)) {
-                receiver = this._boundValue();
-            } else {
-                receiver = target === this ? undefined : this._boundTo;
-            }
-        }
-        this._fireEvent("promiseChained", this, promise);
-    }
-
-    var context = getContext();
-    if (!((bitField & 50397184) === 0)) {
-        var handler, value, settler = target._settlePromiseCtx;
-        if (((bitField & 33554432) !== 0)) {
-            value = target._rejectionHandler0;
-            handler = didFulfill;
-        } else if (((bitField & 16777216) !== 0)) {
-            value = target._fulfillmentHandler0;
-            handler = didReject;
-            target._unsetRejectionIsUnhandled();
-        } else {
-            settler = target._settlePromiseLateCancellationObserver;
-            value = new CancellationError("late cancellation observer");
-            target._attachExtraTrace(value);
-            handler = didReject;
-        }
-
-        async.invoke(settler, target, {
-            handler: util.contextBind(context, handler),
-            promise: promise,
-            receiver: receiver,
-            value: value
-        });
-    } else {
-        target._addCallbacks(didFulfill, didReject, promise,
-                receiver, context);
-    }
-
-    return promise;
-};
-
-Promise.prototype._length = function () {
-    return this._bitField & 65535;
-};
-
-Promise.prototype._isFateSealed = function () {
-    return (this._bitField & 117506048) !== 0;
-};
-
-Promise.prototype._isFollowing = function () {
-    return (this._bitField & 67108864) === 67108864;
-};
-
-Promise.prototype._setLength = function (len) {
-    this._bitField = (this._bitField & -65536) |
-        (len & 65535);
-};
-
-Promise.prototype._setFulfilled = function () {
-    this._bitField = this._bitField | 33554432;
-    this._fireEvent("promiseFulfilled", this);
-};
-
-Promise.prototype._setRejected = function () {
-    this._bitField = this._bitField | 16777216;
-    this._fireEvent("promiseRejected", this);
-};
-
-Promise.prototype._setFollowing = function () {
-    this._bitField = this._bitField | 67108864;
-    this._fireEvent("promiseResolved", this);
-};
-
-Promise.prototype._setIsFinal = function () {
-    this._bitField = this._bitField | 4194304;
-};
-
-Promise.prototype._isFinal = function () {
-    return (this._bitField & 4194304) > 0;
-};
-
-Promise.prototype._unsetCancelled = function() {
-    this._bitField = this._bitField & (~65536);
-};
-
-Promise.prototype._setCancelled = function() {
-    this._bitField = this._bitField | 65536;
-    this._fireEvent("promiseCancelled", this);
-};
-
-Promise.prototype._setWillBeCancelled = function() {
-    this._bitField = this._bitField | 8388608;
-};
-
-Promise.prototype._setAsyncGuaranteed = function() {
-    if (async.hasCustomScheduler()) return;
-    var bitField = this._bitField;
-    this._bitField = bitField |
-        (((bitField & 536870912) >> 2) ^
-        134217728);
-};
-
-Promise.prototype._setNoAsyncGuarantee = function() {
-    this._bitField = (this._bitField | 536870912) &
-        (~134217728);
-};
-
-Promise.prototype._receiverAt = function (index) {
-    var ret = index === 0 ? this._receiver0 : this[
-            index * 4 - 4 + 3];
-    if (ret === UNDEFINED_BINDING) {
-        return undefined;
-    } else if (ret === undefined && this._isBound()) {
-        return this._boundValue();
-    }
-    return ret;
-};
-
-Promise.prototype._promiseAt = function (index) {
-    return this[
-            index * 4 - 4 + 2];
-};
-
-Promise.prototype._fulfillmentHandlerAt = function (index) {
-    return this[
-            index * 4 - 4 + 0];
-};
-
-Promise.prototype._rejectionHandlerAt = function (index) {
-    return this[
-            index * 4 - 4 + 1];
-};
-
-Promise.prototype._boundValue = function() {};
-
-Promise.prototype._migrateCallback0 = function (follower) {
-    var bitField = follower._bitField;
-    var fulfill = follower._fulfillmentHandler0;
-    var reject = follower._rejectionHandler0;
-    var promise = follower._promise0;
-    var receiver = follower._receiverAt(0);
-    if (receiver === undefined) receiver = UNDEFINED_BINDING;
-    this._addCallbacks(fulfill, reject, promise, receiver, null);
-};
-
-Promise.prototype._migrateCallbackAt = function (follower, index) {
-    var fulfill = follower._fulfillmentHandlerAt(index);
-    var reject = follower._rejectionHandlerAt(index);
-    var promise = follower._promiseAt(index);
-    var receiver = follower._receiverAt(index);
-    if (receiver === undefined) receiver = UNDEFINED_BINDING;
-    this._addCallbacks(fulfill, reject, promise, receiver, null);
-};
-
-Promise.prototype._addCallbacks = function (
-    fulfill,
-    reject,
-    promise,
-    receiver,
-    context
-) {
-    var index = this._length();
-
-    if (index >= 65535 - 4) {
-        index = 0;
-        this._setLength(0);
-    }
-
-    if (index === 0) {
-        this._promise0 = promise;
-        this._receiver0 = receiver;
-        if (typeof fulfill === "function") {
-            this._fulfillmentHandler0 = util.contextBind(context, fulfill);
-        }
-        if (typeof reject === "function") {
-            this._rejectionHandler0 = util.contextBind(context, reject);
-        }
-    } else {
-        var base = index * 4 - 4;
-        this[base + 2] = promise;
-        this[base + 3] = receiver;
-        if (typeof fulfill === "function") {
-            this[base + 0] =
-                util.contextBind(context, fulfill);
-        }
-        if (typeof reject === "function") {
-            this[base + 1] =
-                util.contextBind(context, reject);
-        }
-    }
-    this._setLength(index + 1);
-    return index;
-};
-
-Promise.prototype._proxy = function (proxyable, arg) {
-    this._addCallbacks(undefined, undefined, arg, proxyable, null);
-};
-
-Promise.prototype._resolveCallback = function(value, shouldBind) {
-    if (((this._bitField & 117506048) !== 0)) return;
-    if (value === this)
-        return this._rejectCallback(makeSelfResolutionError(), false);
-    var maybePromise = tryConvertToPromise(value, this);
-    if (!(maybePromise instanceof Promise)) return this._fulfill(value);
-
-    if (shouldBind) this._propagateFrom(maybePromise, 2);
-
-
-    var promise = maybePromise._target();
-
-    if (promise === this) {
-        this._reject(makeSelfResolutionError());
-        return;
-    }
-
-    var bitField = promise._bitField;
-    if (((bitField & 50397184) === 0)) {
-        var len = this._length();
-        if (len > 0) promise._migrateCallback0(this);
-        for (var i = 1; i < len; ++i) {
-            promise._migrateCallbackAt(this, i);
-        }
-        this._setFollowing();
-        this._setLength(0);
-        this._setFollowee(maybePromise);
-    } else if (((bitField & 33554432) !== 0)) {
-        this._fulfill(promise._value());
-    } else if (((bitField & 16777216) !== 0)) {
-        this._reject(promise._reason());
-    } else {
-        var reason = new CancellationError("late cancellation observer");
-        promise._attachExtraTrace(reason);
-        this._reject(reason);
-    }
-};
-
-Promise.prototype._rejectCallback =
-function(reason, synchronous, ignoreNonErrorWarnings) {
-    var trace = util.ensureErrorObject(reason);
-    var hasStack = trace === reason;
-    if (!hasStack && !ignoreNonErrorWarnings && debug.warnings()) {
-        var message = "a promise was rejected with a non-error: " +
-            util.classString(reason);
-        this._warn(message, true);
-    }
-    this._attachExtraTrace(trace, synchronous ? hasStack : false);
-    this._reject(reason);
-};
-
-Promise.prototype._resolveFromExecutor = function (executor) {
-    if (executor === INTERNAL) return;
-    var promise = this;
-    this._captureStackTrace();
-    this._pushContext();
-    var synchronous = true;
-    var r = this._execute(executor, function(value) {
-        promise._resolveCallback(value);
-    }, function (reason) {
-        promise._rejectCallback(reason, synchronous);
-    });
-    synchronous = false;
-    this._popContext();
-
-    if (r !== undefined) {
-        promise._rejectCallback(r, true);
-    }
-};
-
-Promise.prototype._settlePromiseFromHandler = function (
-    handler, receiver, value, promise
-) {
-    var bitField = promise._bitField;
-    if (((bitField & 65536) !== 0)) return;
-    promise._pushContext();
-    var x;
-    if (receiver === APPLY) {
-        if (!value || typeof value.length !== "number") {
-            x = errorObj;
-            x.e = new TypeError("cannot .spread() a non-array: " +
-                                    util.classString(value));
-        } else {
-            x = tryCatch(handler).apply(this._boundValue(), value);
-        }
-    } else {
-        x = tryCatch(handler).call(receiver, value);
-    }
-    var promiseCreated = promise._popContext();
-    bitField = promise._bitField;
-    if (((bitField & 65536) !== 0)) return;
-
-    if (x === NEXT_FILTER) {
-        promise._reject(value);
-    } else if (x === errorObj) {
-        promise._rejectCallback(x.e, false);
-    } else {
-        debug.checkForgottenReturns(x, promiseCreated, "",  promise, this);
-        promise._resolveCallback(x);
-    }
-};
-
-Promise.prototype._target = function() {
-    var ret = this;
-    while (ret._isFollowing()) ret = ret._followee();
-    return ret;
-};
-
-Promise.prototype._followee = function() {
-    return this._rejectionHandler0;
-};
-
-Promise.prototype._setFollowee = function(promise) {
-    this._rejectionHandler0 = promise;
-};
-
-Promise.prototype._settlePromise = function(promise, handler, receiver, value) {
-    var isPromise = promise instanceof Promise;
-    var bitField = this._bitField;
-    var asyncGuaranteed = ((bitField & 134217728) !== 0);
-    if (((bitField & 65536) !== 0)) {
-        if (isPromise) promise._invokeInternalOnCancel();
-
-        if (receiver instanceof PassThroughHandlerContext &&
-            receiver.isFinallyHandler()) {
-            receiver.cancelPromise = promise;
-            if (tryCatch(handler).call(receiver, value) === errorObj) {
-                promise._reject(errorObj.e);
-            }
-        } else if (handler === reflectHandler) {
-            promise._fulfill(reflectHandler.call(receiver));
-        } else if (receiver instanceof Proxyable) {
-            receiver._promiseCancelled(promise);
-        } else if (isPromise || promise instanceof PromiseArray) {
-            promise._cancel();
-        } else {
-            receiver.cancel();
-        }
-    } else if (typeof handler === "function") {
-        if (!isPromise) {
-            handler.call(receiver, value, promise);
-        } else {
-            if (asyncGuaranteed) promise._setAsyncGuaranteed();
-            this._settlePromiseFromHandler(handler, receiver, value, promise);
-        }
-    } else if (receiver instanceof Proxyable) {
-        if (!receiver._isResolved()) {
-            if (((bitField & 33554432) !== 0)) {
-                receiver._promiseFulfilled(value, promise);
-            } else {
-                receiver._promiseRejected(value, promise);
-            }
-        }
-    } else if (isPromise) {
-        if (asyncGuaranteed) promise._setAsyncGuaranteed();
-        if (((bitField & 33554432) !== 0)) {
-            promise._fulfill(value);
-        } else {
-            promise._reject(value);
-        }
-    }
-};
-
-Promise.prototype._settlePromiseLateCancellationObserver = function(ctx) {
-    var handler = ctx.handler;
-    var promise = ctx.promise;
-    var receiver = ctx.receiver;
-    var value = ctx.value;
-    if (typeof handler === "function") {
-        if (!(promise instanceof Promise)) {
-            handler.call(receiver, value, promise);
-        } else {
-            this._settlePromiseFromHandler(handler, receiver, value, promise);
-        }
-    } else if (promise instanceof Promise) {
-        promise._reject(value);
-    }
-};
-
-Promise.prototype._settlePromiseCtx = function(ctx) {
-    this._settlePromise(ctx.promise, ctx.handler, ctx.receiver, ctx.value);
-};
-
-Promise.prototype._settlePromise0 = function(handler, value, bitField) {
-    var promise = this._promise0;
-    var receiver = this._receiverAt(0);
-    this._promise0 = undefined;
-    this._receiver0 = undefined;
-    this._settlePromise(promise, handler, receiver, value);
-};
-
-Promise.prototype._clearCallbackDataAtIndex = function(index) {
-    var base = index * 4 - 4;
-    this[base + 2] =
-    this[base + 3] =
-    this[base + 0] =
-    this[base + 1] = undefined;
-};
-
-Promise.prototype._fulfill = function (value) {
-    var bitField = this._bitField;
-    if (((bitField & 117506048) >>> 16)) return;
-    if (value === this) {
-        var err = makeSelfResolutionError();
-        this._attachExtraTrace(err);
-        return this._reject(err);
-    }
-    this._setFulfilled();
-    this._rejectionHandler0 = value;
-
-    if ((bitField & 65535) > 0) {
-        if (((bitField & 134217728) !== 0)) {
-            this._settlePromises();
-        } else {
-            async.settlePromises(this);
-        }
-        this._dereferenceTrace();
-    }
-};
-
-Promise.prototype._reject = function (reason) {
-    var bitField = this._bitField;
-    if (((bitField & 117506048) >>> 16)) return;
-    this._setRejected();
-    this._fulfillmentHandler0 = reason;
-
-    if (this._isFinal()) {
-        return async.fatalError(reason, util.isNode);
-    }
-
-    if ((bitField & 65535) > 0) {
-        async.settlePromises(this);
-    } else {
-        this._ensurePossibleRejectionHandled();
-    }
-};
-
-Promise.prototype._fulfillPromises = function (len, value) {
-    for (var i = 1; i < len; i++) {
-        var handler = this._fulfillmentHandlerAt(i);
-        var promise = this._promiseAt(i);
-        var receiver = this._receiverAt(i);
-        this._clearCallbackDataAtIndex(i);
-        this._settlePromise(promise, handler, receiver, value);
-    }
-};
-
-Promise.prototype._rejectPromises = function (len, reason) {
-    for (var i = 1; i < len; i++) {
-        var handler = this._rejectionHandlerAt(i);
-        var promise = this._promiseAt(i);
-        var receiver = this._receiverAt(i);
-        this._clearCallbackDataAtIndex(i);
-        this._settlePromise(promise, handler, receiver, reason);
-    }
-};
-
-Promise.prototype._settlePromises = function () {
-    var bitField = this._bitField;
-    var len = (bitField & 65535);
-
-    if (len > 0) {
-        if (((bitField & 16842752) !== 0)) {
-            var reason = this._fulfillmentHandler0;
-            this._settlePromise0(this._rejectionHandler0, reason, bitField);
-            this._rejectPromises(len, reason);
-        } else {
-            var value = this._rejectionHandler0;
-            this._settlePromise0(this._fulfillmentHandler0, value, bitField);
-            this._fulfillPromises(len, value);
-        }
-        this._setLength(0);
-    }
-    this._clearCancellationData();
-};
-
-Promise.prototype._settledValue = function() {
-    var bitField = this._bitField;
-    if (((bitField & 33554432) !== 0)) {
-        return this._rejectionHandler0;
-    } else if (((bitField & 16777216) !== 0)) {
-        return this._fulfillmentHandler0;
-    }
-};
-
-if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
-    es5.defineProperty(Promise.prototype, Symbol.toStringTag, {
-        get: function () {
-            return "Object";
-        }
-    });
-}
-
-function deferResolve(v) {this.promise._resolveCallback(v);}
-function deferReject(v) {this.promise._rejectCallback(v, false);}
-
-Promise.defer = Promise.pending = function() {
-    debug.deprecated("Promise.defer", "new Promise");
-    var promise = new Promise(INTERNAL);
-    return {
-        promise: promise,
-        resolve: deferResolve,
-        reject: deferReject
-    };
-};
-
-util.notEnumerableProp(Promise,
-                       "_makeSelfResolutionError",
-                       makeSelfResolutionError);
-
-__nccwpck_require__(5588)(Promise, INTERNAL, tryConvertToPromise, apiRejection,
-    debug);
-__nccwpck_require__(4330)(Promise, INTERNAL, tryConvertToPromise, debug);
-__nccwpck_require__(2855)(Promise, PromiseArray, apiRejection, debug);
-__nccwpck_require__(6535)(Promise);
-__nccwpck_require__(5761)(Promise);
-__nccwpck_require__(5702)(
-    Promise, PromiseArray, tryConvertToPromise, INTERNAL, async);
-Promise.Promise = Promise;
-Promise.version = "3.7.2";
-__nccwpck_require__(4454)(Promise);
-__nccwpck_require__(1595)(Promise, apiRejection, INTERNAL, tryConvertToPromise, Proxyable, debug);
-__nccwpck_require__(9651)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug);
-__nccwpck_require__(3327)(Promise);
-__nccwpck_require__(5865)(Promise, INTERNAL);
-__nccwpck_require__(2951)(Promise, PromiseArray, tryConvertToPromise, apiRejection);
-__nccwpck_require__(5380)(Promise, INTERNAL, tryConvertToPromise, apiRejection);
-__nccwpck_require__(631)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug);
-__nccwpck_require__(5270)(Promise, PromiseArray, debug);
-__nccwpck_require__(1253)(Promise, PromiseArray, apiRejection);
-__nccwpck_require__(8407)(Promise, INTERNAL, debug);
-__nccwpck_require__(1113)(Promise, apiRejection, tryConvertToPromise, createContext, INTERNAL, debug);
-__nccwpck_require__(7707)(Promise);
-__nccwpck_require__(3207)(Promise, INTERNAL);
-__nccwpck_require__(8595)(Promise, INTERNAL);
-                                                         
-    util.toFastProperties(Promise);                                          
-    util.toFastProperties(Promise.prototype);                                
-    function fillTypes(value) {                                              
-        var p = new Promise(INTERNAL);                                       
-        p._fulfillmentHandler0 = value;                                      
-        p._rejectionHandler0 = value;                                        
-        p._promise0 = value;                                                 
-        p._receiver0 = value;                                                
-    }                                                                        
-    // Complete slack tracking, opt out of field-type tracking and           
-    // stabilize map                                                         
-    fillTypes({a: 1});                                                       
-    fillTypes({b: 2});                                                       
-    fillTypes({c: 3});                                                       
-    fillTypes(1);                                                            
-    fillTypes(function(){});                                                 
-    fillTypes(undefined);                                                    
-    fillTypes(false);                                                        
-    fillTypes(new Promise(INTERNAL));                                        
-    debug.setBounds(Async.firstLineError, util.lastLineError);               
-    return Promise;                                                          
-
-};
-
-
-/***/ }),
-
-/***/ 554:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(Promise, INTERNAL, tryConvertToPromise,
-    apiRejection, Proxyable) {
-var util = __nccwpck_require__(409);
-var isArray = util.isArray;
-
-function toResolutionValue(val) {
-    switch(val) {
-    case -2: return [];
-    case -3: return {};
-    case -6: return new Map();
-    }
-}
-
-function PromiseArray(values) {
-    var promise = this._promise = new Promise(INTERNAL);
-    if (values instanceof Promise) {
-        promise._propagateFrom(values, 3);
-        values.suppressUnhandledRejections();
-    }
-    promise._setOnCancel(this);
-    this._values = values;
-    this._length = 0;
-    this._totalResolved = 0;
-    this._init(undefined, -2);
-}
-util.inherits(PromiseArray, Proxyable);
-
-PromiseArray.prototype.length = function () {
-    return this._length;
-};
-
-PromiseArray.prototype.promise = function () {
-    return this._promise;
-};
-
-PromiseArray.prototype._init = function init(_, resolveValueIfEmpty) {
-    var values = tryConvertToPromise(this._values, this._promise);
-    if (values instanceof Promise) {
-        values = values._target();
-        var bitField = values._bitField;
-        ;
-        this._values = values;
-
-        if (((bitField & 50397184) === 0)) {
-            this._promise._setAsyncGuaranteed();
-            return values._then(
-                init,
-                this._reject,
-                undefined,
-                this,
-                resolveValueIfEmpty
-           );
-        } else if (((bitField & 33554432) !== 0)) {
-            values = values._value();
-        } else if (((bitField & 16777216) !== 0)) {
-            return this._reject(values._reason());
-        } else {
-            return this._cancel();
-        }
-    }
-    values = util.asArray(values);
-    if (values === null) {
-        var err = apiRejection(
-            "expecting an array or an iterable object but got " + util.classString(values)).reason();
-        this._promise._rejectCallback(err, false);
-        return;
-    }
-
-    if (values.length === 0) {
-        if (resolveValueIfEmpty === -5) {
-            this._resolveEmptyArray();
-        }
-        else {
-            this._resolve(toResolutionValue(resolveValueIfEmpty));
-        }
-        return;
-    }
-    this._iterate(values);
-};
-
-PromiseArray.prototype._iterate = function(values) {
-    var len = this.getActualLength(values.length);
-    this._length = len;
-    this._values = this.shouldCopyValues() ? new Array(len) : this._values;
-    var result = this._promise;
-    var isResolved = false;
-    var bitField = null;
-    for (var i = 0; i < len; ++i) {
-        var maybePromise = tryConvertToPromise(values[i], result);
-
-        if (maybePromise instanceof Promise) {
-            maybePromise = maybePromise._target();
-            bitField = maybePromise._bitField;
-        } else {
-            bitField = null;
-        }
-
-        if (isResolved) {
-            if (bitField !== null) {
-                maybePromise.suppressUnhandledRejections();
-            }
-        } else if (bitField !== null) {
-            if (((bitField & 50397184) === 0)) {
-                maybePromise._proxy(this, i);
-                this._values[i] = maybePromise;
-            } else if (((bitField & 33554432) !== 0)) {
-                isResolved = this._promiseFulfilled(maybePromise._value(), i);
-            } else if (((bitField & 16777216) !== 0)) {
-                isResolved = this._promiseRejected(maybePromise._reason(), i);
-            } else {
-                isResolved = this._promiseCancelled(i);
-            }
-        } else {
-            isResolved = this._promiseFulfilled(maybePromise, i);
-        }
-    }
-    if (!isResolved) result._setAsyncGuaranteed();
-};
-
-PromiseArray.prototype._isResolved = function () {
-    return this._values === null;
-};
-
-PromiseArray.prototype._resolve = function (value) {
-    this._values = null;
-    this._promise._fulfill(value);
-};
-
-PromiseArray.prototype._cancel = function() {
-    if (this._isResolved() || !this._promise._isCancellable()) return;
-    this._values = null;
-    this._promise._cancel();
-};
-
-PromiseArray.prototype._reject = function (reason) {
-    this._values = null;
-    this._promise._rejectCallback(reason, false);
-};
-
-PromiseArray.prototype._promiseFulfilled = function (value, index) {
-    this._values[index] = value;
-    var totalResolved = ++this._totalResolved;
-    if (totalResolved >= this._length) {
-        this._resolve(this._values);
-        return true;
-    }
-    return false;
-};
-
-PromiseArray.prototype._promiseCancelled = function() {
-    this._cancel();
-    return true;
-};
-
-PromiseArray.prototype._promiseRejected = function (reason) {
-    this._totalResolved++;
-    this._reject(reason);
-    return true;
-};
-
-PromiseArray.prototype._resultCancelled = function() {
-    if (this._isResolved()) return;
-    var values = this._values;
-    this._cancel();
-    if (values instanceof Promise) {
-        values.cancel();
-    } else {
-        for (var i = 0; i < values.length; ++i) {
-            if (values[i] instanceof Promise) {
-                values[i].cancel();
-            }
-        }
-    }
-};
-
-PromiseArray.prototype.shouldCopyValues = function () {
-    return true;
-};
-
-PromiseArray.prototype.getActualLength = function (len) {
-    return len;
-};
-
-return PromiseArray;
-};
-
-
-/***/ }),
-
-/***/ 5865:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(Promise, INTERNAL) {
-var THIS = {};
-var util = __nccwpck_require__(409);
-var nodebackForPromise = __nccwpck_require__(1774);
-var withAppended = util.withAppended;
-var maybeWrapAsError = util.maybeWrapAsError;
-var canEvaluate = util.canEvaluate;
-var TypeError = (__nccwpck_require__(9318).TypeError);
-var defaultSuffix = "Async";
-var defaultPromisified = {__isPromisified__: true};
-var noCopyProps = [
-    "arity",    "length",
-    "name",
-    "arguments",
-    "caller",
-    "callee",
-    "prototype",
-    "__isPromisified__"
+var Buffer = (__nccwpck_require__(181).Buffer);
+
+var CRC_TABLE = [
+  0x00000000, 0x77073096, 0xee0e612c, 0x990951ba, 0x076dc419,
+  0x706af48f, 0xe963a535, 0x9e6495a3, 0x0edb8832, 0x79dcb8a4,
+  0xe0d5e91e, 0x97d2d988, 0x09b64c2b, 0x7eb17cbd, 0xe7b82d07,
+  0x90bf1d91, 0x1db71064, 0x6ab020f2, 0xf3b97148, 0x84be41de,
+  0x1adad47d, 0x6ddde4eb, 0xf4d4b551, 0x83d385c7, 0x136c9856,
+  0x646ba8c0, 0xfd62f97a, 0x8a65c9ec, 0x14015c4f, 0x63066cd9,
+  0xfa0f3d63, 0x8d080df5, 0x3b6e20c8, 0x4c69105e, 0xd56041e4,
+  0xa2677172, 0x3c03e4d1, 0x4b04d447, 0xd20d85fd, 0xa50ab56b,
+  0x35b5a8fa, 0x42b2986c, 0xdbbbc9d6, 0xacbcf940, 0x32d86ce3,
+  0x45df5c75, 0xdcd60dcf, 0xabd13d59, 0x26d930ac, 0x51de003a,
+  0xc8d75180, 0xbfd06116, 0x21b4f4b5, 0x56b3c423, 0xcfba9599,
+  0xb8bda50f, 0x2802b89e, 0x5f058808, 0xc60cd9b2, 0xb10be924,
+  0x2f6f7c87, 0x58684c11, 0xc1611dab, 0xb6662d3d, 0x76dc4190,
+  0x01db7106, 0x98d220bc, 0xefd5102a, 0x71b18589, 0x06b6b51f,
+  0x9fbfe4a5, 0xe8b8d433, 0x7807c9a2, 0x0f00f934, 0x9609a88e,
+  0xe10e9818, 0x7f6a0dbb, 0x086d3d2d, 0x91646c97, 0xe6635c01,
+  0x6b6b51f4, 0x1c6c6162, 0x856530d8, 0xf262004e, 0x6c0695ed,
+  0x1b01a57b, 0x8208f4c1, 0xf50fc457, 0x65b0d9c6, 0x12b7e950,
+  0x8bbeb8ea, 0xfcb9887c, 0x62dd1ddf, 0x15da2d49, 0x8cd37cf3,
+  0xfbd44c65, 0x4db26158, 0x3ab551ce, 0xa3bc0074, 0xd4bb30e2,
+  0x4adfa541, 0x3dd895d7, 0xa4d1c46d, 0xd3d6f4fb, 0x4369e96a,
+  0x346ed9fc, 0xad678846, 0xda60b8d0, 0x44042d73, 0x33031de5,
+  0xaa0a4c5f, 0xdd0d7cc9, 0x5005713c, 0x270241aa, 0xbe0b1010,
+  0xc90c2086, 0x5768b525, 0x206f85b3, 0xb966d409, 0xce61e49f,
+  0x5edef90e, 0x29d9c998, 0xb0d09822, 0xc7d7a8b4, 0x59b33d17,
+  0x2eb40d81, 0xb7bd5c3b, 0xc0ba6cad, 0xedb88320, 0x9abfb3b6,
+  0x03b6e20c, 0x74b1d29a, 0xead54739, 0x9dd277af, 0x04db2615,
+  0x73dc1683, 0xe3630b12, 0x94643b84, 0x0d6d6a3e, 0x7a6a5aa8,
+  0xe40ecf0b, 0x9309ff9d, 0x0a00ae27, 0x7d079eb1, 0xf00f9344,
+  0x8708a3d2, 0x1e01f268, 0x6906c2fe, 0xf762575d, 0x806567cb,
+  0x196c3671, 0x6e6b06e7, 0xfed41b76, 0x89d32be0, 0x10da7a5a,
+  0x67dd4acc, 0xf9b9df6f, 0x8ebeeff9, 0x17b7be43, 0x60b08ed5,
+  0xd6d6a3e8, 0xa1d1937e, 0x38d8c2c4, 0x4fdff252, 0xd1bb67f1,
+  0xa6bc5767, 0x3fb506dd, 0x48b2364b, 0xd80d2bda, 0xaf0a1b4c,
+  0x36034af6, 0x41047a60, 0xdf60efc3, 0xa867df55, 0x316e8eef,
+  0x4669be79, 0xcb61b38c, 0xbc66831a, 0x256fd2a0, 0x5268e236,
+  0xcc0c7795, 0xbb0b4703, 0x220216b9, 0x5505262f, 0xc5ba3bbe,
+  0xb2bd0b28, 0x2bb45a92, 0x5cb36a04, 0xc2d7ffa7, 0xb5d0cf31,
+  0x2cd99e8b, 0x5bdeae1d, 0x9b64c2b0, 0xec63f226, 0x756aa39c,
+  0x026d930a, 0x9c0906a9, 0xeb0e363f, 0x72076785, 0x05005713,
+  0x95bf4a82, 0xe2b87a14, 0x7bb12bae, 0x0cb61b38, 0x92d28e9b,
+  0xe5d5be0d, 0x7cdcefb7, 0x0bdbdf21, 0x86d3d2d4, 0xf1d4e242,
+  0x68ddb3f8, 0x1fda836e, 0x81be16cd, 0xf6b9265b, 0x6fb077e1,
+  0x18b74777, 0x88085ae6, 0xff0f6a70, 0x66063bca, 0x11010b5c,
+  0x8f659eff, 0xf862ae69, 0x616bffd3, 0x166ccf45, 0xa00ae278,
+  0xd70dd2ee, 0x4e048354, 0x3903b3c2, 0xa7672661, 0xd06016f7,
+  0x4969474d, 0x3e6e77db, 0xaed16a4a, 0xd9d65adc, 0x40df0b66,
+  0x37d83bf0, 0xa9bcae53, 0xdebb9ec5, 0x47b2cf7f, 0x30b5ffe9,
+  0xbdbdf21c, 0xcabac28a, 0x53b39330, 0x24b4a3a6, 0xbad03605,
+  0xcdd70693, 0x54de5729, 0x23d967bf, 0xb3667a2e, 0xc4614ab8,
+  0x5d681b02, 0x2a6f2b94, 0xb40bbe37, 0xc30c8ea1, 0x5a05df1b,
+  0x2d02ef8d
 ];
-var noCopyPropsPattern = new RegExp("^(?:" + noCopyProps.join("|") + ")$");
 
-var defaultFilter = function(name) {
-    return util.isIdentifier(name) &&
-        name.charAt(0) !== "_" &&
-        name !== "constructor";
-};
-
-function propsFilter(key) {
-    return !noCopyPropsPattern.test(key);
-}
-
-function isPromisified(fn) {
-    try {
-        return fn.__isPromisified__ === true;
-    }
-    catch (e) {
-        return false;
-    }
-}
-
-function hasPromisified(obj, key, suffix) {
-    var val = util.getDataPropertyOrDefault(obj, key + suffix,
-                                            defaultPromisified);
-    return val ? isPromisified(val) : false;
-}
-function checkValid(ret, suffix, suffixRegexp) {
-    for (var i = 0; i < ret.length; i += 2) {
-        var key = ret[i];
-        if (suffixRegexp.test(key)) {
-            var keyWithoutAsyncSuffix = key.replace(suffixRegexp, "");
-            for (var j = 0; j < ret.length; j += 2) {
-                if (ret[j] === keyWithoutAsyncSuffix) {
-                    throw new TypeError("Cannot promisify an API that has normal methods with '%s'-suffix\u000a\u000a    See http://goo.gl/MqrFmX\u000a"
-                        .replace("%s", suffix));
-                }
-            }
-        }
-    }
-}
-
-function promisifiableMethods(obj, suffix, suffixRegexp, filter) {
-    var keys = util.inheritedDataKeys(obj);
-    var ret = [];
-    for (var i = 0; i < keys.length; ++i) {
-        var key = keys[i];
-        var value = obj[key];
-        var passesDefaultFilter = filter === defaultFilter
-            ? true : defaultFilter(key, value, obj);
-        if (typeof value === "function" &&
-            !isPromisified(value) &&
-            !hasPromisified(obj, key, suffix) &&
-            filter(key, value, obj, passesDefaultFilter)) {
-            ret.push(key, value);
-        }
-    }
-    checkValid(ret, suffix, suffixRegexp);
-    return ret;
-}
-
-var escapeIdentRegex = function(str) {
-    return str.replace(/([$])/, "\\$");
-};
-
-var makeNodePromisifiedEval;
-if (true) {
-var switchCaseArgumentOrder = function(likelyArgumentCount) {
-    var ret = [likelyArgumentCount];
-    var min = Math.max(0, likelyArgumentCount - 1 - 3);
-    for(var i = likelyArgumentCount - 1; i >= min; --i) {
-        ret.push(i);
-    }
-    for(var i = likelyArgumentCount + 1; i <= 3; ++i) {
-        ret.push(i);
-    }
-    return ret;
-};
-
-var argumentSequence = function(argumentCount) {
-    return util.filledRange(argumentCount, "_arg", "");
-};
-
-var parameterDeclaration = function(parameterCount) {
-    return util.filledRange(
-        Math.max(parameterCount, 3), "_arg", "");
-};
-
-var parameterCount = function(fn) {
-    if (typeof fn.length === "number") {
-        return Math.max(Math.min(fn.length, 1023 + 1), 0);
-    }
-    return 0;
-};
-
-makeNodePromisifiedEval =
-function(callback, receiver, originalName, fn, _, multiArgs) {
-    var newParameterCount = Math.max(0, parameterCount(fn) - 1);
-    var argumentOrder = switchCaseArgumentOrder(newParameterCount);
-    var shouldProxyThis = typeof callback === "string" || receiver === THIS;
-
-    function generateCallForArgumentCount(count) {
-        var args = argumentSequence(count).join(", ");
-        var comma = count > 0 ? ", " : "";
-        var ret;
-        if (shouldProxyThis) {
-            ret = "ret = callback.call(this, {{args}}, nodeback); break;\n";
-        } else {
-            ret = receiver === undefined
-                ? "ret = callback({{args}}, nodeback); break;\n"
-                : "ret = callback.call(receiver, {{args}}, nodeback); break;\n";
-        }
-        return ret.replace("{{args}}", args).replace(", ", comma);
-    }
-
-    function generateArgumentSwitchCase() {
-        var ret = "";
-        for (var i = 0; i < argumentOrder.length; ++i) {
-            ret += "case " + argumentOrder[i] +":" +
-                generateCallForArgumentCount(argumentOrder[i]);
-        }
-
-        ret += "                                                             \n\
-        default:                                                             \n\
-            var args = new Array(len + 1);                                   \n\
-            var i = 0;                                                       \n\
-            for (var i = 0; i < len; ++i) {                                  \n\
-               args[i] = arguments[i];                                       \n\
-            }                                                                \n\
-            args[i] = nodeback;                                              \n\
-            [CodeForCall]                                                    \n\
-            break;                                                           \n\
-        ".replace("[CodeForCall]", (shouldProxyThis
-                                ? "ret = callback.apply(this, args);\n"
-                                : "ret = callback.apply(receiver, args);\n"));
-        return ret;
-    }
-
-    var getFunctionCode = typeof callback === "string"
-                                ? ("this != null ? this['"+callback+"'] : fn")
-                                : "fn";
-    var body = "'use strict';                                                \n\
-        var ret = function (Parameters) {                                    \n\
-            'use strict';                                                    \n\
-            var len = arguments.length;                                      \n\
-            var promise = new Promise(INTERNAL);                             \n\
-            promise._captureStackTrace();                                    \n\
-            var nodeback = nodebackForPromise(promise, " + multiArgs + ");   \n\
-            var ret;                                                         \n\
-            var callback = tryCatch([GetFunctionCode]);                      \n\
-            switch(len) {                                                    \n\
-                [CodeForSwitchCase]                                          \n\
-            }                                                                \n\
-            if (ret === errorObj) {                                          \n\
-                promise._rejectCallback(maybeWrapAsError(ret.e), true, true);\n\
-            }                                                                \n\
-            if (!promise._isFateSealed()) promise._setAsyncGuaranteed();     \n\
-            return promise;                                                  \n\
-        };                                                                   \n\
-        notEnumerableProp(ret, '__isPromisified__', true);                   \n\
-        return ret;                                                          \n\
-    ".replace("[CodeForSwitchCase]", generateArgumentSwitchCase())
-        .replace("[GetFunctionCode]", getFunctionCode);
-    body = body.replace("Parameters", parameterDeclaration(newParameterCount));
-    return new Function("Promise",
-                        "fn",
-                        "receiver",
-                        "withAppended",
-                        "maybeWrapAsError",
-                        "nodebackForPromise",
-                        "tryCatch",
-                        "errorObj",
-                        "notEnumerableProp",
-                        "INTERNAL",
-                        body)(
-                    Promise,
-                    fn,
-                    receiver,
-                    withAppended,
-                    maybeWrapAsError,
-                    nodebackForPromise,
-                    util.tryCatch,
-                    util.errorObj,
-                    util.notEnumerableProp,
-                    INTERNAL);
-};
-}
-
-function makeNodePromisifiedClosure(callback, receiver, _, fn, __, multiArgs) {
-    var defaultThis = (function() {return this;})();
-    var method = callback;
-    if (typeof method === "string") {
-        callback = fn;
-    }
-    function promisified() {
-        var _receiver = receiver;
-        if (receiver === THIS) _receiver = this;
-        var promise = new Promise(INTERNAL);
-        promise._captureStackTrace();
-        var cb = typeof method === "string" && this !== defaultThis
-            ? this[method] : callback;
-        var fn = nodebackForPromise(promise, multiArgs);
-        try {
-            cb.apply(_receiver, withAppended(arguments, fn));
-        } catch(e) {
-            promise._rejectCallback(maybeWrapAsError(e), true, true);
-        }
-        if (!promise._isFateSealed()) promise._setAsyncGuaranteed();
-        return promise;
-    }
-    util.notEnumerableProp(promisified, "__isPromisified__", true);
-    return promisified;
-}
-
-var makeNodePromisified = canEvaluate
-    ? makeNodePromisifiedEval
-    : makeNodePromisifiedClosure;
-
-function promisifyAll(obj, suffix, filter, promisifier, multiArgs) {
-    var suffixRegexp = new RegExp(escapeIdentRegex(suffix) + "$");
-    var methods =
-        promisifiableMethods(obj, suffix, suffixRegexp, filter);
-
-    for (var i = 0, len = methods.length; i < len; i+= 2) {
-        var key = methods[i];
-        var fn = methods[i+1];
-        var promisifiedKey = key + suffix;
-        if (promisifier === makeNodePromisified) {
-            obj[promisifiedKey] =
-                makeNodePromisified(key, THIS, key, fn, suffix, multiArgs);
-        } else {
-            var promisified = promisifier(fn, function() {
-                return makeNodePromisified(key, THIS, key,
-                                           fn, suffix, multiArgs);
-            });
-            util.notEnumerableProp(promisified, "__isPromisified__", true);
-            obj[promisifiedKey] = promisified;
-        }
-    }
-    util.toFastProperties(obj);
-    return obj;
-}
-
-function promisify(callback, receiver, multiArgs) {
-    return makeNodePromisified(callback, receiver, undefined,
-                                callback, null, multiArgs);
-}
-
-Promise.promisify = function (fn, options) {
-    if (typeof fn !== "function") {
-        throw new TypeError("expecting a function but got " + util.classString(fn));
-    }
-    if (isPromisified(fn)) {
-        return fn;
-    }
-    options = Object(options);
-    var receiver = options.context === undefined ? THIS : options.context;
-    var multiArgs = !!options.multiArgs;
-    var ret = promisify(fn, receiver, multiArgs);
-    util.copyDescriptors(fn, ret, propsFilter);
-    return ret;
-};
-
-Promise.promisifyAll = function (target, options) {
-    if (typeof target !== "function" && typeof target !== "object") {
-        throw new TypeError("the target of promisifyAll must be an object or a function\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-    }
-    options = Object(options);
-    var multiArgs = !!options.multiArgs;
-    var suffix = options.suffix;
-    if (typeof suffix !== "string") suffix = defaultSuffix;
-    var filter = options.filter;
-    if (typeof filter !== "function") filter = defaultFilter;
-    var promisifier = options.promisifier;
-    if (typeof promisifier !== "function") promisifier = makeNodePromisified;
-
-    if (!util.isIdentifier(suffix)) {
-        throw new RangeError("suffix must be a valid identifier\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-    }
-
-    var keys = util.inheritedDataKeys(target);
-    for (var i = 0; i < keys.length; ++i) {
-        var value = target[keys[i]];
-        if (keys[i] !== "constructor" &&
-            util.isClass(value)) {
-            promisifyAll(value.prototype, suffix, filter, promisifier,
-                multiArgs);
-            promisifyAll(value, suffix, filter, promisifier, multiArgs);
-        }
-    }
-
-    return promisifyAll(target, suffix, filter, promisifier, multiArgs);
-};
-};
-
-
-
-/***/ }),
-
-/***/ 2951:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(
-    Promise, PromiseArray, tryConvertToPromise, apiRejection) {
-var util = __nccwpck_require__(409);
-var isObject = util.isObject;
-var es5 = __nccwpck_require__(8974);
-var Es6Map;
-if (typeof Map === "function") Es6Map = Map;
-
-var mapToEntries = (function() {
-    var index = 0;
-    var size = 0;
-
-    function extractEntry(value, key) {
-        this[index] = value;
-        this[index + size] = key;
-        index++;
-    }
-
-    return function mapToEntries(map) {
-        size = map.size;
-        index = 0;
-        var ret = new Array(map.size * 2);
-        map.forEach(extractEntry, ret);
-        return ret;
-    };
-})();
-
-var entriesToMap = function(entries) {
-    var ret = new Es6Map();
-    var length = entries.length / 2 | 0;
-    for (var i = 0; i < length; ++i) {
-        var key = entries[length + i];
-        var value = entries[i];
-        ret.set(key, value);
-    }
-    return ret;
-};
-
-function PropertiesPromiseArray(obj) {
-    var isMap = false;
-    var entries;
-    if (Es6Map !== undefined && obj instanceof Es6Map) {
-        entries = mapToEntries(obj);
-        isMap = true;
-    } else {
-        var keys = es5.keys(obj);
-        var len = keys.length;
-        entries = new Array(len * 2);
-        for (var i = 0; i < len; ++i) {
-            var key = keys[i];
-            entries[i] = obj[key];
-            entries[i + len] = key;
-        }
-    }
-    this.constructor$(entries);
-    this._isMap = isMap;
-    this._init$(undefined, isMap ? -6 : -3);
-}
-util.inherits(PropertiesPromiseArray, PromiseArray);
-
-PropertiesPromiseArray.prototype._init = function () {};
-
-PropertiesPromiseArray.prototype._promiseFulfilled = function (value, index) {
-    this._values[index] = value;
-    var totalResolved = ++this._totalResolved;
-    if (totalResolved >= this._length) {
-        var val;
-        if (this._isMap) {
-            val = entriesToMap(this._values);
-        } else {
-            val = {};
-            var keyOffset = this.length();
-            for (var i = 0, len = this.length(); i < len; ++i) {
-                val[this._values[i + keyOffset]] = this._values[i];
-            }
-        }
-        this._resolve(val);
-        return true;
-    }
-    return false;
-};
-
-PropertiesPromiseArray.prototype.shouldCopyValues = function () {
-    return false;
-};
-
-PropertiesPromiseArray.prototype.getActualLength = function (len) {
-    return len >> 1;
-};
-
-function props(promises) {
-    var ret;
-    var castValue = tryConvertToPromise(promises);
-
-    if (!isObject(castValue)) {
-        return apiRejection("cannot await properties of a non-object\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-    } else if (castValue instanceof Promise) {
-        ret = castValue._then(
-            Promise.props, undefined, undefined, undefined, undefined);
-    } else {
-        ret = new PropertiesPromiseArray(castValue).promise();
-    }
-
-    if (castValue instanceof Promise) {
-        ret._propagateFrom(castValue, 2);
-    }
-    return ret;
-}
-
-Promise.prototype.props = function () {
-    return props(this);
-};
-
-Promise.props = function (promises) {
-    return props(promises);
-};
-};
-
-
-/***/ }),
-
-/***/ 2670:
-/***/ ((module) => {
-
-
-function arrayMove(src, srcIndex, dst, dstIndex, len) {
-    for (var j = 0; j < len; ++j) {
-        dst[j + dstIndex] = src[j + srcIndex];
-        src[j + srcIndex] = void 0;
-    }
-}
-
-function Queue(capacity) {
-    this._capacity = capacity;
-    this._length = 0;
-    this._front = 0;
-}
-
-Queue.prototype._willBeOverCapacity = function (size) {
-    return this._capacity < size;
-};
-
-Queue.prototype._pushOne = function (arg) {
-    var length = this.length();
-    this._checkCapacity(length + 1);
-    var i = (this._front + length) & (this._capacity - 1);
-    this[i] = arg;
-    this._length = length + 1;
-};
-
-Queue.prototype.push = function (fn, receiver, arg) {
-    var length = this.length() + 3;
-    if (this._willBeOverCapacity(length)) {
-        this._pushOne(fn);
-        this._pushOne(receiver);
-        this._pushOne(arg);
-        return;
-    }
-    var j = this._front + length - 3;
-    this._checkCapacity(length);
-    var wrapMask = this._capacity - 1;
-    this[(j + 0) & wrapMask] = fn;
-    this[(j + 1) & wrapMask] = receiver;
-    this[(j + 2) & wrapMask] = arg;
-    this._length = length;
-};
-
-Queue.prototype.shift = function () {
-    var front = this._front,
-        ret = this[front];
-
-    this[front] = undefined;
-    this._front = (front + 1) & (this._capacity - 1);
-    this._length--;
-    return ret;
-};
-
-Queue.prototype.length = function () {
-    return this._length;
-};
-
-Queue.prototype._checkCapacity = function (size) {
-    if (this._capacity < size) {
-        this._resizeTo(this._capacity << 1);
-    }
-};
-
-Queue.prototype._resizeTo = function (capacity) {
-    var oldCapacity = this._capacity;
-    this._capacity = capacity;
-    var front = this._front;
-    var length = this._length;
-    var moveItemsCount = (front + length) & (oldCapacity - 1);
-    arrayMove(this, 0, this, oldCapacity, moveItemsCount);
-};
-
-module.exports = Queue;
-
-
-/***/ }),
-
-/***/ 5380:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(
-    Promise, INTERNAL, tryConvertToPromise, apiRejection) {
-var util = __nccwpck_require__(409);
-
-var raceLater = function (promise) {
-    return promise.then(function(array) {
-        return race(array, promise);
-    });
-};
-
-function race(promises, parent) {
-    var maybePromise = tryConvertToPromise(promises);
-
-    if (maybePromise instanceof Promise) {
-        return raceLater(maybePromise);
-    } else {
-        promises = util.asArray(promises);
-        if (promises === null)
-            return apiRejection("expecting an array or an iterable object but got " + util.classString(promises));
-    }
-
-    var ret = new Promise(INTERNAL);
-    if (parent !== undefined) {
-        ret._propagateFrom(parent, 3);
-    }
-    var fulfill = ret._fulfill;
-    var reject = ret._reject;
-    for (var i = 0, len = promises.length; i < len; ++i) {
-        var val = promises[i];
-
-        if (val === undefined && !(i in promises)) {
-            continue;
-        }
-
-        Promise.cast(val)._then(fulfill, reject, undefined, ret, null);
-    }
-    return ret;
-}
-
-Promise.race = function (promises) {
-    return race(promises, undefined);
-};
-
-Promise.prototype.race = function () {
-    return race(this, undefined);
-};
-
-};
-
-
-/***/ }),
-
-/***/ 631:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(Promise,
-                          PromiseArray,
-                          apiRejection,
-                          tryConvertToPromise,
-                          INTERNAL,
-                          debug) {
-var util = __nccwpck_require__(409);
-var tryCatch = util.tryCatch;
-
-function ReductionPromiseArray(promises, fn, initialValue, _each) {
-    this.constructor$(promises);
-    var context = Promise._getContext();
-    this._fn = util.contextBind(context, fn);
-    if (initialValue !== undefined) {
-        initialValue = Promise.resolve(initialValue);
-        initialValue._attachCancellationCallback(this);
-    }
-    this._initialValue = initialValue;
-    this._currentCancellable = null;
-    if(_each === INTERNAL) {
-        this._eachValues = Array(this._length);
-    } else if (_each === 0) {
-        this._eachValues = null;
-    } else {
-        this._eachValues = undefined;
-    }
-    this._promise._captureStackTrace();
-    this._init$(undefined, -5);
-}
-util.inherits(ReductionPromiseArray, PromiseArray);
-
-ReductionPromiseArray.prototype._gotAccum = function(accum) {
-    if (this._eachValues !== undefined &&
-        this._eachValues !== null &&
-        accum !== INTERNAL) {
-        this._eachValues.push(accum);
-    }
-};
-
-ReductionPromiseArray.prototype._eachComplete = function(value) {
-    if (this._eachValues !== null) {
-        this._eachValues.push(value);
-    }
-    return this._eachValues;
-};
-
-ReductionPromiseArray.prototype._init = function() {};
-
-ReductionPromiseArray.prototype._resolveEmptyArray = function() {
-    this._resolve(this._eachValues !== undefined ? this._eachValues
-                                                 : this._initialValue);
-};
-
-ReductionPromiseArray.prototype.shouldCopyValues = function () {
-    return false;
-};
-
-ReductionPromiseArray.prototype._resolve = function(value) {
-    this._promise._resolveCallback(value);
-    this._values = null;
-};
-
-ReductionPromiseArray.prototype._resultCancelled = function(sender) {
-    if (sender === this._initialValue) return this._cancel();
-    if (this._isResolved()) return;
-    this._resultCancelled$();
-    if (this._currentCancellable instanceof Promise) {
-        this._currentCancellable.cancel();
-    }
-    if (this._initialValue instanceof Promise) {
-        this._initialValue.cancel();
-    }
-};
-
-ReductionPromiseArray.prototype._iterate = function (values) {
-    this._values = values;
-    var value;
-    var i;
-    var length = values.length;
-    if (this._initialValue !== undefined) {
-        value = this._initialValue;
-        i = 0;
-    } else {
-        value = Promise.resolve(values[0]);
-        i = 1;
-    }
-
-    this._currentCancellable = value;
-
-    for (var j = i; j < length; ++j) {
-        var maybePromise = values[j];
-        if (maybePromise instanceof Promise) {
-            maybePromise.suppressUnhandledRejections();
-        }
-    }
-
-    if (!value.isRejected()) {
-        for (; i < length; ++i) {
-            var ctx = {
-                accum: null,
-                value: values[i],
-                index: i,
-                length: length,
-                array: this
-            };
-
-            value = value._then(gotAccum, undefined, undefined, ctx, undefined);
-
-            if ((i & 127) === 0) {
-                value._setNoAsyncGuarantee();
-            }
-        }
-    }
-
-    if (this._eachValues !== undefined) {
-        value = value
-            ._then(this._eachComplete, undefined, undefined, this, undefined);
-    }
-    value._then(completed, completed, undefined, value, this);
-};
-
-Promise.prototype.reduce = function (fn, initialValue) {
-    return reduce(this, fn, initialValue, null);
-};
-
-Promise.reduce = function (promises, fn, initialValue, _each) {
-    return reduce(promises, fn, initialValue, _each);
-};
-
-function completed(valueOrReason, array) {
-    if (this.isFulfilled()) {
-        array._resolve(valueOrReason);
-    } else {
-        array._reject(valueOrReason);
-    }
-}
-
-function reduce(promises, fn, initialValue, _each) {
-    if (typeof fn !== "function") {
-        return apiRejection("expecting a function but got " + util.classString(fn));
-    }
-    var array = new ReductionPromiseArray(promises, fn, initialValue, _each);
-    return array.promise();
-}
-
-function gotAccum(accum) {
-    this.accum = accum;
-    this.array._gotAccum(accum);
-    var value = tryConvertToPromise(this.value, this.array._promise);
-    if (value instanceof Promise) {
-        this.array._currentCancellable = value;
-        return value._then(gotValue, undefined, undefined, this, undefined);
-    } else {
-        return gotValue.call(this, value);
-    }
-}
-
-function gotValue(value) {
-    var array = this.array;
-    var promise = array._promise;
-    var fn = tryCatch(array._fn);
-    promise._pushContext();
-    var ret;
-    if (array._eachValues !== undefined) {
-        ret = fn.call(promise._boundValue(), value, this.index, this.length);
-    } else {
-        ret = fn.call(promise._boundValue(),
-                              this.accum, value, this.index, this.length);
-    }
-    if (ret instanceof Promise) {
-        array._currentCancellable = ret;
-    }
-    var promiseCreated = promise._popContext();
-    debug.checkForgottenReturns(
-        ret,
-        promiseCreated,
-        array._eachValues !== undefined ? "Promise.each" : "Promise.reduce",
-        promise
-    );
-    return ret;
-}
-};
-
-
-/***/ }),
-
-/***/ 8108:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-var util = __nccwpck_require__(409);
-var schedule;
-var noAsyncScheduler = function() {
-    throw new Error("No async scheduler available\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-};
-var NativePromise = util.getNativePromise();
-if (util.isNode && typeof MutationObserver === "undefined") {
-    var GlobalSetImmediate = global.setImmediate;
-    var ProcessNextTick = process.nextTick;
-    schedule = util.isRecentNode
-                ? function(fn) { GlobalSetImmediate.call(global, fn); }
-                : function(fn) { ProcessNextTick.call(process, fn); };
-} else if (typeof NativePromise === "function" &&
-           typeof NativePromise.resolve === "function") {
-    var nativePromise = NativePromise.resolve();
-    schedule = function(fn) {
-        nativePromise.then(fn);
-    };
-} else if ((typeof MutationObserver !== "undefined") &&
-          !(typeof window !== "undefined" &&
-            window.navigator &&
-            (window.navigator.standalone || window.cordova)) &&
-          ("classList" in document.documentElement)) {
-    schedule = (function() {
-        var div = document.createElement("div");
-        var opts = {attributes: true};
-        var toggleScheduled = false;
-        var div2 = document.createElement("div");
-        var o2 = new MutationObserver(function() {
-            div.classList.toggle("foo");
-            toggleScheduled = false;
-        });
-        o2.observe(div2, opts);
-
-        var scheduleToggle = function() {
-            if (toggleScheduled) return;
-            toggleScheduled = true;
-            div2.classList.toggle("foo");
-        };
-
-        return function schedule(fn) {
-            var o = new MutationObserver(function() {
-                o.disconnect();
-                fn();
-            });
-            o.observe(div, opts);
-            scheduleToggle();
-        };
-    })();
-} else if (typeof setImmediate !== "undefined") {
-    schedule = function (fn) {
-        setImmediate(fn);
-    };
-} else if (typeof setTimeout !== "undefined") {
-    schedule = function (fn) {
-        setTimeout(fn, 0);
-    };
-} else {
-    schedule = noAsyncScheduler;
-}
-module.exports = schedule;
-
-
-/***/ }),
-
-/***/ 5270:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports =
-    function(Promise, PromiseArray, debug) {
-var PromiseInspection = Promise.PromiseInspection;
-var util = __nccwpck_require__(409);
-
-function SettledPromiseArray(values) {
-    this.constructor$(values);
-}
-util.inherits(SettledPromiseArray, PromiseArray);
-
-SettledPromiseArray.prototype._promiseResolved = function (index, inspection) {
-    this._values[index] = inspection;
-    var totalResolved = ++this._totalResolved;
-    if (totalResolved >= this._length) {
-        this._resolve(this._values);
-        return true;
-    }
-    return false;
-};
-
-SettledPromiseArray.prototype._promiseFulfilled = function (value, index) {
-    var ret = new PromiseInspection();
-    ret._bitField = 33554432;
-    ret._settledValueField = value;
-    return this._promiseResolved(index, ret);
-};
-SettledPromiseArray.prototype._promiseRejected = function (reason, index) {
-    var ret = new PromiseInspection();
-    ret._bitField = 16777216;
-    ret._settledValueField = reason;
-    return this._promiseResolved(index, ret);
-};
-
-Promise.settle = function (promises) {
-    debug.deprecated(".settle()", ".reflect()");
-    return new SettledPromiseArray(promises).promise();
-};
-
-Promise.allSettled = function (promises) {
-    return new SettledPromiseArray(promises).promise();
-};
-
-Promise.prototype.settle = function () {
-    return Promise.settle(this);
-};
-};
-
-
-/***/ }),
-
-/***/ 1253:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports =
-function(Promise, PromiseArray, apiRejection) {
-var util = __nccwpck_require__(409);
-var RangeError = (__nccwpck_require__(9318).RangeError);
-var AggregateError = (__nccwpck_require__(9318).AggregateError);
-var isArray = util.isArray;
-var CANCELLATION = {};
-
-
-function SomePromiseArray(values) {
-    this.constructor$(values);
-    this._howMany = 0;
-    this._unwrap = false;
-    this._initialized = false;
-}
-util.inherits(SomePromiseArray, PromiseArray);
-
-SomePromiseArray.prototype._init = function () {
-    if (!this._initialized) {
-        return;
-    }
-    if (this._howMany === 0) {
-        this._resolve([]);
-        return;
-    }
-    this._init$(undefined, -5);
-    var isArrayResolved = isArray(this._values);
-    if (!this._isResolved() &&
-        isArrayResolved &&
-        this._howMany > this._canPossiblyFulfill()) {
-        this._reject(this._getRangeError(this.length()));
-    }
-};
-
-SomePromiseArray.prototype.init = function () {
-    this._initialized = true;
-    this._init();
-};
-
-SomePromiseArray.prototype.setUnwrap = function () {
-    this._unwrap = true;
-};
-
-SomePromiseArray.prototype.howMany = function () {
-    return this._howMany;
-};
-
-SomePromiseArray.prototype.setHowMany = function (count) {
-    this._howMany = count;
-};
-
-SomePromiseArray.prototype._promiseFulfilled = function (value) {
-    this._addFulfilled(value);
-    if (this._fulfilled() === this.howMany()) {
-        this._values.length = this.howMany();
-        if (this.howMany() === 1 && this._unwrap) {
-            this._resolve(this._values[0]);
-        } else {
-            this._resolve(this._values);
-        }
-        return true;
-    }
-    return false;
-
-};
-SomePromiseArray.prototype._promiseRejected = function (reason) {
-    this._addRejected(reason);
-    return this._checkOutcome();
-};
-
-SomePromiseArray.prototype._promiseCancelled = function () {
-    if (this._values instanceof Promise || this._values == null) {
-        return this._cancel();
-    }
-    this._addRejected(CANCELLATION);
-    return this._checkOutcome();
-};
-
-SomePromiseArray.prototype._checkOutcome = function() {
-    if (this.howMany() > this._canPossiblyFulfill()) {
-        var e = new AggregateError();
-        for (var i = this.length(); i < this._values.length; ++i) {
-            if (this._values[i] !== CANCELLATION) {
-                e.push(this._values[i]);
-            }
-        }
-        if (e.length > 0) {
-            this._reject(e);
-        } else {
-            this._cancel();
-        }
-        return true;
-    }
-    return false;
-};
-
-SomePromiseArray.prototype._fulfilled = function () {
-    return this._totalResolved;
-};
-
-SomePromiseArray.prototype._rejected = function () {
-    return this._values.length - this.length();
-};
-
-SomePromiseArray.prototype._addRejected = function (reason) {
-    this._values.push(reason);
-};
-
-SomePromiseArray.prototype._addFulfilled = function (value) {
-    this._values[this._totalResolved++] = value;
-};
-
-SomePromiseArray.prototype._canPossiblyFulfill = function () {
-    return this.length() - this._rejected();
-};
-
-SomePromiseArray.prototype._getRangeError = function (count) {
-    var message = "Input array must contain at least " +
-            this._howMany + " items but contains only " + count + " items";
-    return new RangeError(message);
-};
-
-SomePromiseArray.prototype._resolveEmptyArray = function () {
-    this._reject(this._getRangeError(0));
-};
-
-function some(promises, howMany) {
-    if ((howMany | 0) !== howMany || howMany < 0) {
-        return apiRejection("expecting a positive integer\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-    }
-    var ret = new SomePromiseArray(promises);
-    var promise = ret.promise();
-    ret.setHowMany(howMany);
-    ret.init();
-    return promise;
-}
-
-Promise.some = function (promises, howMany) {
-    return some(promises, howMany);
-};
-
-Promise.prototype.some = function (howMany) {
-    return some(this, howMany);
-};
-
-Promise._SomePromiseArray = SomePromiseArray;
-};
-
-
-/***/ }),
-
-/***/ 5761:
-/***/ ((module) => {
-
-
-module.exports = function(Promise) {
-function PromiseInspection(promise) {
-    if (promise !== undefined) {
-        promise = promise._target();
-        this._bitField = promise._bitField;
-        this._settledValueField = promise._isFateSealed()
-            ? promise._settledValue() : undefined;
-    }
-    else {
-        this._bitField = 0;
-        this._settledValueField = undefined;
-    }
-}
-
-PromiseInspection.prototype._settledValue = function() {
-    return this._settledValueField;
-};
-
-var value = PromiseInspection.prototype.value = function () {
-    if (!this.isFulfilled()) {
-        throw new TypeError("cannot get fulfillment value of a non-fulfilled promise\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-    }
-    return this._settledValue();
-};
-
-var reason = PromiseInspection.prototype.error =
-PromiseInspection.prototype.reason = function () {
-    if (!this.isRejected()) {
-        throw new TypeError("cannot get rejection reason of a non-rejected promise\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-    }
-    return this._settledValue();
-};
-
-var isFulfilled = PromiseInspection.prototype.isFulfilled = function() {
-    return (this._bitField & 33554432) !== 0;
-};
-
-var isRejected = PromiseInspection.prototype.isRejected = function () {
-    return (this._bitField & 16777216) !== 0;
-};
-
-var isPending = PromiseInspection.prototype.isPending = function () {
-    return (this._bitField & 50397184) === 0;
-};
-
-var isResolved = PromiseInspection.prototype.isResolved = function () {
-    return (this._bitField & 50331648) !== 0;
-};
-
-PromiseInspection.prototype.isCancelled = function() {
-    return (this._bitField & 8454144) !== 0;
-};
-
-Promise.prototype.__isCancelled = function() {
-    return (this._bitField & 65536) === 65536;
-};
-
-Promise.prototype._isCancelled = function() {
-    return this._target().__isCancelled();
-};
-
-Promise.prototype.isCancelled = function() {
-    return (this._target()._bitField & 8454144) !== 0;
-};
-
-Promise.prototype.isPending = function() {
-    return isPending.call(this._target());
-};
-
-Promise.prototype.isRejected = function() {
-    return isRejected.call(this._target());
-};
-
-Promise.prototype.isFulfilled = function() {
-    return isFulfilled.call(this._target());
-};
-
-Promise.prototype.isResolved = function() {
-    return isResolved.call(this._target());
-};
-
-Promise.prototype.value = function() {
-    return value.call(this._target());
-};
-
-Promise.prototype.reason = function() {
-    var target = this._target();
-    target._unsetRejectionIsUnhandled();
-    return reason.call(target);
-};
-
-Promise.prototype._value = function() {
-    return this._settledValue();
-};
-
-Promise.prototype._reason = function() {
-    this._unsetRejectionIsUnhandled();
-    return this._settledValue();
-};
-
-Promise.PromiseInspection = PromiseInspection;
-};
-
-
-/***/ }),
-
-/***/ 1565:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(Promise, INTERNAL) {
-var util = __nccwpck_require__(409);
-var errorObj = util.errorObj;
-var isObject = util.isObject;
-
-function tryConvertToPromise(obj, context) {
-    if (isObject(obj)) {
-        if (obj instanceof Promise) return obj;
-        var then = getThen(obj);
-        if (then === errorObj) {
-            if (context) context._pushContext();
-            var ret = Promise.reject(then.e);
-            if (context) context._popContext();
-            return ret;
-        } else if (typeof then === "function") {
-            if (isAnyBluebirdPromise(obj)) {
-                var ret = new Promise(INTERNAL);
-                obj._then(
-                    ret._fulfill,
-                    ret._reject,
-                    undefined,
-                    ret,
-                    null
-                );
-                return ret;
-            }
-            return doThenable(obj, then, context);
-        }
-    }
-    return obj;
-}
-
-function doGetThen(obj) {
-    return obj.then;
-}
-
-function getThen(obj) {
-    try {
-        return doGetThen(obj);
-    } catch (e) {
-        errorObj.e = e;
-        return errorObj;
-    }
-}
-
-var hasProp = {}.hasOwnProperty;
-function isAnyBluebirdPromise(obj) {
-    try {
-        return hasProp.call(obj, "_promise0");
-    } catch (e) {
-        return false;
-    }
-}
-
-function doThenable(x, then, context) {
-    var promise = new Promise(INTERNAL);
-    var ret = promise;
-    if (context) context._pushContext();
-    promise._captureStackTrace();
-    if (context) context._popContext();
-    var synchronous = true;
-    var result = util.tryCatch(then).call(x, resolve, reject);
-    synchronous = false;
-
-    if (promise && result === errorObj) {
-        promise._rejectCallback(result.e, true, true);
-        promise = null;
-    }
-
-    function resolve(value) {
-        if (!promise) return;
-        promise._resolveCallback(value);
-        promise = null;
-    }
-
-    function reject(reason) {
-        if (!promise) return;
-        promise._rejectCallback(reason, synchronous, true);
-        promise = null;
-    }
-    return ret;
-}
-
-return tryConvertToPromise;
-};
-
-
-/***/ }),
-
-/***/ 8407:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function(Promise, INTERNAL, debug) {
-var util = __nccwpck_require__(409);
-var TimeoutError = Promise.TimeoutError;
-
-function HandleWrapper(handle)  {
-    this.handle = handle;
-}
-
-HandleWrapper.prototype._resultCancelled = function() {
-    clearTimeout(this.handle);
-};
-
-var afterValue = function(value) { return delay(+this).thenReturn(value); };
-var delay = Promise.delay = function (ms, value) {
-    var ret;
-    var handle;
-    if (value !== undefined) {
-        ret = Promise.resolve(value)
-                ._then(afterValue, null, null, ms, undefined);
-        if (debug.cancellation() && value instanceof Promise) {
-            ret._setOnCancel(value);
-        }
-    } else {
-        ret = new Promise(INTERNAL);
-        handle = setTimeout(function() { ret._fulfill(); }, +ms);
-        if (debug.cancellation()) {
-            ret._setOnCancel(new HandleWrapper(handle));
-        }
-        ret._captureStackTrace();
-    }
-    ret._setAsyncGuaranteed();
-    return ret;
-};
-
-Promise.prototype.delay = function (ms) {
-    return delay(ms, this);
-};
-
-var afterTimeout = function (promise, message, parent) {
-    var err;
-    if (typeof message !== "string") {
-        if (message instanceof Error) {
-            err = message;
-        } else {
-            err = new TimeoutError("operation timed out");
-        }
-    } else {
-        err = new TimeoutError(message);
-    }
-    util.markAsOriginatingFromRejection(err);
-    promise._attachExtraTrace(err);
-    promise._reject(err);
-
-    if (parent != null) {
-        parent.cancel();
-    }
-};
-
-function successClear(value) {
-    clearTimeout(this.handle);
-    return value;
-}
-
-function failureClear(reason) {
-    clearTimeout(this.handle);
-    throw reason;
-}
-
-Promise.prototype.timeout = function (ms, message) {
-    ms = +ms;
-    var ret, parent;
-
-    var handleWrapper = new HandleWrapper(setTimeout(function timeoutTimeout() {
-        if (ret.isPending()) {
-            afterTimeout(ret, message, parent);
-        }
-    }, ms));
-
-    if (debug.cancellation()) {
-        parent = this.then();
-        ret = parent._then(successClear, failureClear,
-                            undefined, handleWrapper, undefined);
-        ret._setOnCancel(handleWrapper);
-    } else {
-        ret = this._then(successClear, failureClear,
-                            undefined, handleWrapper, undefined);
-    }
-
-    return ret;
-};
-
-};
-
-
-/***/ }),
-
-/***/ 1113:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-module.exports = function (Promise, apiRejection, tryConvertToPromise,
-    createContext, INTERNAL, debug) {
-    var util = __nccwpck_require__(409);
-    var TypeError = (__nccwpck_require__(9318).TypeError);
-    var inherits = (__nccwpck_require__(409).inherits);
-    var errorObj = util.errorObj;
-    var tryCatch = util.tryCatch;
-    var NULL = {};
-
-    function thrower(e) {
-        setTimeout(function(){throw e;}, 0);
-    }
-
-    function castPreservingDisposable(thenable) {
-        var maybePromise = tryConvertToPromise(thenable);
-        if (maybePromise !== thenable &&
-            typeof thenable._isDisposable === "function" &&
-            typeof thenable._getDisposer === "function" &&
-            thenable._isDisposable()) {
-            maybePromise._setDisposable(thenable._getDisposer());
-        }
-        return maybePromise;
-    }
-    function dispose(resources, inspection) {
-        var i = 0;
-        var len = resources.length;
-        var ret = new Promise(INTERNAL);
-        function iterator() {
-            if (i >= len) return ret._fulfill();
-            var maybePromise = castPreservingDisposable(resources[i++]);
-            if (maybePromise instanceof Promise &&
-                maybePromise._isDisposable()) {
-                try {
-                    maybePromise = tryConvertToPromise(
-                        maybePromise._getDisposer().tryDispose(inspection),
-                        resources.promise);
-                } catch (e) {
-                    return thrower(e);
-                }
-                if (maybePromise instanceof Promise) {
-                    return maybePromise._then(iterator, thrower,
-                                              null, null, null);
-                }
-            }
-            iterator();
-        }
-        iterator();
-        return ret;
-    }
-
-    function Disposer(data, promise, context) {
-        this._data = data;
-        this._promise = promise;
-        this._context = context;
-    }
-
-    Disposer.prototype.data = function () {
-        return this._data;
-    };
-
-    Disposer.prototype.promise = function () {
-        return this._promise;
-    };
-
-    Disposer.prototype.resource = function () {
-        if (this.promise().isFulfilled()) {
-            return this.promise().value();
-        }
-        return NULL;
-    };
-
-    Disposer.prototype.tryDispose = function(inspection) {
-        var resource = this.resource();
-        var context = this._context;
-        if (context !== undefined) context._pushContext();
-        var ret = resource !== NULL
-            ? this.doDispose(resource, inspection) : null;
-        if (context !== undefined) context._popContext();
-        this._promise._unsetDisposable();
-        this._data = null;
-        return ret;
-    };
-
-    Disposer.isDisposer = function (d) {
-        return (d != null &&
-                typeof d.resource === "function" &&
-                typeof d.tryDispose === "function");
-    };
-
-    function FunctionDisposer(fn, promise, context) {
-        this.constructor$(fn, promise, context);
-    }
-    inherits(FunctionDisposer, Disposer);
-
-    FunctionDisposer.prototype.doDispose = function (resource, inspection) {
-        var fn = this.data();
-        return fn.call(resource, resource, inspection);
-    };
-
-    function maybeUnwrapDisposer(value) {
-        if (Disposer.isDisposer(value)) {
-            this.resources[this.index]._setDisposable(value);
-            return value.promise();
-        }
-        return value;
-    }
-
-    function ResourceList(length) {
-        this.length = length;
-        this.promise = null;
-        this[length-1] = null;
-    }
-
-    ResourceList.prototype._resultCancelled = function() {
-        var len = this.length;
-        for (var i = 0; i < len; ++i) {
-            var item = this[i];
-            if (item instanceof Promise) {
-                item.cancel();
-            }
-        }
-    };
-
-    Promise.using = function () {
-        var len = arguments.length;
-        if (len < 2) return apiRejection(
-                        "you must pass at least 2 arguments to Promise.using");
-        var fn = arguments[len - 1];
-        if (typeof fn !== "function") {
-            return apiRejection("expecting a function but got " + util.classString(fn));
-        }
-        var input;
-        var spreadArgs = true;
-        if (len === 2 && Array.isArray(arguments[0])) {
-            input = arguments[0];
-            len = input.length;
-            spreadArgs = false;
-        } else {
-            input = arguments;
-            len--;
-        }
-        var resources = new ResourceList(len);
-        for (var i = 0; i < len; ++i) {
-            var resource = input[i];
-            if (Disposer.isDisposer(resource)) {
-                var disposer = resource;
-                resource = resource.promise();
-                resource._setDisposable(disposer);
-            } else {
-                var maybePromise = tryConvertToPromise(resource);
-                if (maybePromise instanceof Promise) {
-                    resource =
-                        maybePromise._then(maybeUnwrapDisposer, null, null, {
-                            resources: resources,
-                            index: i
-                    }, undefined);
-                }
-            }
-            resources[i] = resource;
-        }
-
-        var reflectedResources = new Array(resources.length);
-        for (var i = 0; i < reflectedResources.length; ++i) {
-            reflectedResources[i] = Promise.resolve(resources[i]).reflect();
-        }
-
-        var resultPromise = Promise.all(reflectedResources)
-            .then(function(inspections) {
-                for (var i = 0; i < inspections.length; ++i) {
-                    var inspection = inspections[i];
-                    if (inspection.isRejected()) {
-                        errorObj.e = inspection.error();
-                        return errorObj;
-                    } else if (!inspection.isFulfilled()) {
-                        resultPromise.cancel();
-                        return;
-                    }
-                    inspections[i] = inspection.value();
-                }
-                promise._pushContext();
-
-                fn = tryCatch(fn);
-                var ret = spreadArgs
-                    ? fn.apply(undefined, inspections) : fn(inspections);
-                var promiseCreated = promise._popContext();
-                debug.checkForgottenReturns(
-                    ret, promiseCreated, "Promise.using", promise);
-                return ret;
-            });
-
-        var promise = resultPromise.lastly(function() {
-            var inspection = new Promise.PromiseInspection(resultPromise);
-            return dispose(resources, inspection);
-        });
-        resources.promise = promise;
-        promise._setOnCancel(resources);
-        return promise;
-    };
-
-    Promise.prototype._setDisposable = function (disposer) {
-        this._bitField = this._bitField | 131072;
-        this._disposer = disposer;
-    };
-
-    Promise.prototype._isDisposable = function () {
-        return (this._bitField & 131072) > 0;
-    };
-
-    Promise.prototype._getDisposer = function () {
-        return this._disposer;
-    };
-
-    Promise.prototype._unsetDisposable = function () {
-        this._bitField = this._bitField & (~131072);
-        this._disposer = undefined;
-    };
-
-    Promise.prototype.disposer = function (fn) {
-        if (typeof fn === "function") {
-            return new FunctionDisposer(fn, this, createContext());
-        }
-        throw new TypeError();
-    };
-
-};
-
-
-/***/ }),
-
-/***/ 409:
-/***/ (function(module, __unused_webpack_exports, __nccwpck_require__) {
-
-
-var es5 = __nccwpck_require__(8974);
-var canEvaluate = typeof navigator == "undefined";
-
-var errorObj = {e: {}};
-var tryCatchTarget;
-var globalObject = typeof self !== "undefined" ? self :
-    typeof window !== "undefined" ? window :
-    typeof global !== "undefined" ? global :
-    this !== undefined ? this : null;
-
-function tryCatcher() {
-    try {
-        var target = tryCatchTarget;
-        tryCatchTarget = null;
-        return target.apply(this, arguments);
-    } catch (e) {
-        errorObj.e = e;
-        return errorObj;
-    }
-}
-function tryCatch(fn) {
-    tryCatchTarget = fn;
-    return tryCatcher;
-}
-
-var inherits = function(Child, Parent) {
-    var hasProp = {}.hasOwnProperty;
-
-    function T() {
-        this.constructor = Child;
-        this.constructor$ = Parent;
-        for (var propertyName in Parent.prototype) {
-            if (hasProp.call(Parent.prototype, propertyName) &&
-                propertyName.charAt(propertyName.length-1) !== "$"
-           ) {
-                this[propertyName + "$"] = Parent.prototype[propertyName];
-            }
-        }
-    }
-    T.prototype = Parent.prototype;
-    Child.prototype = new T();
-    return Child.prototype;
-};
-
-
-function isPrimitive(val) {
-    return val == null || val === true || val === false ||
-        typeof val === "string" || typeof val === "number";
-
-}
-
-function isObject(value) {
-    return typeof value === "function" ||
-           typeof value === "object" && value !== null;
-}
-
-function maybeWrapAsError(maybeError) {
-    if (!isPrimitive(maybeError)) return maybeError;
-
-    return new Error(safeToString(maybeError));
-}
-
-function withAppended(target, appendee) {
-    var len = target.length;
-    var ret = new Array(len + 1);
-    var i;
-    for (i = 0; i < len; ++i) {
-        ret[i] = target[i];
-    }
-    ret[i] = appendee;
-    return ret;
-}
-
-function getDataPropertyOrDefault(obj, key, defaultValue) {
-    if (es5.isES5) {
-        var desc = Object.getOwnPropertyDescriptor(obj, key);
-
-        if (desc != null) {
-            return desc.get == null && desc.set == null
-                    ? desc.value
-                    : defaultValue;
-        }
-    } else {
-        return {}.hasOwnProperty.call(obj, key) ? obj[key] : undefined;
-    }
-}
-
-function notEnumerableProp(obj, name, value) {
-    if (isPrimitive(obj)) return obj;
-    var descriptor = {
-        value: value,
-        configurable: true,
-        enumerable: false,
-        writable: true
-    };
-    es5.defineProperty(obj, name, descriptor);
-    return obj;
-}
-
-function thrower(r) {
-    throw r;
-}
-
-var inheritedDataKeys = (function() {
-    var excludedPrototypes = [
-        Array.prototype,
-        Object.prototype,
-        Function.prototype
-    ];
-
-    var isExcludedProto = function(val) {
-        for (var i = 0; i < excludedPrototypes.length; ++i) {
-            if (excludedPrototypes[i] === val) {
-                return true;
-            }
-        }
-        return false;
-    };
-
-    if (es5.isES5) {
-        var getKeys = Object.getOwnPropertyNames;
-        return function(obj) {
-            var ret = [];
-            var visitedKeys = Object.create(null);
-            while (obj != null && !isExcludedProto(obj)) {
-                var keys;
-                try {
-                    keys = getKeys(obj);
-                } catch (e) {
-                    return ret;
-                }
-                for (var i = 0; i < keys.length; ++i) {
-                    var key = keys[i];
-                    if (visitedKeys[key]) continue;
-                    visitedKeys[key] = true;
-                    var desc = Object.getOwnPropertyDescriptor(obj, key);
-                    if (desc != null && desc.get == null && desc.set == null) {
-                        ret.push(key);
-                    }
-                }
-                obj = es5.getPrototypeOf(obj);
-            }
-            return ret;
-        };
-    } else {
-        var hasProp = {}.hasOwnProperty;
-        return function(obj) {
-            if (isExcludedProto(obj)) return [];
-            var ret = [];
-
-            /*jshint forin:false */
-            enumeration: for (var key in obj) {
-                if (hasProp.call(obj, key)) {
-                    ret.push(key);
-                } else {
-                    for (var i = 0; i < excludedPrototypes.length; ++i) {
-                        if (hasProp.call(excludedPrototypes[i], key)) {
-                            continue enumeration;
-                        }
-                    }
-                    ret.push(key);
-                }
-            }
-            return ret;
-        };
-    }
-
-})();
-
-var thisAssignmentPattern = /this\s*\.\s*\S+\s*=/;
-function isClass(fn) {
-    try {
-        if (typeof fn === "function") {
-            var keys = es5.names(fn.prototype);
-
-            var hasMethods = es5.isES5 && keys.length > 1;
-            var hasMethodsOtherThanConstructor = keys.length > 0 &&
-                !(keys.length === 1 && keys[0] === "constructor");
-            var hasThisAssignmentAndStaticMethods =
-                thisAssignmentPattern.test(fn + "") && es5.names(fn).length > 0;
-
-            if (hasMethods || hasMethodsOtherThanConstructor ||
-                hasThisAssignmentAndStaticMethods) {
-                return true;
-            }
-        }
-        return false;
-    } catch (e) {
-        return false;
-    }
-}
-
-function toFastProperties(obj) {
-    /*jshint -W027,-W055,-W031*/
-    function FakeConstructor() {}
-    FakeConstructor.prototype = obj;
-    var receiver = new FakeConstructor();
-    function ic() {
-        return typeof receiver.foo;
-    }
-    ic();
-    ic();
-    return obj;
-    eval(obj);
-}
-
-var rident = /^[a-z$_][a-z$_0-9]*$/i;
-function isIdentifier(str) {
-    return rident.test(str);
-}
-
-function filledRange(count, prefix, suffix) {
-    var ret = new Array(count);
-    for(var i = 0; i < count; ++i) {
-        ret[i] = prefix + i + suffix;
-    }
-    return ret;
-}
-
-function safeToString(obj) {
-    try {
-        return obj + "";
-    } catch (e) {
-        return "[no string representation]";
-    }
-}
-
-function isError(obj) {
-    return obj instanceof Error ||
-        (obj !== null &&
-           typeof obj === "object" &&
-           typeof obj.message === "string" &&
-           typeof obj.name === "string");
-}
-
-function markAsOriginatingFromRejection(e) {
-    try {
-        notEnumerableProp(e, "isOperational", true);
-    }
-    catch(ignore) {}
-}
-
-function originatesFromRejection(e) {
-    if (e == null) return false;
-    return ((e instanceof Error["__BluebirdErrorTypes__"].OperationalError) ||
-        e["isOperational"] === true);
-}
-
-function canAttachTrace(obj) {
-    return isError(obj) && es5.propertyIsWritable(obj, "stack");
-}
-
-var ensureErrorObject = (function() {
-    if (!("stack" in new Error())) {
-        return function(value) {
-            if (canAttachTrace(value)) return value;
-            try {throw new Error(safeToString(value));}
-            catch(err) {return err;}
-        };
-    } else {
-        return function(value) {
-            if (canAttachTrace(value)) return value;
-            return new Error(safeToString(value));
-        };
-    }
-})();
-
-function classString(obj) {
-    return {}.toString.call(obj);
-}
-
-function copyDescriptors(from, to, filter) {
-    var keys = es5.names(from);
-    for (var i = 0; i < keys.length; ++i) {
-        var key = keys[i];
-        if (filter(key)) {
-            try {
-                es5.defineProperty(to, key, es5.getDescriptor(from, key));
-            } catch (ignore) {}
-        }
-    }
-}
-
-var asArray = function(v) {
-    if (es5.isArray(v)) {
-        return v;
-    }
-    return null;
-};
-
-if (typeof Symbol !== "undefined" && Symbol.iterator) {
-    var ArrayFrom = typeof Array.from === "function" ? function(v) {
-        return Array.from(v);
-    } : function(v) {
-        var ret = [];
-        var it = v[Symbol.iterator]();
-        var itResult;
-        while (!((itResult = it.next()).done)) {
-            ret.push(itResult.value);
-        }
-        return ret;
-    };
-
-    asArray = function(v) {
-        if (es5.isArray(v)) {
-            return v;
-        } else if (v != null && typeof v[Symbol.iterator] === "function") {
-            return ArrayFrom(v);
-        }
-        return null;
-    };
-}
-
-var isNode = typeof process !== "undefined" &&
-        classString(process).toLowerCase() === "[object process]";
-
-var hasEnvVariables = typeof process !== "undefined" &&
-    typeof process.env !== "undefined";
-
-function env(key) {
-    return hasEnvVariables ? process.env[key] : undefined;
-}
-
-function getNativePromise() {
-    if (typeof Promise === "function") {
-        try {
-            var promise = new Promise(function(){});
-            if (classString(promise) === "[object Promise]") {
-                return Promise;
-            }
-        } catch (e) {}
-    }
-}
-
-var reflectHandler;
-function contextBind(ctx, cb) {
-    if (ctx === null ||
-        typeof cb !== "function" ||
-        cb === reflectHandler) {
-        return cb;
-    }
-
-    if (ctx.domain !== null) {
-        cb = ctx.domain.bind(cb);
-    }
-
-    var async = ctx.async;
-    if (async !== null) {
-        var old = cb;
-        cb = function() {
-            var $_len = arguments.length + 2;var args = new Array($_len); for(var $_i = 2; $_i < $_len ; ++$_i) {args[$_i] = arguments[$_i  - 2];};
-            args[0] = old;
-            args[1] = this;
-            return async.runInAsyncScope.apply(async, args);
-        };
-    }
-    return cb;
-}
-
-var ret = {
-    setReflectHandler: function(fn) {
-        reflectHandler = fn;
-    },
-    isClass: isClass,
-    isIdentifier: isIdentifier,
-    inheritedDataKeys: inheritedDataKeys,
-    getDataPropertyOrDefault: getDataPropertyOrDefault,
-    thrower: thrower,
-    isArray: es5.isArray,
-    asArray: asArray,
-    notEnumerableProp: notEnumerableProp,
-    isPrimitive: isPrimitive,
-    isObject: isObject,
-    isError: isError,
-    canEvaluate: canEvaluate,
-    errorObj: errorObj,
-    tryCatch: tryCatch,
-    inherits: inherits,
-    withAppended: withAppended,
-    maybeWrapAsError: maybeWrapAsError,
-    toFastProperties: toFastProperties,
-    filledRange: filledRange,
-    toString: safeToString,
-    canAttachTrace: canAttachTrace,
-    ensureErrorObject: ensureErrorObject,
-    originatesFromRejection: originatesFromRejection,
-    markAsOriginatingFromRejection: markAsOriginatingFromRejection,
-    classString: classString,
-    copyDescriptors: copyDescriptors,
-    isNode: isNode,
-    hasEnvVariables: hasEnvVariables,
-    env: env,
-    global: globalObject,
-    getNativePromise: getNativePromise,
-    contextBind: contextBind
-};
-ret.isRecentNode = ret.isNode && (function() {
-    var version;
-    if (process.versions && process.versions.node) {
-        version = process.versions.node.split(".").map(Number);
-    } else if (process.version) {
-        version = process.version.split(".").map(Number);
-    }
-    return (version[0] === 0 && version[1] > 10) || (version[0] > 0);
-})();
-ret.nodeSupportsAsyncResource = ret.isNode && (function() {
-    var supportsAsync = false;
-    try {
-        var res = (__nccwpck_require__(290).AsyncResource);
-        supportsAsync = typeof res.prototype.runInAsyncScope === "function";
-    } catch (e) {
-        supportsAsync = false;
-    }
-    return supportsAsync;
-})();
-
-if (ret.isNode) ret.toFastProperties(process);
-
-try {throw new Error(); } catch (e) {ret.lastLineError = e;}
-module.exports = ret;
-
-
-/***/ }),
-
-/***/ 5481:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// NOTE: These type checking functions intentionally don't use `instanceof`
-// because it is fragile and can be easily faked with `Object.create()`.
-
-function isArray(arg) {
-  if (Array.isArray) {
-    return Array.isArray(arg);
-  }
-  return objectToString(arg) === '[object Array]';
-}
-exports.isArray = isArray;
-
-function isBoolean(arg) {
-  return typeof arg === 'boolean';
-}
-exports.isBoolean = isBoolean;
-
-function isNull(arg) {
-  return arg === null;
-}
-exports.isNull = isNull;
-
-function isNullOrUndefined(arg) {
-  return arg == null;
-}
-exports.isNullOrUndefined = isNullOrUndefined;
-
-function isNumber(arg) {
-  return typeof arg === 'number';
-}
-exports.isNumber = isNumber;
-
-function isString(arg) {
-  return typeof arg === 'string';
-}
-exports.isString = isString;
-
-function isSymbol(arg) {
-  return typeof arg === 'symbol';
-}
-exports.isSymbol = isSymbol;
-
-function isUndefined(arg) {
-  return arg === void 0;
-}
-exports.isUndefined = isUndefined;
-
-function isRegExp(re) {
-  return objectToString(re) === '[object RegExp]';
-}
-exports.isRegExp = isRegExp;
-
-function isObject(arg) {
-  return typeof arg === 'object' && arg !== null;
-}
-exports.isObject = isObject;
-
-function isDate(d) {
-  return objectToString(d) === '[object Date]';
-}
-exports.isDate = isDate;
-
-function isError(e) {
-  return (objectToString(e) === '[object Error]' || e instanceof Error);
-}
-exports.isError = isError;
-
-function isFunction(arg) {
-  return typeof arg === 'function';
-}
-exports.isFunction = isFunction;
-
-function isPrimitive(arg) {
-  return arg === null ||
-         typeof arg === 'boolean' ||
-         typeof arg === 'number' ||
-         typeof arg === 'string' ||
-         typeof arg === 'symbol' ||  // ES6 symbol
-         typeof arg === 'undefined';
-}
-exports.isPrimitive = isPrimitive;
-
-exports.isBuffer = __nccwpck_require__(181).Buffer.isBuffer;
-
-function objectToString(o) {
-  return Object.prototype.toString.call(o);
+if (typeof Int32Array !== 'undefined') {
+  CRC_TABLE = new Int32Array(CRC_TABLE);
 }
-
-
-/***/ }),
-
-/***/ 7865:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-var stream = __nccwpck_require__(6131);
 
-function DuplexWrapper(options, writable, readable) {
-  if (typeof readable === "undefined") {
-    readable = writable;
-    writable = options;
-    options = null;
+function ensureBuffer(input) {
+  if (Buffer.isBuffer(input)) {
+    return input;
   }
 
-  stream.Duplex.call(this, options);
+  var hasNewBufferAPI =
+      typeof Buffer.alloc === "function" &&
+      typeof Buffer.from === "function";
 
-  if (typeof readable.read !== "function") {
-    readable = (new stream.Readable(options)).wrap(readable);
+  if (typeof input === "number") {
+    return hasNewBufferAPI ? Buffer.alloc(input) : new Buffer(input);
   }
-
-  this._writable = writable;
-  this._readable = readable;
-  this._waiting = false;
-
-  var self = this;
-
-  writable.once("finish", function() {
-    self.end();
-  });
-
-  this.once("finish", function() {
-    writable.end();
-  });
-
-  readable.on("readable", function() {
-    if (self._waiting) {
-      self._waiting = false;
-      self._read();
-    }
-  });
-
-  readable.once("end", function() {
-    self.push(null);
-  });
-
-  if (!options || typeof options.bubbleErrors === "undefined" || options.bubbleErrors) {
-    writable.on("error", function(err) {
-      self.emit("error", err);
-    });
-
-    readable.on("error", function(err) {
-      self.emit("error", err);
-    });
+  else if (typeof input === "string") {
+    return hasNewBufferAPI ? Buffer.from(input) : new Buffer(input);
+  }
+  else {
+    throw new Error("input must be buffer, number, or string, received " +
+                    typeof input);
   }
 }
 
-DuplexWrapper.prototype = Object.create(stream.Duplex.prototype, {constructor: {value: DuplexWrapper}});
+function bufferizeInt(num) {
+  var tmp = ensureBuffer(4);
+  tmp.writeInt32BE(num, 0);
+  return tmp;
+}
 
-DuplexWrapper.prototype._write = function _write(input, encoding, done) {
-  this._writable.write(input, encoding, done);
-};
-
-DuplexWrapper.prototype._read = function _read() {
-  var buf;
-  var reads = 0;
-  while ((buf = this._readable.read()) !== null) {
-    this.push(buf);
-    reads++;
+function _crc32(buf, previous) {
+  buf = ensureBuffer(buf);
+  if (Buffer.isBuffer(previous)) {
+    previous = previous.readUInt32BE(0);
   }
-  if (reads === 0) {
-    this._waiting = true;
+  var crc = ~~previous ^ -1;
+  for (var n = 0; n < buf.length; n++) {
+    crc = CRC_TABLE[(crc ^ buf[n]) & 0xff] ^ (crc >>> 8);
   }
+  return (crc ^ -1);
+}
+
+function crc32() {
+  return bufferizeInt(_crc32.apply(null, arguments));
+}
+crc32.signed = function () {
+  return _crc32.apply(null, arguments);
+};
+crc32.unsigned = function () {
+  return _crc32.apply(null, arguments) >>> 0;
 };
 
-module.exports = function duplex2(options, writable, readable) {
-  return new DuplexWrapper(options, writable, readable);
-};
-
-module.exports.DuplexWrapper = DuplexWrapper;
+module.exports = crc32;
 
 
 /***/ }),
@@ -42225,5778 +36207,65 @@ module.exports = XmlNode;
 
 /***/ }),
 
-/***/ 4839:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const fs = __nccwpck_require__(5744)
-const path = __nccwpck_require__(6928)
-const mkdirsSync = (__nccwpck_require__(1089).mkdirsSync)
-const utimesMillisSync = (__nccwpck_require__(6934).utimesMillisSync)
-const stat = __nccwpck_require__(887)
-
-function copySync (src, dest, opts) {
-  if (typeof opts === 'function') {
-    opts = { filter: opts }
-  }
-
-  opts = opts || {}
-  opts.clobber = 'clobber' in opts ? !!opts.clobber : true // default to true for now
-  opts.overwrite = 'overwrite' in opts ? !!opts.overwrite : opts.clobber // overwrite falls back to clobber
-
-  // Warn about using preserveTimestamps on 32-bit node
-  if (opts.preserveTimestamps && process.arch === 'ia32') {
-    process.emitWarning(
-      'Using the preserveTimestamps option in 32-bit node is not recommended;\n\n' +
-      '\tsee https://github.com/jprichardson/node-fs-extra/issues/269',
-      'Warning', 'fs-extra-WARN0002'
-    )
-  }
-
-  const { srcStat, destStat } = stat.checkPathsSync(src, dest, 'copy', opts)
-  stat.checkParentPathsSync(src, srcStat, dest, 'copy')
-  if (opts.filter && !opts.filter(src, dest)) return
-  const destParent = path.dirname(dest)
-  if (!fs.existsSync(destParent)) mkdirsSync(destParent)
-  return getStats(destStat, src, dest, opts)
-}
-
-function getStats (destStat, src, dest, opts) {
-  const statSync = opts.dereference ? fs.statSync : fs.lstatSync
-  const srcStat = statSync(src)
-
-  if (srcStat.isDirectory()) return onDir(srcStat, destStat, src, dest, opts)
-  else if (srcStat.isFile() ||
-           srcStat.isCharacterDevice() ||
-           srcStat.isBlockDevice()) return onFile(srcStat, destStat, src, dest, opts)
-  else if (srcStat.isSymbolicLink()) return onLink(destStat, src, dest, opts)
-  else if (srcStat.isSocket()) throw new Error(`Cannot copy a socket file: ${src}`)
-  else if (srcStat.isFIFO()) throw new Error(`Cannot copy a FIFO pipe: ${src}`)
-  throw new Error(`Unknown file: ${src}`)
-}
-
-function onFile (srcStat, destStat, src, dest, opts) {
-  if (!destStat) return copyFile(srcStat, src, dest, opts)
-  return mayCopyFile(srcStat, src, dest, opts)
-}
-
-function mayCopyFile (srcStat, src, dest, opts) {
-  if (opts.overwrite) {
-    fs.unlinkSync(dest)
-    return copyFile(srcStat, src, dest, opts)
-  } else if (opts.errorOnExist) {
-    throw new Error(`'${dest}' already exists`)
-  }
-}
-
-function copyFile (srcStat, src, dest, opts) {
-  fs.copyFileSync(src, dest)
-  if (opts.preserveTimestamps) handleTimestamps(srcStat.mode, src, dest)
-  return setDestMode(dest, srcStat.mode)
-}
-
-function handleTimestamps (srcMode, src, dest) {
-  // Make sure the file is writable before setting the timestamp
-  // otherwise open fails with EPERM when invoked with 'r+'
-  // (through utimes call)
-  if (fileIsNotWritable(srcMode)) makeFileWritable(dest, srcMode)
-  return setDestTimestamps(src, dest)
-}
-
-function fileIsNotWritable (srcMode) {
-  return (srcMode & 0o200) === 0
-}
-
-function makeFileWritable (dest, srcMode) {
-  return setDestMode(dest, srcMode | 0o200)
-}
-
-function setDestMode (dest, srcMode) {
-  return fs.chmodSync(dest, srcMode)
-}
-
-function setDestTimestamps (src, dest) {
-  // The initial srcStat.atime cannot be trusted
-  // because it is modified by the read(2) system call
-  // (See https://nodejs.org/api/fs.html#fs_stat_time_values)
-  const updatedSrcStat = fs.statSync(src)
-  return utimesMillisSync(dest, updatedSrcStat.atime, updatedSrcStat.mtime)
-}
-
-function onDir (srcStat, destStat, src, dest, opts) {
-  if (!destStat) return mkDirAndCopy(srcStat.mode, src, dest, opts)
-  return copyDir(src, dest, opts)
-}
-
-function mkDirAndCopy (srcMode, src, dest, opts) {
-  fs.mkdirSync(dest)
-  copyDir(src, dest, opts)
-  return setDestMode(dest, srcMode)
-}
-
-function copyDir (src, dest, opts) {
-  const dir = fs.opendirSync(src)
-
-  try {
-    let dirent
-
-    while ((dirent = dir.readSync()) !== null) {
-      copyDirItem(dirent.name, src, dest, opts)
-    }
-  } finally {
-    dir.closeSync()
-  }
-}
-
-function copyDirItem (item, src, dest, opts) {
-  const srcItem = path.join(src, item)
-  const destItem = path.join(dest, item)
-  if (opts.filter && !opts.filter(srcItem, destItem)) return
-  const { destStat } = stat.checkPathsSync(srcItem, destItem, 'copy', opts)
-  return getStats(destStat, srcItem, destItem, opts)
-}
-
-function onLink (destStat, src, dest, opts) {
-  let resolvedSrc = fs.readlinkSync(src)
-  if (opts.dereference) {
-    resolvedSrc = path.resolve(process.cwd(), resolvedSrc)
-  }
-
-  if (!destStat) {
-    return fs.symlinkSync(resolvedSrc, dest)
-  } else {
-    let resolvedDest
-    try {
-      resolvedDest = fs.readlinkSync(dest)
-    } catch (err) {
-      // dest exists and is a regular file or directory,
-      // Windows may throw UNKNOWN error. If dest already exists,
-      // fs throws error anyway, so no need to guard against it here.
-      if (err.code === 'EINVAL' || err.code === 'UNKNOWN') return fs.symlinkSync(resolvedSrc, dest)
-      throw err
-    }
-    if (opts.dereference) {
-      resolvedDest = path.resolve(process.cwd(), resolvedDest)
-    }
-    if (stat.isSrcSubdir(resolvedSrc, resolvedDest)) {
-      throw new Error(`Cannot copy '${resolvedSrc}' to a subdirectory of itself, '${resolvedDest}'.`)
-    }
-
-    // prevent copy if src is a subdir of dest since unlinking
-    // dest in this case would result in removing src contents
-    // and therefore a broken symlink would be created.
-    if (stat.isSrcSubdir(resolvedDest, resolvedSrc)) {
-      throw new Error(`Cannot overwrite '${resolvedDest}' with '${resolvedSrc}'.`)
-    }
-    return copyLink(resolvedSrc, dest)
-  }
-}
-
-function copyLink (resolvedSrc, dest) {
-  fs.unlinkSync(dest)
-  return fs.symlinkSync(resolvedSrc, dest)
-}
-
-module.exports = copySync
-
-
-/***/ }),
-
-/***/ 1759:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const fs = __nccwpck_require__(3506)
-const path = __nccwpck_require__(6928)
-const { mkdirs } = __nccwpck_require__(1089)
-const { pathExists } = __nccwpck_require__(2881)
-const { utimesMillis } = __nccwpck_require__(6934)
-const stat = __nccwpck_require__(887)
-
-async function copy (src, dest, opts = {}) {
-  if (typeof opts === 'function') {
-    opts = { filter: opts }
-  }
-
-  opts.clobber = 'clobber' in opts ? !!opts.clobber : true // default to true for now
-  opts.overwrite = 'overwrite' in opts ? !!opts.overwrite : opts.clobber // overwrite falls back to clobber
-
-  // Warn about using preserveTimestamps on 32-bit node
-  if (opts.preserveTimestamps && process.arch === 'ia32') {
-    process.emitWarning(
-      'Using the preserveTimestamps option in 32-bit node is not recommended;\n\n' +
-      '\tsee https://github.com/jprichardson/node-fs-extra/issues/269',
-      'Warning', 'fs-extra-WARN0001'
-    )
-  }
-
-  const { srcStat, destStat } = await stat.checkPaths(src, dest, 'copy', opts)
-
-  await stat.checkParentPaths(src, srcStat, dest, 'copy')
-
-  const include = await runFilter(src, dest, opts)
-
-  if (!include) return
-
-  // check if the parent of dest exists, and create it if it doesn't exist
-  const destParent = path.dirname(dest)
-  const dirExists = await pathExists(destParent)
-  if (!dirExists) {
-    await mkdirs(destParent)
-  }
-
-  await getStatsAndPerformCopy(destStat, src, dest, opts)
-}
-
-async function runFilter (src, dest, opts) {
-  if (!opts.filter) return true
-  return opts.filter(src, dest)
-}
-
-async function getStatsAndPerformCopy (destStat, src, dest, opts) {
-  const statFn = opts.dereference ? fs.stat : fs.lstat
-  const srcStat = await statFn(src)
-
-  if (srcStat.isDirectory()) return onDir(srcStat, destStat, src, dest, opts)
-
-  if (
-    srcStat.isFile() ||
-    srcStat.isCharacterDevice() ||
-    srcStat.isBlockDevice()
-  ) return onFile(srcStat, destStat, src, dest, opts)
-
-  if (srcStat.isSymbolicLink()) return onLink(destStat, src, dest, opts)
-  if (srcStat.isSocket()) throw new Error(`Cannot copy a socket file: ${src}`)
-  if (srcStat.isFIFO()) throw new Error(`Cannot copy a FIFO pipe: ${src}`)
-  throw new Error(`Unknown file: ${src}`)
-}
-
-async function onFile (srcStat, destStat, src, dest, opts) {
-  if (!destStat) return copyFile(srcStat, src, dest, opts)
-
-  if (opts.overwrite) {
-    await fs.unlink(dest)
-    return copyFile(srcStat, src, dest, opts)
-  }
-  if (opts.errorOnExist) {
-    throw new Error(`'${dest}' already exists`)
-  }
-}
-
-async function copyFile (srcStat, src, dest, opts) {
-  await fs.copyFile(src, dest)
-  if (opts.preserveTimestamps) {
-    // Make sure the file is writable before setting the timestamp
-    // otherwise open fails with EPERM when invoked with 'r+'
-    // (through utimes call)
-    if (fileIsNotWritable(srcStat.mode)) {
-      await makeFileWritable(dest, srcStat.mode)
-    }
-
-    // Set timestamps and mode correspondingly
-
-    // Note that The initial srcStat.atime cannot be trusted
-    // because it is modified by the read(2) system call
-    // (See https://nodejs.org/api/fs.html#fs_stat_time_values)
-    const updatedSrcStat = await fs.stat(src)
-    await utimesMillis(dest, updatedSrcStat.atime, updatedSrcStat.mtime)
-  }
-
-  return fs.chmod(dest, srcStat.mode)
-}
-
-function fileIsNotWritable (srcMode) {
-  return (srcMode & 0o200) === 0
-}
-
-function makeFileWritable (dest, srcMode) {
-  return fs.chmod(dest, srcMode | 0o200)
-}
-
-async function onDir (srcStat, destStat, src, dest, opts) {
-  // the dest directory might not exist, create it
-  if (!destStat) {
-    await fs.mkdir(dest)
-  }
-
-  const promises = []
-
-  // loop through the files in the current directory to copy everything
-  for await (const item of await fs.opendir(src)) {
-    const srcItem = path.join(src, item.name)
-    const destItem = path.join(dest, item.name)
-
-    promises.push(
-      runFilter(srcItem, destItem, opts).then(include => {
-        if (include) {
-          // only copy the item if it matches the filter function
-          return stat.checkPaths(srcItem, destItem, 'copy', opts).then(({ destStat }) => {
-            // If the item is a copyable file, `getStatsAndPerformCopy` will copy it
-            // If the item is a directory, `getStatsAndPerformCopy` will call `onDir` recursively
-            return getStatsAndPerformCopy(destStat, srcItem, destItem, opts)
-          })
-        }
-      })
-    )
-  }
-
-  await Promise.all(promises)
-
-  if (!destStat) {
-    await fs.chmod(dest, srcStat.mode)
-  }
-}
-
-async function onLink (destStat, src, dest, opts) {
-  let resolvedSrc = await fs.readlink(src)
-  if (opts.dereference) {
-    resolvedSrc = path.resolve(process.cwd(), resolvedSrc)
-  }
-  if (!destStat) {
-    return fs.symlink(resolvedSrc, dest)
-  }
-
-  let resolvedDest = null
-  try {
-    resolvedDest = await fs.readlink(dest)
-  } catch (e) {
-    // dest exists and is a regular file or directory,
-    // Windows may throw UNKNOWN error. If dest already exists,
-    // fs throws error anyway, so no need to guard against it here.
-    if (e.code === 'EINVAL' || e.code === 'UNKNOWN') return fs.symlink(resolvedSrc, dest)
-    throw e
-  }
-  if (opts.dereference) {
-    resolvedDest = path.resolve(process.cwd(), resolvedDest)
-  }
-  if (stat.isSrcSubdir(resolvedSrc, resolvedDest)) {
-    throw new Error(`Cannot copy '${resolvedSrc}' to a subdirectory of itself, '${resolvedDest}'.`)
-  }
-
-  // do not copy if src is a subdir of dest since unlinking
-  // dest in this case would result in removing src contents
-  // and therefore a broken symlink would be created.
-  if (stat.isSrcSubdir(resolvedDest, resolvedSrc)) {
-    throw new Error(`Cannot overwrite '${resolvedDest}' with '${resolvedSrc}'.`)
-  }
-
-  // copy the link
-  await fs.unlink(dest)
-  return fs.symlink(resolvedSrc, dest)
-}
-
-module.exports = copy
-
-
-/***/ }),
-
-/***/ 5796:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const u = (__nccwpck_require__(5077).fromPromise)
-module.exports = {
-  copy: u(__nccwpck_require__(1759)),
-  copySync: __nccwpck_require__(4839)
-}
-
-
-/***/ }),
-
-/***/ 7882:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const u = (__nccwpck_require__(5077).fromPromise)
-const fs = __nccwpck_require__(3506)
-const path = __nccwpck_require__(6928)
-const mkdir = __nccwpck_require__(1089)
-const remove = __nccwpck_require__(6205)
-
-const emptyDir = u(async function emptyDir (dir) {
-  let items
-  try {
-    items = await fs.readdir(dir)
-  } catch {
-    return mkdir.mkdirs(dir)
-  }
-
-  return Promise.all(items.map(item => remove.remove(path.join(dir, item))))
-})
-
-function emptyDirSync (dir) {
-  let items
-  try {
-    items = fs.readdirSync(dir)
-  } catch {
-    return mkdir.mkdirsSync(dir)
-  }
-
-  items.forEach(item => {
-    item = path.join(dir, item)
-    remove.removeSync(item)
-  })
-}
-
-module.exports = {
-  emptyDirSync,
-  emptydirSync: emptyDirSync,
-  emptyDir,
-  emptydir: emptyDir
-}
-
-
-/***/ }),
-
-/***/ 3529:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const u = (__nccwpck_require__(5077).fromPromise)
-const path = __nccwpck_require__(6928)
-const fs = __nccwpck_require__(3506)
-const mkdir = __nccwpck_require__(1089)
-
-async function createFile (file) {
-  let stats
-  try {
-    stats = await fs.stat(file)
-  } catch { }
-  if (stats && stats.isFile()) return
-
-  const dir = path.dirname(file)
-
-  let dirStats = null
-  try {
-    dirStats = await fs.stat(dir)
-  } catch (err) {
-    // if the directory doesn't exist, make it
-    if (err.code === 'ENOENT') {
-      await mkdir.mkdirs(dir)
-      await fs.writeFile(file, '')
-      return
-    } else {
-      throw err
-    }
-  }
-
-  if (dirStats.isDirectory()) {
-    await fs.writeFile(file, '')
-  } else {
-    // parent is not a directory
-    // This is just to cause an internal ENOTDIR error to be thrown
-    await fs.readdir(dir)
-  }
-}
-
-function createFileSync (file) {
-  let stats
-  try {
-    stats = fs.statSync(file)
-  } catch { }
-  if (stats && stats.isFile()) return
-
-  const dir = path.dirname(file)
-  try {
-    if (!fs.statSync(dir).isDirectory()) {
-      // parent is not a directory
-      // This is just to cause an internal ENOTDIR error to be thrown
-      fs.readdirSync(dir)
-    }
-  } catch (err) {
-    // If the stat call above failed because the directory doesn't exist, create it
-    if (err && err.code === 'ENOENT') mkdir.mkdirsSync(dir)
-    else throw err
-  }
-
-  fs.writeFileSync(file, '')
-}
-
-module.exports = {
-  createFile: u(createFile),
-  createFileSync
-}
-
-
-/***/ }),
-
-/***/ 5779:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const { createFile, createFileSync } = __nccwpck_require__(3529)
-const { createLink, createLinkSync } = __nccwpck_require__(8751)
-const { createSymlink, createSymlinkSync } = __nccwpck_require__(4896)
-
-module.exports = {
-  // file
-  createFile,
-  createFileSync,
-  ensureFile: createFile,
-  ensureFileSync: createFileSync,
-  // link
-  createLink,
-  createLinkSync,
-  ensureLink: createLink,
-  ensureLinkSync: createLinkSync,
-  // symlink
-  createSymlink,
-  createSymlinkSync,
-  ensureSymlink: createSymlink,
-  ensureSymlinkSync: createSymlinkSync
-}
-
-
-/***/ }),
-
-/***/ 8751:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const u = (__nccwpck_require__(5077).fromPromise)
-const path = __nccwpck_require__(6928)
-const fs = __nccwpck_require__(3506)
-const mkdir = __nccwpck_require__(1089)
-const { pathExists } = __nccwpck_require__(2881)
-const { areIdentical } = __nccwpck_require__(887)
-
-async function createLink (srcpath, dstpath) {
-  let dstStat
-  try {
-    dstStat = await fs.lstat(dstpath)
-  } catch {
-    // ignore error
-  }
-
-  let srcStat
-  try {
-    srcStat = await fs.lstat(srcpath)
-  } catch (err) {
-    err.message = err.message.replace('lstat', 'ensureLink')
-    throw err
-  }
-
-  if (dstStat && areIdentical(srcStat, dstStat)) return
-
-  const dir = path.dirname(dstpath)
-
-  const dirExists = await pathExists(dir)
-
-  if (!dirExists) {
-    await mkdir.mkdirs(dir)
-  }
-
-  await fs.link(srcpath, dstpath)
-}
-
-function createLinkSync (srcpath, dstpath) {
-  let dstStat
-  try {
-    dstStat = fs.lstatSync(dstpath)
-  } catch {}
-
-  try {
-    const srcStat = fs.lstatSync(srcpath)
-    if (dstStat && areIdentical(srcStat, dstStat)) return
-  } catch (err) {
-    err.message = err.message.replace('lstat', 'ensureLink')
-    throw err
-  }
-
-  const dir = path.dirname(dstpath)
-  const dirExists = fs.existsSync(dir)
-  if (dirExists) return fs.linkSync(srcpath, dstpath)
-  mkdir.mkdirsSync(dir)
-
-  return fs.linkSync(srcpath, dstpath)
-}
-
-module.exports = {
-  createLink: u(createLink),
-  createLinkSync
-}
-
-
-/***/ }),
-
-/***/ 3121:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const path = __nccwpck_require__(6928)
-const fs = __nccwpck_require__(3506)
-const { pathExists } = __nccwpck_require__(2881)
-
-const u = (__nccwpck_require__(5077).fromPromise)
-
-/**
- * Function that returns two types of paths, one relative to symlink, and one
- * relative to the current working directory. Checks if path is absolute or
- * relative. If the path is relative, this function checks if the path is
- * relative to symlink or relative to current working directory. This is an
- * initiative to find a smarter `srcpath` to supply when building symlinks.
- * This allows you to determine which path to use out of one of three possible
- * types of source paths. The first is an absolute path. This is detected by
- * `path.isAbsolute()`. When an absolute path is provided, it is checked to
- * see if it exists. If it does it's used, if not an error is returned
- * (callback)/ thrown (sync). The other two options for `srcpath` are a
- * relative url. By default Node's `fs.symlink` works by creating a symlink
- * using `dstpath` and expects the `srcpath` to be relative to the newly
- * created symlink. If you provide a `srcpath` that does not exist on the file
- * system it results in a broken symlink. To minimize this, the function
- * checks to see if the 'relative to symlink' source file exists, and if it
- * does it will use it. If it does not, it checks if there's a file that
- * exists that is relative to the current working directory, if does its used.
- * This preserves the expectations of the original fs.symlink spec and adds
- * the ability to pass in `relative to current working direcotry` paths.
- */
-
-async function symlinkPaths (srcpath, dstpath) {
-  if (path.isAbsolute(srcpath)) {
-    try {
-      await fs.lstat(srcpath)
-    } catch (err) {
-      err.message = err.message.replace('lstat', 'ensureSymlink')
-      throw err
-    }
-
-    return {
-      toCwd: srcpath,
-      toDst: srcpath
-    }
-  }
-
-  const dstdir = path.dirname(dstpath)
-  const relativeToDst = path.join(dstdir, srcpath)
-
-  const exists = await pathExists(relativeToDst)
-  if (exists) {
-    return {
-      toCwd: relativeToDst,
-      toDst: srcpath
-    }
-  }
-
-  try {
-    await fs.lstat(srcpath)
-  } catch (err) {
-    err.message = err.message.replace('lstat', 'ensureSymlink')
-    throw err
-  }
-
-  return {
-    toCwd: srcpath,
-    toDst: path.relative(dstdir, srcpath)
-  }
-}
-
-function symlinkPathsSync (srcpath, dstpath) {
-  if (path.isAbsolute(srcpath)) {
-    const exists = fs.existsSync(srcpath)
-    if (!exists) throw new Error('absolute srcpath does not exist')
-    return {
-      toCwd: srcpath,
-      toDst: srcpath
-    }
-  }
-
-  const dstdir = path.dirname(dstpath)
-  const relativeToDst = path.join(dstdir, srcpath)
-  const exists = fs.existsSync(relativeToDst)
-  if (exists) {
-    return {
-      toCwd: relativeToDst,
-      toDst: srcpath
-    }
-  }
-
-  const srcExists = fs.existsSync(srcpath)
-  if (!srcExists) throw new Error('relative srcpath does not exist')
-  return {
-    toCwd: srcpath,
-    toDst: path.relative(dstdir, srcpath)
-  }
-}
-
-module.exports = {
-  symlinkPaths: u(symlinkPaths),
-  symlinkPathsSync
-}
-
-
-/***/ }),
-
-/***/ 7045:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const fs = __nccwpck_require__(3506)
-const u = (__nccwpck_require__(5077).fromPromise)
-
-async function symlinkType (srcpath, type) {
-  if (type) return type
-
-  let stats
-  try {
-    stats = await fs.lstat(srcpath)
-  } catch {
-    return 'file'
-  }
-
-  return (stats && stats.isDirectory()) ? 'dir' : 'file'
-}
-
-function symlinkTypeSync (srcpath, type) {
-  if (type) return type
-
-  let stats
-  try {
-    stats = fs.lstatSync(srcpath)
-  } catch {
-    return 'file'
-  }
-  return (stats && stats.isDirectory()) ? 'dir' : 'file'
-}
-
-module.exports = {
-  symlinkType: u(symlinkType),
-  symlinkTypeSync
-}
-
-
-/***/ }),
-
-/***/ 4896:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const u = (__nccwpck_require__(5077).fromPromise)
-const path = __nccwpck_require__(6928)
-const fs = __nccwpck_require__(3506)
-
-const { mkdirs, mkdirsSync } = __nccwpck_require__(1089)
-
-const { symlinkPaths, symlinkPathsSync } = __nccwpck_require__(3121)
-const { symlinkType, symlinkTypeSync } = __nccwpck_require__(7045)
-
-const { pathExists } = __nccwpck_require__(2881)
-
-const { areIdentical } = __nccwpck_require__(887)
-
-async function createSymlink (srcpath, dstpath, type) {
-  let stats
-  try {
-    stats = await fs.lstat(dstpath)
-  } catch { }
-
-  if (stats && stats.isSymbolicLink()) {
-    const [srcStat, dstStat] = await Promise.all([
-      fs.stat(srcpath),
-      fs.stat(dstpath)
-    ])
-
-    if (areIdentical(srcStat, dstStat)) return
-  }
-
-  const relative = await symlinkPaths(srcpath, dstpath)
-  srcpath = relative.toDst
-  const toType = await symlinkType(relative.toCwd, type)
-  const dir = path.dirname(dstpath)
-
-  if (!(await pathExists(dir))) {
-    await mkdirs(dir)
-  }
-
-  return fs.symlink(srcpath, dstpath, toType)
-}
-
-function createSymlinkSync (srcpath, dstpath, type) {
-  let stats
-  try {
-    stats = fs.lstatSync(dstpath)
-  } catch { }
-  if (stats && stats.isSymbolicLink()) {
-    const srcStat = fs.statSync(srcpath)
-    const dstStat = fs.statSync(dstpath)
-    if (areIdentical(srcStat, dstStat)) return
-  }
-
-  const relative = symlinkPathsSync(srcpath, dstpath)
-  srcpath = relative.toDst
-  type = symlinkTypeSync(relative.toCwd, type)
-  const dir = path.dirname(dstpath)
-  const exists = fs.existsSync(dir)
-  if (exists) return fs.symlinkSync(srcpath, dstpath, type)
-  mkdirsSync(dir)
-  return fs.symlinkSync(srcpath, dstpath, type)
-}
-
-module.exports = {
-  createSymlink: u(createSymlink),
-  createSymlinkSync
-}
-
-
-/***/ }),
-
-/***/ 3506:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-
-// This is adapted from https://github.com/normalize/mz
-// Copyright (c) 2014-2016 Jonathan Ong me@jongleberry.com and Contributors
-const u = (__nccwpck_require__(5077).fromCallback)
-const fs = __nccwpck_require__(5744)
-
-const api = [
-  'access',
-  'appendFile',
-  'chmod',
-  'chown',
-  'close',
-  'copyFile',
-  'cp',
-  'fchmod',
-  'fchown',
-  'fdatasync',
-  'fstat',
-  'fsync',
-  'ftruncate',
-  'futimes',
-  'glob',
-  'lchmod',
-  'lchown',
-  'lutimes',
-  'link',
-  'lstat',
-  'mkdir',
-  'mkdtemp',
-  'open',
-  'opendir',
-  'readdir',
-  'readFile',
-  'readlink',
-  'realpath',
-  'rename',
-  'rm',
-  'rmdir',
-  'stat',
-  'statfs',
-  'symlink',
-  'truncate',
-  'unlink',
-  'utimes',
-  'writeFile'
-].filter(key => {
-  // Some commands are not available on some systems. Ex:
-  // fs.cp was added in Node.js v16.7.0
-  // fs.statfs was added in Node v19.6.0, v18.15.0
-  // fs.glob was added in Node.js v22.0.0
-  // fs.lchown is not available on at least some Linux
-  return typeof fs[key] === 'function'
-})
-
-// Export cloned fs:
-Object.assign(exports, fs)
-
-// Universalify async methods:
-api.forEach(method => {
-  exports[method] = u(fs[method])
-})
-
-// We differ from mz/fs in that we still ship the old, broken, fs.exists()
-// since we are a drop-in replacement for the native module
-exports.exists = function (filename, callback) {
-  if (typeof callback === 'function') {
-    return fs.exists(filename, callback)
-  }
-  return new Promise(resolve => {
-    return fs.exists(filename, resolve)
-  })
-}
-
-// fs.read(), fs.write(), fs.readv(), & fs.writev() need special treatment due to multiple callback args
-
-exports.read = function (fd, buffer, offset, length, position, callback) {
-  if (typeof callback === 'function') {
-    return fs.read(fd, buffer, offset, length, position, callback)
-  }
-  return new Promise((resolve, reject) => {
-    fs.read(fd, buffer, offset, length, position, (err, bytesRead, buffer) => {
-      if (err) return reject(err)
-      resolve({ bytesRead, buffer })
-    })
-  })
-}
-
-// Function signature can be
-// fs.write(fd, buffer[, offset[, length[, position]]], callback)
-// OR
-// fs.write(fd, string[, position[, encoding]], callback)
-// We need to handle both cases, so we use ...args
-exports.write = function (fd, buffer, ...args) {
-  if (typeof args[args.length - 1] === 'function') {
-    return fs.write(fd, buffer, ...args)
-  }
-
-  return new Promise((resolve, reject) => {
-    fs.write(fd, buffer, ...args, (err, bytesWritten, buffer) => {
-      if (err) return reject(err)
-      resolve({ bytesWritten, buffer })
-    })
-  })
-}
-
-// Function signature is
-// s.readv(fd, buffers[, position], callback)
-// We need to handle the optional arg, so we use ...args
-exports.readv = function (fd, buffers, ...args) {
-  if (typeof args[args.length - 1] === 'function') {
-    return fs.readv(fd, buffers, ...args)
-  }
-
-  return new Promise((resolve, reject) => {
-    fs.readv(fd, buffers, ...args, (err, bytesRead, buffers) => {
-      if (err) return reject(err)
-      resolve({ bytesRead, buffers })
-    })
-  })
-}
-
-// Function signature is
-// s.writev(fd, buffers[, position], callback)
-// We need to handle the optional arg, so we use ...args
-exports.writev = function (fd, buffers, ...args) {
-  if (typeof args[args.length - 1] === 'function') {
-    return fs.writev(fd, buffers, ...args)
-  }
-
-  return new Promise((resolve, reject) => {
-    fs.writev(fd, buffers, ...args, (err, bytesWritten, buffers) => {
-      if (err) return reject(err)
-      resolve({ bytesWritten, buffers })
-    })
-  })
-}
-
-// fs.realpath.native sometimes not available if fs is monkey-patched
-if (typeof fs.realpath.native === 'function') {
-  exports.realpath.native = u(fs.realpath.native)
-} else {
-  process.emitWarning(
-    'fs.realpath.native is not a function. Is fs being monkey-patched?',
-    'Warning', 'fs-extra-WARN0003'
-  )
-}
-
-
-/***/ }),
-
-/***/ 2136:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-module.exports = {
-  // Export promiseified graceful-fs:
-  ...__nccwpck_require__(3506),
-  // Export extra methods:
-  ...__nccwpck_require__(5796),
-  ...__nccwpck_require__(7882),
-  ...__nccwpck_require__(5779),
-  ...__nccwpck_require__(8471),
-  ...__nccwpck_require__(1089),
-  ...__nccwpck_require__(2076),
-  ...__nccwpck_require__(5229),
-  ...__nccwpck_require__(2881),
-  ...__nccwpck_require__(6205)
-}
-
-
-/***/ }),
-
-/***/ 8471:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const u = (__nccwpck_require__(5077).fromPromise)
-const jsonFile = __nccwpck_require__(6239)
-
-jsonFile.outputJson = u(__nccwpck_require__(3753))
-jsonFile.outputJsonSync = __nccwpck_require__(425)
-// aliases
-jsonFile.outputJSON = jsonFile.outputJson
-jsonFile.outputJSONSync = jsonFile.outputJsonSync
-jsonFile.writeJSON = jsonFile.writeJson
-jsonFile.writeJSONSync = jsonFile.writeJsonSync
-jsonFile.readJSON = jsonFile.readJson
-jsonFile.readJSONSync = jsonFile.readJsonSync
-
-module.exports = jsonFile
-
-
-/***/ }),
-
-/***/ 6239:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const jsonFile = __nccwpck_require__(2064)
-
-module.exports = {
-  // jsonfile exports
-  readJson: jsonFile.readFile,
-  readJsonSync: jsonFile.readFileSync,
-  writeJson: jsonFile.writeFile,
-  writeJsonSync: jsonFile.writeFileSync
-}
-
-
-/***/ }),
-
-/***/ 425:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const { stringify } = __nccwpck_require__(9449)
-const { outputFileSync } = __nccwpck_require__(5229)
-
-function outputJsonSync (file, data, options) {
-  const str = stringify(data, options)
-
-  outputFileSync(file, str, options)
-}
-
-module.exports = outputJsonSync
-
-
-/***/ }),
-
-/***/ 3753:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const { stringify } = __nccwpck_require__(9449)
-const { outputFile } = __nccwpck_require__(5229)
-
-async function outputJson (file, data, options = {}) {
-  const str = stringify(data, options)
-
-  await outputFile(file, str, options)
-}
-
-module.exports = outputJson
-
-
-/***/ }),
-
-/***/ 1089:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-const u = (__nccwpck_require__(5077).fromPromise)
-const { makeDir: _makeDir, makeDirSync } = __nccwpck_require__(9625)
-const makeDir = u(_makeDir)
-
-module.exports = {
-  mkdirs: makeDir,
-  mkdirsSync: makeDirSync,
-  // alias
-  mkdirp: makeDir,
-  mkdirpSync: makeDirSync,
-  ensureDir: makeDir,
-  ensureDirSync: makeDirSync
-}
-
-
-/***/ }),
-
-/***/ 9625:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-const fs = __nccwpck_require__(3506)
-const { checkPath } = __nccwpck_require__(3388)
-
-const getMode = options => {
-  const defaults = { mode: 0o777 }
-  if (typeof options === 'number') return options
-  return ({ ...defaults, ...options }).mode
-}
-
-module.exports.makeDir = async (dir, options) => {
-  checkPath(dir)
-
-  return fs.mkdir(dir, {
-    mode: getMode(options),
-    recursive: true
-  })
-}
-
-module.exports.makeDirSync = (dir, options) => {
-  checkPath(dir)
-
-  return fs.mkdirSync(dir, {
-    mode: getMode(options),
-    recursive: true
-  })
-}
-
-
-/***/ }),
-
-/***/ 3388:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-// Adapted from https://github.com/sindresorhus/make-dir
-// Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-const path = __nccwpck_require__(6928)
-
-// https://github.com/nodejs/node/issues/8987
-// https://github.com/libuv/libuv/pull/1088
-module.exports.checkPath = function checkPath (pth) {
-  if (process.platform === 'win32') {
-    const pathHasInvalidWinCharacters = /[<>:"|?*]/.test(pth.replace(path.parse(pth).root, ''))
-
-    if (pathHasInvalidWinCharacters) {
-      const error = new Error(`Path contains invalid characters: ${pth}`)
-      error.code = 'EINVAL'
-      throw error
-    }
-  }
-}
-
-
-/***/ }),
-
-/***/ 2076:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const u = (__nccwpck_require__(5077).fromPromise)
-module.exports = {
-  move: u(__nccwpck_require__(7751)),
-  moveSync: __nccwpck_require__(9951)
-}
-
-
-/***/ }),
-
-/***/ 9951:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const fs = __nccwpck_require__(5744)
-const path = __nccwpck_require__(6928)
-const copySync = (__nccwpck_require__(5796).copySync)
-const removeSync = (__nccwpck_require__(6205).removeSync)
-const mkdirpSync = (__nccwpck_require__(1089).mkdirpSync)
-const stat = __nccwpck_require__(887)
-
-function moveSync (src, dest, opts) {
-  opts = opts || {}
-  const overwrite = opts.overwrite || opts.clobber || false
-
-  const { srcStat, isChangingCase = false } = stat.checkPathsSync(src, dest, 'move', opts)
-  stat.checkParentPathsSync(src, srcStat, dest, 'move')
-  if (!isParentRoot(dest)) mkdirpSync(path.dirname(dest))
-  return doRename(src, dest, overwrite, isChangingCase)
-}
-
-function isParentRoot (dest) {
-  const parent = path.dirname(dest)
-  const parsedPath = path.parse(parent)
-  return parsedPath.root === parent
-}
-
-function doRename (src, dest, overwrite, isChangingCase) {
-  if (isChangingCase) return rename(src, dest, overwrite)
-  if (overwrite) {
-    removeSync(dest)
-    return rename(src, dest, overwrite)
-  }
-  if (fs.existsSync(dest)) throw new Error('dest already exists.')
-  return rename(src, dest, overwrite)
-}
-
-function rename (src, dest, overwrite) {
-  try {
-    fs.renameSync(src, dest)
-  } catch (err) {
-    if (err.code !== 'EXDEV') throw err
-    return moveAcrossDevice(src, dest, overwrite)
-  }
-}
-
-function moveAcrossDevice (src, dest, overwrite) {
-  const opts = {
-    overwrite,
-    errorOnExist: true,
-    preserveTimestamps: true
-  }
-  copySync(src, dest, opts)
-  return removeSync(src)
-}
-
-module.exports = moveSync
-
-
-/***/ }),
-
-/***/ 7751:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const fs = __nccwpck_require__(3506)
-const path = __nccwpck_require__(6928)
-const { copy } = __nccwpck_require__(5796)
-const { remove } = __nccwpck_require__(6205)
-const { mkdirp } = __nccwpck_require__(1089)
-const { pathExists } = __nccwpck_require__(2881)
-const stat = __nccwpck_require__(887)
-
-async function move (src, dest, opts = {}) {
-  const overwrite = opts.overwrite || opts.clobber || false
-
-  const { srcStat, isChangingCase = false } = await stat.checkPaths(src, dest, 'move', opts)
-
-  await stat.checkParentPaths(src, srcStat, dest, 'move')
-
-  // If the parent of dest is not root, make sure it exists before proceeding
-  const destParent = path.dirname(dest)
-  const parsedParentPath = path.parse(destParent)
-  if (parsedParentPath.root !== destParent) {
-    await mkdirp(destParent)
-  }
-
-  return doRename(src, dest, overwrite, isChangingCase)
-}
-
-async function doRename (src, dest, overwrite, isChangingCase) {
-  if (!isChangingCase) {
-    if (overwrite) {
-      await remove(dest)
-    } else if (await pathExists(dest)) {
-      throw new Error('dest already exists.')
-    }
-  }
-
-  try {
-    // Try w/ rename first, and try copy + remove if EXDEV
-    await fs.rename(src, dest)
-  } catch (err) {
-    if (err.code !== 'EXDEV') {
-      throw err
-    }
-    await moveAcrossDevice(src, dest, overwrite)
-  }
-}
-
-async function moveAcrossDevice (src, dest, overwrite) {
-  const opts = {
-    overwrite,
-    errorOnExist: true,
-    preserveTimestamps: true
-  }
-
-  await copy(src, dest, opts)
-  return remove(src)
-}
-
-module.exports = move
-
-
-/***/ }),
-
-/***/ 5229:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const u = (__nccwpck_require__(5077).fromPromise)
-const fs = __nccwpck_require__(3506)
-const path = __nccwpck_require__(6928)
-const mkdir = __nccwpck_require__(1089)
-const pathExists = (__nccwpck_require__(2881).pathExists)
-
-async function outputFile (file, data, encoding = 'utf-8') {
-  const dir = path.dirname(file)
-
-  if (!(await pathExists(dir))) {
-    await mkdir.mkdirs(dir)
-  }
-
-  return fs.writeFile(file, data, encoding)
-}
-
-function outputFileSync (file, ...args) {
-  const dir = path.dirname(file)
-  if (!fs.existsSync(dir)) {
-    mkdir.mkdirsSync(dir)
-  }
-
-  fs.writeFileSync(file, ...args)
-}
-
-module.exports = {
-  outputFile: u(outputFile),
-  outputFileSync
-}
-
-
-/***/ }),
-
-/***/ 2881:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-const u = (__nccwpck_require__(5077).fromPromise)
-const fs = __nccwpck_require__(3506)
-
-function pathExists (path) {
-  return fs.access(path).then(() => true).catch(() => false)
-}
-
-module.exports = {
-  pathExists: u(pathExists),
-  pathExistsSync: fs.existsSync
-}
-
-
-/***/ }),
-
-/***/ 6205:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const fs = __nccwpck_require__(5744)
-const u = (__nccwpck_require__(5077).fromCallback)
-
-function remove (path, callback) {
-  fs.rm(path, { recursive: true, force: true }, callback)
-}
-
-function removeSync (path) {
-  fs.rmSync(path, { recursive: true, force: true })
-}
-
-module.exports = {
-  remove: u(remove),
-  removeSync
-}
-
-
-/***/ }),
-
-/***/ 887:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const fs = __nccwpck_require__(3506)
-const path = __nccwpck_require__(6928)
-const u = (__nccwpck_require__(5077).fromPromise)
-
-function getStats (src, dest, opts) {
-  const statFunc = opts.dereference
-    ? (file) => fs.stat(file, { bigint: true })
-    : (file) => fs.lstat(file, { bigint: true })
-  return Promise.all([
-    statFunc(src),
-    statFunc(dest).catch(err => {
-      if (err.code === 'ENOENT') return null
-      throw err
-    })
-  ]).then(([srcStat, destStat]) => ({ srcStat, destStat }))
-}
-
-function getStatsSync (src, dest, opts) {
-  let destStat
-  const statFunc = opts.dereference
-    ? (file) => fs.statSync(file, { bigint: true })
-    : (file) => fs.lstatSync(file, { bigint: true })
-  const srcStat = statFunc(src)
-  try {
-    destStat = statFunc(dest)
-  } catch (err) {
-    if (err.code === 'ENOENT') return { srcStat, destStat: null }
-    throw err
-  }
-  return { srcStat, destStat }
-}
-
-async function checkPaths (src, dest, funcName, opts) {
-  const { srcStat, destStat } = await getStats(src, dest, opts)
-  if (destStat) {
-    if (areIdentical(srcStat, destStat)) {
-      const srcBaseName = path.basename(src)
-      const destBaseName = path.basename(dest)
-      if (funcName === 'move' &&
-        srcBaseName !== destBaseName &&
-        srcBaseName.toLowerCase() === destBaseName.toLowerCase()) {
-        return { srcStat, destStat, isChangingCase: true }
-      }
-      throw new Error('Source and destination must not be the same.')
-    }
-    if (srcStat.isDirectory() && !destStat.isDirectory()) {
-      throw new Error(`Cannot overwrite non-directory '${dest}' with directory '${src}'.`)
-    }
-    if (!srcStat.isDirectory() && destStat.isDirectory()) {
-      throw new Error(`Cannot overwrite directory '${dest}' with non-directory '${src}'.`)
-    }
-  }
-
-  if (srcStat.isDirectory() && isSrcSubdir(src, dest)) {
-    throw new Error(errMsg(src, dest, funcName))
-  }
-
-  return { srcStat, destStat }
-}
-
-function checkPathsSync (src, dest, funcName, opts) {
-  const { srcStat, destStat } = getStatsSync(src, dest, opts)
-
-  if (destStat) {
-    if (areIdentical(srcStat, destStat)) {
-      const srcBaseName = path.basename(src)
-      const destBaseName = path.basename(dest)
-      if (funcName === 'move' &&
-        srcBaseName !== destBaseName &&
-        srcBaseName.toLowerCase() === destBaseName.toLowerCase()) {
-        return { srcStat, destStat, isChangingCase: true }
-      }
-      throw new Error('Source and destination must not be the same.')
-    }
-    if (srcStat.isDirectory() && !destStat.isDirectory()) {
-      throw new Error(`Cannot overwrite non-directory '${dest}' with directory '${src}'.`)
-    }
-    if (!srcStat.isDirectory() && destStat.isDirectory()) {
-      throw new Error(`Cannot overwrite directory '${dest}' with non-directory '${src}'.`)
-    }
-  }
-
-  if (srcStat.isDirectory() && isSrcSubdir(src, dest)) {
-    throw new Error(errMsg(src, dest, funcName))
-  }
-  return { srcStat, destStat }
-}
-
-// recursively check if dest parent is a subdirectory of src.
-// It works for all file types including symlinks since it
-// checks the src and dest inodes. It starts from the deepest
-// parent and stops once it reaches the src parent or the root path.
-async function checkParentPaths (src, srcStat, dest, funcName) {
-  const srcParent = path.resolve(path.dirname(src))
-  const destParent = path.resolve(path.dirname(dest))
-  if (destParent === srcParent || destParent === path.parse(destParent).root) return
-
-  let destStat
-  try {
-    destStat = await fs.stat(destParent, { bigint: true })
-  } catch (err) {
-    if (err.code === 'ENOENT') return
-    throw err
-  }
-
-  if (areIdentical(srcStat, destStat)) {
-    throw new Error(errMsg(src, dest, funcName))
-  }
-
-  return checkParentPaths(src, srcStat, destParent, funcName)
-}
-
-function checkParentPathsSync (src, srcStat, dest, funcName) {
-  const srcParent = path.resolve(path.dirname(src))
-  const destParent = path.resolve(path.dirname(dest))
-  if (destParent === srcParent || destParent === path.parse(destParent).root) return
-  let destStat
-  try {
-    destStat = fs.statSync(destParent, { bigint: true })
-  } catch (err) {
-    if (err.code === 'ENOENT') return
-    throw err
-  }
-  if (areIdentical(srcStat, destStat)) {
-    throw new Error(errMsg(src, dest, funcName))
-  }
-  return checkParentPathsSync(src, srcStat, destParent, funcName)
-}
-
-function areIdentical (srcStat, destStat) {
-  return destStat.ino && destStat.dev && destStat.ino === srcStat.ino && destStat.dev === srcStat.dev
-}
-
-// return true if dest is a subdir of src, otherwise false.
-// It only checks the path strings.
-function isSrcSubdir (src, dest) {
-  const srcArr = path.resolve(src).split(path.sep).filter(i => i)
-  const destArr = path.resolve(dest).split(path.sep).filter(i => i)
-  return srcArr.every((cur, i) => destArr[i] === cur)
-}
-
-function errMsg (src, dest, funcName) {
-  return `Cannot ${funcName} '${src}' to a subdirectory of itself, '${dest}'.`
-}
-
-module.exports = {
-  // checkPaths
-  checkPaths: u(checkPaths),
-  checkPathsSync,
-  // checkParent
-  checkParentPaths: u(checkParentPaths),
-  checkParentPathsSync,
-  // Misc
-  isSrcSubdir,
-  areIdentical
-}
-
-
-/***/ }),
-
-/***/ 6934:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-const fs = __nccwpck_require__(3506)
-const u = (__nccwpck_require__(5077).fromPromise)
-
-async function utimesMillis (path, atime, mtime) {
-  // if (!HAS_MILLIS_RES) return fs.utimes(path, atime, mtime, callback)
-  const fd = await fs.open(path, 'r+')
-
-  let closeErr = null
-
-  try {
-    await fs.futimes(fd, atime, mtime)
-  } finally {
-    try {
-      await fs.close(fd)
-    } catch (e) {
-      closeErr = e
-    }
-  }
-
-  if (closeErr) {
-    throw closeErr
-  }
-}
-
-function utimesMillisSync (path, atime, mtime) {
-  const fd = fs.openSync(path, 'r+')
-  fs.futimesSync(fd, atime, mtime)
-  return fs.closeSync(fd)
-}
-
-module.exports = {
-  utimesMillis: u(utimesMillis),
-  utimesMillisSync
-}
-
-
-/***/ }),
-
-/***/ 3964:
+/***/ 3313:
 /***/ ((module) => {
 
+module.exports = Pend;
 
-
-module.exports = clone
-
-var getPrototypeOf = Object.getPrototypeOf || function (obj) {
-  return obj.__proto__
+function Pend() {
+  this.pending = 0;
+  this.max = Infinity;
+  this.listeners = [];
+  this.waiting = [];
+  this.error = null;
 }
 
-function clone (obj) {
-  if (obj === null || typeof obj !== 'object')
-    return obj
-
-  if (obj instanceof Object)
-    var copy = { __proto__: getPrototypeOf(obj) }
-  else
-    var copy = Object.create(null)
-
-  Object.getOwnPropertyNames(obj).forEach(function (key) {
-    Object.defineProperty(copy, key, Object.getOwnPropertyDescriptor(obj, key))
-  })
-
-  return copy
-}
-
-
-/***/ }),
-
-/***/ 5744:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-var fs = __nccwpck_require__(9896)
-var polyfills = __nccwpck_require__(3501)
-var legacy = __nccwpck_require__(2270)
-var clone = __nccwpck_require__(3964)
-
-var util = __nccwpck_require__(9023)
-
-/* istanbul ignore next - node 0.x polyfill */
-var gracefulQueue
-var previousSymbol
-
-/* istanbul ignore else - node 0.x polyfill */
-if (typeof Symbol === 'function' && typeof Symbol.for === 'function') {
-  gracefulQueue = Symbol.for('graceful-fs.queue')
-  // This is used in testing by future versions
-  previousSymbol = Symbol.for('graceful-fs.previous')
-} else {
-  gracefulQueue = '___graceful-fs.queue'
-  previousSymbol = '___graceful-fs.previous'
-}
-
-function noop () {}
-
-function publishQueue(context, queue) {
-  Object.defineProperty(context, gracefulQueue, {
-    get: function() {
-      return queue
-    }
-  })
-}
-
-var debug = noop
-if (util.debuglog)
-  debug = util.debuglog('gfs4')
-else if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || ''))
-  debug = function() {
-    var m = util.format.apply(util, arguments)
-    m = 'GFS4: ' + m.split(/\n/).join('\nGFS4: ')
-    console.error(m)
-  }
-
-// Once time initialization
-if (!fs[gracefulQueue]) {
-  // This queue can be shared by multiple loaded instances
-  var queue = global[gracefulQueue] || []
-  publishQueue(fs, queue)
-
-  // Patch fs.close/closeSync to shared queue version, because we need
-  // to retry() whenever a close happens *anywhere* in the program.
-  // This is essential when multiple graceful-fs instances are
-  // in play at the same time.
-  fs.close = (function (fs$close) {
-    function close (fd, cb) {
-      return fs$close.call(fs, fd, function (err) {
-        // This function uses the graceful-fs shared queue
-        if (!err) {
-          resetQueue()
-        }
-
-        if (typeof cb === 'function')
-          cb.apply(this, arguments)
-      })
-    }
-
-    Object.defineProperty(close, previousSymbol, {
-      value: fs$close
-    })
-    return close
-  })(fs.close)
-
-  fs.closeSync = (function (fs$closeSync) {
-    function closeSync (fd) {
-      // This function uses the graceful-fs shared queue
-      fs$closeSync.apply(fs, arguments)
-      resetQueue()
-    }
-
-    Object.defineProperty(closeSync, previousSymbol, {
-      value: fs$closeSync
-    })
-    return closeSync
-  })(fs.closeSync)
-
-  if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || '')) {
-    process.on('exit', function() {
-      debug(fs[gracefulQueue])
-      __nccwpck_require__(2613).equal(fs[gracefulQueue].length, 0)
-    })
-  }
-}
-
-if (!global[gracefulQueue]) {
-  publishQueue(global, fs[gracefulQueue]);
-}
-
-module.exports = patch(clone(fs))
-if (process.env.TEST_GRACEFUL_FS_GLOBAL_PATCH && !fs.__patched) {
-    module.exports = patch(fs)
-    fs.__patched = true;
-}
-
-function patch (fs) {
-  // Everything that references the open() function needs to be in here
-  polyfills(fs)
-  fs.gracefulify = patch
-
-  fs.createReadStream = createReadStream
-  fs.createWriteStream = createWriteStream
-  var fs$readFile = fs.readFile
-  fs.readFile = readFile
-  function readFile (path, options, cb) {
-    if (typeof options === 'function')
-      cb = options, options = null
-
-    return go$readFile(path, options, cb)
-
-    function go$readFile (path, options, cb, startTime) {
-      return fs$readFile(path, options, function (err) {
-        if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
-          enqueue([go$readFile, [path, options, cb], err, startTime || Date.now(), Date.now()])
-        else {
-          if (typeof cb === 'function')
-            cb.apply(this, arguments)
-        }
-      })
-    }
-  }
-
-  var fs$writeFile = fs.writeFile
-  fs.writeFile = writeFile
-  function writeFile (path, data, options, cb) {
-    if (typeof options === 'function')
-      cb = options, options = null
-
-    return go$writeFile(path, data, options, cb)
-
-    function go$writeFile (path, data, options, cb, startTime) {
-      return fs$writeFile(path, data, options, function (err) {
-        if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
-          enqueue([go$writeFile, [path, data, options, cb], err, startTime || Date.now(), Date.now()])
-        else {
-          if (typeof cb === 'function')
-            cb.apply(this, arguments)
-        }
-      })
-    }
-  }
-
-  var fs$appendFile = fs.appendFile
-  if (fs$appendFile)
-    fs.appendFile = appendFile
-  function appendFile (path, data, options, cb) {
-    if (typeof options === 'function')
-      cb = options, options = null
-
-    return go$appendFile(path, data, options, cb)
-
-    function go$appendFile (path, data, options, cb, startTime) {
-      return fs$appendFile(path, data, options, function (err) {
-        if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
-          enqueue([go$appendFile, [path, data, options, cb], err, startTime || Date.now(), Date.now()])
-        else {
-          if (typeof cb === 'function')
-            cb.apply(this, arguments)
-        }
-      })
-    }
-  }
-
-  var fs$copyFile = fs.copyFile
-  if (fs$copyFile)
-    fs.copyFile = copyFile
-  function copyFile (src, dest, flags, cb) {
-    if (typeof flags === 'function') {
-      cb = flags
-      flags = 0
-    }
-    return go$copyFile(src, dest, flags, cb)
-
-    function go$copyFile (src, dest, flags, cb, startTime) {
-      return fs$copyFile(src, dest, flags, function (err) {
-        if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
-          enqueue([go$copyFile, [src, dest, flags, cb], err, startTime || Date.now(), Date.now()])
-        else {
-          if (typeof cb === 'function')
-            cb.apply(this, arguments)
-        }
-      })
-    }
-  }
-
-  var fs$readdir = fs.readdir
-  fs.readdir = readdir
-  var noReaddirOptionVersions = /^v[0-5]\./
-  function readdir (path, options, cb) {
-    if (typeof options === 'function')
-      cb = options, options = null
-
-    var go$readdir = noReaddirOptionVersions.test(process.version)
-      ? function go$readdir (path, options, cb, startTime) {
-        return fs$readdir(path, fs$readdirCallback(
-          path, options, cb, startTime
-        ))
-      }
-      : function go$readdir (path, options, cb, startTime) {
-        return fs$readdir(path, options, fs$readdirCallback(
-          path, options, cb, startTime
-        ))
-      }
-
-    return go$readdir(path, options, cb)
-
-    function fs$readdirCallback (path, options, cb, startTime) {
-      return function (err, files) {
-        if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
-          enqueue([
-            go$readdir,
-            [path, options, cb],
-            err,
-            startTime || Date.now(),
-            Date.now()
-          ])
-        else {
-          if (files && files.sort)
-            files.sort()
-
-          if (typeof cb === 'function')
-            cb.call(this, err, files)
-        }
-      }
-    }
-  }
-
-  if (process.version.substr(0, 4) === 'v0.8') {
-    var legStreams = legacy(fs)
-    ReadStream = legStreams.ReadStream
-    WriteStream = legStreams.WriteStream
-  }
-
-  var fs$ReadStream = fs.ReadStream
-  if (fs$ReadStream) {
-    ReadStream.prototype = Object.create(fs$ReadStream.prototype)
-    ReadStream.prototype.open = ReadStream$open
-  }
-
-  var fs$WriteStream = fs.WriteStream
-  if (fs$WriteStream) {
-    WriteStream.prototype = Object.create(fs$WriteStream.prototype)
-    WriteStream.prototype.open = WriteStream$open
-  }
-
-  Object.defineProperty(fs, 'ReadStream', {
-    get: function () {
-      return ReadStream
-    },
-    set: function (val) {
-      ReadStream = val
-    },
-    enumerable: true,
-    configurable: true
-  })
-  Object.defineProperty(fs, 'WriteStream', {
-    get: function () {
-      return WriteStream
-    },
-    set: function (val) {
-      WriteStream = val
-    },
-    enumerable: true,
-    configurable: true
-  })
-
-  // legacy names
-  var FileReadStream = ReadStream
-  Object.defineProperty(fs, 'FileReadStream', {
-    get: function () {
-      return FileReadStream
-    },
-    set: function (val) {
-      FileReadStream = val
-    },
-    enumerable: true,
-    configurable: true
-  })
-  var FileWriteStream = WriteStream
-  Object.defineProperty(fs, 'FileWriteStream', {
-    get: function () {
-      return FileWriteStream
-    },
-    set: function (val) {
-      FileWriteStream = val
-    },
-    enumerable: true,
-    configurable: true
-  })
-
-  function ReadStream (path, options) {
-    if (this instanceof ReadStream)
-      return fs$ReadStream.apply(this, arguments), this
-    else
-      return ReadStream.apply(Object.create(ReadStream.prototype), arguments)
-  }
-
-  function ReadStream$open () {
-    var that = this
-    open(that.path, that.flags, that.mode, function (err, fd) {
-      if (err) {
-        if (that.autoClose)
-          that.destroy()
-
-        that.emit('error', err)
-      } else {
-        that.fd = fd
-        that.emit('open', fd)
-        that.read()
-      }
-    })
-  }
-
-  function WriteStream (path, options) {
-    if (this instanceof WriteStream)
-      return fs$WriteStream.apply(this, arguments), this
-    else
-      return WriteStream.apply(Object.create(WriteStream.prototype), arguments)
-  }
-
-  function WriteStream$open () {
-    var that = this
-    open(that.path, that.flags, that.mode, function (err, fd) {
-      if (err) {
-        that.destroy()
-        that.emit('error', err)
-      } else {
-        that.fd = fd
-        that.emit('open', fd)
-      }
-    })
-  }
-
-  function createReadStream (path, options) {
-    return new fs.ReadStream(path, options)
-  }
-
-  function createWriteStream (path, options) {
-    return new fs.WriteStream(path, options)
-  }
-
-  var fs$open = fs.open
-  fs.open = open
-  function open (path, flags, mode, cb) {
-    if (typeof mode === 'function')
-      cb = mode, mode = null
-
-    return go$open(path, flags, mode, cb)
-
-    function go$open (path, flags, mode, cb, startTime) {
-      return fs$open(path, flags, mode, function (err, fd) {
-        if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
-          enqueue([go$open, [path, flags, mode, cb], err, startTime || Date.now(), Date.now()])
-        else {
-          if (typeof cb === 'function')
-            cb.apply(this, arguments)
-        }
-      })
-    }
-  }
-
-  return fs
-}
-
-function enqueue (elem) {
-  debug('ENQUEUE', elem[0].name, elem[1])
-  fs[gracefulQueue].push(elem)
-  retry()
-}
-
-// keep track of the timeout between retry() calls
-var retryTimer
-
-// reset the startTime and lastTime to now
-// this resets the start of the 60 second overall timeout as well as the
-// delay between attempts so that we'll retry these jobs sooner
-function resetQueue () {
-  var now = Date.now()
-  for (var i = 0; i < fs[gracefulQueue].length; ++i) {
-    // entries that are only a length of 2 are from an older version, don't
-    // bother modifying those since they'll be retried anyway.
-    if (fs[gracefulQueue][i].length > 2) {
-      fs[gracefulQueue][i][3] = now // startTime
-      fs[gracefulQueue][i][4] = now // lastTime
-    }
-  }
-  // call retry to make sure we're actively processing the queue
-  retry()
-}
-
-function retry () {
-  // clear the timer and remove it to help prevent unintended concurrency
-  clearTimeout(retryTimer)
-  retryTimer = undefined
-
-  if (fs[gracefulQueue].length === 0)
-    return
-
-  var elem = fs[gracefulQueue].shift()
-  var fn = elem[0]
-  var args = elem[1]
-  // these items may be unset if they were added by an older graceful-fs
-  var err = elem[2]
-  var startTime = elem[3]
-  var lastTime = elem[4]
-
-  // if we don't have a startTime we have no way of knowing if we've waited
-  // long enough, so go ahead and retry this item now
-  if (startTime === undefined) {
-    debug('RETRY', fn.name, args)
-    fn.apply(null, args)
-  } else if (Date.now() - startTime >= 60000) {
-    // it's been more than 60 seconds total, bail now
-    debug('TIMEOUT', fn.name, args)
-    var cb = args.pop()
-    if (typeof cb === 'function')
-      cb.call(null, err)
+Pend.prototype.go = function(fn) {
+  if (this.pending < this.max) {
+    pendGo(this, fn);
   } else {
-    // the amount of time between the last attempt and right now
-    var sinceAttempt = Date.now() - lastTime
-    // the amount of time between when we first tried, and when we last tried
-    // rounded up to at least 1
-    var sinceStart = Math.max(lastTime - startTime, 1)
-    // backoff. wait longer than the total time we've been retrying, but only
-    // up to a maximum of 100ms
-    var desiredDelay = Math.min(sinceStart * 1.2, 100)
-    // it's been long enough since the last retry, do it again
-    if (sinceAttempt >= desiredDelay) {
-      debug('RETRY', fn.name, args)
-      fn.apply(null, args.concat([startTime]))
-    } else {
-      // if we can't do this job yet, push it to the end of the queue
-      // and let the next iteration check again
-      fs[gracefulQueue].push(elem)
-    }
+    this.waiting.push(fn);
   }
-
-  // schedule our next run if one isn't already scheduled
-  if (retryTimer === undefined) {
-    retryTimer = setTimeout(retry, 0)
-  }
-}
-
-
-/***/ }),
-
-/***/ 2270:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-var Stream = (__nccwpck_require__(2203).Stream)
-
-module.exports = legacy
-
-function legacy (fs) {
-  return {
-    ReadStream: ReadStream,
-    WriteStream: WriteStream
-  }
-
-  function ReadStream (path, options) {
-    if (!(this instanceof ReadStream)) return new ReadStream(path, options);
-
-    Stream.call(this);
-
-    var self = this;
-
-    this.path = path;
-    this.fd = null;
-    this.readable = true;
-    this.paused = false;
-
-    this.flags = 'r';
-    this.mode = 438; /*=0666*/
-    this.bufferSize = 64 * 1024;
-
-    options = options || {};
-
-    // Mixin options into this
-    var keys = Object.keys(options);
-    for (var index = 0, length = keys.length; index < length; index++) {
-      var key = keys[index];
-      this[key] = options[key];
-    }
-
-    if (this.encoding) this.setEncoding(this.encoding);
-
-    if (this.start !== undefined) {
-      if ('number' !== typeof this.start) {
-        throw TypeError('start must be a Number');
-      }
-      if (this.end === undefined) {
-        this.end = Infinity;
-      } else if ('number' !== typeof this.end) {
-        throw TypeError('end must be a Number');
-      }
-
-      if (this.start > this.end) {
-        throw new Error('start must be <= end');
-      }
-
-      this.pos = this.start;
-    }
-
-    if (this.fd !== null) {
-      process.nextTick(function() {
-        self._read();
-      });
-      return;
-    }
-
-    fs.open(this.path, this.flags, this.mode, function (err, fd) {
-      if (err) {
-        self.emit('error', err);
-        self.readable = false;
-        return;
-      }
-
-      self.fd = fd;
-      self.emit('open', fd);
-      self._read();
-    })
-  }
-
-  function WriteStream (path, options) {
-    if (!(this instanceof WriteStream)) return new WriteStream(path, options);
-
-    Stream.call(this);
-
-    this.path = path;
-    this.fd = null;
-    this.writable = true;
-
-    this.flags = 'w';
-    this.encoding = 'binary';
-    this.mode = 438; /*=0666*/
-    this.bytesWritten = 0;
-
-    options = options || {};
-
-    // Mixin options into this
-    var keys = Object.keys(options);
-    for (var index = 0, length = keys.length; index < length; index++) {
-      var key = keys[index];
-      this[key] = options[key];
-    }
-
-    if (this.start !== undefined) {
-      if ('number' !== typeof this.start) {
-        throw TypeError('start must be a Number');
-      }
-      if (this.start < 0) {
-        throw new Error('start must be >= zero');
-      }
-
-      this.pos = this.start;
-    }
-
-    this.busy = false;
-    this._queue = [];
-
-    if (this.fd === null) {
-      this._open = fs.open;
-      this._queue.push([this._open, this.path, this.flags, this.mode, undefined]);
-      this.flush();
-    }
-  }
-}
-
-
-/***/ }),
-
-/***/ 3501:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-var constants = __nccwpck_require__(9140)
-
-var origCwd = process.cwd
-var cwd = null
-
-var platform = process.env.GRACEFUL_FS_PLATFORM || process.platform
-
-process.cwd = function() {
-  if (!cwd)
-    cwd = origCwd.call(process)
-  return cwd
-}
-try {
-  process.cwd()
-} catch (er) {}
-
-// This check is needed until node.js 12 is required
-if (typeof process.chdir === 'function') {
-  var chdir = process.chdir
-  process.chdir = function (d) {
-    cwd = null
-    chdir.call(process, d)
-  }
-  if (Object.setPrototypeOf) Object.setPrototypeOf(process.chdir, chdir)
-}
-
-module.exports = patch
-
-function patch (fs) {
-  // (re-)implement some things that are known busted or missing.
-
-  // lchmod, broken prior to 0.6.2
-  // back-port the fix here.
-  if (constants.hasOwnProperty('O_SYMLINK') &&
-      process.version.match(/^v0\.6\.[0-2]|^v0\.5\./)) {
-    patchLchmod(fs)
-  }
-
-  // lutimes implementation, or no-op
-  if (!fs.lutimes) {
-    patchLutimes(fs)
-  }
-
-  // https://github.com/isaacs/node-graceful-fs/issues/4
-  // Chown should not fail on einval or eperm if non-root.
-  // It should not fail on enosys ever, as this just indicates
-  // that a fs doesn't support the intended operation.
-
-  fs.chown = chownFix(fs.chown)
-  fs.fchown = chownFix(fs.fchown)
-  fs.lchown = chownFix(fs.lchown)
-
-  fs.chmod = chmodFix(fs.chmod)
-  fs.fchmod = chmodFix(fs.fchmod)
-  fs.lchmod = chmodFix(fs.lchmod)
-
-  fs.chownSync = chownFixSync(fs.chownSync)
-  fs.fchownSync = chownFixSync(fs.fchownSync)
-  fs.lchownSync = chownFixSync(fs.lchownSync)
-
-  fs.chmodSync = chmodFixSync(fs.chmodSync)
-  fs.fchmodSync = chmodFixSync(fs.fchmodSync)
-  fs.lchmodSync = chmodFixSync(fs.lchmodSync)
-
-  fs.stat = statFix(fs.stat)
-  fs.fstat = statFix(fs.fstat)
-  fs.lstat = statFix(fs.lstat)
-
-  fs.statSync = statFixSync(fs.statSync)
-  fs.fstatSync = statFixSync(fs.fstatSync)
-  fs.lstatSync = statFixSync(fs.lstatSync)
-
-  // if lchmod/lchown do not exist, then make them no-ops
-  if (fs.chmod && !fs.lchmod) {
-    fs.lchmod = function (path, mode, cb) {
-      if (cb) process.nextTick(cb)
-    }
-    fs.lchmodSync = function () {}
-  }
-  if (fs.chown && !fs.lchown) {
-    fs.lchown = function (path, uid, gid, cb) {
-      if (cb) process.nextTick(cb)
-    }
-    fs.lchownSync = function () {}
-  }
-
-  // on Windows, A/V software can lock the directory, causing this
-  // to fail with an EACCES or EPERM if the directory contains newly
-  // created files.  Try again on failure, for up to 60 seconds.
-
-  // Set the timeout this long because some Windows Anti-Virus, such as Parity
-  // bit9, may lock files for up to a minute, causing npm package install
-  // failures. Also, take care to yield the scheduler. Windows scheduling gives
-  // CPU to a busy looping process, which can cause the program causing the lock
-  // contention to be starved of CPU by node, so the contention doesn't resolve.
-  if (platform === "win32") {
-    fs.rename = typeof fs.rename !== 'function' ? fs.rename
-    : (function (fs$rename) {
-      function rename (from, to, cb) {
-        var start = Date.now()
-        var backoff = 0;
-        fs$rename(from, to, function CB (er) {
-          if (er
-              && (er.code === "EACCES" || er.code === "EPERM" || er.code === "EBUSY")
-              && Date.now() - start < 60000) {
-            setTimeout(function() {
-              fs.stat(to, function (stater, st) {
-                if (stater && stater.code === "ENOENT")
-                  fs$rename(from, to, CB);
-                else
-                  cb(er)
-              })
-            }, backoff)
-            if (backoff < 100)
-              backoff += 10;
-            return;
-          }
-          if (cb) cb(er)
-        })
-      }
-      if (Object.setPrototypeOf) Object.setPrototypeOf(rename, fs$rename)
-      return rename
-    })(fs.rename)
-  }
-
-  // if read() returns EAGAIN, then just try it again.
-  fs.read = typeof fs.read !== 'function' ? fs.read
-  : (function (fs$read) {
-    function read (fd, buffer, offset, length, position, callback_) {
-      var callback
-      if (callback_ && typeof callback_ === 'function') {
-        var eagCounter = 0
-        callback = function (er, _, __) {
-          if (er && er.code === 'EAGAIN' && eagCounter < 10) {
-            eagCounter ++
-            return fs$read.call(fs, fd, buffer, offset, length, position, callback)
-          }
-          callback_.apply(this, arguments)
-        }
-      }
-      return fs$read.call(fs, fd, buffer, offset, length, position, callback)
-    }
-
-    // This ensures `util.promisify` works as it does for native `fs.read`.
-    if (Object.setPrototypeOf) Object.setPrototypeOf(read, fs$read)
-    return read
-  })(fs.read)
-
-  fs.readSync = typeof fs.readSync !== 'function' ? fs.readSync
-  : (function (fs$readSync) { return function (fd, buffer, offset, length, position) {
-    var eagCounter = 0
-    while (true) {
-      try {
-        return fs$readSync.call(fs, fd, buffer, offset, length, position)
-      } catch (er) {
-        if (er.code === 'EAGAIN' && eagCounter < 10) {
-          eagCounter ++
-          continue
-        }
-        throw er
-      }
-    }
-  }})(fs.readSync)
-
-  function patchLchmod (fs) {
-    fs.lchmod = function (path, mode, callback) {
-      fs.open( path
-             , constants.O_WRONLY | constants.O_SYMLINK
-             , mode
-             , function (err, fd) {
-        if (err) {
-          if (callback) callback(err)
-          return
-        }
-        // prefer to return the chmod error, if one occurs,
-        // but still try to close, and report closing errors if they occur.
-        fs.fchmod(fd, mode, function (err) {
-          fs.close(fd, function(err2) {
-            if (callback) callback(err || err2)
-          })
-        })
-      })
-    }
-
-    fs.lchmodSync = function (path, mode) {
-      var fd = fs.openSync(path, constants.O_WRONLY | constants.O_SYMLINK, mode)
-
-      // prefer to return the chmod error, if one occurs,
-      // but still try to close, and report closing errors if they occur.
-      var threw = true
-      var ret
-      try {
-        ret = fs.fchmodSync(fd, mode)
-        threw = false
-      } finally {
-        if (threw) {
-          try {
-            fs.closeSync(fd)
-          } catch (er) {}
-        } else {
-          fs.closeSync(fd)
-        }
-      }
-      return ret
-    }
-  }
-
-  function patchLutimes (fs) {
-    if (constants.hasOwnProperty("O_SYMLINK") && fs.futimes) {
-      fs.lutimes = function (path, at, mt, cb) {
-        fs.open(path, constants.O_SYMLINK, function (er, fd) {
-          if (er) {
-            if (cb) cb(er)
-            return
-          }
-          fs.futimes(fd, at, mt, function (er) {
-            fs.close(fd, function (er2) {
-              if (cb) cb(er || er2)
-            })
-          })
-        })
-      }
-
-      fs.lutimesSync = function (path, at, mt) {
-        var fd = fs.openSync(path, constants.O_SYMLINK)
-        var ret
-        var threw = true
-        try {
-          ret = fs.futimesSync(fd, at, mt)
-          threw = false
-        } finally {
-          if (threw) {
-            try {
-              fs.closeSync(fd)
-            } catch (er) {}
-          } else {
-            fs.closeSync(fd)
-          }
-        }
-        return ret
-      }
-
-    } else if (fs.futimes) {
-      fs.lutimes = function (_a, _b, _c, cb) { if (cb) process.nextTick(cb) }
-      fs.lutimesSync = function () {}
-    }
-  }
-
-  function chmodFix (orig) {
-    if (!orig) return orig
-    return function (target, mode, cb) {
-      return orig.call(fs, target, mode, function (er) {
-        if (chownErOk(er)) er = null
-        if (cb) cb.apply(this, arguments)
-      })
-    }
-  }
-
-  function chmodFixSync (orig) {
-    if (!orig) return orig
-    return function (target, mode) {
-      try {
-        return orig.call(fs, target, mode)
-      } catch (er) {
-        if (!chownErOk(er)) throw er
-      }
-    }
-  }
-
-
-  function chownFix (orig) {
-    if (!orig) return orig
-    return function (target, uid, gid, cb) {
-      return orig.call(fs, target, uid, gid, function (er) {
-        if (chownErOk(er)) er = null
-        if (cb) cb.apply(this, arguments)
-      })
-    }
-  }
-
-  function chownFixSync (orig) {
-    if (!orig) return orig
-    return function (target, uid, gid) {
-      try {
-        return orig.call(fs, target, uid, gid)
-      } catch (er) {
-        if (!chownErOk(er)) throw er
-      }
-    }
-  }
-
-  function statFix (orig) {
-    if (!orig) return orig
-    // Older versions of Node erroneously returned signed integers for
-    // uid + gid.
-    return function (target, options, cb) {
-      if (typeof options === 'function') {
-        cb = options
-        options = null
-      }
-      function callback (er, stats) {
-        if (stats) {
-          if (stats.uid < 0) stats.uid += 0x100000000
-          if (stats.gid < 0) stats.gid += 0x100000000
-        }
-        if (cb) cb.apply(this, arguments)
-      }
-      return options ? orig.call(fs, target, options, callback)
-        : orig.call(fs, target, callback)
-    }
-  }
-
-  function statFixSync (orig) {
-    if (!orig) return orig
-    // Older versions of Node erroneously returned signed integers for
-    // uid + gid.
-    return function (target, options) {
-      var stats = options ? orig.call(fs, target, options)
-        : orig.call(fs, target)
-      if (stats) {
-        if (stats.uid < 0) stats.uid += 0x100000000
-        if (stats.gid < 0) stats.gid += 0x100000000
-      }
-      return stats;
-    }
-  }
-
-  // ENOSYS means that the fs doesn't support the op. Just ignore
-  // that, because it doesn't matter.
-  //
-  // if there's no getuid, or if getuid() is something other
-  // than 0, and the error is EINVAL or EPERM, then just ignore
-  // it.
-  //
-  // This specific case is a silent failure in cp, install, tar,
-  // and most other unix tools that manage permissions.
-  //
-  // When running as root, or if other types of errors are
-  // encountered, then it's strict.
-  function chownErOk (er) {
-    if (!er)
-      return true
-
-    if (er.code === "ENOSYS")
-      return true
-
-    var nonroot = !process.getuid || process.getuid() !== 0
-    if (nonroot) {
-      if (er.code === "EINVAL" || er.code === "EPERM")
-        return true
-    }
-
-    return false
-  }
-}
-
-
-/***/ }),
-
-/***/ 9598:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-try {
-  var util = __nccwpck_require__(9023);
-  /* istanbul ignore next */
-  if (typeof util.inherits !== 'function') throw '';
-  module.exports = util.inherits;
-} catch (e) {
-  /* istanbul ignore next */
-  module.exports = __nccwpck_require__(6589);
-}
-
-
-/***/ }),
-
-/***/ 6589:
-/***/ ((module) => {
-
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    if (superCtor) {
-      ctor.super_ = superCtor
-      ctor.prototype = Object.create(superCtor.prototype, {
-        constructor: {
-          value: ctor,
-          enumerable: false,
-          writable: true,
-          configurable: true
-        }
-      })
-    }
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    if (superCtor) {
-      ctor.super_ = superCtor
-      var TempCtor = function () {}
-      TempCtor.prototype = superCtor.prototype
-      ctor.prototype = new TempCtor()
-      ctor.prototype.constructor = ctor
-    }
-  }
-}
-
-
-/***/ }),
-
-/***/ 2513:
-/***/ ((module) => {
-
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
 };
 
-
-/***/ }),
-
-/***/ 2064:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-let _fs
-try {
-  _fs = __nccwpck_require__(5744)
-} catch (_) {
-  _fs = __nccwpck_require__(9896)
-}
-const universalify = __nccwpck_require__(5077)
-const { stringify, stripBom } = __nccwpck_require__(9449)
-
-async function _readFile (file, options = {}) {
-  if (typeof options === 'string') {
-    options = { encoding: options }
-  }
-
-  const fs = options.fs || _fs
-
-  const shouldThrow = 'throws' in options ? options.throws : true
-
-  let data = await universalify.fromCallback(fs.readFile)(file, options)
-
-  data = stripBom(data)
-
-  let obj
-  try {
-    obj = JSON.parse(data, options ? options.reviver : null)
-  } catch (err) {
-    if (shouldThrow) {
-      err.message = `${file}: ${err.message}`
-      throw err
-    } else {
-      return null
-    }
-  }
-
-  return obj
-}
-
-const readFile = universalify.fromPromise(_readFile)
-
-function readFileSync (file, options = {}) {
-  if (typeof options === 'string') {
-    options = { encoding: options }
-  }
-
-  const fs = options.fs || _fs
-
-  const shouldThrow = 'throws' in options ? options.throws : true
-
-  try {
-    let content = fs.readFileSync(file, options)
-    content = stripBom(content)
-    return JSON.parse(content, options.reviver)
-  } catch (err) {
-    if (shouldThrow) {
-      err.message = `${file}: ${err.message}`
-      throw err
-    } else {
-      return null
-    }
-  }
-}
-
-async function _writeFile (file, obj, options = {}) {
-  const fs = options.fs || _fs
-
-  const str = stringify(obj, options)
-
-  await universalify.fromCallback(fs.writeFile)(file, str, options)
-}
-
-const writeFile = universalify.fromPromise(_writeFile)
-
-function writeFileSync (file, obj, options = {}) {
-  const fs = options.fs || _fs
-
-  const str = stringify(obj, options)
-  // not sure if fs.writeFileSync returns anything, but just in case
-  return fs.writeFileSync(file, str, options)
-}
-
-const jsonfile = {
-  readFile,
-  readFileSync,
-  writeFile,
-  writeFileSync
-}
-
-module.exports = jsonfile
-
-
-/***/ }),
-
-/***/ 9449:
-/***/ ((module) => {
-
-function stringify (obj, { EOL = '\n', finalEOL = true, replacer = null, spaces } = {}) {
-  const EOF = finalEOL ? EOL : ''
-  const str = JSON.stringify(obj, replacer, spaces)
-
-  return str.replace(/\n/g, EOL) + EOF
-}
-
-function stripBom (content) {
-  // we do this because JSON.parse would convert it to a utf8 string if encoding wasn't specified
-  if (Buffer.isBuffer(content)) content = content.toString('utf8')
-  return content.replace(/^\uFEFF/, '')
-}
-
-module.exports = { stringify, stripBom }
-
-
-/***/ }),
-
-/***/ 8789:
-/***/ ((module) => {
-
-//     Int64.js
-//
-//     Copyright (c) 2012 Robert Kieffer
-//     MIT License - http://opensource.org/licenses/mit-license.php
-
-/**
- * Support for handling 64-bit int numbers in Javascript (node.js)
- *
- * JS Numbers are IEEE-754 binary double-precision floats, which limits the
- * range of values that can be represented with integer precision to:
- *
- * 2^^53 <= N <= 2^53
- *
- * Int64 objects wrap a node Buffer that holds the 8-bytes of int64 data.  These
- * objects operate directly on the buffer which means that if they are created
- * using an existing buffer then setting the value will modify the Buffer, and
- * vice-versa.
- *
- * Internal Representation
- *
- * The internal buffer format is Big Endian.  I.e. the most-significant byte is
- * at buffer[0], the least-significant at buffer[7].  For the purposes of
- * converting to/from JS native numbers, the value is assumed to be a signed
- * integer stored in 2's complement form.
- *
- * For details about IEEE-754 see:
- * http://en.wikipedia.org/wiki/Double_precision_floating-point_format
- */
-
-// Useful masks and values for bit twiddling
-var MASK31 =  0x7fffffff, VAL31 = 0x80000000;
-var MASK32 =  0xffffffff, VAL32 = 0x100000000;
-
-// Map for converting hex octets to strings
-var _HEX = [];
-for (var i = 0; i < 256; i++) {
-  _HEX[i] = (i > 0xF ? '' : '0') + i.toString(16);
-}
-
-//
-// Int64
-//
-
-/**
- * Constructor accepts any of the following argument types:
- *
- * new Int64(buffer[, offset=0]) - Existing Buffer with byte offset
- * new Int64(Uint8Array[, offset=0]) - Existing Uint8Array with a byte offset
- * new Int64(string)             - Hex string (throws if n is outside int64 range)
- * new Int64(number)             - Number (throws if n is outside int64 range)
- * new Int64(hi, lo)             - Raw bits as two 32-bit values
- */
-var Int64 = module.exports = function(a1, a2) {
-  if (a1 instanceof Buffer) {
-    this.buffer = a1;
-    this.offset = a2 || 0;
-  } else if (Object.prototype.toString.call(a1) == '[object Uint8Array]') {
-    // Under Browserify, Buffers can extend Uint8Arrays rather than an
-    // instance of Buffer. We could assume the passed in Uint8Array is actually
-    // a buffer but that won't handle the case where a raw Uint8Array is passed
-    // in. We construct a new Buffer just in case.
-    this.buffer = new Buffer(a1);
-    this.offset = a2 || 0;
+Pend.prototype.wait = function(cb) {
+  if (this.pending === 0) {
+    cb(this.error);
   } else {
-    this.buffer = this.buffer || new Buffer(8);
-    this.offset = 0;
-    this.setValue.apply(this, arguments);
+    this.listeners.push(cb);
   }
 };
 
-
-// Max integer value that JS can accurately represent
-Int64.MAX_INT = Math.pow(2, 53);
-
-// Min integer value that JS can accurately represent
-Int64.MIN_INT = -Math.pow(2, 53);
-
-Int64.prototype = {
-
-  constructor: Int64,
-
-  /**
-   * Do in-place 2's compliment.  See
-   * http://en.wikipedia.org/wiki/Two's_complement
-   */
-  _2scomp: function() {
-    var b = this.buffer, o = this.offset, carry = 1;
-    for (var i = o + 7; i >= o; i--) {
-      var v = (b[i] ^ 0xff) + carry;
-      b[i] = v & 0xff;
-      carry = v >> 8;
-    }
-  },
-
-  /**
-   * Set the value. Takes any of the following arguments:
-   *
-   * setValue(string) - A hexidecimal string
-   * setValue(number) - Number (throws if n is outside int64 range)
-   * setValue(hi, lo) - Raw bits as two 32-bit values
-   */
-  setValue: function(hi, lo) {
-    var negate = false;
-    if (arguments.length == 1) {
-      if (typeof(hi) == 'number') {
-        // Simplify bitfield retrieval by using abs() value.  We restore sign
-        // later
-        negate = hi < 0;
-        hi = Math.abs(hi);
-        lo = hi % VAL32;
-        hi = hi / VAL32;
-        if (hi > VAL32) throw new RangeError(hi  + ' is outside Int64 range');
-        hi = hi | 0;
-      } else if (typeof(hi) == 'string') {
-        hi = (hi + '').replace(/^0x/, '');
-        lo = hi.substr(-8);
-        hi = hi.length > 8 ? hi.substr(0, hi.length - 8) : '';
-        hi = parseInt(hi, 16);
-        lo = parseInt(lo, 16);
-      } else {
-        throw new Error(hi + ' must be a Number or String');
-      }
-    }
-
-    // Technically we should throw if hi or lo is outside int32 range here, but
-    // it's not worth the effort. Anything past the 32'nd bit is ignored.
-
-    // Copy bytes to buffer
-    var b = this.buffer, o = this.offset;
-    for (var i = 7; i >= 0; i--) {
-      b[o+i] = lo & 0xff;
-      lo = i == 4 ? hi : lo >>> 8;
-    }
-
-    // Restore sign of passed argument
-    if (negate) this._2scomp();
-  },
-
-  /**
-   * Convert to a native JS number.
-   *
-   * WARNING: Do not expect this value to be accurate to integer precision for
-   * large (positive or negative) numbers!
-   *
-   * @param allowImprecise If true, no check is performed to verify the
-   * returned value is accurate to integer precision.  If false, imprecise
-   * numbers (very large positive or negative numbers) will be forced to +/-
-   * Infinity.
-   */
-  toNumber: function(allowImprecise) {
-    var b = this.buffer, o = this.offset;
-
-    // Running sum of octets, doing a 2's complement
-    var negate = b[o] & 0x80, x = 0, carry = 1;
-    for (var i = 7, m = 1; i >= 0; i--, m *= 256) {
-      var v = b[o+i];
-
-      // 2's complement for negative numbers
-      if (negate) {
-        v = (v ^ 0xff) + carry;
-        carry = v >> 8;
-        v = v & 0xff;
-      }
-
-      x += v * m;
-    }
-
-    // Return Infinity if we've lost integer precision
-    if (!allowImprecise && x >= Int64.MAX_INT) {
-      return negate ? -Infinity : Infinity;
-    }
-
-    return negate ? -x : x;
-  },
-
-  /**
-   * Convert to a JS Number. Returns +/-Infinity for values that can't be
-   * represented to integer precision.
-   */
-  valueOf: function() {
-    return this.toNumber(false);
-  },
-
-  /**
-   * Return string value
-   *
-   * @param radix Just like Number#toString()'s radix
-   */
-  toString: function(radix) {
-    return this.valueOf().toString(radix || 10);
-  },
-
-  /**
-   * Return a string showing the buffer octets, with MSB on the left.
-   *
-   * @param sep separator string. default is '' (empty string)
-   */
-  toOctetString: function(sep) {
-    var out = new Array(8);
-    var b = this.buffer, o = this.offset;
-    for (var i = 0; i < 8; i++) {
-      out[i] = _HEX[b[o+i]];
-    }
-    return out.join(sep || '');
-  },
-
-  /**
-   * Returns the int64's 8 bytes in a buffer.
-   *
-   * @param {bool} [rawBuffer=false]  If no offset and this is true, return the internal buffer.  Should only be used if
-   *                                  you're discarding the Int64 afterwards, as it breaks encapsulation.
-   */
-  toBuffer: function(rawBuffer) {
-    if (rawBuffer && this.offset === 0) return this.buffer;
-
-    var out = new Buffer(8);
-    this.buffer.copy(out, 0, this.offset, this.offset + 8);
-    return out;
-  },
-
-  /**
-   * Copy 8 bytes of int64 into target buffer at target offset.
-   *
-   * @param {Buffer} targetBuffer       Buffer to copy into.
-   * @param {number} [targetOffset=0]   Offset into target buffer.
-   */
-  copy: function(targetBuffer, targetOffset) {
-    this.buffer.copy(targetBuffer, targetOffset || 0, this.offset, this.offset + 8);
-  },
-
-  /**
-   * Returns a number indicating whether this comes before or after or is the
-   * same as the other in sort order.
-   *
-   * @param {Int64} other  Other Int64 to compare.
-   */
-  compare: function(other) {
-
-    // If sign bits differ ...
-    if ((this.buffer[this.offset] & 0x80) != (other.buffer[other.offset] & 0x80)) {
-      return other.buffer[other.offset] - this.buffer[this.offset];
-    }
-
-    // otherwise, compare bytes lexicographically
-    for (var i = 0; i < 8; i++) {
-      if (this.buffer[this.offset+i] !== other.buffer[other.offset+i]) {
-        return this.buffer[this.offset+i] - other.buffer[other.offset+i];
-      }
-    }
-    return 0;
-  },
-
-  /**
-   * Returns a boolean indicating if this integer is equal to other.
-   *
-   * @param {Int64} other  Other Int64 to compare.
-   */
-  equals: function(other) {
-    return this.compare(other) === 0;
-  },
-
-  /**
-   * Pretty output in console.log
-   */
-  inspect: function() {
-    return '[Int64 value:' + this + ' octets:' + this.toOctetString(' ') + ']';
-  }
+Pend.prototype.hold = function() {
+  return pendHold(this);
 };
 
-
-/***/ }),
-
-/***/ 1564:
-/***/ ((module) => {
-
-
-
-if (typeof process === 'undefined' ||
-    !process.version ||
-    process.version.indexOf('v0.') === 0 ||
-    process.version.indexOf('v1.') === 0 && process.version.indexOf('v1.8.') !== 0) {
-  module.exports = { nextTick: nextTick };
-} else {
-  module.exports = process
-}
-
-function nextTick(fn, arg1, arg2, arg3) {
-  if (typeof fn !== 'function') {
-    throw new TypeError('"callback" argument must be a function');
-  }
-  var len = arguments.length;
-  var args, i;
-  switch (len) {
-  case 0:
-  case 1:
-    return process.nextTick(fn);
-  case 2:
-    return process.nextTick(function afterTickOne() {
-      fn.call(null, arg1);
-    });
-  case 3:
-    return process.nextTick(function afterTickTwo() {
-      fn.call(null, arg1, arg2);
-    });
-  case 4:
-    return process.nextTick(function afterTickThree() {
-      fn.call(null, arg1, arg2, arg3);
-    });
-  default:
-    args = new Array(len - 1);
-    i = 0;
-    while (i < args.length) {
-      args[i++] = arguments[i];
-    }
-    return process.nextTick(function afterTick() {
-      fn.apply(null, args);
-    });
-  }
-}
-
-
-
-/***/ }),
-
-/***/ 2063:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// a duplex stream is just a stream that is both readable and writable.
-// Since JS doesn't have multiple prototypal inheritance, this class
-// prototypally inherits from Readable, and then parasitically from
-// Writable.
-
-
-
-/*<replacement>*/
-
-var pna = __nccwpck_require__(1564);
-/*</replacement>*/
-
-/*<replacement>*/
-var objectKeys = Object.keys || function (obj) {
-  var keys = [];
-  for (var key in obj) {
-    keys.push(key);
-  }return keys;
-};
-/*</replacement>*/
-
-module.exports = Duplex;
-
-/*<replacement>*/
-var util = Object.create(__nccwpck_require__(5481));
-util.inherits = __nccwpck_require__(9598);
-/*</replacement>*/
-
-var Readable = __nccwpck_require__(6893);
-var Writable = __nccwpck_require__(8797);
-
-util.inherits(Duplex, Readable);
-
-{
-  // avoid scope creep, the keys array can then be collected
-  var keys = objectKeys(Writable.prototype);
-  for (var v = 0; v < keys.length; v++) {
-    var method = keys[v];
-    if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
-  }
-}
-
-function Duplex(options) {
-  if (!(this instanceof Duplex)) return new Duplex(options);
-
-  Readable.call(this, options);
-  Writable.call(this, options);
-
-  if (options && options.readable === false) this.readable = false;
-
-  if (options && options.writable === false) this.writable = false;
-
-  this.allowHalfOpen = true;
-  if (options && options.allowHalfOpen === false) this.allowHalfOpen = false;
-
-  this.once('end', onend);
-}
-
-Object.defineProperty(Duplex.prototype, 'writableHighWaterMark', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function () {
-    return this._writableState.highWaterMark;
-  }
-});
-
-// the no-half-open enforcer
-function onend() {
-  // if we allow half-open state, or if the writable side ended,
-  // then we're ok.
-  if (this.allowHalfOpen || this._writableState.ended) return;
-
-  // no more data can be written.
-  // But allow more writes to happen in this tick.
-  pna.nextTick(onEndNT, this);
-}
-
-function onEndNT(self) {
-  self.end();
-}
-
-Object.defineProperty(Duplex.prototype, 'destroyed', {
-  get: function () {
-    if (this._readableState === undefined || this._writableState === undefined) {
-      return false;
-    }
-    return this._readableState.destroyed && this._writableState.destroyed;
-  },
-  set: function (value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (this._readableState === undefined || this._writableState === undefined) {
-      return;
-    }
-
-    // backward compatibility, the user is explicitly
-    // managing destroyed
-    this._readableState.destroyed = value;
-    this._writableState.destroyed = value;
-  }
-});
-
-Duplex.prototype._destroy = function (err, cb) {
-  this.push(null);
-  this.end();
-
-  pna.nextTick(cb, err);
-};
-
-/***/ }),
-
-/***/ 5283:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// a passthrough stream.
-// basically just the most minimal sort of Transform stream.
-// Every written chunk gets output as-is.
-
-
-
-module.exports = PassThrough;
-
-var Transform = __nccwpck_require__(2337);
-
-/*<replacement>*/
-var util = Object.create(__nccwpck_require__(5481));
-util.inherits = __nccwpck_require__(9598);
-/*</replacement>*/
-
-util.inherits(PassThrough, Transform);
-
-function PassThrough(options) {
-  if (!(this instanceof PassThrough)) return new PassThrough(options);
-
-  Transform.call(this, options);
-}
-
-PassThrough.prototype._transform = function (chunk, encoding, cb) {
-  cb(null, chunk);
-};
-
-/***/ }),
-
-/***/ 6893:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-/*<replacement>*/
-
-var pna = __nccwpck_require__(1564);
-/*</replacement>*/
-
-module.exports = Readable;
-
-/*<replacement>*/
-var isArray = __nccwpck_require__(2513);
-/*</replacement>*/
-
-/*<replacement>*/
-var Duplex;
-/*</replacement>*/
-
-Readable.ReadableState = ReadableState;
-
-/*<replacement>*/
-var EE = (__nccwpck_require__(4434).EventEmitter);
-
-var EElistenerCount = function (emitter, type) {
-  return emitter.listeners(type).length;
-};
-/*</replacement>*/
-
-/*<replacement>*/
-var Stream = __nccwpck_require__(3283);
-/*</replacement>*/
-
-/*<replacement>*/
-
-var Buffer = (__nccwpck_require__(3058).Buffer);
-var OurUint8Array = (typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : typeof self !== 'undefined' ? self : {}).Uint8Array || function () {};
-function _uint8ArrayToBuffer(chunk) {
-  return Buffer.from(chunk);
-}
-function _isUint8Array(obj) {
-  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
-}
-
-/*</replacement>*/
-
-/*<replacement>*/
-var util = Object.create(__nccwpck_require__(5481));
-util.inherits = __nccwpck_require__(9598);
-/*</replacement>*/
-
-/*<replacement>*/
-var debugUtil = __nccwpck_require__(9023);
-var debug = void 0;
-if (debugUtil && debugUtil.debuglog) {
-  debug = debugUtil.debuglog('stream');
-} else {
-  debug = function () {};
-}
-/*</replacement>*/
-
-var BufferList = __nccwpck_require__(9381);
-var destroyImpl = __nccwpck_require__(5089);
-var StringDecoder;
-
-util.inherits(Readable, Stream);
-
-var kProxyEvents = ['error', 'close', 'destroy', 'pause', 'resume'];
-
-function prependListener(emitter, event, fn) {
-  // Sadly this is not cacheable as some libraries bundle their own
-  // event emitter implementation with them.
-  if (typeof emitter.prependListener === 'function') return emitter.prependListener(event, fn);
-
-  // This is a hack to make sure that our error handler is attached before any
-  // userland ones.  NEVER DO THIS. This is here only because this code needs
-  // to continue to work with older versions of Node.js that do not include
-  // the prependListener() method. The goal is to eventually remove this hack.
-  if (!emitter._events || !emitter._events[event]) emitter.on(event, fn);else if (isArray(emitter._events[event])) emitter._events[event].unshift(fn);else emitter._events[event] = [fn, emitter._events[event]];
-}
-
-function ReadableState(options, stream) {
-  Duplex = Duplex || __nccwpck_require__(2063);
-
-  options = options || {};
-
-  // Duplex streams are both readable and writable, but share
-  // the same options object.
-  // However, some cases require setting options to different
-  // values for the readable and the writable sides of the duplex stream.
-  // These options can be provided separately as readableXXX and writableXXX.
-  var isDuplex = stream instanceof Duplex;
-
-  // object stream flag. Used to make read(n) ignore n and to
-  // make all the buffer merging and length checks go away
-  this.objectMode = !!options.objectMode;
-
-  if (isDuplex) this.objectMode = this.objectMode || !!options.readableObjectMode;
-
-  // the point at which it stops calling _read() to fill the buffer
-  // Note: 0 is a valid value, means "don't call _read preemptively ever"
-  var hwm = options.highWaterMark;
-  var readableHwm = options.readableHighWaterMark;
-  var defaultHwm = this.objectMode ? 16 : 16 * 1024;
-
-  if (hwm || hwm === 0) this.highWaterMark = hwm;else if (isDuplex && (readableHwm || readableHwm === 0)) this.highWaterMark = readableHwm;else this.highWaterMark = defaultHwm;
-
-  // cast to ints.
-  this.highWaterMark = Math.floor(this.highWaterMark);
-
-  // A linked list is used to store data chunks instead of an array because the
-  // linked list can remove elements from the beginning faster than
-  // array.shift()
-  this.buffer = new BufferList();
-  this.length = 0;
-  this.pipes = null;
-  this.pipesCount = 0;
-  this.flowing = null;
-  this.ended = false;
-  this.endEmitted = false;
-  this.reading = false;
-
-  // a flag to be able to tell if the event 'readable'/'data' is emitted
-  // immediately, or on a later tick.  We set this to true at first, because
-  // any actions that shouldn't happen until "later" should generally also
-  // not happen before the first read call.
-  this.sync = true;
-
-  // whenever we return null, then we set a flag to say
-  // that we're awaiting a 'readable' event emission.
-  this.needReadable = false;
-  this.emittedReadable = false;
-  this.readableListening = false;
-  this.resumeScheduled = false;
-
-  // has it been destroyed
-  this.destroyed = false;
-
-  // Crypto is kind of old and crusty.  Historically, its default string
-  // encoding is 'binary' so we have to make this configurable.
-  // Everything else in the universe uses 'utf8', though.
-  this.defaultEncoding = options.defaultEncoding || 'utf8';
-
-  // the number of writers that are awaiting a drain event in .pipe()s
-  this.awaitDrain = 0;
-
-  // if true, a maybeReadMore has been scheduled
-  this.readingMore = false;
-
-  this.decoder = null;
-  this.encoding = null;
-  if (options.encoding) {
-    if (!StringDecoder) StringDecoder = (__nccwpck_require__(634)/* .StringDecoder */ .I);
-    this.decoder = new StringDecoder(options.encoding);
-    this.encoding = options.encoding;
-  }
-}
-
-function Readable(options) {
-  Duplex = Duplex || __nccwpck_require__(2063);
-
-  if (!(this instanceof Readable)) return new Readable(options);
-
-  this._readableState = new ReadableState(options, this);
-
-  // legacy
-  this.readable = true;
-
-  if (options) {
-    if (typeof options.read === 'function') this._read = options.read;
-
-    if (typeof options.destroy === 'function') this._destroy = options.destroy;
-  }
-
-  Stream.call(this);
-}
-
-Object.defineProperty(Readable.prototype, 'destroyed', {
-  get: function () {
-    if (this._readableState === undefined) {
-      return false;
-    }
-    return this._readableState.destroyed;
-  },
-  set: function (value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (!this._readableState) {
-      return;
-    }
-
-    // backward compatibility, the user is explicitly
-    // managing destroyed
-    this._readableState.destroyed = value;
-  }
-});
-
-Readable.prototype.destroy = destroyImpl.destroy;
-Readable.prototype._undestroy = destroyImpl.undestroy;
-Readable.prototype._destroy = function (err, cb) {
-  this.push(null);
-  cb(err);
-};
-
-// Manually shove something into the read() buffer.
-// This returns true if the highWaterMark has not been hit yet,
-// similar to how Writable.write() returns true if you should
-// write() some more.
-Readable.prototype.push = function (chunk, encoding) {
-  var state = this._readableState;
-  var skipChunkCheck;
-
-  if (!state.objectMode) {
-    if (typeof chunk === 'string') {
-      encoding = encoding || state.defaultEncoding;
-      if (encoding !== state.encoding) {
-        chunk = Buffer.from(chunk, encoding);
-        encoding = '';
-      }
-      skipChunkCheck = true;
-    }
-  } else {
-    skipChunkCheck = true;
-  }
-
-  return readableAddChunk(this, chunk, encoding, false, skipChunkCheck);
-};
-
-// Unshift should *always* be something directly out of read()
-Readable.prototype.unshift = function (chunk) {
-  return readableAddChunk(this, chunk, null, true, false);
-};
-
-function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
-  var state = stream._readableState;
-  if (chunk === null) {
-    state.reading = false;
-    onEofChunk(stream, state);
-  } else {
-    var er;
-    if (!skipChunkCheck) er = chunkInvalid(state, chunk);
-    if (er) {
-      stream.emit('error', er);
-    } else if (state.objectMode || chunk && chunk.length > 0) {
-      if (typeof chunk !== 'string' && !state.objectMode && Object.getPrototypeOf(chunk) !== Buffer.prototype) {
-        chunk = _uint8ArrayToBuffer(chunk);
-      }
-
-      if (addToFront) {
-        if (state.endEmitted) stream.emit('error', new Error('stream.unshift() after end event'));else addChunk(stream, state, chunk, true);
-      } else if (state.ended) {
-        stream.emit('error', new Error('stream.push() after EOF'));
-      } else {
-        state.reading = false;
-        if (state.decoder && !encoding) {
-          chunk = state.decoder.write(chunk);
-          if (state.objectMode || chunk.length !== 0) addChunk(stream, state, chunk, false);else maybeReadMore(stream, state);
-        } else {
-          addChunk(stream, state, chunk, false);
-        }
-      }
-    } else if (!addToFront) {
-      state.reading = false;
+function pendHold(self) {
+  self.pending += 1;
+  var called = false;
+  return onCb;
+  function onCb(err) {
+    if (called) throw new Error("callback called twice");
+    called = true;
+    self.error = self.error || err;
+    self.pending -= 1;
+    if (self.waiting.length > 0 && self.pending < self.max) {
+      pendGo(self, self.waiting.shift());
+    } else if (self.pending === 0) {
+      var listeners = self.listeners;
+      self.listeners = [];
+      listeners.forEach(cbListener);
     }
   }
-
-  return needMoreData(state);
-}
-
-function addChunk(stream, state, chunk, addToFront) {
-  if (state.flowing && state.length === 0 && !state.sync) {
-    stream.emit('data', chunk);
-    stream.read(0);
-  } else {
-    // update the buffer info.
-    state.length += state.objectMode ? 1 : chunk.length;
-    if (addToFront) state.buffer.unshift(chunk);else state.buffer.push(chunk);
-
-    if (state.needReadable) emitReadable(stream);
-  }
-  maybeReadMore(stream, state);
-}
-
-function chunkInvalid(state, chunk) {
-  var er;
-  if (!_isUint8Array(chunk) && typeof chunk !== 'string' && chunk !== undefined && !state.objectMode) {
-    er = new TypeError('Invalid non-string/buffer chunk');
-  }
-  return er;
-}
-
-// if it's past the high water mark, we can push in some more.
-// Also, if we have no data yet, we can stand some
-// more bytes.  This is to work around cases where hwm=0,
-// such as the repl.  Also, if the push() triggered a
-// readable event, and the user called read(largeNumber) such that
-// needReadable was set, then we ought to push more, so that another
-// 'readable' event will be triggered.
-function needMoreData(state) {
-  return !state.ended && (state.needReadable || state.length < state.highWaterMark || state.length === 0);
-}
-
-Readable.prototype.isPaused = function () {
-  return this._readableState.flowing === false;
-};
-
-// backwards compatibility.
-Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = (__nccwpck_require__(634)/* .StringDecoder */ .I);
-  this._readableState.decoder = new StringDecoder(enc);
-  this._readableState.encoding = enc;
-  return this;
-};
-
-// Don't raise the hwm > 8MB
-var MAX_HWM = 0x800000;
-function computeNewHighWaterMark(n) {
-  if (n >= MAX_HWM) {
-    n = MAX_HWM;
-  } else {
-    // Get the next highest power of 2 to prevent increasing hwm excessively in
-    // tiny amounts
-    n--;
-    n |= n >>> 1;
-    n |= n >>> 2;
-    n |= n >>> 4;
-    n |= n >>> 8;
-    n |= n >>> 16;
-    n++;
-  }
-  return n;
-}
-
-// This function is designed to be inlinable, so please take care when making
-// changes to the function body.
-function howMuchToRead(n, state) {
-  if (n <= 0 || state.length === 0 && state.ended) return 0;
-  if (state.objectMode) return 1;
-  if (n !== n) {
-    // Only flow one buffer at a time
-    if (state.flowing && state.length) return state.buffer.head.data.length;else return state.length;
-  }
-  // If we're asking for more than the current hwm, then raise the hwm.
-  if (n > state.highWaterMark) state.highWaterMark = computeNewHighWaterMark(n);
-  if (n <= state.length) return n;
-  // Don't have enough
-  if (!state.ended) {
-    state.needReadable = true;
-    return 0;
-  }
-  return state.length;
-}
-
-// you can override either this method, or the async _read(n) below.
-Readable.prototype.read = function (n) {
-  debug('read', n);
-  n = parseInt(n, 10);
-  var state = this._readableState;
-  var nOrig = n;
-
-  if (n !== 0) state.emittedReadable = false;
-
-  // if we're doing read(0) to trigger a readable event, but we
-  // already have a bunch of data in the buffer, then just trigger
-  // the 'readable' event and move on.
-  if (n === 0 && state.needReadable && (state.length >= state.highWaterMark || state.ended)) {
-    debug('read: emitReadable', state.length, state.ended);
-    if (state.length === 0 && state.ended) endReadable(this);else emitReadable(this);
-    return null;
-  }
-
-  n = howMuchToRead(n, state);
-
-  // if we've ended, and we're now clear, then finish it up.
-  if (n === 0 && state.ended) {
-    if (state.length === 0) endReadable(this);
-    return null;
-  }
-
-  // All the actual chunk generation logic needs to be
-  // *below* the call to _read.  The reason is that in certain
-  // synthetic stream cases, such as passthrough streams, _read
-  // may be a completely synchronous operation which may change
-  // the state of the read buffer, providing enough data when
-  // before there was *not* enough.
-  //
-  // So, the steps are:
-  // 1. Figure out what the state of things will be after we do
-  // a read from the buffer.
-  //
-  // 2. If that resulting state will trigger a _read, then call _read.
-  // Note that this may be asynchronous, or synchronous.  Yes, it is
-  // deeply ugly to write APIs this way, but that still doesn't mean
-  // that the Readable class should behave improperly, as streams are
-  // designed to be sync/async agnostic.
-  // Take note if the _read call is sync or async (ie, if the read call
-  // has returned yet), so that we know whether or not it's safe to emit
-  // 'readable' etc.
-  //
-  // 3. Actually pull the requested chunks out of the buffer and return.
-
-  // if we need a readable event, then we need to do some reading.
-  var doRead = state.needReadable;
-  debug('need readable', doRead);
-
-  // if we currently have less than the highWaterMark, then also read some
-  if (state.length === 0 || state.length - n < state.highWaterMark) {
-    doRead = true;
-    debug('length less than watermark', doRead);
-  }
-
-  // however, if we've ended, then there's no point, and if we're already
-  // reading, then it's unnecessary.
-  if (state.ended || state.reading) {
-    doRead = false;
-    debug('reading or ended', doRead);
-  } else if (doRead) {
-    debug('do read');
-    state.reading = true;
-    state.sync = true;
-    // if the length is currently zero, then we *need* a readable event.
-    if (state.length === 0) state.needReadable = true;
-    // call internal read method
-    this._read(state.highWaterMark);
-    state.sync = false;
-    // If _read pushed data synchronously, then `reading` will be false,
-    // and we need to re-evaluate how much data we can return to the user.
-    if (!state.reading) n = howMuchToRead(nOrig, state);
-  }
-
-  var ret;
-  if (n > 0) ret = fromList(n, state);else ret = null;
-
-  if (ret === null) {
-    state.needReadable = true;
-    n = 0;
-  } else {
-    state.length -= n;
-  }
-
-  if (state.length === 0) {
-    // If we have nothing in the buffer, then we want to know
-    // as soon as we *do* get something into the buffer.
-    if (!state.ended) state.needReadable = true;
-
-    // If we tried to read() past the EOF, then emit end on the next tick.
-    if (nOrig !== n && state.ended) endReadable(this);
-  }
-
-  if (ret !== null) this.emit('data', ret);
-
-  return ret;
-};
-
-function onEofChunk(stream, state) {
-  if (state.ended) return;
-  if (state.decoder) {
-    var chunk = state.decoder.end();
-    if (chunk && chunk.length) {
-      state.buffer.push(chunk);
-      state.length += state.objectMode ? 1 : chunk.length;
-    }
-  }
-  state.ended = true;
-
-  // emit 'readable' now to make sure it gets picked up.
-  emitReadable(stream);
-}
-
-// Don't emit readable right away in sync mode, because this can trigger
-// another read() call => stack overflow.  This way, it might trigger
-// a nextTick recursion warning, but that's not so bad.
-function emitReadable(stream) {
-  var state = stream._readableState;
-  state.needReadable = false;
-  if (!state.emittedReadable) {
-    debug('emitReadable', state.flowing);
-    state.emittedReadable = true;
-    if (state.sync) pna.nextTick(emitReadable_, stream);else emitReadable_(stream);
-  }
-}
-
-function emitReadable_(stream) {
-  debug('emit readable');
-  stream.emit('readable');
-  flow(stream);
-}
-
-// at this point, the user has presumably seen the 'readable' event,
-// and called read() to consume some data.  that may have triggered
-// in turn another _read(n) call, in which case reading = true if
-// it's in progress.
-// However, if we're not ended, or reading, and the length < hwm,
-// then go ahead and try to read some more preemptively.
-function maybeReadMore(stream, state) {
-  if (!state.readingMore) {
-    state.readingMore = true;
-    pna.nextTick(maybeReadMore_, stream, state);
-  }
-}
-
-function maybeReadMore_(stream, state) {
-  var len = state.length;
-  while (!state.reading && !state.flowing && !state.ended && state.length < state.highWaterMark) {
-    debug('maybeReadMore read 0');
-    stream.read(0);
-    if (len === state.length)
-      // didn't get any data, stop spinning.
-      break;else len = state.length;
-  }
-  state.readingMore = false;
-}
-
-// abstract method.  to be overridden in specific implementation classes.
-// call cb(er, data) where data is <= n in length.
-// for virtual (non-string, non-buffer) streams, "length" is somewhat
-// arbitrary, and perhaps not very meaningful.
-Readable.prototype._read = function (n) {
-  this.emit('error', new Error('_read() is not implemented'));
-};
-
-Readable.prototype.pipe = function (dest, pipeOpts) {
-  var src = this;
-  var state = this._readableState;
-
-  switch (state.pipesCount) {
-    case 0:
-      state.pipes = dest;
-      break;
-    case 1:
-      state.pipes = [state.pipes, dest];
-      break;
-    default:
-      state.pipes.push(dest);
-      break;
-  }
-  state.pipesCount += 1;
-  debug('pipe count=%d opts=%j', state.pipesCount, pipeOpts);
-
-  var doEnd = (!pipeOpts || pipeOpts.end !== false) && dest !== process.stdout && dest !== process.stderr;
-
-  var endFn = doEnd ? onend : unpipe;
-  if (state.endEmitted) pna.nextTick(endFn);else src.once('end', endFn);
-
-  dest.on('unpipe', onunpipe);
-  function onunpipe(readable, unpipeInfo) {
-    debug('onunpipe');
-    if (readable === src) {
-      if (unpipeInfo && unpipeInfo.hasUnpiped === false) {
-        unpipeInfo.hasUnpiped = true;
-        cleanup();
-      }
-    }
-  }
-
-  function onend() {
-    debug('onend');
-    dest.end();
-  }
-
-  // when the dest drains, it reduces the awaitDrain counter
-  // on the source.  This would be more elegant with a .once()
-  // handler in flow(), but adding and removing repeatedly is
-  // too slow.
-  var ondrain = pipeOnDrain(src);
-  dest.on('drain', ondrain);
-
-  var cleanedUp = false;
-  function cleanup() {
-    debug('cleanup');
-    // cleanup event handlers once the pipe is broken
-    dest.removeListener('close', onclose);
-    dest.removeListener('finish', onfinish);
-    dest.removeListener('drain', ondrain);
-    dest.removeListener('error', onerror);
-    dest.removeListener('unpipe', onunpipe);
-    src.removeListener('end', onend);
-    src.removeListener('end', unpipe);
-    src.removeListener('data', ondata);
-
-    cleanedUp = true;
-
-    // if the reader is waiting for a drain event from this
-    // specific writer, then it would cause it to never start
-    // flowing again.
-    // So, if this is awaiting a drain, then we just call it now.
-    // If we don't know, then assume that we are waiting for one.
-    if (state.awaitDrain && (!dest._writableState || dest._writableState.needDrain)) ondrain();
-  }
-
-  // If the user pushes more data while we're writing to dest then we'll end up
-  // in ondata again. However, we only want to increase awaitDrain once because
-  // dest will only emit one 'drain' event for the multiple writes.
-  // => Introduce a guard on increasing awaitDrain.
-  var increasedAwaitDrain = false;
-  src.on('data', ondata);
-  function ondata(chunk) {
-    debug('ondata');
-    increasedAwaitDrain = false;
-    var ret = dest.write(chunk);
-    if (false === ret && !increasedAwaitDrain) {
-      // If the user unpiped during `dest.write()`, it is possible
-      // to get stuck in a permanently paused state if that write
-      // also returned false.
-      // => Check whether `dest` is still a piping destination.
-      if ((state.pipesCount === 1 && state.pipes === dest || state.pipesCount > 1 && indexOf(state.pipes, dest) !== -1) && !cleanedUp) {
-        debug('false write response, pause', state.awaitDrain);
-        state.awaitDrain++;
-        increasedAwaitDrain = true;
-      }
-      src.pause();
-    }
-  }
-
-  // if the dest has an error, then stop piping into it.
-  // however, don't suppress the throwing behavior for this.
-  function onerror(er) {
-    debug('onerror', er);
-    unpipe();
-    dest.removeListener('error', onerror);
-    if (EElistenerCount(dest, 'error') === 0) dest.emit('error', er);
-  }
-
-  // Make sure our error handler is attached before userland ones.
-  prependListener(dest, 'error', onerror);
-
-  // Both close and finish should trigger unpipe, but only once.
-  function onclose() {
-    dest.removeListener('finish', onfinish);
-    unpipe();
-  }
-  dest.once('close', onclose);
-  function onfinish() {
-    debug('onfinish');
-    dest.removeListener('close', onclose);
-    unpipe();
-  }
-  dest.once('finish', onfinish);
-
-  function unpipe() {
-    debug('unpipe');
-    src.unpipe(dest);
-  }
-
-  // tell the dest that it's being piped to
-  dest.emit('pipe', src);
-
-  // start the flow if it hasn't been started already.
-  if (!state.flowing) {
-    debug('pipe resume');
-    src.resume();
-  }
-
-  return dest;
-};
-
-function pipeOnDrain(src) {
-  return function () {
-    var state = src._readableState;
-    debug('pipeOnDrain', state.awaitDrain);
-    if (state.awaitDrain) state.awaitDrain--;
-    if (state.awaitDrain === 0 && EElistenerCount(src, 'data')) {
-      state.flowing = true;
-      flow(src);
-    }
-  };
-}
-
-Readable.prototype.unpipe = function (dest) {
-  var state = this._readableState;
-  var unpipeInfo = { hasUnpiped: false };
-
-  // if we're not piping anywhere, then do nothing.
-  if (state.pipesCount === 0) return this;
-
-  // just one destination.  most common case.
-  if (state.pipesCount === 1) {
-    // passed in one, but it's not the right one.
-    if (dest && dest !== state.pipes) return this;
-
-    if (!dest) dest = state.pipes;
-
-    // got a match.
-    state.pipes = null;
-    state.pipesCount = 0;
-    state.flowing = false;
-    if (dest) dest.emit('unpipe', this, unpipeInfo);
-    return this;
-  }
-
-  // slow case. multiple pipe destinations.
-
-  if (!dest) {
-    // remove all.
-    var dests = state.pipes;
-    var len = state.pipesCount;
-    state.pipes = null;
-    state.pipesCount = 0;
-    state.flowing = false;
-
-    for (var i = 0; i < len; i++) {
-      dests[i].emit('unpipe', this, { hasUnpiped: false });
-    }return this;
-  }
-
-  // try to find the right one.
-  var index = indexOf(state.pipes, dest);
-  if (index === -1) return this;
-
-  state.pipes.splice(index, 1);
-  state.pipesCount -= 1;
-  if (state.pipesCount === 1) state.pipes = state.pipes[0];
-
-  dest.emit('unpipe', this, unpipeInfo);
-
-  return this;
-};
-
-// set up data events if they are asked for
-// Ensure readable listeners eventually get something
-Readable.prototype.on = function (ev, fn) {
-  var res = Stream.prototype.on.call(this, ev, fn);
-
-  if (ev === 'data') {
-    // Start flowing on next tick if stream isn't explicitly paused
-    if (this._readableState.flowing !== false) this.resume();
-  } else if (ev === 'readable') {
-    var state = this._readableState;
-    if (!state.endEmitted && !state.readableListening) {
-      state.readableListening = state.needReadable = true;
-      state.emittedReadable = false;
-      if (!state.reading) {
-        pna.nextTick(nReadingNextTick, this);
-      } else if (state.length) {
-        emitReadable(this);
-      }
-    }
-  }
-
-  return res;
-};
-Readable.prototype.addListener = Readable.prototype.on;
-
-function nReadingNextTick(self) {
-  debug('readable nexttick read 0');
-  self.read(0);
-}
-
-// pause() and resume() are remnants of the legacy readable stream API
-// If the user uses them, then switch into old mode.
-Readable.prototype.resume = function () {
-  var state = this._readableState;
-  if (!state.flowing) {
-    debug('resume');
-    state.flowing = true;
-    resume(this, state);
-  }
-  return this;
-};
-
-function resume(stream, state) {
-  if (!state.resumeScheduled) {
-    state.resumeScheduled = true;
-    pna.nextTick(resume_, stream, state);
-  }
-}
-
-function resume_(stream, state) {
-  if (!state.reading) {
-    debug('resume read 0');
-    stream.read(0);
-  }
-
-  state.resumeScheduled = false;
-  state.awaitDrain = 0;
-  stream.emit('resume');
-  flow(stream);
-  if (state.flowing && !state.reading) stream.read(0);
-}
-
-Readable.prototype.pause = function () {
-  debug('call pause flowing=%j', this._readableState.flowing);
-  if (false !== this._readableState.flowing) {
-    debug('pause');
-    this._readableState.flowing = false;
-    this.emit('pause');
-  }
-  return this;
-};
-
-function flow(stream) {
-  var state = stream._readableState;
-  debug('flow', state.flowing);
-  while (state.flowing && stream.read() !== null) {}
-}
-
-// wrap an old-style stream as the async data source.
-// This is *not* part of the readable stream interface.
-// It is an ugly unfortunate mess of history.
-Readable.prototype.wrap = function (stream) {
-  var _this = this;
-
-  var state = this._readableState;
-  var paused = false;
-
-  stream.on('end', function () {
-    debug('wrapped end');
-    if (state.decoder && !state.ended) {
-      var chunk = state.decoder.end();
-      if (chunk && chunk.length) _this.push(chunk);
-    }
-
-    _this.push(null);
-  });
-
-  stream.on('data', function (chunk) {
-    debug('wrapped data');
-    if (state.decoder) chunk = state.decoder.write(chunk);
-
-    // don't skip over falsy values in objectMode
-    if (state.objectMode && (chunk === null || chunk === undefined)) return;else if (!state.objectMode && (!chunk || !chunk.length)) return;
-
-    var ret = _this.push(chunk);
-    if (!ret) {
-      paused = true;
-      stream.pause();
-    }
-  });
-
-  // proxy all the other methods.
-  // important when wrapping filters and duplexes.
-  for (var i in stream) {
-    if (this[i] === undefined && typeof stream[i] === 'function') {
-      this[i] = function (method) {
-        return function () {
-          return stream[method].apply(stream, arguments);
-        };
-      }(i);
-    }
-  }
-
-  // proxy certain important events.
-  for (var n = 0; n < kProxyEvents.length; n++) {
-    stream.on(kProxyEvents[n], this.emit.bind(this, kProxyEvents[n]));
-  }
-
-  // when we try to consume some more bytes, simply unpause the
-  // underlying stream.
-  this._read = function (n) {
-    debug('wrapped _read', n);
-    if (paused) {
-      paused = false;
-      stream.resume();
-    }
-  };
-
-  return this;
-};
-
-Object.defineProperty(Readable.prototype, 'readableHighWaterMark', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function () {
-    return this._readableState.highWaterMark;
-  }
-});
-
-// exposed for testing purposes only.
-Readable._fromList = fromList;
-
-// Pluck off n bytes from an array of buffers.
-// Length is the combined lengths of all the buffers in the list.
-// This function is designed to be inlinable, so please take care when making
-// changes to the function body.
-function fromList(n, state) {
-  // nothing buffered
-  if (state.length === 0) return null;
-
-  var ret;
-  if (state.objectMode) ret = state.buffer.shift();else if (!n || n >= state.length) {
-    // read it all, truncate the list
-    if (state.decoder) ret = state.buffer.join('');else if (state.buffer.length === 1) ret = state.buffer.head.data;else ret = state.buffer.concat(state.length);
-    state.buffer.clear();
-  } else {
-    // read part of list
-    ret = fromListPartial(n, state.buffer, state.decoder);
-  }
-
-  return ret;
-}
-
-// Extracts only enough buffered data to satisfy the amount requested.
-// This function is designed to be inlinable, so please take care when making
-// changes to the function body.
-function fromListPartial(n, list, hasStrings) {
-  var ret;
-  if (n < list.head.data.length) {
-    // slice is the same for buffers and strings
-    ret = list.head.data.slice(0, n);
-    list.head.data = list.head.data.slice(n);
-  } else if (n === list.head.data.length) {
-    // first chunk is a perfect match
-    ret = list.shift();
-  } else {
-    // result spans more than one buffer
-    ret = hasStrings ? copyFromBufferString(n, list) : copyFromBuffer(n, list);
-  }
-  return ret;
-}
-
-// Copies a specified amount of characters from the list of buffered data
-// chunks.
-// This function is designed to be inlinable, so please take care when making
-// changes to the function body.
-function copyFromBufferString(n, list) {
-  var p = list.head;
-  var c = 1;
-  var ret = p.data;
-  n -= ret.length;
-  while (p = p.next) {
-    var str = p.data;
-    var nb = n > str.length ? str.length : n;
-    if (nb === str.length) ret += str;else ret += str.slice(0, n);
-    n -= nb;
-    if (n === 0) {
-      if (nb === str.length) {
-        ++c;
-        if (p.next) list.head = p.next;else list.head = list.tail = null;
-      } else {
-        list.head = p;
-        p.data = str.slice(nb);
-      }
-      break;
-    }
-    ++c;
-  }
-  list.length -= c;
-  return ret;
-}
-
-// Copies a specified amount of bytes from the list of buffered data chunks.
-// This function is designed to be inlinable, so please take care when making
-// changes to the function body.
-function copyFromBuffer(n, list) {
-  var ret = Buffer.allocUnsafe(n);
-  var p = list.head;
-  var c = 1;
-  p.data.copy(ret);
-  n -= p.data.length;
-  while (p = p.next) {
-    var buf = p.data;
-    var nb = n > buf.length ? buf.length : n;
-    buf.copy(ret, ret.length - n, 0, nb);
-    n -= nb;
-    if (n === 0) {
-      if (nb === buf.length) {
-        ++c;
-        if (p.next) list.head = p.next;else list.head = list.tail = null;
-      } else {
-        list.head = p;
-        p.data = buf.slice(nb);
-      }
-      break;
-    }
-    ++c;
-  }
-  list.length -= c;
-  return ret;
-}
-
-function endReadable(stream) {
-  var state = stream._readableState;
-
-  // If we get here before consuming all the bytes, then that is a
-  // bug in node.  Should never happen.
-  if (state.length > 0) throw new Error('"endReadable()" called on non-empty stream');
-
-  if (!state.endEmitted) {
-    state.ended = true;
-    pna.nextTick(endReadableNT, state, stream);
-  }
-}
-
-function endReadableNT(state, stream) {
-  // Check that we didn't get one last unshift.
-  if (!state.endEmitted && state.length === 0) {
-    state.endEmitted = true;
-    stream.readable = false;
-    stream.emit('end');
-  }
-}
-
-function indexOf(xs, x) {
-  for (var i = 0, l = xs.length; i < l; i++) {
-    if (xs[i] === x) return i;
-  }
-  return -1;
-}
-
-/***/ }),
-
-/***/ 2337:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// a transform stream is a readable/writable stream where you do
-// something with the data.  Sometimes it's called a "filter",
-// but that's not a great name for it, since that implies a thing where
-// some bits pass through, and others are simply ignored.  (That would
-// be a valid example of a transform, of course.)
-//
-// While the output is causally related to the input, it's not a
-// necessarily symmetric or synchronous transformation.  For example,
-// a zlib stream might take multiple plain-text writes(), and then
-// emit a single compressed chunk some time in the future.
-//
-// Here's how this works:
-//
-// The Transform stream has all the aspects of the readable and writable
-// stream classes.  When you write(chunk), that calls _write(chunk,cb)
-// internally, and returns false if there's a lot of pending writes
-// buffered up.  When you call read(), that calls _read(n) until
-// there's enough pending readable data buffered up.
-//
-// In a transform stream, the written data is placed in a buffer.  When
-// _read(n) is called, it transforms the queued up data, calling the
-// buffered _write cb's as it consumes chunks.  If consuming a single
-// written chunk would result in multiple output chunks, then the first
-// outputted bit calls the readcb, and subsequent chunks just go into
-// the read buffer, and will cause it to emit 'readable' if necessary.
-//
-// This way, back-pressure is actually determined by the reading side,
-// since _read has to be called to start processing a new chunk.  However,
-// a pathological inflate type of transform can cause excessive buffering
-// here.  For example, imagine a stream where every byte of input is
-// interpreted as an integer from 0-255, and then results in that many
-// bytes of output.  Writing the 4 bytes {ff,ff,ff,ff} would result in
-// 1kb of data being output.  In this case, you could write a very small
-// amount of input, and end up with a very large amount of output.  In
-// such a pathological inflating mechanism, there'd be no way to tell
-// the system to stop doing the transform.  A single 4MB write could
-// cause the system to run out of memory.
-//
-// However, even in such a pathological case, only a single written chunk
-// would be consumed, and then the rest would wait (un-transformed) until
-// the results of the previous transformed chunk were consumed.
-
-
-
-module.exports = Transform;
-
-var Duplex = __nccwpck_require__(2063);
-
-/*<replacement>*/
-var util = Object.create(__nccwpck_require__(5481));
-util.inherits = __nccwpck_require__(9598);
-/*</replacement>*/
-
-util.inherits(Transform, Duplex);
-
-function afterTransform(er, data) {
-  var ts = this._transformState;
-  ts.transforming = false;
-
-  var cb = ts.writecb;
-
-  if (!cb) {
-    return this.emit('error', new Error('write callback called multiple times'));
-  }
-
-  ts.writechunk = null;
-  ts.writecb = null;
-
-  if (data != null) // single equals check for both `null` and `undefined`
-    this.push(data);
-
-  cb(er);
-
-  var rs = this._readableState;
-  rs.reading = false;
-  if (rs.needReadable || rs.length < rs.highWaterMark) {
-    this._read(rs.highWaterMark);
-  }
-}
-
-function Transform(options) {
-  if (!(this instanceof Transform)) return new Transform(options);
-
-  Duplex.call(this, options);
-
-  this._transformState = {
-    afterTransform: afterTransform.bind(this),
-    needTransform: false,
-    transforming: false,
-    writecb: null,
-    writechunk: null,
-    writeencoding: null
-  };
-
-  // start out asking for a readable event once data is transformed.
-  this._readableState.needReadable = true;
-
-  // we have implemented the _read method, and done the other things
-  // that Readable wants before the first _read call, so unset the
-  // sync guard flag.
-  this._readableState.sync = false;
-
-  if (options) {
-    if (typeof options.transform === 'function') this._transform = options.transform;
-
-    if (typeof options.flush === 'function') this._flush = options.flush;
-  }
-
-  // When the writable side finishes, then flush out anything remaining.
-  this.on('prefinish', prefinish);
-}
-
-function prefinish() {
-  var _this = this;
-
-  if (typeof this._flush === 'function') {
-    this._flush(function (er, data) {
-      done(_this, er, data);
-    });
-  } else {
-    done(this, null, null);
-  }
-}
-
-Transform.prototype.push = function (chunk, encoding) {
-  this._transformState.needTransform = false;
-  return Duplex.prototype.push.call(this, chunk, encoding);
-};
-
-// This is the part where you do stuff!
-// override this function in implementation classes.
-// 'chunk' is an input chunk.
-//
-// Call `push(newChunk)` to pass along transformed output
-// to the readable side.  You may call 'push' zero or more times.
-//
-// Call `cb(err)` when you are done with this chunk.  If you pass
-// an error, then that'll put the hurt on the whole operation.  If you
-// never call cb(), then you'll never get another chunk.
-Transform.prototype._transform = function (chunk, encoding, cb) {
-  throw new Error('_transform() is not implemented');
-};
-
-Transform.prototype._write = function (chunk, encoding, cb) {
-  var ts = this._transformState;
-  ts.writecb = cb;
-  ts.writechunk = chunk;
-  ts.writeencoding = encoding;
-  if (!ts.transforming) {
-    var rs = this._readableState;
-    if (ts.needTransform || rs.needReadable || rs.length < rs.highWaterMark) this._read(rs.highWaterMark);
-  }
-};
-
-// Doesn't matter what the args are here.
-// _transform does all the work.
-// That we got here means that the readable side wants more data.
-Transform.prototype._read = function (n) {
-  var ts = this._transformState;
-
-  if (ts.writechunk !== null && ts.writecb && !ts.transforming) {
-    ts.transforming = true;
-    this._transform(ts.writechunk, ts.writeencoding, ts.afterTransform);
-  } else {
-    // mark that we need a transform, so that any data that comes in
-    // will get processed, now that we've asked for it.
-    ts.needTransform = true;
-  }
-};
-
-Transform.prototype._destroy = function (err, cb) {
-  var _this2 = this;
-
-  Duplex.prototype._destroy.call(this, err, function (err2) {
-    cb(err2);
-    _this2.emit('close');
-  });
-};
-
-function done(stream, er, data) {
-  if (er) return stream.emit('error', er);
-
-  if (data != null) // single equals check for both `null` and `undefined`
-    stream.push(data);
-
-  // if there's nothing in the write buffer, then that means
-  // that nothing more will ever be provided
-  if (stream._writableState.length) throw new Error('Calling transform done when ws.length != 0');
-
-  if (stream._transformState.transforming) throw new Error('Calling transform done when still transforming');
-
-  return stream.push(null);
-}
-
-/***/ }),
-
-/***/ 8797:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// A bit simpler than readable streams.
-// Implement an async ._write(chunk, encoding, cb), and it'll handle all
-// the drain event emission and buffering.
-
-
-
-/*<replacement>*/
-
-var pna = __nccwpck_require__(1564);
-/*</replacement>*/
-
-module.exports = Writable;
-
-/* <replacement> */
-function WriteReq(chunk, encoding, cb) {
-  this.chunk = chunk;
-  this.encoding = encoding;
-  this.callback = cb;
-  this.next = null;
-}
-
-// It seems a linked list but it is not
-// there will be only 2 of these for each stream
-function CorkedRequest(state) {
-  var _this = this;
-
-  this.next = null;
-  this.entry = null;
-  this.finish = function () {
-    onCorkedFinish(_this, state);
-  };
-}
-/* </replacement> */
-
-/*<replacement>*/
-var asyncWrite = !process.browser && ['v0.10', 'v0.9.'].indexOf(process.version.slice(0, 5)) > -1 ? setImmediate : pna.nextTick;
-/*</replacement>*/
-
-/*<replacement>*/
-var Duplex;
-/*</replacement>*/
-
-Writable.WritableState = WritableState;
-
-/*<replacement>*/
-var util = Object.create(__nccwpck_require__(5481));
-util.inherits = __nccwpck_require__(9598);
-/*</replacement>*/
-
-/*<replacement>*/
-var internalUtil = {
-  deprecate: __nccwpck_require__(4488)
-};
-/*</replacement>*/
-
-/*<replacement>*/
-var Stream = __nccwpck_require__(3283);
-/*</replacement>*/
-
-/*<replacement>*/
-
-var Buffer = (__nccwpck_require__(3058).Buffer);
-var OurUint8Array = (typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : typeof self !== 'undefined' ? self : {}).Uint8Array || function () {};
-function _uint8ArrayToBuffer(chunk) {
-  return Buffer.from(chunk);
-}
-function _isUint8Array(obj) {
-  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
-}
-
-/*</replacement>*/
-
-var destroyImpl = __nccwpck_require__(5089);
-
-util.inherits(Writable, Stream);
-
-function nop() {}
-
-function WritableState(options, stream) {
-  Duplex = Duplex || __nccwpck_require__(2063);
-
-  options = options || {};
-
-  // Duplex streams are both readable and writable, but share
-  // the same options object.
-  // However, some cases require setting options to different
-  // values for the readable and the writable sides of the duplex stream.
-  // These options can be provided separately as readableXXX and writableXXX.
-  var isDuplex = stream instanceof Duplex;
-
-  // object stream flag to indicate whether or not this stream
-  // contains buffers or objects.
-  this.objectMode = !!options.objectMode;
-
-  if (isDuplex) this.objectMode = this.objectMode || !!options.writableObjectMode;
-
-  // the point at which write() starts returning false
-  // Note: 0 is a valid value, means that we always return false if
-  // the entire buffer is not flushed immediately on write()
-  var hwm = options.highWaterMark;
-  var writableHwm = options.writableHighWaterMark;
-  var defaultHwm = this.objectMode ? 16 : 16 * 1024;
-
-  if (hwm || hwm === 0) this.highWaterMark = hwm;else if (isDuplex && (writableHwm || writableHwm === 0)) this.highWaterMark = writableHwm;else this.highWaterMark = defaultHwm;
-
-  // cast to ints.
-  this.highWaterMark = Math.floor(this.highWaterMark);
-
-  // if _final has been called
-  this.finalCalled = false;
-
-  // drain event flag.
-  this.needDrain = false;
-  // at the start of calling end()
-  this.ending = false;
-  // when end() has been called, and returned
-  this.ended = false;
-  // when 'finish' is emitted
-  this.finished = false;
-
-  // has it been destroyed
-  this.destroyed = false;
-
-  // should we decode strings into buffers before passing to _write?
-  // this is here so that some node-core streams can optimize string
-  // handling at a lower level.
-  var noDecode = options.decodeStrings === false;
-  this.decodeStrings = !noDecode;
-
-  // Crypto is kind of old and crusty.  Historically, its default string
-  // encoding is 'binary' so we have to make this configurable.
-  // Everything else in the universe uses 'utf8', though.
-  this.defaultEncoding = options.defaultEncoding || 'utf8';
-
-  // not an actual buffer we keep track of, but a measurement
-  // of how much we're waiting to get pushed to some underlying
-  // socket or file.
-  this.length = 0;
-
-  // a flag to see when we're in the middle of a write.
-  this.writing = false;
-
-  // when true all writes will be buffered until .uncork() call
-  this.corked = 0;
-
-  // a flag to be able to tell if the onwrite cb is called immediately,
-  // or on a later tick.  We set this to true at first, because any
-  // actions that shouldn't happen until "later" should generally also
-  // not happen before the first write call.
-  this.sync = true;
-
-  // a flag to know if we're processing previously buffered items, which
-  // may call the _write() callback in the same tick, so that we don't
-  // end up in an overlapped onwrite situation.
-  this.bufferProcessing = false;
-
-  // the callback that's passed to _write(chunk,cb)
-  this.onwrite = function (er) {
-    onwrite(stream, er);
-  };
-
-  // the callback that the user supplies to write(chunk,encoding,cb)
-  this.writecb = null;
-
-  // the amount that is being written when _write is called.
-  this.writelen = 0;
-
-  this.bufferedRequest = null;
-  this.lastBufferedRequest = null;
-
-  // number of pending user-supplied write callbacks
-  // this must be 0 before 'finish' can be emitted
-  this.pendingcb = 0;
-
-  // emit prefinish if the only thing we're waiting for is _write cbs
-  // This is relevant for synchronous Transform streams
-  this.prefinished = false;
-
-  // True if the error was already emitted and should not be thrown again
-  this.errorEmitted = false;
-
-  // count buffered requests
-  this.bufferedRequestCount = 0;
-
-  // allocate the first CorkedRequest, there is always
-  // one allocated and free to use, and we maintain at most two
-  this.corkedRequestsFree = new CorkedRequest(this);
-}
-
-WritableState.prototype.getBuffer = function getBuffer() {
-  var current = this.bufferedRequest;
-  var out = [];
-  while (current) {
-    out.push(current);
-    current = current.next;
-  }
-  return out;
-};
-
-(function () {
-  try {
-    Object.defineProperty(WritableState.prototype, 'buffer', {
-      get: internalUtil.deprecate(function () {
-        return this.getBuffer();
-      }, '_writableState.buffer is deprecated. Use _writableState.getBuffer ' + 'instead.', 'DEP0003')
-    });
-  } catch (_) {}
-})();
-
-// Test _writableState for inheritance to account for Duplex streams,
-// whose prototype chain only points to Readable.
-var realHasInstance;
-if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.prototype[Symbol.hasInstance] === 'function') {
-  realHasInstance = Function.prototype[Symbol.hasInstance];
-  Object.defineProperty(Writable, Symbol.hasInstance, {
-    value: function (object) {
-      if (realHasInstance.call(this, object)) return true;
-      if (this !== Writable) return false;
-
-      return object && object._writableState instanceof WritableState;
-    }
-  });
-} else {
-  realHasInstance = function (object) {
-    return object instanceof this;
-  };
-}
-
-function Writable(options) {
-  Duplex = Duplex || __nccwpck_require__(2063);
-
-  // Writable ctor is applied to Duplexes, too.
-  // `realHasInstance` is necessary because using plain `instanceof`
-  // would return false, as no `_writableState` property is attached.
-
-  // Trying to use the custom `instanceof` for Writable here will also break the
-  // Node.js LazyTransform implementation, which has a non-trivial getter for
-  // `_writableState` that would lead to infinite recursion.
-  if (!realHasInstance.call(Writable, this) && !(this instanceof Duplex)) {
-    return new Writable(options);
-  }
-
-  this._writableState = new WritableState(options, this);
-
-  // legacy.
-  this.writable = true;
-
-  if (options) {
-    if (typeof options.write === 'function') this._write = options.write;
-
-    if (typeof options.writev === 'function') this._writev = options.writev;
-
-    if (typeof options.destroy === 'function') this._destroy = options.destroy;
-
-    if (typeof options.final === 'function') this._final = options.final;
-  }
-
-  Stream.call(this);
-}
-
-// Otherwise people can pipe Writable streams, which is just wrong.
-Writable.prototype.pipe = function () {
-  this.emit('error', new Error('Cannot pipe, not readable'));
-};
-
-function writeAfterEnd(stream, cb) {
-  var er = new Error('write after end');
-  // TODO: defer error events consistently everywhere, not just the cb
-  stream.emit('error', er);
-  pna.nextTick(cb, er);
-}
-
-// Checks that a user-supplied chunk is valid, especially for the particular
-// mode the stream is in. Currently this means that `null` is never accepted
-// and undefined/non-string values are only allowed in object mode.
-function validChunk(stream, state, chunk, cb) {
-  var valid = true;
-  var er = false;
-
-  if (chunk === null) {
-    er = new TypeError('May not write null values to stream');
-  } else if (typeof chunk !== 'string' && chunk !== undefined && !state.objectMode) {
-    er = new TypeError('Invalid non-string/buffer chunk');
-  }
-  if (er) {
-    stream.emit('error', er);
-    pna.nextTick(cb, er);
-    valid = false;
-  }
-  return valid;
-}
-
-Writable.prototype.write = function (chunk, encoding, cb) {
-  var state = this._writableState;
-  var ret = false;
-  var isBuf = !state.objectMode && _isUint8Array(chunk);
-
-  if (isBuf && !Buffer.isBuffer(chunk)) {
-    chunk = _uint8ArrayToBuffer(chunk);
-  }
-
-  if (typeof encoding === 'function') {
-    cb = encoding;
-    encoding = null;
-  }
-
-  if (isBuf) encoding = 'buffer';else if (!encoding) encoding = state.defaultEncoding;
-
-  if (typeof cb !== 'function') cb = nop;
-
-  if (state.ended) writeAfterEnd(this, cb);else if (isBuf || validChunk(this, state, chunk, cb)) {
-    state.pendingcb++;
-    ret = writeOrBuffer(this, state, isBuf, chunk, encoding, cb);
-  }
-
-  return ret;
-};
-
-Writable.prototype.cork = function () {
-  var state = this._writableState;
-
-  state.corked++;
-};
-
-Writable.prototype.uncork = function () {
-  var state = this._writableState;
-
-  if (state.corked) {
-    state.corked--;
-
-    if (!state.writing && !state.corked && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
-  }
-};
-
-Writable.prototype.setDefaultEncoding = function setDefaultEncoding(encoding) {
-  // node::ParseEncoding() requires lower case.
-  if (typeof encoding === 'string') encoding = encoding.toLowerCase();
-  if (!(['hex', 'utf8', 'utf-8', 'ascii', 'binary', 'base64', 'ucs2', 'ucs-2', 'utf16le', 'utf-16le', 'raw'].indexOf((encoding + '').toLowerCase()) > -1)) throw new TypeError('Unknown encoding: ' + encoding);
-  this._writableState.defaultEncoding = encoding;
-  return this;
-};
-
-function decodeChunk(state, chunk, encoding) {
-  if (!state.objectMode && state.decodeStrings !== false && typeof chunk === 'string') {
-    chunk = Buffer.from(chunk, encoding);
-  }
-  return chunk;
-}
-
-Object.defineProperty(Writable.prototype, 'writableHighWaterMark', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function () {
-    return this._writableState.highWaterMark;
-  }
-});
-
-// if we're already writing something, then just put this
-// in the queue, and wait our turn.  Otherwise, call _write
-// If we return false, then we need a drain event, so set that flag.
-function writeOrBuffer(stream, state, isBuf, chunk, encoding, cb) {
-  if (!isBuf) {
-    var newChunk = decodeChunk(state, chunk, encoding);
-    if (chunk !== newChunk) {
-      isBuf = true;
-      encoding = 'buffer';
-      chunk = newChunk;
-    }
-  }
-  var len = state.objectMode ? 1 : chunk.length;
-
-  state.length += len;
-
-  var ret = state.length < state.highWaterMark;
-  // we must ensure that previous needDrain will not be reset to false.
-  if (!ret) state.needDrain = true;
-
-  if (state.writing || state.corked) {
-    var last = state.lastBufferedRequest;
-    state.lastBufferedRequest = {
-      chunk: chunk,
-      encoding: encoding,
-      isBuf: isBuf,
-      callback: cb,
-      next: null
-    };
-    if (last) {
-      last.next = state.lastBufferedRequest;
-    } else {
-      state.bufferedRequest = state.lastBufferedRequest;
-    }
-    state.bufferedRequestCount += 1;
-  } else {
-    doWrite(stream, state, false, len, chunk, encoding, cb);
-  }
-
-  return ret;
-}
-
-function doWrite(stream, state, writev, len, chunk, encoding, cb) {
-  state.writelen = len;
-  state.writecb = cb;
-  state.writing = true;
-  state.sync = true;
-  if (writev) stream._writev(chunk, state.onwrite);else stream._write(chunk, encoding, state.onwrite);
-  state.sync = false;
-}
-
-function onwriteError(stream, state, sync, er, cb) {
-  --state.pendingcb;
-
-  if (sync) {
-    // defer the callback if we are being called synchronously
-    // to avoid piling up things on the stack
-    pna.nextTick(cb, er);
-    // this can emit finish, and it will always happen
-    // after error
-    pna.nextTick(finishMaybe, stream, state);
-    stream._writableState.errorEmitted = true;
-    stream.emit('error', er);
-  } else {
-    // the caller expect this to happen before if
-    // it is async
-    cb(er);
-    stream._writableState.errorEmitted = true;
-    stream.emit('error', er);
-    // this can emit finish, but finish must
-    // always follow error
-    finishMaybe(stream, state);
-  }
-}
-
-function onwriteStateUpdate(state) {
-  state.writing = false;
-  state.writecb = null;
-  state.length -= state.writelen;
-  state.writelen = 0;
-}
-
-function onwrite(stream, er) {
-  var state = stream._writableState;
-  var sync = state.sync;
-  var cb = state.writecb;
-
-  onwriteStateUpdate(state);
-
-  if (er) onwriteError(stream, state, sync, er, cb);else {
-    // Check if we're actually ready to finish, but don't emit yet
-    var finished = needFinish(state);
-
-    if (!finished && !state.corked && !state.bufferProcessing && state.bufferedRequest) {
-      clearBuffer(stream, state);
-    }
-
-    if (sync) {
-      /*<replacement>*/
-      asyncWrite(afterWrite, stream, state, finished, cb);
-      /*</replacement>*/
-    } else {
-      afterWrite(stream, state, finished, cb);
-    }
-  }
-}
-
-function afterWrite(stream, state, finished, cb) {
-  if (!finished) onwriteDrain(stream, state);
-  state.pendingcb--;
-  cb();
-  finishMaybe(stream, state);
-}
-
-// Must force callback to be called on nextTick, so that we don't
-// emit 'drain' before the write() consumer gets the 'false' return
-// value, and has a chance to attach a 'drain' listener.
-function onwriteDrain(stream, state) {
-  if (state.length === 0 && state.needDrain) {
-    state.needDrain = false;
-    stream.emit('drain');
-  }
-}
-
-// if there's something in the buffer waiting, then process it
-function clearBuffer(stream, state) {
-  state.bufferProcessing = true;
-  var entry = state.bufferedRequest;
-
-  if (stream._writev && entry && entry.next) {
-    // Fast case, write everything using _writev()
-    var l = state.bufferedRequestCount;
-    var buffer = new Array(l);
-    var holder = state.corkedRequestsFree;
-    holder.entry = entry;
-
-    var count = 0;
-    var allBuffers = true;
-    while (entry) {
-      buffer[count] = entry;
-      if (!entry.isBuf) allBuffers = false;
-      entry = entry.next;
-      count += 1;
-    }
-    buffer.allBuffers = allBuffers;
-
-    doWrite(stream, state, true, state.length, buffer, '', holder.finish);
-
-    // doWrite is almost always async, defer these to save a bit of time
-    // as the hot path ends with doWrite
-    state.pendingcb++;
-    state.lastBufferedRequest = null;
-    if (holder.next) {
-      state.corkedRequestsFree = holder.next;
-      holder.next = null;
-    } else {
-      state.corkedRequestsFree = new CorkedRequest(state);
-    }
-    state.bufferedRequestCount = 0;
-  } else {
-    // Slow case, write chunks one-by-one
-    while (entry) {
-      var chunk = entry.chunk;
-      var encoding = entry.encoding;
-      var cb = entry.callback;
-      var len = state.objectMode ? 1 : chunk.length;
-
-      doWrite(stream, state, false, len, chunk, encoding, cb);
-      entry = entry.next;
-      state.bufferedRequestCount--;
-      // if we didn't call the onwrite immediately, then
-      // it means that we need to wait until it does.
-      // also, that means that the chunk and cb are currently
-      // being processed, so move the buffer counter past them.
-      if (state.writing) {
-        break;
-      }
-    }
-
-    if (entry === null) state.lastBufferedRequest = null;
-  }
-
-  state.bufferedRequest = entry;
-  state.bufferProcessing = false;
-}
-
-Writable.prototype._write = function (chunk, encoding, cb) {
-  cb(new Error('_write() is not implemented'));
-};
-
-Writable.prototype._writev = null;
-
-Writable.prototype.end = function (chunk, encoding, cb) {
-  var state = this._writableState;
-
-  if (typeof chunk === 'function') {
-    cb = chunk;
-    chunk = null;
-    encoding = null;
-  } else if (typeof encoding === 'function') {
-    cb = encoding;
-    encoding = null;
-  }
-
-  if (chunk !== null && chunk !== undefined) this.write(chunk, encoding);
-
-  // .end() fully uncorks
-  if (state.corked) {
-    state.corked = 1;
-    this.uncork();
-  }
-
-  // ignore unnecessary end() calls.
-  if (!state.ending) endWritable(this, state, cb);
-};
-
-function needFinish(state) {
-  return state.ending && state.length === 0 && state.bufferedRequest === null && !state.finished && !state.writing;
-}
-function callFinal(stream, state) {
-  stream._final(function (err) {
-    state.pendingcb--;
-    if (err) {
-      stream.emit('error', err);
-    }
-    state.prefinished = true;
-    stream.emit('prefinish');
-    finishMaybe(stream, state);
-  });
-}
-function prefinish(stream, state) {
-  if (!state.prefinished && !state.finalCalled) {
-    if (typeof stream._final === 'function') {
-      state.pendingcb++;
-      state.finalCalled = true;
-      pna.nextTick(callFinal, stream, state);
-    } else {
-      state.prefinished = true;
-      stream.emit('prefinish');
-    }
-  }
-}
-
-function finishMaybe(stream, state) {
-  var need = needFinish(state);
-  if (need) {
-    prefinish(stream, state);
-    if (state.pendingcb === 0) {
-      state.finished = true;
-      stream.emit('finish');
-    }
-  }
-  return need;
-}
-
-function endWritable(stream, state, cb) {
-  state.ending = true;
-  finishMaybe(stream, state);
-  if (cb) {
-    if (state.finished) pna.nextTick(cb);else stream.once('finish', cb);
-  }
-  state.ended = true;
-  stream.writable = false;
-}
-
-function onCorkedFinish(corkReq, state, err) {
-  var entry = corkReq.entry;
-  corkReq.entry = null;
-  while (entry) {
-    var cb = entry.callback;
-    state.pendingcb--;
-    cb(err);
-    entry = entry.next;
-  }
-
-  // reuse the free corkReq.
-  state.corkedRequestsFree.next = corkReq;
-}
-
-Object.defineProperty(Writable.prototype, 'destroyed', {
-  get: function () {
-    if (this._writableState === undefined) {
-      return false;
-    }
-    return this._writableState.destroyed;
-  },
-  set: function (value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (!this._writableState) {
-      return;
-    }
-
-    // backward compatibility, the user is explicitly
-    // managing destroyed
-    this._writableState.destroyed = value;
-  }
-});
-
-Writable.prototype.destroy = destroyImpl.destroy;
-Writable.prototype._undestroy = destroyImpl.undestroy;
-Writable.prototype._destroy = function (err, cb) {
-  this.end();
-  cb(err);
-};
-
-/***/ }),
-
-/***/ 9381:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Buffer = (__nccwpck_require__(3058).Buffer);
-var util = __nccwpck_require__(9023);
-
-function copyBuffer(src, target, offset) {
-  src.copy(target, offset);
-}
-
-module.exports = function () {
-  function BufferList() {
-    _classCallCheck(this, BufferList);
-
-    this.head = null;
-    this.tail = null;
-    this.length = 0;
-  }
-
-  BufferList.prototype.push = function push(v) {
-    var entry = { data: v, next: null };
-    if (this.length > 0) this.tail.next = entry;else this.head = entry;
-    this.tail = entry;
-    ++this.length;
-  };
-
-  BufferList.prototype.unshift = function unshift(v) {
-    var entry = { data: v, next: this.head };
-    if (this.length === 0) this.tail = entry;
-    this.head = entry;
-    ++this.length;
-  };
-
-  BufferList.prototype.shift = function shift() {
-    if (this.length === 0) return;
-    var ret = this.head.data;
-    if (this.length === 1) this.head = this.tail = null;else this.head = this.head.next;
-    --this.length;
-    return ret;
-  };
-
-  BufferList.prototype.clear = function clear() {
-    this.head = this.tail = null;
-    this.length = 0;
-  };
-
-  BufferList.prototype.join = function join(s) {
-    if (this.length === 0) return '';
-    var p = this.head;
-    var ret = '' + p.data;
-    while (p = p.next) {
-      ret += s + p.data;
-    }return ret;
-  };
-
-  BufferList.prototype.concat = function concat(n) {
-    if (this.length === 0) return Buffer.alloc(0);
-    var ret = Buffer.allocUnsafe(n >>> 0);
-    var p = this.head;
-    var i = 0;
-    while (p) {
-      copyBuffer(p.data, ret, i);
-      i += p.data.length;
-      p = p.next;
-    }
-    return ret;
-  };
-
-  return BufferList;
-}();
-
-if (util && util.inspect && util.inspect.custom) {
-  module.exports.prototype[util.inspect.custom] = function () {
-    var obj = util.inspect({ length: this.length });
-    return this.constructor.name + ' ' + obj;
-  };
-}
-
-/***/ }),
-
-/***/ 5089:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-
-/*<replacement>*/
-
-var pna = __nccwpck_require__(1564);
-/*</replacement>*/
-
-// undocumented cb() API, needed for core, not for public API
-function destroy(err, cb) {
-  var _this = this;
-
-  var readableDestroyed = this._readableState && this._readableState.destroyed;
-  var writableDestroyed = this._writableState && this._writableState.destroyed;
-
-  if (readableDestroyed || writableDestroyed) {
-    if (cb) {
-      cb(err);
-    } else if (err) {
-      if (!this._writableState) {
-        pna.nextTick(emitErrorNT, this, err);
-      } else if (!this._writableState.errorEmitted) {
-        this._writableState.errorEmitted = true;
-        pna.nextTick(emitErrorNT, this, err);
-      }
-    }
-
-    return this;
-  }
-
-  // we set destroyed to true before firing error callbacks in order
-  // to make it re-entrance safe in case destroy() is called within callbacks
-
-  if (this._readableState) {
-    this._readableState.destroyed = true;
-  }
-
-  // if this is a duplex stream mark the writable part as destroyed as well
-  if (this._writableState) {
-    this._writableState.destroyed = true;
-  }
-
-  this._destroy(err || null, function (err) {
-    if (!cb && err) {
-      if (!_this._writableState) {
-        pna.nextTick(emitErrorNT, _this, err);
-      } else if (!_this._writableState.errorEmitted) {
-        _this._writableState.errorEmitted = true;
-        pna.nextTick(emitErrorNT, _this, err);
-      }
-    } else if (cb) {
-      cb(err);
-    }
-  });
-
-  return this;
-}
-
-function undestroy() {
-  if (this._readableState) {
-    this._readableState.destroyed = false;
-    this._readableState.reading = false;
-    this._readableState.ended = false;
-    this._readableState.endEmitted = false;
-  }
-
-  if (this._writableState) {
-    this._writableState.destroyed = false;
-    this._writableState.ended = false;
-    this._writableState.ending = false;
-    this._writableState.finalCalled = false;
-    this._writableState.prefinished = false;
-    this._writableState.finished = false;
-    this._writableState.errorEmitted = false;
-  }
-}
-
-function emitErrorNT(self, err) {
-  self.emit('error', err);
-}
-
-module.exports = {
-  destroy: destroy,
-  undestroy: undestroy
-};
-
-/***/ }),
-
-/***/ 3283:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-module.exports = __nccwpck_require__(2203);
-
-
-/***/ }),
-
-/***/ 6131:
-/***/ ((module, exports, __nccwpck_require__) => {
-
-var Stream = __nccwpck_require__(2203);
-if (process.env.READABLE_STREAM === 'disable' && Stream) {
-  module.exports = Stream;
-  exports = module.exports = Stream.Readable;
-  exports.Readable = Stream.Readable;
-  exports.Writable = Stream.Writable;
-  exports.Duplex = Stream.Duplex;
-  exports.Transform = Stream.Transform;
-  exports.PassThrough = Stream.PassThrough;
-  exports.Stream = Stream;
-} else {
-  exports = module.exports = __nccwpck_require__(6893);
-  exports.Stream = Stream || exports;
-  exports.Readable = exports;
-  exports.Writable = __nccwpck_require__(8797);
-  exports.Duplex = __nccwpck_require__(2063);
-  exports.Transform = __nccwpck_require__(2337);
-  exports.PassThrough = __nccwpck_require__(5283);
-}
-
-
-/***/ }),
-
-/***/ 3058:
-/***/ ((module, exports, __nccwpck_require__) => {
-
-/* eslint-disable node/no-deprecated-api */
-var buffer = __nccwpck_require__(181)
-var Buffer = buffer.Buffer
-
-// alternative to using Object.keys for old browsers
-function copyProps (src, dst) {
-  for (var key in src) {
-    dst[key] = src[key]
-  }
-}
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports)
-  exports.Buffer = SafeBuffer
-}
-
-function SafeBuffer (arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-// Copy static methods from Buffer
-copyProps(Buffer, SafeBuffer)
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number')
-  }
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  var buf = Buffer(size)
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding)
-    } else {
-      buf.fill(fill)
-    }
-  } else {
-    buf.fill(0)
-  }
-  return buf
-}
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return Buffer(size)
-}
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return buffer.SlowBuffer(size)
-}
-
-
-/***/ }),
-
-/***/ 634:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-/*<replacement>*/
-
-var Buffer = (__nccwpck_require__(3058).Buffer);
-/*</replacement>*/
-
-var isEncoding = Buffer.isEncoding || function (encoding) {
-  encoding = '' + encoding;
-  switch (encoding && encoding.toLowerCase()) {
-    case 'hex':case 'utf8':case 'utf-8':case 'ascii':case 'binary':case 'base64':case 'ucs2':case 'ucs-2':case 'utf16le':case 'utf-16le':case 'raw':
-      return true;
-    default:
-      return false;
-  }
-};
-
-function _normalizeEncoding(enc) {
-  if (!enc) return 'utf8';
-  var retried;
-  while (true) {
-    switch (enc) {
-      case 'utf8':
-      case 'utf-8':
-        return 'utf8';
-      case 'ucs2':
-      case 'ucs-2':
-      case 'utf16le':
-      case 'utf-16le':
-        return 'utf16le';
-      case 'latin1':
-      case 'binary':
-        return 'latin1';
-      case 'base64':
-      case 'ascii':
-      case 'hex':
-        return enc;
-      default:
-        if (retried) return; // undefined
-        enc = ('' + enc).toLowerCase();
-        retried = true;
-    }
-  }
-};
-
-// Do not cache `Buffer.isEncoding` when checking encoding names as some
-// modules monkey-patch it to support additional encodings
-function normalizeEncoding(enc) {
-  var nenc = _normalizeEncoding(enc);
-  if (typeof nenc !== 'string' && (Buffer.isEncoding === isEncoding || !isEncoding(enc))) throw new Error('Unknown encoding: ' + enc);
-  return nenc || enc;
-}
-
-// StringDecoder provides an interface for efficiently splitting a series of
-// buffers into a series of JS strings without breaking apart multi-byte
-// characters.
-exports.I = StringDecoder;
-function StringDecoder(encoding) {
-  this.encoding = normalizeEncoding(encoding);
-  var nb;
-  switch (this.encoding) {
-    case 'utf16le':
-      this.text = utf16Text;
-      this.end = utf16End;
-      nb = 4;
-      break;
-    case 'utf8':
-      this.fillLast = utf8FillLast;
-      nb = 4;
-      break;
-    case 'base64':
-      this.text = base64Text;
-      this.end = base64End;
-      nb = 3;
-      break;
-    default:
-      this.write = simpleWrite;
-      this.end = simpleEnd;
-      return;
-  }
-  this.lastNeed = 0;
-  this.lastTotal = 0;
-  this.lastChar = Buffer.allocUnsafe(nb);
-}
-
-StringDecoder.prototype.write = function (buf) {
-  if (buf.length === 0) return '';
-  var r;
-  var i;
-  if (this.lastNeed) {
-    r = this.fillLast(buf);
-    if (r === undefined) return '';
-    i = this.lastNeed;
-    this.lastNeed = 0;
-  } else {
-    i = 0;
-  }
-  if (i < buf.length) return r ? r + this.text(buf, i) : this.text(buf, i);
-  return r || '';
-};
-
-StringDecoder.prototype.end = utf8End;
-
-// Returns only complete characters in a Buffer
-StringDecoder.prototype.text = utf8Text;
-
-// Attempts to complete a partial non-UTF-8 character using bytes from a Buffer
-StringDecoder.prototype.fillLast = function (buf) {
-  if (this.lastNeed <= buf.length) {
-    buf.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, this.lastNeed);
-    return this.lastChar.toString(this.encoding, 0, this.lastTotal);
-  }
-  buf.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, buf.length);
-  this.lastNeed -= buf.length;
-};
-
-// Checks the type of a UTF-8 byte, whether it's ASCII, a leading byte, or a
-// continuation byte. If an invalid byte is detected, -2 is returned.
-function utf8CheckByte(byte) {
-  if (byte <= 0x7F) return 0;else if (byte >> 5 === 0x06) return 2;else if (byte >> 4 === 0x0E) return 3;else if (byte >> 3 === 0x1E) return 4;
-  return byte >> 6 === 0x02 ? -1 : -2;
-}
-
-// Checks at most 3 bytes at the end of a Buffer in order to detect an
-// incomplete multi-byte UTF-8 character. The total number of bytes (2, 3, or 4)
-// needed to complete the UTF-8 character (if applicable) are returned.
-function utf8CheckIncomplete(self, buf, i) {
-  var j = buf.length - 1;
-  if (j < i) return 0;
-  var nb = utf8CheckByte(buf[j]);
-  if (nb >= 0) {
-    if (nb > 0) self.lastNeed = nb - 1;
-    return nb;
-  }
-  if (--j < i || nb === -2) return 0;
-  nb = utf8CheckByte(buf[j]);
-  if (nb >= 0) {
-    if (nb > 0) self.lastNeed = nb - 2;
-    return nb;
-  }
-  if (--j < i || nb === -2) return 0;
-  nb = utf8CheckByte(buf[j]);
-  if (nb >= 0) {
-    if (nb > 0) {
-      if (nb === 2) nb = 0;else self.lastNeed = nb - 3;
-    }
-    return nb;
-  }
-  return 0;
-}
-
-// Validates as many continuation bytes for a multi-byte UTF-8 character as
-// needed or are available. If we see a non-continuation byte where we expect
-// one, we "replace" the validated continuation bytes we've seen so far with
-// a single UTF-8 replacement character ('\ufffd'), to match v8's UTF-8 decoding
-// behavior. The continuation byte check is included three times in the case
-// where all of the continuation bytes for a character exist in the same buffer.
-// It is also done this way as a slight performance increase instead of using a
-// loop.
-function utf8CheckExtraBytes(self, buf, p) {
-  if ((buf[0] & 0xC0) !== 0x80) {
-    self.lastNeed = 0;
-    return '\ufffd';
-  }
-  if (self.lastNeed > 1 && buf.length > 1) {
-    if ((buf[1] & 0xC0) !== 0x80) {
-      self.lastNeed = 1;
-      return '\ufffd';
-    }
-    if (self.lastNeed > 2 && buf.length > 2) {
-      if ((buf[2] & 0xC0) !== 0x80) {
-        self.lastNeed = 2;
-        return '\ufffd';
-      }
-    }
-  }
-}
-
-// Attempts to complete a multi-byte UTF-8 character using bytes from a Buffer.
-function utf8FillLast(buf) {
-  var p = this.lastTotal - this.lastNeed;
-  var r = utf8CheckExtraBytes(this, buf, p);
-  if (r !== undefined) return r;
-  if (this.lastNeed <= buf.length) {
-    buf.copy(this.lastChar, p, 0, this.lastNeed);
-    return this.lastChar.toString(this.encoding, 0, this.lastTotal);
+  function cbListener(listener) {
+    listener(self.error);
   }
-  buf.copy(this.lastChar, p, 0, buf.length);
-  this.lastNeed -= buf.length;
 }
 
-// Returns all complete UTF-8 characters in a Buffer. If the Buffer ended on a
-// partial character, the character's bytes are buffered until the required
-// number of bytes are available.
-function utf8Text(buf, i) {
-  var total = utf8CheckIncomplete(this, buf, i);
-  if (!this.lastNeed) return buf.toString('utf8', i);
-  this.lastTotal = total;
-  var end = buf.length - (total - this.lastNeed);
-  buf.copy(this.lastChar, 0, end);
-  return buf.toString('utf8', i, end);
+function pendGo(self, fn) {
+  fn(pendHold(self));
 }
 
-// For UTF-8, a replacement character is added when ending on a partial
-// character.
-function utf8End(buf) {
-  var r = buf && buf.length ? this.write(buf) : '';
-  if (this.lastNeed) return r + '\ufffd';
-  return r;
-}
-
-// UTF-16LE typically needs two bytes per character, but even if we have an even
-// number of bytes available, we need to check if we end on a leading/high
-// surrogate. In that case, we need to wait for the next two bytes in order to
-// decode the last character properly.
-function utf16Text(buf, i) {
-  if ((buf.length - i) % 2 === 0) {
-    var r = buf.toString('utf16le', i);
-    if (r) {
-      var c = r.charCodeAt(r.length - 1);
-      if (c >= 0xD800 && c <= 0xDBFF) {
-        this.lastNeed = 2;
-        this.lastTotal = 4;
-        this.lastChar[0] = buf[buf.length - 2];
-        this.lastChar[1] = buf[buf.length - 1];
-        return r.slice(0, -1);
-      }
-    }
-    return r;
-  }
-  this.lastNeed = 1;
-  this.lastTotal = 2;
-  this.lastChar[0] = buf[buf.length - 1];
-  return buf.toString('utf16le', i, buf.length - 1);
-}
-
-// For UTF-16LE we do not explicitly append special replacement characters if we
-// end on a partial character, we simply let v8 handle that.
-function utf16End(buf) {
-  var r = buf && buf.length ? this.write(buf) : '';
-  if (this.lastNeed) {
-    var end = this.lastTotal - this.lastNeed;
-    return r + this.lastChar.toString('utf16le', 0, end);
-  }
-  return r;
-}
-
-function base64Text(buf, i) {
-  var n = (buf.length - i) % 3;
-  if (n === 0) return buf.toString('base64', i);
-  this.lastNeed = 3 - n;
-  this.lastTotal = 3;
-  if (n === 1) {
-    this.lastChar[0] = buf[buf.length - 1];
-  } else {
-    this.lastChar[0] = buf[buf.length - 2];
-    this.lastChar[1] = buf[buf.length - 1];
-  }
-  return buf.toString('base64', i, buf.length - n);
-}
-
-function base64End(buf) {
-  var r = buf && buf.length ? this.write(buf) : '';
-  if (this.lastNeed) return r + this.lastChar.toString('base64', 0, 3 - this.lastNeed);
-  return r;
-}
-
-// Pass bytes on through for single-byte encodings (e.g. ascii, latin1, hex)
-function simpleWrite(buf) {
-  return buf.toString(this.encoding);
-}
-
-function simpleEnd(buf) {
-  return buf && buf.length ? this.write(buf) : '';
-}
 
 /***/ }),
 
@@ -54164,7 +42433,7 @@ module.exports = {
 
 
 const { parseSetCookie } = __nccwpck_require__(8915)
-const { stringify, getHeadersList } = __nccwpck_require__(3834)
+const { stringify } = __nccwpck_require__(3834)
 const { webidl } = __nccwpck_require__(4222)
 const { Headers } = __nccwpck_require__(6349)
 
@@ -54240,14 +42509,13 @@ function getSetCookies (headers) {
 
   webidl.brandCheck(headers, Headers, { strict: false })
 
-  const cookies = getHeadersList(headers).cookies
+  const cookies = headers.getSetCookie()
 
   if (!cookies) {
     return []
   }
 
-  // In older versions of undici, cookies is a list of name:value.
-  return cookies.map((pair) => parseSetCookie(Array.isArray(pair) ? pair[1] : pair))
+  return cookies.map((pair) => parseSetCookie(pair))
 }
 
 /**
@@ -54674,13 +42942,14 @@ module.exports = {
 /***/ }),
 
 /***/ 3834:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+/***/ ((module) => {
 
 
 
-const assert = __nccwpck_require__(2613)
-const { kHeadersList } = __nccwpck_require__(6443)
-
+/**
+ * @param {string} value
+ * @returns {boolean}
+ */
 function isCTLExcludingHtab (value) {
   if (value.length === 0) {
     return false
@@ -54941,31 +43210,13 @@ function stringify (cookie) {
   return out.join('; ')
 }
 
-let kHeadersListNode
-
-function getHeadersList (headers) {
-  if (headers[kHeadersList]) {
-    return headers[kHeadersList]
-  }
-
-  if (!kHeadersListNode) {
-    kHeadersListNode = Object.getOwnPropertySymbols(headers).find(
-      (symbol) => symbol.description === 'headers list'
-    )
-
-    assert(kHeadersListNode, 'Headers cannot be parsed')
-  }
-
-  const headersList = headers[kHeadersListNode]
-  assert(headersList)
-
-  return headersList
-}
-
 module.exports = {
   isCTLExcludingHtab,
-  stringify,
-  getHeadersList
+  validateCookieName,
+  validateCookiePath,
+  validateCookieValue,
+  toIMFDate,
+  stringify
 }
 
 
@@ -58956,6 +47207,7 @@ const {
   isValidHeaderName,
   isValidHeaderValue
 } = __nccwpck_require__(5523)
+const util = __nccwpck_require__(9023)
 const { webidl } = __nccwpck_require__(4222)
 const assert = __nccwpck_require__(2613)
 
@@ -59509,6 +47761,9 @@ Object.defineProperties(Headers.prototype, {
   [Symbol.toStringTag]: {
     value: 'Headers',
     configurable: true
+  },
+  [util.inspect.custom]: {
+    enumerable: false
   }
 })
 
@@ -68656,6 +56911,20 @@ class Pool extends PoolBase {
       ? { ...options.interceptors }
       : undefined
     this[kFactory] = factory
+
+    this.on('connectionError', (origin, targets, error) => {
+      // If a connection error occurs, we remove the client from the pool,
+      // and emit a connectionError event. They will not be re-used.
+      // Fixes https://github.com/nodejs/undici/issues/3895
+      for (const target of targets) {
+        // Do not use kRemoveClient here, as it will close the client,
+        // but the client cannot be closed in this state.
+        const idx = this[kClients].indexOf(target)
+        if (idx !== -1) {
+          this[kClients].splice(idx, 1)
+        }
+      }
+    })
   }
 
   [kGetDispatcher] () {
@@ -70950,1430 +59219,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ 5077:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-
-exports.fromCallback = function (fn) {
-  return Object.defineProperty(function (...args) {
-    if (typeof args[args.length - 1] === 'function') fn.apply(this, args)
-    else {
-      return new Promise((resolve, reject) => {
-        args.push((err, res) => (err != null) ? reject(err) : resolve(res))
-        fn.apply(this, args)
-      })
-    }
-  }, 'name', { value: fn.name })
-}
-
-exports.fromPromise = function (fn) {
-  return Object.defineProperty(function (...args) {
-    const cb = args[args.length - 1]
-    if (typeof cb !== 'function') return fn.apply(this, args)
-    else {
-      args.pop()
-      fn.apply(this, args).then(r => cb(null, r), cb)
-    }
-  }, 'name', { value: fn.name })
-}
-
-
-/***/ }),
-
-/***/ 7127:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const Stream = __nccwpck_require__(2203);
-
-module.exports = function(entry) {
-  return new Promise(function(resolve, reject) {
-    const chunks = [];
-    const bufferStream = Stream.Transform()
-      .on('finish', function() {
-        resolve(Buffer.concat(chunks));
-      })
-      .on('error', reject);
-
-    bufferStream._transform = function(d, e, cb) {
-      chunks.push(d);
-      cb();
-    };
-    entry.on('error', reject)
-      .pipe(bufferStream);
-  });
-};
-
-
-/***/ }),
-
-/***/ 7496:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const Int64 = __nccwpck_require__(8789);
-let Stream = __nccwpck_require__(2203);
-
-// Backwards compatibility for node versions < 8
-
-if (!Stream.Writable || !Stream.Writable.prototype.destroy)
-  Stream = __nccwpck_require__(6131);
-
-let table;
-
-function generateTable() {
-  const poly = 0xEDB88320;
-  let c, n, k;
-  table = [];
-  for (n = 0; n < 256; n++) {
-    c = n;
-    for (k = 0; k < 8; k++) c = c & 1 ? poly ^ (c >>> 1) : (c = c >>> 1);
-    table[n] = c >>> 0;
-  }
-}
-
-function crc(ch, crc) {
-  if (!table) generateTable();
-
-  if (ch.charCodeAt) ch = ch.charCodeAt(0);
-
-  const l = (crc.readUInt32BE() >> 8) & 0xffffff;
-  const r = table[(crc.readUInt32BE() ^ (ch >>> 0)) & 0xff];
-
-  return (l ^ r) >>> 0;
-}
-
-function multiply(a, b) {
-  const ah = (a >> 16) & 0xffff;
-  const al = a & 0xffff;
-  const bh = (b >> 16) & 0xffff;
-  const bl = b & 0xffff;
-  const high = (ah * bl + al * bh) & 0xffff;
-
-  return ((high << 16) >>> 0) + al * bl;
-}
-
-function Decrypt() {
-  if (!(this instanceof Decrypt)) return new Decrypt();
-
-  this.key0 = Buffer.allocUnsafe(4);
-  this.key1 = Buffer.allocUnsafe(4);
-  this.key2 = Buffer.allocUnsafe(4);
-
-  this.key0.writeUInt32BE(0x12345678, 0);
-  this.key1.writeUInt32BE(0x23456789, 0);
-  this.key2.writeUInt32BE(0x34567890, 0);
-}
-
-Decrypt.prototype.update = function (h) {
-  this.key0.writeUInt32BE(crc(h, this.key0));
-  this.key1.writeUInt32BE(
-    ((this.key0.readUInt32BE() & 0xff & 0xFFFFFFFF) +
-      this.key1.readUInt32BE()) >>> 0
-  );
-  const x = new Int64(
-    (multiply(this.key1.readUInt32BE(), 134775813) + 1) & 0xFFFFFFFF
-  );
-  const b = Buffer.alloc(8);
-  x.copy(b, 0);
-  b.copy(this.key1, 0, 4, 8);
-  this.key2.writeUInt32BE(
-    crc(((this.key1.readUInt32BE() >> 24) & 0xff) >>> 0, this.key2)
-  );
-};
-
-Decrypt.prototype.decryptByte = function (c) {
-  const k = (this.key2.readUInt32BE() | 2) >>> 0;
-  c = c ^ ((multiply(k, (k ^ 1 >>> 0)) >> 8) & 0xff);
-  this.update(c);
-
-  return c;
-};
-
-Decrypt.prototype.stream = function () {
-  const stream = Stream.Transform(),
-    self = this;
-  stream._transform = function (d, e, cb) {
-    for (let i = 0; i < d.length; i++) {
-      d[i] = self.decryptByte(d[i]);
-    }
-    this.push(d);
-    cb();
-  };
-
-  return stream;
-};
-
-module.exports = Decrypt;
-
-/***/ }),
-
-/***/ 3317:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const Stream = __nccwpck_require__(2203);
-const util = __nccwpck_require__(9023);
-function NoopStream() {
-  if (!(this instanceof NoopStream)) {
-    return new NoopStream();
-  }
-  Stream.Transform.call(this);
-}
-
-util.inherits(NoopStream, Stream.Transform);
-
-NoopStream.prototype._transform = function(d, e, cb) { cb() ;};
-
-module.exports = NoopStream;
-
-/***/ }),
-
-/***/ 749:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const PullStream = __nccwpck_require__(5718);
-const unzip = __nccwpck_require__(2440);
-const BufferStream = __nccwpck_require__(7127);
-const parseExtraField = __nccwpck_require__(8820);
-const path = __nccwpck_require__(6928);
-const fs = __nccwpck_require__(2136);
-const parseDateTime = __nccwpck_require__(9611);
-const parseBuffer = __nccwpck_require__(9340);
-const Bluebird = __nccwpck_require__(4366);
-
-const signature = Buffer.alloc(4);
-signature.writeUInt32LE(0x06054b50, 0);
-
-function getCrxHeader(source) {
-  const sourceStream = source.stream(0).pipe(PullStream());
-
-  return sourceStream.pull(4).then(function(data) {
-    const signature = data.readUInt32LE(0);
-    if (signature === 0x34327243) {
-      let crxHeader;
-      return sourceStream.pull(12).then(function(data) {
-        crxHeader = parseBuffer.parse(data, [
-          ['version', 4],
-          ['pubKeyLength', 4],
-          ['signatureLength', 4],
-        ]);
-      }).then(function() {
-        return sourceStream.pull(crxHeader.pubKeyLength +crxHeader.signatureLength);
-      }).then(function(data) {
-        crxHeader.publicKey = data.slice(0, crxHeader.pubKeyLength);
-        crxHeader.signature = data.slice(crxHeader.pubKeyLength);
-        crxHeader.size = 16 + crxHeader.pubKeyLength +crxHeader.signatureLength;
-        return crxHeader;
-      });
-    }
-  });
-}
-
-// Zip64 File Format Notes: https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT
-function getZip64CentralDirectory(source, zip64CDL) {
-  const d64loc = parseBuffer.parse(zip64CDL, [
-    ['signature', 4],
-    ['diskNumber', 4],
-    ['offsetToStartOfCentralDirectory', 8],
-    ['numberOfDisks', 4],
-  ]);
-
-  if (d64loc.signature != 0x07064b50) {
-    throw new Error('invalid zip64 end of central dir locator signature (0x07064b50): 0x' + d64loc.signature.toString(16));
-  }
-
-  const dir64 = PullStream();
-  source.stream(d64loc.offsetToStartOfCentralDirectory).pipe(dir64);
-
-  return dir64.pull(56);
-}
-
-// Zip64 File Format Notes: https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT
-function parseZip64DirRecord (dir64record) {
-  const vars = parseBuffer.parse(dir64record, [
-    ['signature', 4],
-    ['sizeOfCentralDirectory', 8],
-    ['version', 2],
-    ['versionsNeededToExtract', 2],
-    ['diskNumber', 4],
-    ['diskStart', 4],
-    ['numberOfRecordsOnDisk', 8],
-    ['numberOfRecords', 8],
-    ['sizeOfCentralDirectory', 8],
-    ['offsetToStartOfCentralDirectory', 8],
-  ]);
-
-  if (vars.signature != 0x06064b50) {
-    throw new Error('invalid zip64 end of central dir locator signature (0x06064b50): 0x0' + vars.signature.toString(16));
-  }
-
-  return vars;
-}
-
-module.exports = function centralDirectory(source, options) {
-  const endDir = PullStream();
-  const records = PullStream();
-  const tailSize = (options && options.tailSize) || 80;
-  let sourceSize,
-    crxHeader,
-    startOffset,
-    vars;
-
-  if (options && options.crx)
-    crxHeader = getCrxHeader(source);
-
-  return source.size()
-    .then(function(size) {
-      sourceSize = size;
-
-      source.stream(Math.max(0, size-tailSize))
-        .on('error', function (error) { endDir.emit('error', error); })
-        .pipe(endDir);
-
-      return endDir.pull(signature);
-    })
-    .then(function() {
-      return Bluebird.props({directory: endDir.pull(22), crxHeader: crxHeader});
-    })
-    .then(function(d) {
-      const data = d.directory;
-      startOffset = d.crxHeader && d.crxHeader.size || 0;
-
-      vars = parseBuffer.parse(data, [
-        ['signature', 4],
-        ['diskNumber', 2],
-        ['diskStart', 2],
-        ['numberOfRecordsOnDisk', 2],
-        ['numberOfRecords', 2],
-        ['sizeOfCentralDirectory', 4],
-        ['offsetToStartOfCentralDirectory', 4],
-        ['commentLength', 2],
-      ]);
-
-      // Is this zip file using zip64 format? Use same check as Go:
-      // https://github.com/golang/go/blob/master/src/archive/zip/reader.go#L503
-      // For zip64 files, need to find zip64 central directory locator header to extract
-      // relative offset for zip64 central directory record.
-      if (vars.diskNumber == 0xffff || vars.numberOfRecords == 0xffff ||
-        vars.offsetToStartOfCentralDirectory == 0xffffffff) {
-
-        // Offset to zip64 CDL is 20 bytes before normal CDR
-        const zip64CDLSize = 20;
-        const zip64CDLOffset = sourceSize - (tailSize - endDir.match + zip64CDLSize);
-        const zip64CDLStream = PullStream();
-
-        source.stream(zip64CDLOffset).pipe(zip64CDLStream);
-
-        return zip64CDLStream.pull(zip64CDLSize)
-          .then(function (d) { return getZip64CentralDirectory(source, d); })
-          .then(function (dir64record) {
-            vars = parseZip64DirRecord(dir64record);
-          });
-      } else {
-        vars.offsetToStartOfCentralDirectory += startOffset;
-      }
-    })
-    .then(function() {
-      if (vars.commentLength) return endDir.pull(vars.commentLength).then(function(comment) {
-        vars.comment = comment.toString('utf8');
-      });
-    })
-    .then(function() {
-      source.stream(vars.offsetToStartOfCentralDirectory).pipe(records);
-
-      vars.extract = function(opts) {
-        if (!opts || !opts.path) throw new Error('PATH_MISSING');
-        // make sure path is normalized before using it
-        opts.path = path.resolve(path.normalize(opts.path));
-        return vars.files.then(function(files) {
-          return Bluebird.map(files, async function(entry) {
-            // to avoid zip slip (writing outside of the destination), we resolve
-            // the target path, and make sure it's nested in the intended
-            // destination, or not extract it otherwise.
-            const extractPath = path.join(opts.path, entry.path);
-            if (extractPath.indexOf(opts.path) != 0) {
-              return;
-            }
-
-            if (entry.type == 'Directory') {
-              await fs.ensureDir(extractPath);
-              return;
-            }
-
-            await fs.ensureDir(path.dirname(extractPath));
-
-            const writer = opts.getWriter ? opts.getWriter({path: extractPath}) : fs.createWriteStream(extractPath);
-
-            return new Promise(function(resolve, reject) {
-              entry.stream(opts.password)
-                .on('error', reject)
-                .pipe(writer)
-                .on('close', resolve)
-                .on('error', reject);
-            });
-          }, { concurrency: opts.concurrency > 1 ? opts.concurrency : 1 });
-        });
-      };
-
-      vars.files = Bluebird.mapSeries(Array(vars.numberOfRecords), function() {
-        return records.pull(46).then(function(data) {
-          const vars = parseBuffer.parse(data, [
-            ['signature', 4],
-            ['versionMadeBy', 2],
-            ['versionsNeededToExtract', 2],
-            ['flags', 2],
-            ['compressionMethod', 2],
-            ['lastModifiedTime', 2],
-            ['lastModifiedDate', 2],
-            ['crc32', 4],
-            ['compressedSize', 4],
-            ['uncompressedSize', 4],
-            ['fileNameLength', 2],
-            ['extraFieldLength', 2],
-            ['fileCommentLength', 2],
-            ['diskNumber', 2],
-            ['internalFileAttributes', 2],
-            ['externalFileAttributes', 4],
-            ['offsetToLocalFileHeader', 4],
-          ]);
-
-          vars.offsetToLocalFileHeader += startOffset;
-          vars.lastModifiedDateTime = parseDateTime(vars.lastModifiedDate, vars.lastModifiedTime);
-
-          return records.pull(vars.fileNameLength).then(function(fileNameBuffer) {
-            vars.pathBuffer = fileNameBuffer;
-            vars.path = fileNameBuffer.toString('utf8');
-            vars.isUnicode = (vars.flags & 0x800) != 0;
-            return records.pull(vars.extraFieldLength);
-          })
-            .then(function(extraField) {
-              vars.extra = parseExtraField(extraField, vars);
-              return records.pull(vars.fileCommentLength);
-            })
-            .then(function(comment) {
-              vars.comment = comment;
-              vars.type = (vars.uncompressedSize === 0 && /[/\\]$/.test(vars.path)) ? 'Directory' : 'File';
-              const padding = options && options.padding || 1000;
-              vars.stream = function(_password) {
-                const totalSize = 30
-              + padding // add an extra buffer
-              + (vars.extraFieldLength || 0)
-              + (vars.fileNameLength || 0)
-              + vars.compressedSize;
-
-                return unzip(source, vars.offsetToLocalFileHeader, _password, vars, totalSize);
-              };
-              vars.buffer = function(_password) {
-                return BufferStream(vars.stream(_password));
-              };
-              return vars;
-            });
-        });
-      });
-
-      return Bluebird.props(vars);
-    });
-};
-
-
-/***/ }),
-
-/***/ 2482:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const fs = __nccwpck_require__(5744);
-const directory = __nccwpck_require__(749);
-const Stream = __nccwpck_require__(2203);
-
-module.exports = {
-  buffer: function(buffer, options) {
-    const source = {
-      stream: function(offset, length) {
-        const stream = Stream.PassThrough();
-        const end = length ? offset + length : undefined;
-        stream.end(buffer.slice(offset, end));
-        return stream;
-      },
-      size: function() {
-        return Promise.resolve(buffer.length);
-      }
-    };
-    return directory(source, options);
-  },
-  file: function(filename, options) {
-    const source = {
-      stream: function(start, length) {
-        const end = length ? start + length : undefined;
-        return fs.createReadStream(filename, {start, end});
-      },
-      size: function() {
-        return new Promise(function(resolve, reject) {
-          fs.stat(filename, function(err, d) {
-            if (err)
-              reject(err);
-            else
-              resolve(d.size);
-          });
-        });
-      }
-    };
-    return directory(source, options);
-  },
-
-  url: function(request, params, options) {
-    if (typeof params === 'string')
-      params = {url: params};
-    if (!params.url)
-      throw 'URL missing';
-    params.headers = params.headers || {};
-
-    const source = {
-      stream : function(offset, length) {
-        const options = Object.create(params);
-        const end = length ? offset + length : '';
-        options.headers = Object.create(params.headers);
-        options.headers.range = 'bytes='+offset+'-' + end;
-        return request(options);
-      },
-      size: function() {
-        return new Promise(function(resolve, reject) {
-          const req = request(params);
-          req.on('response', function(d) {
-            req.abort();
-            if (!d.headers['content-length'])
-              reject(new Error('Missing content length header'));
-            else
-              resolve(d.headers['content-length']);
-          }).on('error', reject);
-        });
-      }
-    };
-
-    return directory(source, options);
-  },
-
-  s3 : function(client, params, options) {
-    const source = {
-      size: function() {
-        return new Promise(function(resolve, reject) {
-          client.headObject(params, function(err, d) {
-            if (err)
-              reject(err);
-            else
-              resolve(d.ContentLength);
-          });
-        });
-      },
-      stream: function(offset, length) {
-        const d = {};
-        for (const key in params)
-          d[key] = params[key];
-        const end = length ? offset + length : '';
-        d.Range = 'bytes='+offset+'-' + end;
-        return client.getObject(d).createReadStream();
-      }
-    };
-
-    return directory(source, options);
-  },
-  s3_v3: function (client, params, options) {
-    //@ts-ignore
-    const { GetObjectCommand, HeadObjectCommand } = __nccwpck_require__(3711);
-    const source = {
-      size: async () => {
-        const head = await client.send(
-          new HeadObjectCommand({
-            Bucket: params.Bucket,
-            Key: params.Key,
-          })
-        );
-
-        if(!head.ContentLength) {
-          return 0;
-        }
-
-        return head.ContentLength;
-      },
-      stream: (offset, length) => {
-        const stream = Stream.PassThrough();
-        const end = length ? offset + length : "";
-        client
-          .send(
-            new GetObjectCommand({
-              Bucket: params.Bucket,
-              Key: params.Key,
-              Range: `bytes=${offset}-${end}`,
-            })
-          )
-          .then((response) => {
-            response.Body.pipe(stream);
-          })
-          .catch((error) => {
-            stream.emit("error", error);
-          });
-
-        return stream;
-      },
-    };
-
-    return directory(source, options);
-  },
-  custom: function(source, options) {
-    return directory(source, options);
-  }
-};
-
-
-/***/ }),
-
-/***/ 2440:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const Decrypt = __nccwpck_require__(7496);
-const PullStream = __nccwpck_require__(5718);
-const Stream = __nccwpck_require__(2203);
-const zlib = __nccwpck_require__(3106);
-const parseExtraField = __nccwpck_require__(8820);
-const parseDateTime = __nccwpck_require__(9611);
-const parseBuffer = __nccwpck_require__(9340);
-
-module.exports = function unzip(source, offset, _password, directoryVars, length) {
-  const file = PullStream(),
-    entry = Stream.PassThrough();
-
-  const req = source.stream(offset, length);
-  req.pipe(file).on('error', function(e) {
-    entry.emit('error', e);
-  });
-
-  entry.vars = file.pull(30)
-    .then(function(data) {
-      let vars = parseBuffer.parse(data, [
-        ['signature', 4],
-        ['versionsNeededToExtract', 2],
-        ['flags', 2],
-        ['compressionMethod', 2],
-        ['lastModifiedTime', 2],
-        ['lastModifiedDate', 2],
-        ['crc32', 4],
-        ['compressedSize', 4],
-        ['uncompressedSize', 4],
-        ['fileNameLength', 2],
-        ['extraFieldLength', 2],
-      ]);
-
-      vars.lastModifiedDateTime = parseDateTime(vars.lastModifiedDate, vars.lastModifiedTime);
-
-      return file.pull(vars.fileNameLength)
-        .then(function(fileName) {
-          vars.fileName = fileName.toString('utf8');
-          return file.pull(vars.extraFieldLength);
-        })
-        .then(function(extraField) {
-          let checkEncryption;
-          vars.extra = parseExtraField(extraField, vars);
-          // Ignore logal file header vars if the directory vars are available
-          if (directoryVars && directoryVars.compressedSize) vars = directoryVars;
-
-          if (vars.flags & 0x01) checkEncryption = file.pull(12)
-            .then(function(header) {
-              if (!_password)
-                throw new Error('MISSING_PASSWORD');
-
-              const decrypt = Decrypt();
-
-              String(_password).split('').forEach(function(d) {
-                decrypt.update(d);
-              });
-
-              for (let i=0; i < header.length; i++)
-                header[i] = decrypt.decryptByte(header[i]);
-
-              vars.decrypt = decrypt;
-              vars.compressedSize -= 12;
-
-              const check = (vars.flags & 0x8) ? (vars.lastModifiedTime >> 8) & 0xff : (vars.crc32 >> 24) & 0xff;
-              if (header[11] !== check)
-                throw new Error('BAD_PASSWORD');
-
-              return vars;
-            });
-
-          return Promise.resolve(checkEncryption)
-            .then(function() {
-              entry.emit('vars', vars);
-              return vars;
-            });
-        });
-    });
-
-  entry.vars.then(function(vars) {
-    const fileSizeKnown = !(vars.flags & 0x08) || vars.compressedSize > 0;
-    let eof;
-
-    const inflater = vars.compressionMethod ? zlib.createInflateRaw() : Stream.PassThrough();
-
-    if (fileSizeKnown) {
-      entry.size = vars.uncompressedSize;
-      eof = vars.compressedSize;
-    } else {
-      eof = Buffer.alloc(4);
-      eof.writeUInt32LE(0x08074b50, 0);
-    }
-
-    let stream = file.stream(eof);
-
-    if (vars.decrypt)
-      stream = stream.pipe(vars.decrypt.stream());
-
-    stream
-      .pipe(inflater)
-      .on('error', function(err) { entry.emit('error', err);})
-      .pipe(entry)
-      .on('finish', function() {
-        if(req.destroy)
-          req.destroy();
-        else if (req.abort)
-          req.abort();
-        else if (req.close)
-          req.close();
-        else if (req.push)
-          req.push();
-        else
-          console.log('warning - unable to close stream');
-      });
-  })
-    .catch(function(e) {
-      entry.emit('error', e);
-    });
-
-  return entry;
-};
-
-
-/***/ }),
-
-/***/ 5718:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const Stream = __nccwpck_require__(2203);
-const util = __nccwpck_require__(9023);
-const strFunction = 'function';
-
-function PullStream() {
-  if (!(this instanceof PullStream))
-    return new PullStream();
-
-  Stream.Duplex.call(this, {decodeStrings:false, objectMode:true});
-  this.buffer = Buffer.from('');
-  const self = this;
-  self.on('finish', function() {
-    self.finished = true;
-    self.emit('chunk', false);
-  });
-}
-
-util.inherits(PullStream, Stream.Duplex);
-
-PullStream.prototype._write = function(chunk, e, cb) {
-  this.buffer = Buffer.concat([this.buffer, chunk]);
-  this.cb = cb;
-  this.emit('chunk');
-};
-
-
-// The `eof` parameter is interpreted as `file_length` if the type is number
-// otherwise (i.e. buffer) it is interpreted as a pattern signaling end of stream
-PullStream.prototype.stream = function(eof, includeEof) {
-  const p = Stream.PassThrough();
-  let done;
-  const self= this;
-
-  function cb() {
-    if (typeof self.cb === strFunction) {
-      const callback = self.cb;
-      self.cb = undefined;
-      return callback();
-    }
-  }
-
-  function pull() {
-    let packet;
-    if (self.buffer && self.buffer.length) {
-      if (typeof eof === 'number') {
-        packet = self.buffer.slice(0, eof);
-        self.buffer = self.buffer.slice(eof);
-        eof -= packet.length;
-        done = done || !eof;
-      } else {
-        let match = self.buffer.indexOf(eof);
-        if (match !== -1) {
-          // store signature match byte offset to allow us to reference
-          // this for zip64 offset
-          self.match = match;
-          if (includeEof) match = match + eof.length;
-          packet = self.buffer.slice(0, match);
-          self.buffer = self.buffer.slice(match);
-          done = true;
-        } else {
-          const len = self.buffer.length - eof.length;
-          if (len <= 0) {
-            cb();
-          } else {
-            packet = self.buffer.slice(0, len);
-            self.buffer = self.buffer.slice(len);
-          }
-        }
-      }
-      if (packet) p.write(packet, function() {
-        if (self.buffer.length === 0 || (eof.length && self.buffer.length <= eof.length)) cb();
-      });
-    }
-
-    if (!done) {
-      if (self.finished) {
-        self.removeListener('chunk', pull);
-        self.emit('error', new Error('FILE_ENDED'));
-        return;
-      }
-
-    } else {
-      self.removeListener('chunk', pull);
-      p.end();
-    }
-  }
-
-  self.on('chunk', pull);
-  pull();
-  return p;
-};
-
-PullStream.prototype.pull = function(eof, includeEof) {
-  if (eof === 0) return Promise.resolve('');
-
-  // If we already have the required data in buffer
-  // we can resolve the request immediately
-  if (!isNaN(eof) && this.buffer.length > eof) {
-    const data = this.buffer.slice(0, eof);
-    this.buffer = this.buffer.slice(eof);
-    return Promise.resolve(data);
-  }
-
-  // Otherwise we stream until we have it
-  let buffer = Buffer.from('');
-  const self = this;
-
-  const concatStream = new Stream.Transform();
-  concatStream._transform = function(d, e, cb) {
-    buffer = Buffer.concat([buffer, d]);
-    cb();
-  };
-
-  let rejectHandler;
-  let pullStreamRejectHandler;
-  return new Promise(function(resolve, reject) {
-    rejectHandler = reject;
-    pullStreamRejectHandler = function(e) {
-      self.__emittedError = e;
-      reject(e);
-    };
-    if (self.finished)
-      return reject(new Error('FILE_ENDED'));
-    self.once('error', pullStreamRejectHandler); // reject any errors from pullstream itself
-    self.stream(eof, includeEof)
-      .on('error', reject)
-      .pipe(concatStream)
-      .on('finish', function() {resolve(buffer);})
-      .on('error', reject);
-  })
-    .finally(function() {
-      self.removeListener('error', rejectHandler);
-      self.removeListener('error', pullStreamRejectHandler);
-    });
-};
-
-PullStream.prototype._read = function(){};
-
-module.exports = PullStream;
-
-
-/***/ }),
-
-/***/ 9680:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-module.exports = Extract;
-
-const Parse = __nccwpck_require__(2226);
-const fs = __nccwpck_require__(2136);
-const path = __nccwpck_require__(6928);
-const stream = __nccwpck_require__(2203);
-const duplexer2 = __nccwpck_require__(7865);
-
-function Extract (opts) {
-  // make sure path is normalized before using it
-  opts.path = path.resolve(path.normalize(opts.path));
-
-  const parser = new Parse(opts);
-
-  const outStream = new stream.Writable({objectMode: true});
-  outStream._write = async function(entry, encoding, cb) {
-
-    // to avoid zip slip (writing outside of the destination), we resolve
-    // the target path, and make sure it's nested in the intended
-    // destination, or not extract it otherwise.
-    // NOTE: Need to normalize to forward slashes for UNIX OS's to properly
-    // ignore the zip slipped file entirely
-    const extractPath = path.join(opts.path, entry.path.replace(/\\/g, '/'));
-    if (extractPath.indexOf(opts.path) != 0) {
-      return cb();
-    }
-
-
-    if (entry.type == 'Directory') {
-      await fs.ensureDir(extractPath);
-      return cb();
-    }
-
-    await fs.ensureDir(path.dirname(extractPath));
-
-    const writer = opts.getWriter ? opts.getWriter({path: extractPath}) : fs.createWriteStream(extractPath);
-
-    entry.pipe(writer)
-      .on('error', cb)
-      .on('close', cb);
-  };
-
-  const extract = duplexer2(parser, outStream);
-  parser.once('crx-header', function(crxHeader) {
-    extract.crxHeader = crxHeader;
-  });
-
-  parser
-    .pipe(outStream)
-    .on('finish', function() {
-      extract.emit('close');
-    });
-
-  extract.promise = function() {
-    return new Promise(function(resolve, reject) {
-      extract.on('close', resolve);
-      extract.on('error', reject);
-    });
-  };
-
-  return extract;
-}
-
-
-/***/ }),
-
-/***/ 2226:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const util = __nccwpck_require__(9023);
-const zlib = __nccwpck_require__(3106);
-const Stream = __nccwpck_require__(2203);
-const PullStream = __nccwpck_require__(5718);
-const NoopStream = __nccwpck_require__(3317);
-const BufferStream = __nccwpck_require__(7127);
-const parseExtraField = __nccwpck_require__(8820);
-const parseDateTime = __nccwpck_require__(9611);
-const pipeline = Stream.pipeline;
-const parseBuffer = __nccwpck_require__(9340);
-
-const endDirectorySignature = Buffer.alloc(4);
-endDirectorySignature.writeUInt32LE(0x06054b50, 0);
-
-function Parse(opts) {
-  if (!(this instanceof Parse)) {
-    return new Parse(opts);
-  }
-  const self = this;
-  self._opts = opts || { verbose: false };
-
-  PullStream.call(self, self._opts);
-  self.on('finish', function() {
-    self.emit('end');
-    self.emit('close');
-  });
-  self._readRecord().catch(function(e) {
-    if (!self.__emittedError || self.__emittedError !== e)
-      self.emit('error', e);
-  });
-}
-
-util.inherits(Parse, PullStream);
-
-Parse.prototype._readRecord = function () {
-  const self = this;
-
-  return self.pull(4).then(function(data) {
-    if (data.length === 0)
-      return;
-
-    const signature = data.readUInt32LE(0);
-
-    if (signature === 0x34327243) {
-      return self._readCrxHeader();
-    }
-    if (signature === 0x04034b50) {
-      return self._readFile();
-    }
-    else if (signature === 0x02014b50) {
-      self.reachedCD = true;
-      return self._readCentralDirectoryFileHeader();
-    }
-    else if (signature === 0x06054b50) {
-      return self._readEndOfCentralDirectoryRecord();
-    }
-    else if (self.reachedCD) {
-      // _readEndOfCentralDirectoryRecord expects the EOCD
-      // signature to be consumed so set includeEof=true
-      const includeEof = true;
-      return self.pull(endDirectorySignature, includeEof).then(function() {
-        return self._readEndOfCentralDirectoryRecord();
-      });
-    }
-    else
-      self.emit('error', new Error('invalid signature: 0x' + signature.toString(16)));
-  }).then((function(loop) {
-    if(loop) {
-      return self._readRecord();
-    }
-  }));
-};
-
-Parse.prototype._readCrxHeader = function() {
-  const self = this;
-  return self.pull(12).then(function(data) {
-    self.crxHeader = parseBuffer.parse(data, [
-      ['version', 4],
-      ['pubKeyLength', 4],
-      ['signatureLength', 4],
-    ]);
-    return self.pull(self.crxHeader.pubKeyLength + self.crxHeader.signatureLength);
-  }).then(function(data) {
-    self.crxHeader.publicKey = data.slice(0, self.crxHeader.pubKeyLength);
-    self.crxHeader.signature = data.slice(self.crxHeader.pubKeyLength);
-    self.emit('crx-header', self.crxHeader);
-    return true;
-  });
-};
-
-Parse.prototype._readFile = function () {
-  const self = this;
-  return self.pull(26).then(function(data) {
-    const vars = parseBuffer.parse(data, [
-      ['versionsNeededToExtract', 2],
-      ['flags', 2],
-      ['compressionMethod', 2],
-      ['lastModifiedTime', 2],
-      ['lastModifiedDate', 2],
-      ['crc32', 4],
-      ['compressedSize', 4],
-      ['uncompressedSize', 4],
-      ['fileNameLength', 2],
-      ['extraFieldLength', 2],
-    ]);
-
-    vars.lastModifiedDateTime = parseDateTime(vars.lastModifiedDate, vars.lastModifiedTime);
-
-    if (self.crxHeader) vars.crxHeader = self.crxHeader;
-
-    return self.pull(vars.fileNameLength).then(function(fileNameBuffer) {
-      const fileName = fileNameBuffer.toString('utf8');
-      const entry = Stream.PassThrough();
-      let __autodraining = false;
-
-      entry.autodrain = function() {
-        __autodraining = true;
-        const draining = entry.pipe(NoopStream());
-        draining.promise = function() {
-          return new Promise(function(resolve, reject) {
-            draining.on('finish', resolve);
-            draining.on('error', reject);
-          });
-        };
-        return draining;
-      };
-
-      entry.buffer = function() {
-        return BufferStream(entry);
-      };
-
-      entry.path = fileName;
-      entry.props = {};
-      entry.props.path = fileName;
-      entry.props.pathBuffer = fileNameBuffer;
-      entry.props.flags = {
-        "isUnicode": (vars.flags & 0x800) != 0
-      };
-      entry.type = (vars.uncompressedSize === 0 && /[/\\]$/.test(fileName)) ? 'Directory' : 'File';
-
-      if (self._opts.verbose) {
-        if (entry.type === 'Directory') {
-          console.log('   creating:', fileName);
-        } else if (entry.type === 'File') {
-          if (vars.compressionMethod === 0) {
-            console.log(' extracting:', fileName);
-          } else {
-            console.log('  inflating:', fileName);
-          }
-        }
-      }
-
-      return self.pull(vars.extraFieldLength).then(function(extraField) {
-        const extra = parseExtraField(extraField, vars);
-
-        entry.vars = vars;
-        entry.extra = extra;
-
-        if (self._opts.forceStream) {
-          self.push(entry);
-        } else {
-          self.emit('entry', entry);
-
-          if (self._readableState.pipesCount || (self._readableState.pipes && self._readableState.pipes.length))
-            self.push(entry);
-        }
-
-        if (self._opts.verbose)
-          console.log({
-            filename:fileName,
-            vars: vars,
-            extra: extra
-          });
-
-        const fileSizeKnown = !(vars.flags & 0x08) || vars.compressedSize > 0;
-        let eof;
-
-        entry.__autodraining = __autodraining; // expose __autodraining for test purposes
-        const inflater = (vars.compressionMethod && !__autodraining) ? zlib.createInflateRaw() : Stream.PassThrough();
-
-        if (fileSizeKnown) {
-          entry.size = vars.uncompressedSize;
-          eof = vars.compressedSize;
-        } else {
-          eof = Buffer.alloc(4);
-          eof.writeUInt32LE(0x08074b50, 0);
-        }
-
-        return new Promise(function(resolve, reject) {
-          pipeline(
-            self.stream(eof),
-            inflater,
-            entry,
-            function (err) {
-              if (err) {
-                return reject(err);
-              }
-
-              return fileSizeKnown ? resolve(fileSizeKnown) : self._processDataDescriptor(entry).then(resolve).catch(reject);
-            }
-          );
-        });
-      });
-    });
-  });
-};
-
-Parse.prototype._processDataDescriptor = function (entry) {
-  const self = this;
-  return self.pull(16).then(function(data) {
-    const vars = parseBuffer.parse(data, [
-      ['dataDescriptorSignature', 4],
-      ['crc32', 4],
-      ['compressedSize', 4],
-      ['uncompressedSize', 4],
-    ]);
-
-    entry.size = vars.uncompressedSize;
-    return true;
-  });
-};
-
-Parse.prototype._readCentralDirectoryFileHeader = function () {
-  const self = this;
-  return self.pull(42).then(function(data) {
-    const vars = parseBuffer.parse(data, [
-      ['versionMadeBy', 2],
-      ['versionsNeededToExtract', 2],
-      ['flags', 2],
-      ['compressionMethod', 2],
-      ['lastModifiedTime', 2],
-      ['lastModifiedDate', 2],
-      ['crc32', 4],
-      ['compressedSize', 4],
-      ['uncompressedSize', 4],
-      ['fileNameLength', 2],
-      ['extraFieldLength', 2],
-      ['fileCommentLength', 2],
-      ['diskNumber', 2],
-      ['internalFileAttributes', 2],
-      ['externalFileAttributes', 4],
-      ['offsetToLocalFileHeader', 4],
-    ]);
-
-    return self.pull(vars.fileNameLength).then(function(fileName) {
-      vars.fileName = fileName.toString('utf8');
-      return self.pull(vars.extraFieldLength);
-    })
-      .then(function() {
-        return self.pull(vars.fileCommentLength);
-      })
-      .then(function() {
-        return true;
-      });
-  });
-};
-
-Parse.prototype._readEndOfCentralDirectoryRecord = function() {
-  const self = this;
-  return self.pull(18).then(function(data) {
-
-    const vars = parseBuffer.parse(data, [
-      ['diskNumber', 2],
-      ['diskStart', 2],
-      ['numberOfRecordsOnDisk', 2],
-      ['numberOfRecords', 2],
-      ['sizeOfCentralDirectory', 4],
-      ['offsetToStartOfCentralDirectory', 4],
-      ['commentLength', 2],
-    ]);
-
-    return self.pull(vars.commentLength).then(function() {
-      self.end();
-      self.push(null);
-    });
-
-  });
-};
-
-Parse.prototype.promise = function() {
-  const self = this;
-  return new Promise(function(resolve, reject) {
-    self.on('finish', resolve);
-    self.on('error', reject);
-  });
-};
-
-module.exports = Parse;
-
-
-/***/ }),
-
-/***/ 9340:
-/***/ ((module) => {
-
-const parseUIntLE = function(buffer, offset, size) {
-  let result;
-  switch(size) {
-    case 1:
-      result = buffer.readUInt8(offset);
-      break;
-    case 2:
-      result = buffer.readUInt16LE(offset);
-      break;
-    case 4:
-      result = buffer.readUInt32LE(offset);
-      break;
-    case 8:
-      result = Number(buffer.readBigUInt64LE(offset));
-      break;
-    default:
-      throw new Error('Unsupported UInt LE size!');
-  }
-  return result;
-};
-
-/**
- * Parses sequential unsigned little endian numbers from the head of the passed buffer according to
- * the specified format passed.  If the buffer is not large enough to satisfy the full format,
- * null values will be assigned to the remaining keys.
- * @param {*} buffer The buffer to sequentially extract numbers from.
- * @param {*} format Expected format to follow when extrcting values from the buffer.  A list of list entries
- * with the following structure:
- * [
- *   [
- *     <key>,  // Name of the key to assign the extracted number to.
- *     <size>  // The size in bytes of the number to extract. possible values are 1, 2, 4, 8.
- *   ],
- *   ...
- * ]
- * @returns An object with keys set to their associated extracted values.
- */
-const parse = function(buffer, format) {
-  const result = {};
-  let offset = 0;
-  for(const [key, size] of format) {
-    if(buffer.length >= offset + size) {
-      result[key] = parseUIntLE(buffer, offset, size);
-    }
-    else {
-      result[key] = null;
-    }
-    offset += size;
-  }
-  return result;
-};
-
-module.exports = {
-  parse
-};
-
-/***/ }),
-
-/***/ 9611:
-/***/ ((module) => {
-
-// Dates in zip file entries are stored as DosDateTime
-// Spec is here: https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-dosdatetimetofiletime
-
-module.exports = function parseDateTime(date, time) {
-  const day = date & 0x1F;
-  const month = date >> 5 & 0x0F;
-  const year = (date >> 9 & 0x7F) + 1980;
-  const seconds = time ? (time & 0x1F) * 2 : 0;
-  const minutes = time ? (time >> 5) & 0x3F : 0;
-  const hours = time ? (time >> 11): 0;
-
-  return new Date(Date.UTC(year, month-1, day, hours, minutes, seconds));
-};
-
-/***/ }),
-
-/***/ 8820:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const parseBuffer = __nccwpck_require__(9340);
-
-module.exports = function(extraField, vars) {
-  let extra;
-  // Find the ZIP64 header, if present.
-  while(!extra && extraField && extraField.length) {
-    const candidateExtra = parseBuffer.parse(extraField, [
-      ['signature', 2],
-      ['partSize', 2],
-    ]);
-
-    if(candidateExtra.signature === 0x0001) {
-      // parse buffer based on data in ZIP64 central directory; order is important!
-      const fieldsToExpect = [];
-      if (vars.uncompressedSize === 0xffffffff) fieldsToExpect.push(['uncompressedSize', 8]);
-      if (vars.compressedSize === 0xffffffff) fieldsToExpect.push(['compressedSize', 8]);
-      if (vars.offsetToLocalFileHeader === 0xffffffff) fieldsToExpect.push(['offsetToLocalFileHeader', 8]);
-
-      // slice off the 4 bytes for signature and partSize
-      extra = parseBuffer.parse(extraField.slice(4), fieldsToExpect);
-    } else {
-      // Advance the buffer to the next part.
-      // The total size of this part is the 4 byte header + partsize.
-      extraField = extraField.slice(candidateExtra.partSize + 4);
-    }
-  }
-
-  extra = extra || {};
-
-  if (vars.compressedSize === 0xffffffff)
-    vars.compressedSize = extra.compressedSize;
-
-  if (vars.uncompressedSize === 0xffffffff)
-    vars.uncompressedSize= extra.uncompressedSize;
-
-  if (vars.offsetToLocalFileHeader === 0xffffffff)
-    vars.offsetToLocalFileHeader = extra.offsetToLocalFileHeader;
-
-  return extra;
-};
-
-
-/***/ }),
-
-/***/ 9416:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const Stream = __nccwpck_require__(2203);
-const Parse = __nccwpck_require__(2226);
-const duplexer2 = __nccwpck_require__(7865);
-const BufferStream = __nccwpck_require__(7127);
-
-function parseOne(match, opts) {
-  const inStream = Stream.PassThrough({objectMode:true});
-  const outStream = Stream.PassThrough();
-  const transform = Stream.Transform({objectMode:true});
-  const re = match instanceof RegExp ? match : (match && new RegExp(match));
-  let found;
-
-  transform._transform = function(entry, e, cb) {
-    if (found || (re && !re.exec(entry.path))) {
-      entry.autodrain();
-      return cb();
-    } else {
-      found = true;
-      out.emit('entry', entry);
-      entry.on('error', function(e) {
-        outStream.emit('error', e);
-      });
-      entry.pipe(outStream)
-        .on('error', function(err) {
-          cb(err);
-        })
-        .on('finish', function(d) {
-          cb(null, d);
-        });
-    }
-  };
-
-  inStream.pipe(Parse(opts))
-    .on('error', function(err) {
-      outStream.emit('error', err);
-    })
-    .pipe(transform)
-    .on('error', Object) // Silence error as its already addressed in transform
-    .on('finish', function() {
-      if (!found)
-        outStream.emit('error', new Error('PATTERN_NOT_FOUND'));
-      else
-        outStream.end();
-    });
-
-  const out = duplexer2(inStream, outStream);
-  out.buffer = function() {
-    return BufferStream(outStream);
-  };
-
-  return out;
-}
-
-module.exports = parseOne;
-
-
-/***/ }),
-
-/***/ 3835:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-
-/* unused reexport */ __nccwpck_require__(2226);
-/* unused reexport */ __nccwpck_require__(9416);
-exports.Extract = __nccwpck_require__(9680);
-/* unused reexport */ __nccwpck_require__(2482);
-
-/***/ }),
-
-/***/ 4488:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-
-/**
- * For Node.js, simply re-export the core `util.deprecate` function.
- */
-
-module.exports = __nccwpck_require__(9023).deprecate;
-
-
-/***/ }),
-
 /***/ 2048:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -73039,6 +59884,1288 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ 3502:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+// This was adapted from https://github.com/andrewrk/node-fd-slicer by Andrew Kelley under the MIT License.
+var fs = __nccwpck_require__(9896);
+var util = __nccwpck_require__(9023);
+var stream = __nccwpck_require__(2203);
+var Readable = stream.Readable;
+var Writable = stream.Writable;
+var PassThrough = stream.PassThrough;
+var Pend = __nccwpck_require__(3313);
+var EventEmitter = (__nccwpck_require__(4434).EventEmitter);
+
+exports.createFromBuffer = createFromBuffer;
+exports.createFromFd = createFromFd;
+exports.BufferSlicer = BufferSlicer;
+exports.FdSlicer = FdSlicer;
+
+util.inherits(FdSlicer, EventEmitter);
+function FdSlicer(fd, options) {
+  options = options || {};
+  EventEmitter.call(this);
+
+  this.fd = fd;
+  this.pend = new Pend();
+  this.pend.max = 1;
+  this.refCount = 0;
+  this.autoClose = !!options.autoClose;
+}
+
+FdSlicer.prototype.read = function(buffer, offset, length, position, callback) {
+  var self = this;
+  self.pend.go(function(cb) {
+    fs.read(self.fd, buffer, offset, length, position, function(err, bytesRead, buffer) {
+      cb();
+      callback(err, bytesRead, buffer);
+    });
+  });
+};
+
+FdSlicer.prototype.write = function(buffer, offset, length, position, callback) {
+  var self = this;
+  self.pend.go(function(cb) {
+    fs.write(self.fd, buffer, offset, length, position, function(err, written, buffer) {
+      cb();
+      callback(err, written, buffer);
+    });
+  });
+};
+
+FdSlicer.prototype.createReadStream = function(options) {
+  return new ReadStream(this, options);
+};
+
+FdSlicer.prototype.createWriteStream = function(options) {
+  return new WriteStream(this, options);
+};
+
+FdSlicer.prototype.ref = function() {
+  this.refCount += 1;
+};
+
+FdSlicer.prototype.unref = function() {
+  var self = this;
+  self.refCount -= 1;
+
+  if (self.refCount > 0) return;
+  if (self.refCount < 0) throw new Error("invalid unref");
+
+  if (self.autoClose) {
+    fs.close(self.fd, onCloseDone);
+  }
+
+  function onCloseDone(err) {
+    if (err) {
+      self.emit('error', err);
+    } else {
+      self.emit('close');
+    }
+  }
+};
+
+util.inherits(ReadStream, Readable);
+function ReadStream(context, options) {
+  options = options || {};
+  Readable.call(this, options);
+
+  this.context = context;
+  this.context.ref();
+
+  this.start = options.start || 0;
+  this.endOffset = options.end;
+  this.pos = this.start;
+  this.destroyed = false;
+}
+
+ReadStream.prototype._read = function(n) {
+  var self = this;
+  if (self.destroyed) return;
+
+  var toRead = Math.min(self._readableState.highWaterMark, n);
+  if (self.endOffset != null) {
+    toRead = Math.min(toRead, self.endOffset - self.pos);
+  }
+  if (toRead <= 0) {
+    self.destroyed = true;
+    self.push(null);
+    self.context.unref();
+    return;
+  }
+  self.context.pend.go(function(cb) {
+    if (self.destroyed) return cb();
+    var buffer = Buffer.allocUnsafe(toRead);
+    fs.read(self.context.fd, buffer, 0, toRead, self.pos, function(err, bytesRead) {
+      if (err) {
+        self.destroy(err);
+      } else if (bytesRead === 0) {
+        self.destroyed = true;
+        self.push(null);
+        self.context.unref();
+      } else {
+        self.pos += bytesRead;
+        self.push(buffer.slice(0, bytesRead));
+      }
+      cb();
+    });
+  });
+};
+
+ReadStream.prototype.destroy = function(err) {
+  if (this.destroyed) return;
+  err = err || new Error("stream destroyed");
+  this.destroyed = true;
+  this.emit('error', err);
+  this.context.unref();
+};
+
+util.inherits(WriteStream, Writable);
+function WriteStream(context, options) {
+  options = options || {};
+  Writable.call(this, options);
+
+  this.context = context;
+  this.context.ref();
+
+  this.start = options.start || 0;
+  this.endOffset = (options.end == null) ? Infinity : +options.end;
+  this.bytesWritten = 0;
+  this.pos = this.start;
+  this.destroyed = false;
+
+  this.on('finish', this.destroy.bind(this));
+}
+
+WriteStream.prototype._write = function(buffer, encoding, callback) {
+  var self = this;
+  if (self.destroyed) return;
+
+  if (self.pos + buffer.length > self.endOffset) {
+    var err = new Error("maximum file length exceeded");
+    err.code = 'ETOOBIG';
+    self.destroy();
+    callback(err);
+    return;
+  }
+  self.context.pend.go(function(cb) {
+    if (self.destroyed) return cb();
+    fs.write(self.context.fd, buffer, 0, buffer.length, self.pos, function(err, bytes) {
+      if (err) {
+        self.destroy();
+        cb();
+        callback(err);
+      } else {
+        self.bytesWritten += bytes;
+        self.pos += bytes;
+        self.emit('progress');
+        cb();
+        callback();
+      }
+    });
+  });
+};
+
+WriteStream.prototype.destroy = function() {
+  if (this.destroyed) return;
+  this.destroyed = true;
+  this.context.unref();
+};
+
+util.inherits(BufferSlicer, EventEmitter);
+function BufferSlicer(buffer, options) {
+  EventEmitter.call(this);
+
+  options = options || {};
+  this.refCount = 0;
+  this.buffer = buffer;
+  this.maxChunkSize = options.maxChunkSize || Number.MAX_SAFE_INTEGER;
+}
+
+BufferSlicer.prototype.read = function(buffer, offset, length, position, callback) {
+  if (!(0 <= offset && offset <= buffer.length)) throw new RangeError("offset outside buffer: 0 <= " + offset + " <= " + buffer.length);
+  if (position < 0) throw new RangeError("position is negative: " + position);
+  if (offset + length > buffer.length) {
+    // The caller's buffer can't hold all the bytes they're trying to read.
+    // Clamp the length instead of giving an error.
+    // The callback will be informed of fewer than expected bytes written.
+    length = buffer.length - offset;
+  }
+  if (position + length > this.buffer.length) {
+    // Clamp any attempt to read past the end of the source buffer.
+    length = this.buffer.length - position;
+  }
+  if (length <= 0) {
+    // After any clamping, we're fully out of bounds or otherwise have nothing to do.
+    // This isn't an error; it's just zero bytes written.
+    setImmediate(function() {
+      callback(null, 0);
+    });
+    return;
+  }
+  this.buffer.copy(buffer, offset, position, position + length);
+  setImmediate(function() {
+    callback(null, length);
+  });
+};
+
+BufferSlicer.prototype.write = function(buffer, offset, length, position, callback) {
+  buffer.copy(this.buffer, position, offset, offset + length);
+  setImmediate(function() {
+    callback(null, length, buffer);
+  });
+};
+
+BufferSlicer.prototype.createReadStream = function(options) {
+  options = options || {};
+  var readStream = new PassThrough(options);
+  readStream.destroyed = false;
+  readStream.start = options.start || 0;
+  readStream.endOffset = options.end;
+  // by the time this function returns, we'll be done.
+  readStream.pos = readStream.endOffset || this.buffer.length;
+
+  // respect the maxChunkSize option to slice up the chunk into smaller pieces.
+  var entireSlice = this.buffer.slice(readStream.start, readStream.pos);
+  var offset = 0;
+  while (true) {
+    var nextOffset = offset + this.maxChunkSize;
+    if (nextOffset >= entireSlice.length) {
+      // last chunk
+      if (offset < entireSlice.length) {
+        readStream.write(entireSlice.slice(offset, entireSlice.length));
+      }
+      break;
+    }
+    readStream.write(entireSlice.slice(offset, nextOffset));
+    offset = nextOffset;
+  }
+
+  readStream.end();
+  readStream.destroy = function() {
+    readStream.destroyed = true;
+  };
+  return readStream;
+};
+
+BufferSlicer.prototype.createWriteStream = function(options) {
+  var bufferSlicer = this;
+  options = options || {};
+  var writeStream = new Writable(options);
+  writeStream.start = options.start || 0;
+  writeStream.endOffset = (options.end == null) ? this.buffer.length : +options.end;
+  writeStream.bytesWritten = 0;
+  writeStream.pos = writeStream.start;
+  writeStream.destroyed = false;
+  writeStream._write = function(buffer, encoding, callback) {
+    if (writeStream.destroyed) return;
+
+    var end = writeStream.pos + buffer.length;
+    if (end > writeStream.endOffset) {
+      var err = new Error("maximum file length exceeded");
+      err.code = 'ETOOBIG';
+      writeStream.destroyed = true;
+      callback(err);
+      return;
+    }
+    buffer.copy(bufferSlicer.buffer, writeStream.pos, 0, buffer.length);
+
+    writeStream.bytesWritten += buffer.length;
+    writeStream.pos = end;
+    writeStream.emit('progress');
+    callback();
+  };
+  writeStream.destroy = function() {
+    writeStream.destroyed = true;
+  };
+  return writeStream;
+};
+
+BufferSlicer.prototype.ref = function() {
+  this.refCount += 1;
+};
+
+BufferSlicer.prototype.unref = function() {
+  this.refCount -= 1;
+
+  if (this.refCount < 0) {
+    throw new Error("invalid unref");
+  }
+};
+
+function createFromBuffer(buffer, options) {
+  return new BufferSlicer(buffer, options);
+}
+
+function createFromFd(fd, options) {
+  return new FdSlicer(fd, options);
+}
+
+
+/***/ }),
+
+/***/ 663:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+var fs = __nccwpck_require__(9896);
+var zlib = __nccwpck_require__(3106);
+var fd_slicer = __nccwpck_require__(3502);
+var crc32 = __nccwpck_require__(9776);
+var util = __nccwpck_require__(9023);
+var EventEmitter = (__nccwpck_require__(4434).EventEmitter);
+var Transform = (__nccwpck_require__(2203).Transform);
+var PassThrough = (__nccwpck_require__(2203).PassThrough);
+var Writable = (__nccwpck_require__(2203).Writable);
+
+exports.open = open;
+exports.fromFd = fromFd;
+exports.fromBuffer = fromBuffer;
+exports.fromRandomAccessReader = fromRandomAccessReader;
+exports.dosDateTimeToDate = dosDateTimeToDate;
+exports.getFileNameLowLevel = getFileNameLowLevel;
+exports.validateFileName = validateFileName;
+exports.parseExtraFields = parseExtraFields;
+exports.ZipFile = ZipFile;
+exports.Entry = Entry;
+exports.LocalFileHeader = LocalFileHeader;
+exports.RandomAccessReader = RandomAccessReader;
+
+function open(path, options, callback) {
+  if (typeof options === "function") {
+    callback = options;
+    options = null;
+  }
+  if (options == null) options = {};
+  if (options.autoClose == null) options.autoClose = true;
+  if (options.lazyEntries == null) options.lazyEntries = false;
+  if (options.decodeStrings == null) options.decodeStrings = true;
+  if (options.validateEntrySizes == null) options.validateEntrySizes = true;
+  if (options.strictFileNames == null) options.strictFileNames = false;
+  if (callback == null) callback = defaultCallback;
+  fs.open(path, "r", function(err, fd) {
+    if (err) return callback(err);
+    fromFd(fd, options, function(err, zipfile) {
+      if (err) fs.close(fd, defaultCallback);
+      callback(err, zipfile);
+    });
+  });
+}
+
+function fromFd(fd, options, callback) {
+  if (typeof options === "function") {
+    callback = options;
+    options = null;
+  }
+  if (options == null) options = {};
+  if (options.autoClose == null) options.autoClose = false;
+  if (options.lazyEntries == null) options.lazyEntries = false;
+  if (options.decodeStrings == null) options.decodeStrings = true;
+  if (options.validateEntrySizes == null) options.validateEntrySizes = true;
+  if (options.strictFileNames == null) options.strictFileNames = false;
+  if (callback == null) callback = defaultCallback;
+  fs.fstat(fd, function(err, stats) {
+    if (err) return callback(err);
+    var reader = fd_slicer.createFromFd(fd, {autoClose: true});
+    fromRandomAccessReader(reader, stats.size, options, callback);
+  });
+}
+
+function fromBuffer(buffer, options, callback) {
+  if (typeof options === "function") {
+    callback = options;
+    options = null;
+  }
+  if (options == null) options = {};
+  options.autoClose = false;
+  if (options.lazyEntries == null) options.lazyEntries = false;
+  if (options.decodeStrings == null) options.decodeStrings = true;
+  if (options.validateEntrySizes == null) options.validateEntrySizes = true;
+  if (options.strictFileNames == null) options.strictFileNames = false;
+  // limit the max chunk size. see https://github.com/thejoshwolfe/yauzl/issues/87
+  var reader = fd_slicer.createFromBuffer(buffer, {maxChunkSize: 0x10000});
+  fromRandomAccessReader(reader, buffer.length, options, callback);
+}
+
+function fromRandomAccessReader(reader, totalSize, options, callback) {
+  if (typeof options === "function") {
+    callback = options;
+    options = null;
+  }
+  if (options == null) options = {};
+  if (options.autoClose == null) options.autoClose = true;
+  if (options.lazyEntries == null) options.lazyEntries = false;
+  if (options.decodeStrings == null) options.decodeStrings = true;
+  var decodeStrings = !!options.decodeStrings;
+  if (options.validateEntrySizes == null) options.validateEntrySizes = true;
+  if (options.strictFileNames == null) options.strictFileNames = false;
+  if (callback == null) callback = defaultCallback;
+  if (typeof totalSize !== "number") throw new Error("expected totalSize parameter to be a number");
+  if (totalSize > Number.MAX_SAFE_INTEGER) {
+    throw new Error("zip file too large. only file sizes up to 2^52 are supported due to JavaScript's Number type being an IEEE 754 double.");
+  }
+
+  // the matching unref() call is in zipfile.close()
+  reader.ref();
+
+  // eocdr means End of Central Directory Record.
+  // search backwards for the eocdr signature.
+  // the last field of the eocdr is a variable-length comment.
+  // the comment size is encoded in a 2-byte field in the eocdr, which we can't find without trudging backwards through the comment to find it.
+  // as a consequence of this design decision, it's possible to have ambiguous zip file metadata if a coherent eocdr was in the comment.
+  // we search backwards for a eocdr signature, and hope that whoever made the zip file was smart enough to forbid the eocdr signature in the comment.
+  var eocdrWithoutCommentSize = 22;
+  var zip64EocdlSize = 20; // Zip64 end of central directory locator
+  var maxCommentSize = 0xffff; // 2-byte size
+  var bufferSize = Math.min(zip64EocdlSize + eocdrWithoutCommentSize + maxCommentSize, totalSize);
+  var buffer = newBuffer(bufferSize);
+  var bufferReadStart = totalSize - buffer.length;
+  readAndAssertNoEof(reader, buffer, 0, bufferSize, bufferReadStart, function(err) {
+    if (err) return callback(err);
+    for (var i = bufferSize - eocdrWithoutCommentSize; i >= 0; i -= 1) {
+      if (buffer.readUInt32LE(i) !== 0x06054b50) continue;
+      // found eocdr
+      var eocdrBuffer = buffer.subarray(i);
+
+      // 0 - End of central directory signature = 0x06054b50
+      // 4 - Number of this disk
+      var diskNumber = eocdrBuffer.readUInt16LE(4);
+      // 6 - Disk where central directory starts
+      // 8 - Number of central directory records on this disk
+      // 10 - Total number of central directory records
+      var entryCount = eocdrBuffer.readUInt16LE(10);
+      // 12 - Size of central directory (bytes)
+      // 16 - Offset of start of central directory, relative to start of archive
+      var centralDirectoryOffset = eocdrBuffer.readUInt32LE(16);
+      // 20 - Comment length
+      var commentLength = eocdrBuffer.readUInt16LE(20);
+      var expectedCommentLength = eocdrBuffer.length - eocdrWithoutCommentSize;
+      if (commentLength !== expectedCommentLength) {
+        return callback(new Error("Invalid comment length. Expected: " + expectedCommentLength + ". Found: " + commentLength + ". Are there extra bytes at the end of the file? Or is the end of central dir signature `PK☺☻` in the comment?"));
+      }
+      // 22 - Comment
+      // the encoding is always cp437.
+      var comment = decodeStrings ? decodeBuffer(eocdrBuffer.subarray(22), false)
+                                  : eocdrBuffer.subarray(22);
+
+      // Look for a Zip64 end of central directory locator
+      if (i - zip64EocdlSize >= 0 && buffer.readUInt32LE(i - zip64EocdlSize) === 0x07064b50) {
+        // ZIP64 format
+        var zip64EocdlBuffer = buffer.subarray(i - zip64EocdlSize, i - zip64EocdlSize + zip64EocdlSize);
+        // 0 - zip64 end of central dir locator signature = 0x07064b50
+        // 4 - number of the disk with the start of the zip64 end of central directory
+        // 8 - relative offset of the zip64 end of central directory record
+        var zip64EocdrOffset = readUInt64LE(zip64EocdlBuffer, 8);
+        // 16 - total number of disks
+
+        // ZIP64 end of central directory record
+        var zip64EocdrBuffer = newBuffer(56);
+        return readAndAssertNoEof(reader, zip64EocdrBuffer, 0, zip64EocdrBuffer.length, zip64EocdrOffset, function(err) {
+          if (err) return callback(err);
+
+          // 0 - zip64 end of central dir signature                           4 bytes  (0x06064b50)
+          if (zip64EocdrBuffer.readUInt32LE(0) !== 0x06064b50) {
+            return callback(new Error("invalid zip64 end of central directory record signature"));
+          }
+          // 4 - size of zip64 end of central directory record                8 bytes
+          // 12 - version made by                                             2 bytes
+          // 14 - version needed to extract                                   2 bytes
+          // 16 - number of this disk                                         4 bytes
+          diskNumber = zip64EocdrBuffer.readUInt32LE(16);
+          if (diskNumber !== 0) {
+            // Check this only after zip64 overrides. See #118.
+            return callback(new Error("multi-disk zip files are not supported: found disk number: " + diskNumber));
+          }
+          // 20 - number of the disk with the start of the central directory  4 bytes
+          // 24 - total number of entries in the central directory on this disk         8 bytes
+          // 32 - total number of entries in the central directory            8 bytes
+          entryCount = readUInt64LE(zip64EocdrBuffer, 32);
+          // 40 - size of the central directory                               8 bytes
+          // 48 - offset of start of central directory with respect to the starting disk number     8 bytes
+          centralDirectoryOffset = readUInt64LE(zip64EocdrBuffer, 48);
+          // 56 - zip64 extensible data sector                                (variable size)
+          return callback(null, new ZipFile(reader, centralDirectoryOffset, totalSize, entryCount, comment, options.autoClose, options.lazyEntries, decodeStrings, options.validateEntrySizes, options.strictFileNames));
+        });
+      }
+
+      // Not ZIP64 format
+      if (diskNumber !== 0) {
+        return callback(new Error("multi-disk zip files are not supported: found disk number: " + diskNumber));
+      }
+      return callback(null, new ZipFile(reader, centralDirectoryOffset, totalSize, entryCount, comment, options.autoClose, options.lazyEntries, decodeStrings, options.validateEntrySizes, options.strictFileNames));
+
+    }
+
+    // Not a zip file.
+    callback(new Error("End of central directory record signature not found. Either not a zip file, or file is truncated."));
+  });
+}
+
+util.inherits(ZipFile, EventEmitter);
+function ZipFile(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings, validateEntrySizes, strictFileNames) {
+  var self = this;
+  EventEmitter.call(self);
+  self.reader = reader;
+  // forward close events
+  self.reader.on("error", function(err) {
+    // error closing the fd
+    emitError(self, err);
+  });
+  self.reader.once("close", function() {
+    self.emit("close");
+  });
+  self.readEntryCursor = centralDirectoryOffset;
+  self.fileSize = fileSize;
+  self.entryCount = entryCount;
+  self.comment = comment;
+  self.entriesRead = 0;
+  self.autoClose = !!autoClose;
+  self.lazyEntries = !!lazyEntries;
+  self.decodeStrings = !!decodeStrings;
+  self.validateEntrySizes = !!validateEntrySizes;
+  self.strictFileNames = !!strictFileNames;
+  self.isOpen = true;
+  self.emittedError = false;
+
+  if (!self.lazyEntries) self._readEntry();
+}
+ZipFile.prototype.close = function() {
+  if (!this.isOpen) return;
+  this.isOpen = false;
+  this.reader.unref();
+};
+
+function emitErrorAndAutoClose(self, err) {
+  if (self.autoClose) self.close();
+  emitError(self, err);
+}
+function emitError(self, err) {
+  if (self.emittedError) return;
+  self.emittedError = true;
+  self.emit("error", err);
+}
+
+ZipFile.prototype.readEntry = function() {
+  if (!this.lazyEntries) throw new Error("readEntry() called without lazyEntries:true");
+  this._readEntry();
+};
+ZipFile.prototype._readEntry = function() {
+  var self = this;
+  if (self.entryCount === self.entriesRead) {
+    // done with metadata
+    setImmediate(function() {
+      if (self.autoClose) self.close();
+      if (self.emittedError) return;
+      self.emit("end");
+    });
+    return;
+  }
+  if (self.emittedError) return;
+  var buffer = newBuffer(46);
+  readAndAssertNoEof(self.reader, buffer, 0, buffer.length, self.readEntryCursor, function(err) {
+    if (err) return emitErrorAndAutoClose(self, err);
+    if (self.emittedError) return;
+    var entry = new Entry();
+    // 0 - Central directory file header signature
+    var signature = buffer.readUInt32LE(0);
+    if (signature !== 0x02014b50) return emitErrorAndAutoClose(self, new Error("invalid central directory file header signature: 0x" + signature.toString(16)));
+    // 4 - Version made by
+    entry.versionMadeBy = buffer.readUInt16LE(4);
+    // 6 - Version needed to extract (minimum)
+    entry.versionNeededToExtract = buffer.readUInt16LE(6);
+    // 8 - General purpose bit flag
+    entry.generalPurposeBitFlag = buffer.readUInt16LE(8);
+    // 10 - Compression method
+    entry.compressionMethod = buffer.readUInt16LE(10);
+    // 12 - File last modification time
+    entry.lastModFileTime = buffer.readUInt16LE(12);
+    // 14 - File last modification date
+    entry.lastModFileDate = buffer.readUInt16LE(14);
+    // 16 - CRC-32
+    entry.crc32 = buffer.readUInt32LE(16);
+    // 20 - Compressed size
+    entry.compressedSize = buffer.readUInt32LE(20);
+    // 24 - Uncompressed size
+    entry.uncompressedSize = buffer.readUInt32LE(24);
+    // 28 - File name length (n)
+    entry.fileNameLength = buffer.readUInt16LE(28);
+    // 30 - Extra field length (m)
+    entry.extraFieldLength = buffer.readUInt16LE(30);
+    // 32 - File comment length (k)
+    entry.fileCommentLength = buffer.readUInt16LE(32);
+    // 34 - Disk number where file starts
+    // 36 - Internal file attributes
+    entry.internalFileAttributes = buffer.readUInt16LE(36);
+    // 38 - External file attributes
+    entry.externalFileAttributes = buffer.readUInt32LE(38);
+    // 42 - Relative offset of local file header
+    entry.relativeOffsetOfLocalHeader = buffer.readUInt32LE(42);
+
+    if (entry.generalPurposeBitFlag & 0x40) return emitErrorAndAutoClose(self, new Error("strong encryption is not supported"));
+
+    self.readEntryCursor += 46;
+
+    buffer = newBuffer(entry.fileNameLength + entry.extraFieldLength + entry.fileCommentLength);
+    readAndAssertNoEof(self.reader, buffer, 0, buffer.length, self.readEntryCursor, function(err) {
+      if (err) return emitErrorAndAutoClose(self, err);
+      if (self.emittedError) return;
+      // 46 - File name
+      entry.fileNameRaw = buffer.subarray(0, entry.fileNameLength);
+      // 46+n - Extra field
+      var fileCommentStart = entry.fileNameLength + entry.extraFieldLength;
+      entry.extraFieldRaw = buffer.subarray(entry.fileNameLength, fileCommentStart);
+      // 46+n+m - File comment
+      entry.fileCommentRaw = buffer.subarray(fileCommentStart, fileCommentStart + entry.fileCommentLength);
+
+      // Parse the extra fields, which we need for processing other fields.
+      try {
+        entry.extraFields = parseExtraFields(entry.extraFieldRaw);
+      } catch (err) {
+        return emitErrorAndAutoClose(self, err);
+      }
+
+      // Interpret strings according to bit flags, extra fields, and options.
+      if (self.decodeStrings) {
+        var isUtf8 = (entry.generalPurposeBitFlag & 0x800) !== 0;
+        entry.fileComment = decodeBuffer(entry.fileCommentRaw, isUtf8);
+        entry.fileName = getFileNameLowLevel(entry.generalPurposeBitFlag, entry.fileNameRaw, entry.extraFields, self.strictFileNames);
+        var errorMessage = validateFileName(entry.fileName);
+        if (errorMessage != null) return emitErrorAndAutoClose(self, new Error(errorMessage));
+      } else {
+        entry.fileComment = entry.fileCommentRaw;
+        entry.fileName = entry.fileNameRaw;
+      }
+      // Maintain API compatibility. See https://github.com/thejoshwolfe/yauzl/issues/47
+      entry.comment = entry.fileComment;
+
+      self.readEntryCursor += buffer.length;
+      self.entriesRead += 1;
+
+      // Check for the Zip64 Extended Information Extra Field.
+      for (var i = 0; i < entry.extraFields.length; i++) {
+        var extraField = entry.extraFields[i];
+        if (extraField.id !== 0x0001) continue;
+        // Found it.
+
+        var zip64EiefBuffer = extraField.data;
+        var index = 0;
+        // 0 - Original Size          8 bytes
+        if (entry.uncompressedSize === 0xffffffff) {
+          if (index + 8 > zip64EiefBuffer.length) {
+            return emitErrorAndAutoClose(self, new Error("zip64 extended information extra field does not include uncompressed size"));
+          }
+          entry.uncompressedSize = readUInt64LE(zip64EiefBuffer, index);
+          index += 8;
+        }
+        // 8 - Compressed Size        8 bytes
+        if (entry.compressedSize === 0xffffffff) {
+          if (index + 8 > zip64EiefBuffer.length) {
+            return emitErrorAndAutoClose(self, new Error("zip64 extended information extra field does not include compressed size"));
+          }
+          entry.compressedSize = readUInt64LE(zip64EiefBuffer, index);
+          index += 8;
+        }
+        // 16 - Relative Header Offset 8 bytes
+        if (entry.relativeOffsetOfLocalHeader === 0xffffffff) {
+          if (index + 8 > zip64EiefBuffer.length) {
+            return emitErrorAndAutoClose(self, new Error("zip64 extended information extra field does not include relative header offset"));
+          }
+          entry.relativeOffsetOfLocalHeader = readUInt64LE(zip64EiefBuffer, index);
+          index += 8;
+        }
+        // 24 - Disk Start Number      4 bytes
+
+        break;
+      }
+
+      // validate file size
+      if (self.validateEntrySizes && entry.compressionMethod === 0) {
+        var expectedCompressedSize = entry.uncompressedSize;
+        if (entry.isEncrypted()) {
+          // traditional encryption prefixes the file data with a header
+          expectedCompressedSize += 12;
+        }
+        if (entry.compressedSize !== expectedCompressedSize) {
+          var msg = "compressed/uncompressed size mismatch for stored file: " + entry.compressedSize + " != " + entry.uncompressedSize;
+          return emitErrorAndAutoClose(self, new Error(msg));
+        }
+      }
+
+      self.emit("entry", entry);
+
+      if (!self.lazyEntries) self._readEntry();
+    });
+  });
+};
+
+ZipFile.prototype.openReadStream = function(entry, options, callback) {
+  var self = this;
+  // parameter validation
+  var relativeStart = 0;
+  var relativeEnd = entry.compressedSize;
+  if (callback == null) {
+    callback = options;
+    options = null;
+  }
+  if (options == null) {
+    options = {};
+  } else {
+    // validate options that the caller has no excuse to get wrong
+    if (options.decrypt != null) {
+      if (!entry.isEncrypted()) {
+        throw new Error("options.decrypt can only be specified for encrypted entries");
+      }
+      if (options.decrypt !== false) throw new Error("invalid options.decrypt value: " + options.decrypt);
+      if (entry.isCompressed()) {
+        if (options.decompress !== false) throw new Error("entry is encrypted and compressed, and options.decompress !== false");
+      }
+    }
+    if (options.decompress != null) {
+      if (!entry.isCompressed()) {
+        throw new Error("options.decompress can only be specified for compressed entries");
+      }
+      if (!(options.decompress === false || options.decompress === true)) {
+        throw new Error("invalid options.decompress value: " + options.decompress);
+      }
+    }
+    if (options.start != null || options.end != null) {
+      if (entry.isCompressed() && options.decompress !== false) {
+        throw new Error("start/end range not allowed for compressed entry without options.decompress === false");
+      }
+      if (entry.isEncrypted() && options.decrypt !== false) {
+        throw new Error("start/end range not allowed for encrypted entry without options.decrypt === false");
+      }
+    }
+    if (options.start != null) {
+      relativeStart = options.start;
+      if (relativeStart < 0) throw new Error("options.start < 0");
+      if (relativeStart > entry.compressedSize) throw new Error("options.start > entry.compressedSize");
+    }
+    if (options.end != null) {
+      relativeEnd = options.end;
+      if (relativeEnd < 0) throw new Error("options.end < 0");
+      if (relativeEnd > entry.compressedSize) throw new Error("options.end > entry.compressedSize");
+      if (relativeEnd < relativeStart) throw new Error("options.end < options.start");
+    }
+  }
+  // any further errors can either be caused by the zipfile,
+  // or were introduced in a minor version of yauzl,
+  // so should be passed to the client rather than thrown.
+  if (!self.isOpen) return callback(new Error("closed"));
+  if (entry.isEncrypted()) {
+    if (options.decrypt !== false) return callback(new Error("entry is encrypted, and options.decrypt !== false"));
+  }
+  var decompress;
+  if (entry.compressionMethod === 0) {
+    // 0 - The file is stored (no compression)
+    decompress = false;
+  } else if (entry.compressionMethod === 8) {
+    // 8 - The file is Deflated
+    decompress = options.decompress != null ? options.decompress : true;
+  } else {
+    return callback(new Error("unsupported compression method: " + entry.compressionMethod));
+  }
+
+  self.readLocalFileHeader(entry, {minimal: true}, function(err, localFileHeader) {
+    if (err) return callback(err);
+    self.openReadStreamLowLevel(
+      localFileHeader.fileDataStart, entry.compressedSize,
+      relativeStart, relativeEnd,
+      decompress, entry.uncompressedSize,
+      callback);
+  });
+};
+
+ZipFile.prototype.openReadStreamLowLevel = function(fileDataStart, compressedSize, relativeStart, relativeEnd, decompress, uncompressedSize, callback) {
+  var self = this;
+
+  var fileDataEnd = fileDataStart + compressedSize;
+  var readStream = self.reader.createReadStream({
+    start: fileDataStart + relativeStart,
+    end: fileDataStart + relativeEnd,
+  });
+  var endpointStream = readStream;
+  if (decompress) {
+    var destroyed = false;
+    var inflateFilter = zlib.createInflateRaw();
+    readStream.on("error", function(err) {
+      // setImmediate here because errors can be emitted during the first call to pipe()
+      setImmediate(function() {
+        if (!destroyed) inflateFilter.emit("error", err);
+      });
+    });
+    readStream.pipe(inflateFilter);
+
+    if (self.validateEntrySizes) {
+      endpointStream = new AssertByteCountStream(uncompressedSize);
+      inflateFilter.on("error", function(err) {
+        // forward zlib errors to the client-visible stream
+        setImmediate(function() {
+          if (!destroyed) endpointStream.emit("error", err);
+        });
+      });
+      inflateFilter.pipe(endpointStream);
+    } else {
+      // the zlib filter is the client-visible stream
+      endpointStream = inflateFilter;
+    }
+    // this is part of yauzl's API, so implement this function on the client-visible stream
+    installDestroyFn(endpointStream, function() {
+      destroyed = true;
+      if (inflateFilter !== endpointStream) inflateFilter.unpipe(endpointStream);
+      readStream.unpipe(inflateFilter);
+      // TODO: the inflateFilter may cause a memory leak. see Issue #27.
+      readStream.destroy();
+    });
+  }
+  callback(null, endpointStream);
+};
+
+ZipFile.prototype.readLocalFileHeader = function(entry, options, callback) {
+  var self = this;
+  if (callback == null) {
+    callback = options;
+    options = null;
+  }
+  if (options == null) options = {};
+
+  self.reader.ref();
+  var buffer = newBuffer(30);
+  readAndAssertNoEof(self.reader, buffer, 0, buffer.length, entry.relativeOffsetOfLocalHeader, function(err) {
+    try {
+      if (err) return callback(err);
+      // 0 - Local file header signature = 0x04034b50
+      var signature = buffer.readUInt32LE(0);
+      if (signature !== 0x04034b50) {
+        return callback(new Error("invalid local file header signature: 0x" + signature.toString(16)));
+      }
+
+      var fileNameLength = buffer.readUInt16LE(26);
+      var extraFieldLength = buffer.readUInt16LE(28);
+      var fileDataStart = entry.relativeOffsetOfLocalHeader + 30 + fileNameLength + extraFieldLength;
+      // We now have enough information to do this bounds check.
+      if (fileDataStart + entry.compressedSize > self.fileSize) {
+        return callback(new Error("file data overflows file bounds: " +
+            fileDataStart + " + " + entry.compressedSize + " > " + self.fileSize));
+      }
+
+      if (options.minimal) {
+        return callback(null, {fileDataStart: fileDataStart});
+      }
+
+      var localFileHeader = new LocalFileHeader();
+      localFileHeader.fileDataStart = fileDataStart;
+
+      // 4 - Version needed to extract (minimum)
+      localFileHeader.versionNeededToExtract = buffer.readUInt16LE(4);
+      // 6 - General purpose bit flag
+      localFileHeader.generalPurposeBitFlag = buffer.readUInt16LE(6);
+      // 8 - Compression method
+      localFileHeader.compressionMethod = buffer.readUInt16LE(8);
+      // 10 - File last modification time
+      localFileHeader.lastModFileTime = buffer.readUInt16LE(10);
+      // 12 - File last modification date
+      localFileHeader.lastModFileDate = buffer.readUInt16LE(12);
+      // 14 - CRC-32
+      localFileHeader.crc32 = buffer.readUInt32LE(14);
+      // 18 - Compressed size
+      localFileHeader.compressedSize = buffer.readUInt32LE(18);
+      // 22 - Uncompressed size
+      localFileHeader.uncompressedSize = buffer.readUInt32LE(22);
+      // 26 - File name length (n)
+      localFileHeader.fileNameLength = fileNameLength;
+      // 28 - Extra field length (m)
+      localFileHeader.extraFieldLength = extraFieldLength;
+      // 30 - File name
+      // 30+n - Extra field
+
+      buffer = newBuffer(fileNameLength + extraFieldLength);
+      self.reader.ref();
+      readAndAssertNoEof(self.reader, buffer, 0, buffer.length, entry.relativeOffsetOfLocalHeader + 30, function(err) {
+        try {
+          if (err) return callback(err);
+          localFileHeader.fileName = buffer.subarray(0, fileNameLength);
+          localFileHeader.extraField = buffer.subarray(fileNameLength);
+          return callback(null, localFileHeader);
+        } finally {
+          self.reader.unref();
+        }
+      });
+    } finally {
+      self.reader.unref();
+    }
+  });
+};
+
+function Entry() {
+}
+Entry.prototype.getLastModDate = function(options) {
+  if (options == null) options = {};
+
+  if (!options.forceDosFormat) {
+    // Check extended fields.
+    for (var i = 0; i < this.extraFields.length; i++) {
+      var extraField = this.extraFields[i];
+      if (extraField.id === 0x5455) {
+        // InfoZIP "universal timestamp" extended field (`0x5455` aka `"UT"`).
+        // See the InfoZIP source code unix/unix.c:set_extra_field() and zipfile.c:ef_scan_ut_time().
+        var data = extraField.data;
+        if (data.length < 5) continue; // Too short.
+        // The flags define which of the three fields are present: mtime, atime, ctime.
+        // We only care about mtime.
+        // Also, ctime is never included in practice.
+        // And also, atime is only included in the local file header for some reason
+        // despite the flags lying about its inclusion in the central header.
+        var flags = data[0];
+        var HAS_MTIME = 1;
+        if (!(flags & HAS_MTIME)) continue; // This will realistically never happen.
+        // Although the positions of all of the fields shift around depending on the presence of other fields,
+        // mtime is always first if present, and that's the only one we care about.
+        var posixTimestamp = data.readInt32LE(1);
+        return new Date(posixTimestamp * 1000);
+      } else if (extraField.id === 0x000a) {
+        var data = extraField.data;
+        // 4 bytes reserved
+        var cursor = 4;
+        while (cursor < data.length + 4) {
+          // 2 bytes Tag
+          var tag = data.readUInt16LE(cursor);
+          cursor += 2;
+          // 2 bytes Size
+          var size = data.readUInt16LE(cursor);
+          cursor += 2;
+          if (tag !== 1) {
+            // Wrong tag. This will realistically never happen.
+            cursor += size;
+            continue;
+          }
+          // Tag1 is actually the only defined Tag.
+          if (size < 8 || cursor + size > data.length) break; // Invalid. Ignore.
+          // 8 bytes Mtime
+          var hundredNanoSecondsSince1601 = 4294967296 * data.readInt32LE(cursor + 4) + data.readUInt32LE(cursor)
+          // Convert from NTFS to POSIX milliseconds.
+          // The big number below is the milliseconds between year 1601 and year 1970
+          // (i.e. the negative POSIX timestamp of 1601-01-01 00:00:00Z)
+          var millisecondsSince1970 = hundredNanoSecondsSince1601 / 10000 - 11644473600000;
+          // Note on numeric precision: JavaScript Number objects lose precision above Number.MAX_SAFE_INTEGER,
+          // and NTFS timestamps are typically much bigger than that limit.
+          // (MAX_SAFE_INTEGER would represent 1629-07-17T23:58:45.475Z.)
+          // However, we're losing precision in the conversion from 100nanosecond units to millisecond units anyway,
+          // and the time at which we also lose 1-millisecond precision is just past the JavaScript Date limit (by design).
+          // Up through the year 2057, this conversion only drops 4 bits of precision,
+          // which is well under the 13-14 bits ratio between the milliseconds and 100nanoseconds.
+          return new Date(millisecondsSince1970);
+        }
+      }
+    }
+  }
+
+  // Fallback to non-extended encoding.
+  return dosDateTimeToDate(this.lastModFileDate, this.lastModFileTime, options.timezone);
+};
+Entry.prototype.isEncrypted = function() {
+  return (this.generalPurposeBitFlag & 0x1) !== 0;
+};
+Entry.prototype.isCompressed = function() {
+  return this.compressionMethod === 8;
+};
+
+function LocalFileHeader() {
+}
+
+function dosDateTimeToDate(date, time, timezone) {
+  var day = date & 0x1f; // 1-31
+  var month = (date >> 5 & 0xf) - 1; // 1-12, 0-11
+  var year = (date >> 9 & 0x7f) + 1980; // 0-128, 1980-2108
+
+  var millisecond = 0;
+  var second = (time & 0x1f) * 2; // 0-29, 0-58 (even numbers)
+  var minute = time >> 5 & 0x3f; // 0-59
+  var hour = time >> 11 & 0x1f; // 0-23
+
+  if (timezone == null || timezone === "local") {
+    return new Date(year, month, day, hour, minute, second, millisecond);
+  } else if (timezone === "UTC") {
+    return new Date(Date.UTC(year, month, day, hour, minute, second, millisecond));
+  } else {
+    throw new Error("unrecognized options.timezone: " + options.timezone);
+  }
+}
+
+function getFileNameLowLevel(generalPurposeBitFlag, fileNameBuffer, extraFields, strictFileNames) {
+  var fileName = null;
+
+  // check for Info-ZIP Unicode Path Extra Field (0x7075)
+  // see https://github.com/thejoshwolfe/yauzl/issues/33
+  for (var i = 0; i < extraFields.length; i++) {
+    var extraField = extraFields[i];
+    if (extraField.id === 0x7075) {
+      if (extraField.data.length < 6) {
+        // too short to be meaningful
+        continue;
+      }
+      // Version       1 byte      version of this extra field, currently 1
+      if (extraField.data.readUInt8(0) !== 1) {
+        // > Changes may not be backward compatible so this extra
+        // > field should not be used if the version is not recognized.
+        continue;
+      }
+      // NameCRC32     4 bytes     File Name Field CRC32 Checksum
+      var oldNameCrc32 = extraField.data.readUInt32LE(1);
+      if (crc32.unsigned(fileNameBuffer) !== oldNameCrc32) {
+        // > If the CRC check fails, this UTF-8 Path Extra Field should be
+        // > ignored and the File Name field in the header should be used instead.
+        continue;
+      }
+      // UnicodeName   Variable    UTF-8 version of the entry File Name
+      fileName = decodeBuffer(extraField.data.subarray(5), true);
+      break;
+    }
+  }
+
+  if (fileName == null) {
+    // The typical case.
+    var isUtf8 = (generalPurposeBitFlag & 0x800) !== 0;
+    fileName = decodeBuffer(fileNameBuffer, isUtf8);
+  }
+
+  if (!strictFileNames) {
+    // Allow backslash.
+    fileName = fileName.replace(/\\/g, "/");
+  }
+  return fileName;
+}
+
+function validateFileName(fileName) {
+  if (fileName.indexOf("\\") !== -1) {
+    return "invalid characters in fileName: " + fileName;
+  }
+  if (/^[a-zA-Z]:/.test(fileName) || /^\//.test(fileName)) {
+    return "absolute path: " + fileName;
+  }
+  if (fileName.split("/").indexOf("..") !== -1) {
+    return "invalid relative path: " + fileName;
+  }
+  // all good
+  return null;
+}
+
+function parseExtraFields(extraFieldBuffer) {
+  var extraFields = [];
+  var i = 0;
+  while (i < extraFieldBuffer.length - 3) {
+    var headerId = extraFieldBuffer.readUInt16LE(i + 0);
+    var dataSize = extraFieldBuffer.readUInt16LE(i + 2);
+    var dataStart = i + 4;
+    var dataEnd = dataStart + dataSize;
+    if (dataEnd > extraFieldBuffer.length) throw new Error("extra field length exceeds extra field buffer size");
+    var dataBuffer = extraFieldBuffer.subarray(dataStart, dataEnd);
+    extraFields.push({
+      id: headerId,
+      data: dataBuffer,
+    });
+    i = dataEnd;
+  }
+  return extraFields;
+}
+
+function readAndAssertNoEof(reader, buffer, offset, length, position, callback) {
+  if (length === 0) {
+    // fs.read will throw an out-of-bounds error if you try to read 0 bytes from a 0 byte file
+    return setImmediate(function() { callback(null, newBuffer(0)); });
+  }
+  reader.read(buffer, offset, length, position, function(err, bytesRead) {
+    if (err) return callback(err);
+    if (bytesRead < length) {
+      return callback(new Error("unexpected EOF"));
+    }
+    callback();
+  });
+}
+
+util.inherits(AssertByteCountStream, Transform);
+function AssertByteCountStream(byteCount) {
+  Transform.call(this);
+  this.actualByteCount = 0;
+  this.expectedByteCount = byteCount;
+}
+AssertByteCountStream.prototype._transform = function(chunk, encoding, cb) {
+  this.actualByteCount += chunk.length;
+  if (this.actualByteCount > this.expectedByteCount) {
+    var msg = "too many bytes in the stream. expected " + this.expectedByteCount + ". got at least " + this.actualByteCount;
+    return cb(new Error(msg));
+  }
+  cb(null, chunk);
+};
+AssertByteCountStream.prototype._flush = function(cb) {
+  if (this.actualByteCount < this.expectedByteCount) {
+    var msg = "not enough bytes in the stream. expected " + this.expectedByteCount + ". got only " + this.actualByteCount;
+    return cb(new Error(msg));
+  }
+  cb();
+};
+
+util.inherits(RandomAccessReader, EventEmitter);
+function RandomAccessReader() {
+  EventEmitter.call(this);
+  this.refCount = 0;
+}
+RandomAccessReader.prototype.ref = function() {
+  this.refCount += 1;
+};
+RandomAccessReader.prototype.unref = function() {
+  var self = this;
+  self.refCount -= 1;
+
+  if (self.refCount > 0) return;
+  if (self.refCount < 0) throw new Error("invalid unref");
+
+  self.close(onCloseDone);
+
+  function onCloseDone(err) {
+    if (err) return self.emit('error', err);
+    self.emit('close');
+  }
+};
+RandomAccessReader.prototype.createReadStream = function(options) {
+  if (options == null) options = {};
+  var start = options.start;
+  var end = options.end;
+  if (start === end) {
+    var emptyStream = new PassThrough();
+    setImmediate(function() {
+      emptyStream.end();
+    });
+    return emptyStream;
+  }
+  var stream = this._readStreamForRange(start, end);
+
+  var destroyed = false;
+  var refUnrefFilter = new RefUnrefFilter(this);
+  stream.on("error", function(err) {
+    setImmediate(function() {
+      if (!destroyed) refUnrefFilter.emit("error", err);
+    });
+  });
+  installDestroyFn(refUnrefFilter, function() {
+    stream.unpipe(refUnrefFilter);
+    refUnrefFilter.unref();
+    stream.destroy();
+  });
+
+  var byteCounter = new AssertByteCountStream(end - start);
+  refUnrefFilter.on("error", function(err) {
+    setImmediate(function() {
+      if (!destroyed) byteCounter.emit("error", err);
+    });
+  });
+  installDestroyFn(byteCounter, function() {
+    destroyed = true;
+    refUnrefFilter.unpipe(byteCounter);
+    refUnrefFilter.destroy();
+  });
+
+  return stream.pipe(refUnrefFilter).pipe(byteCounter);
+};
+RandomAccessReader.prototype._readStreamForRange = function(start, end) {
+  throw new Error("not implemented");
+};
+RandomAccessReader.prototype.read = function(buffer, offset, length, position, callback) {
+  var readStream = this.createReadStream({start: position, end: position + length});
+  var writeStream = new Writable();
+  var written = 0;
+  writeStream._write = function(chunk, encoding, cb) {
+    chunk.copy(buffer, offset + written, 0, chunk.length);
+    written += chunk.length;
+    cb();
+  };
+  writeStream.on("finish", callback);
+  readStream.on("error", function(error) {
+    callback(error);
+  });
+  readStream.pipe(writeStream);
+};
+RandomAccessReader.prototype.close = function(callback) {
+  setImmediate(callback);
+};
+
+util.inherits(RefUnrefFilter, PassThrough);
+function RefUnrefFilter(context) {
+  PassThrough.call(this);
+  this.context = context;
+  this.context.ref();
+  this.unreffedYet = false;
+}
+RefUnrefFilter.prototype._flush = function(cb) {
+  this.unref();
+  cb();
+};
+RefUnrefFilter.prototype.unref = function(cb) {
+  if (this.unreffedYet) return;
+  this.unreffedYet = true;
+  this.context.unref();
+};
+
+var cp437 = '\u0000☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼ !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~⌂ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜ¢£¥₧ƒáíóúñÑªº¿⌐¬½¼¡«»░▒▓│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌█▄▌▐▀αßΓπΣσµτΦΘΩδ∞φε∩≡±≥≤⌠⌡÷≈°∙·√ⁿ²■ ';
+function decodeBuffer(buffer, isUtf8) {
+  if (isUtf8) {
+    return buffer.toString("utf8");
+  } else {
+    var result = "";
+    for (var i = 0; i < buffer.length; i++) {
+      result += cp437[buffer[i]];
+    }
+    return result;
+  }
+}
+
+function readUInt64LE(buffer, offset) {
+  // There is no native function for this, because we can't actually store 64-bit integers precisely.
+  // after 53 bits, JavaScript's Number type (IEEE 754 double) can't store individual integers anymore.
+  // but since 53 bits is a whole lot more than 32 bits, we do our best anyway.
+  // As of 2020, Node has added support for BigInt, which obviates this whole function,
+  // but yauzl hasn't been updated to depend on BigInt (yet?).
+  var lower32 = buffer.readUInt32LE(offset);
+  var upper32 = buffer.readUInt32LE(offset + 4);
+  // we can't use bitshifting here, because JavaScript bitshifting only works on 32-bit integers.
+  return upper32 * 0x100000000 + lower32;
+  // as long as we're bounds checking the result of this function against the total file size,
+  // we'll catch any overflow errors, because we already made sure the total file size was within reason.
+}
+
+// Node 10 deprecated new Buffer().
+var newBuffer;
+if (typeof Buffer.allocUnsafe === "function") {
+  newBuffer = function(len) {
+    return Buffer.allocUnsafe(len);
+  };
+} else {
+  newBuffer = function(len) {
+    return new Buffer(len);
+  };
+}
+
+// Node 8 introduced a proper destroy() implementation on writable streams.
+function installDestroyFn(stream, fn) {
+  if (typeof stream.destroy === "function") {
+    // New API.
+    stream._destroy = function(err, cb) {
+      fn();
+      if (cb != null) cb(err);
+    };
+  } else {
+    // Old API.
+    stream.destroy = fn;
+  }
+}
+
+function defaultCallback(err) {
+  if (err) throw err;
+}
+
+
+/***/ }),
+
 /***/ 2613:
 /***/ ((module) => {
 
@@ -73071,13 +61198,6 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("child_proces
 /***/ ((module) => {
 
 module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("console");
-
-/***/ }),
-
-/***/ 9140:
-/***/ ((module) => {
-
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("constants");
 
 /***/ }),
 
@@ -74893,21 +63013,21 @@ module.exports = parseParams
 /***/ 7413:
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-s3","description":"AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native","version":"3.758.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-s3","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo s3","test":"yarn g:vitest run","test:browser":"node ./test/browser-build/esbuild && yarn g:vitest run -c vitest.config.browser.ts","test:browser:watch":"node ./test/browser-build/esbuild && yarn g:vitest watch -c vitest.config.browser.ts","test:e2e":"yarn g:vitest run -c vitest.config.e2e.ts && yarn test:browser","test:e2e:watch":"yarn g:vitest watch -c vitest.config.e2e.ts","test:watch":"yarn g:vitest watch"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha1-browser":"5.2.0","@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.758.0","@aws-sdk/credential-provider-node":"3.758.0","@aws-sdk/middleware-bucket-endpoint":"3.734.0","@aws-sdk/middleware-expect-continue":"3.734.0","@aws-sdk/middleware-flexible-checksums":"3.758.0","@aws-sdk/middleware-host-header":"3.734.0","@aws-sdk/middleware-location-constraint":"3.734.0","@aws-sdk/middleware-logger":"3.734.0","@aws-sdk/middleware-recursion-detection":"3.734.0","@aws-sdk/middleware-sdk-s3":"3.758.0","@aws-sdk/middleware-ssec":"3.734.0","@aws-sdk/middleware-user-agent":"3.758.0","@aws-sdk/region-config-resolver":"3.734.0","@aws-sdk/signature-v4-multi-region":"3.758.0","@aws-sdk/types":"3.734.0","@aws-sdk/util-endpoints":"3.743.0","@aws-sdk/util-user-agent-browser":"3.734.0","@aws-sdk/util-user-agent-node":"3.758.0","@aws-sdk/xml-builder":"3.734.0","@smithy/config-resolver":"^4.0.1","@smithy/core":"^3.1.5","@smithy/eventstream-serde-browser":"^4.0.1","@smithy/eventstream-serde-config-resolver":"^4.0.1","@smithy/eventstream-serde-node":"^4.0.1","@smithy/fetch-http-handler":"^5.0.1","@smithy/hash-blob-browser":"^4.0.1","@smithy/hash-node":"^4.0.1","@smithy/hash-stream-node":"^4.0.1","@smithy/invalid-dependency":"^4.0.1","@smithy/md5-js":"^4.0.1","@smithy/middleware-content-length":"^4.0.1","@smithy/middleware-endpoint":"^4.0.6","@smithy/middleware-retry":"^4.0.7","@smithy/middleware-serde":"^4.0.2","@smithy/middleware-stack":"^4.0.1","@smithy/node-config-provider":"^4.0.1","@smithy/node-http-handler":"^4.0.3","@smithy/protocol-http":"^5.0.1","@smithy/smithy-client":"^4.1.6","@smithy/types":"^4.1.0","@smithy/url-parser":"^4.0.1","@smithy/util-base64":"^4.0.0","@smithy/util-body-length-browser":"^4.0.0","@smithy/util-body-length-node":"^4.0.0","@smithy/util-defaults-mode-browser":"^4.0.7","@smithy/util-defaults-mode-node":"^4.0.7","@smithy/util-endpoints":"^3.0.1","@smithy/util-middleware":"^4.0.1","@smithy/util-retry":"^4.0.1","@smithy/util-stream":"^4.1.2","@smithy/util-utf8":"^4.0.0","@smithy/util-waiter":"^4.0.2","tslib":"^2.6.2"},"devDependencies":{"@aws-sdk/signature-v4-crt":"3.758.0","@tsconfig/node18":"18.2.4","@types/node":"^18.19.69","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.2.2"},"engines":{"node":">=18.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-s3","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-s3"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-s3","description":"AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native","version":"3.782.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-s3","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo s3","test":"yarn g:vitest run","test:browser":"node ./test/browser-build/esbuild && yarn g:vitest run -c vitest.config.browser.ts","test:browser:watch":"node ./test/browser-build/esbuild && yarn g:vitest watch -c vitest.config.browser.ts","test:e2e":"yarn g:vitest run -c vitest.config.e2e.ts && yarn test:browser","test:e2e:watch":"yarn g:vitest watch -c vitest.config.e2e.ts","test:watch":"yarn g:vitest watch"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha1-browser":"5.2.0","@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.775.0","@aws-sdk/credential-provider-node":"3.782.0","@aws-sdk/middleware-bucket-endpoint":"3.775.0","@aws-sdk/middleware-expect-continue":"3.775.0","@aws-sdk/middleware-flexible-checksums":"3.775.0","@aws-sdk/middleware-host-header":"3.775.0","@aws-sdk/middleware-location-constraint":"3.775.0","@aws-sdk/middleware-logger":"3.775.0","@aws-sdk/middleware-recursion-detection":"3.775.0","@aws-sdk/middleware-sdk-s3":"3.775.0","@aws-sdk/middleware-ssec":"3.775.0","@aws-sdk/middleware-user-agent":"3.782.0","@aws-sdk/region-config-resolver":"3.775.0","@aws-sdk/signature-v4-multi-region":"3.775.0","@aws-sdk/types":"3.775.0","@aws-sdk/util-endpoints":"3.782.0","@aws-sdk/util-user-agent-browser":"3.775.0","@aws-sdk/util-user-agent-node":"3.782.0","@aws-sdk/xml-builder":"3.775.0","@smithy/config-resolver":"^4.1.0","@smithy/core":"^3.2.0","@smithy/eventstream-serde-browser":"^4.0.2","@smithy/eventstream-serde-config-resolver":"^4.1.0","@smithy/eventstream-serde-node":"^4.0.2","@smithy/fetch-http-handler":"^5.0.2","@smithy/hash-blob-browser":"^4.0.2","@smithy/hash-node":"^4.0.2","@smithy/hash-stream-node":"^4.0.2","@smithy/invalid-dependency":"^4.0.2","@smithy/md5-js":"^4.0.2","@smithy/middleware-content-length":"^4.0.2","@smithy/middleware-endpoint":"^4.1.0","@smithy/middleware-retry":"^4.1.0","@smithy/middleware-serde":"^4.0.3","@smithy/middleware-stack":"^4.0.2","@smithy/node-config-provider":"^4.0.2","@smithy/node-http-handler":"^4.0.4","@smithy/protocol-http":"^5.1.0","@smithy/smithy-client":"^4.2.0","@smithy/types":"^4.2.0","@smithy/url-parser":"^4.0.2","@smithy/util-base64":"^4.0.0","@smithy/util-body-length-browser":"^4.0.0","@smithy/util-body-length-node":"^4.0.0","@smithy/util-defaults-mode-browser":"^4.0.8","@smithy/util-defaults-mode-node":"^4.0.8","@smithy/util-endpoints":"^3.0.2","@smithy/util-middleware":"^4.0.2","@smithy/util-retry":"^4.0.2","@smithy/util-stream":"^4.2.0","@smithy/util-utf8":"^4.0.0","@smithy/util-waiter":"^4.0.3","tslib":"^2.6.2"},"devDependencies":{"@aws-sdk/signature-v4-crt":"3.782.0","@tsconfig/node18":"18.2.4","@types/node":"^18.19.69","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.2.2"},"engines":{"node":">=18.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-s3","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-s3"}}');
 
 /***/ }),
 
 /***/ 5188:
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.758.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-sso","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.758.0","@aws-sdk/middleware-host-header":"3.734.0","@aws-sdk/middleware-logger":"3.734.0","@aws-sdk/middleware-recursion-detection":"3.734.0","@aws-sdk/middleware-user-agent":"3.758.0","@aws-sdk/region-config-resolver":"3.734.0","@aws-sdk/types":"3.734.0","@aws-sdk/util-endpoints":"3.743.0","@aws-sdk/util-user-agent-browser":"3.734.0","@aws-sdk/util-user-agent-node":"3.758.0","@smithy/config-resolver":"^4.0.1","@smithy/core":"^3.1.5","@smithy/fetch-http-handler":"^5.0.1","@smithy/hash-node":"^4.0.1","@smithy/invalid-dependency":"^4.0.1","@smithy/middleware-content-length":"^4.0.1","@smithy/middleware-endpoint":"^4.0.6","@smithy/middleware-retry":"^4.0.7","@smithy/middleware-serde":"^4.0.2","@smithy/middleware-stack":"^4.0.1","@smithy/node-config-provider":"^4.0.1","@smithy/node-http-handler":"^4.0.3","@smithy/protocol-http":"^5.0.1","@smithy/smithy-client":"^4.1.6","@smithy/types":"^4.1.0","@smithy/url-parser":"^4.0.1","@smithy/util-base64":"^4.0.0","@smithy/util-body-length-browser":"^4.0.0","@smithy/util-body-length-node":"^4.0.0","@smithy/util-defaults-mode-browser":"^4.0.7","@smithy/util-defaults-mode-node":"^4.0.7","@smithy/util-endpoints":"^3.0.1","@smithy/util-middleware":"^4.0.1","@smithy/util-retry":"^4.0.1","@smithy/util-utf8":"^4.0.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node18":"18.2.4","@types/node":"^18.19.69","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.2.2"},"engines":{"node":">=18.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.782.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-sso","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.775.0","@aws-sdk/middleware-host-header":"3.775.0","@aws-sdk/middleware-logger":"3.775.0","@aws-sdk/middleware-recursion-detection":"3.775.0","@aws-sdk/middleware-user-agent":"3.782.0","@aws-sdk/region-config-resolver":"3.775.0","@aws-sdk/types":"3.775.0","@aws-sdk/util-endpoints":"3.782.0","@aws-sdk/util-user-agent-browser":"3.775.0","@aws-sdk/util-user-agent-node":"3.782.0","@smithy/config-resolver":"^4.1.0","@smithy/core":"^3.2.0","@smithy/fetch-http-handler":"^5.0.2","@smithy/hash-node":"^4.0.2","@smithy/invalid-dependency":"^4.0.2","@smithy/middleware-content-length":"^4.0.2","@smithy/middleware-endpoint":"^4.1.0","@smithy/middleware-retry":"^4.1.0","@smithy/middleware-serde":"^4.0.3","@smithy/middleware-stack":"^4.0.2","@smithy/node-config-provider":"^4.0.2","@smithy/node-http-handler":"^4.0.4","@smithy/protocol-http":"^5.1.0","@smithy/smithy-client":"^4.2.0","@smithy/types":"^4.2.0","@smithy/url-parser":"^4.0.2","@smithy/util-base64":"^4.0.0","@smithy/util-body-length-browser":"^4.0.0","@smithy/util-body-length-node":"^4.0.0","@smithy/util-defaults-mode-browser":"^4.0.8","@smithy/util-defaults-mode-node":"^4.0.8","@smithy/util-endpoints":"^3.0.2","@smithy/util-middleware":"^4.0.2","@smithy/util-retry":"^4.0.2","@smithy/util-utf8":"^4.0.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node18":"18.2.4","@types/node":"^18.19.69","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.2.2"},"engines":{"node":">=18.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
 
 /***/ }),
 
 /***/ 9955:
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/nested-clients","version":"3.758.0","description":"Nested clients for AWS SDK packages.","main":"./dist-cjs/index.js","module":"./dist-es/index.js","types":"./dist-types/index.d.ts","scripts":{"build":"yarn lint && concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline nested-clients","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","lint":"node ../../scripts/validation/submodules-linter.js --pkg nested-clients","test":"yarn g:vitest run","test:watch":"yarn g:vitest watch"},"engines":{"node":">=18.0.0"},"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.758.0","@aws-sdk/middleware-host-header":"3.734.0","@aws-sdk/middleware-logger":"3.734.0","@aws-sdk/middleware-recursion-detection":"3.734.0","@aws-sdk/middleware-user-agent":"3.758.0","@aws-sdk/region-config-resolver":"3.734.0","@aws-sdk/types":"3.734.0","@aws-sdk/util-endpoints":"3.743.0","@aws-sdk/util-user-agent-browser":"3.734.0","@aws-sdk/util-user-agent-node":"3.758.0","@smithy/config-resolver":"^4.0.1","@smithy/core":"^3.1.5","@smithy/fetch-http-handler":"^5.0.1","@smithy/hash-node":"^4.0.1","@smithy/invalid-dependency":"^4.0.1","@smithy/middleware-content-length":"^4.0.1","@smithy/middleware-endpoint":"^4.0.6","@smithy/middleware-retry":"^4.0.7","@smithy/middleware-serde":"^4.0.2","@smithy/middleware-stack":"^4.0.1","@smithy/node-config-provider":"^4.0.1","@smithy/node-http-handler":"^4.0.3","@smithy/protocol-http":"^5.0.1","@smithy/smithy-client":"^4.1.6","@smithy/types":"^4.1.0","@smithy/url-parser":"^4.0.1","@smithy/util-base64":"^4.0.0","@smithy/util-body-length-browser":"^4.0.0","@smithy/util-body-length-node":"^4.0.0","@smithy/util-defaults-mode-browser":"^4.0.7","@smithy/util-defaults-mode-node":"^4.0.7","@smithy/util-endpoints":"^3.0.1","@smithy/util-middleware":"^4.0.1","@smithy/util-retry":"^4.0.1","@smithy/util-utf8":"^4.0.0","tslib":"^2.6.2"},"devDependencies":{"concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.2.2"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["./sso-oidc.d.ts","./sso-oidc.js","./sts.d.ts","./sts.js","dist-*/**"],"browser":{"./dist-es/submodules/sso-oidc/runtimeConfig":"./dist-es/submodules/sso-oidc/runtimeConfig.browser","./dist-es/submodules/sts/runtimeConfig":"./dist-es/submodules/sts/runtimeConfig.browser"},"react-native":{},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/packages/nested-clients","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"packages/nested-clients"},"exports":{"./sso-oidc":{"module":"./dist-es/submodules/sso-oidc/index.js","node":"./dist-cjs/submodules/sso-oidc/index.js","import":"./dist-es/submodules/sso-oidc/index.js","require":"./dist-cjs/submodules/sso-oidc/index.js","types":"./dist-types/submodules/sso-oidc/index.d.ts"},"./sts":{"module":"./dist-es/submodules/sts/index.js","node":"./dist-cjs/submodules/sts/index.js","import":"./dist-es/submodules/sts/index.js","require":"./dist-cjs/submodules/sts/index.js","types":"./dist-types/submodules/sts/index.d.ts"}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/nested-clients","version":"3.782.0","description":"Nested clients for AWS SDK packages.","main":"./dist-cjs/index.js","module":"./dist-es/index.js","types":"./dist-types/index.d.ts","scripts":{"build":"yarn lint && concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline nested-clients","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","lint":"node ../../scripts/validation/submodules-linter.js --pkg nested-clients","test":"yarn g:vitest run","test:watch":"yarn g:vitest watch"},"engines":{"node":">=18.0.0"},"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.775.0","@aws-sdk/middleware-host-header":"3.775.0","@aws-sdk/middleware-logger":"3.775.0","@aws-sdk/middleware-recursion-detection":"3.775.0","@aws-sdk/middleware-user-agent":"3.782.0","@aws-sdk/region-config-resolver":"3.775.0","@aws-sdk/types":"3.775.0","@aws-sdk/util-endpoints":"3.782.0","@aws-sdk/util-user-agent-browser":"3.775.0","@aws-sdk/util-user-agent-node":"3.782.0","@smithy/config-resolver":"^4.1.0","@smithy/core":"^3.2.0","@smithy/fetch-http-handler":"^5.0.2","@smithy/hash-node":"^4.0.2","@smithy/invalid-dependency":"^4.0.2","@smithy/middleware-content-length":"^4.0.2","@smithy/middleware-endpoint":"^4.1.0","@smithy/middleware-retry":"^4.1.0","@smithy/middleware-serde":"^4.0.3","@smithy/middleware-stack":"^4.0.2","@smithy/node-config-provider":"^4.0.2","@smithy/node-http-handler":"^4.0.4","@smithy/protocol-http":"^5.1.0","@smithy/smithy-client":"^4.2.0","@smithy/types":"^4.2.0","@smithy/url-parser":"^4.0.2","@smithy/util-base64":"^4.0.0","@smithy/util-body-length-browser":"^4.0.0","@smithy/util-body-length-node":"^4.0.0","@smithy/util-defaults-mode-browser":"^4.0.8","@smithy/util-defaults-mode-node":"^4.0.8","@smithy/util-endpoints":"^3.0.2","@smithy/util-middleware":"^4.0.2","@smithy/util-retry":"^4.0.2","@smithy/util-utf8":"^4.0.0","tslib":"^2.6.2"},"devDependencies":{"concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.2.2"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["./sso-oidc.d.ts","./sso-oidc.js","./sts.d.ts","./sts.js","dist-*/**"],"browser":{"./dist-es/submodules/sso-oidc/runtimeConfig":"./dist-es/submodules/sso-oidc/runtimeConfig.browser","./dist-es/submodules/sts/runtimeConfig":"./dist-es/submodules/sts/runtimeConfig.browser"},"react-native":{},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/packages/nested-clients","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"packages/nested-clients"},"exports":{"./sso-oidc":{"types":"./dist-types/submodules/sso-oidc/index.d.ts","module":"./dist-es/submodules/sso-oidc/index.js","node":"./dist-cjs/submodules/sso-oidc/index.js","import":"./dist-es/submodules/sso-oidc/index.js","require":"./dist-cjs/submodules/sso-oidc/index.js"},"./sts":{"types":"./dist-types/submodules/sts/index.d.ts","module":"./dist-es/submodules/sts/index.js","node":"./dist-cjs/submodules/sts/index.js","import":"./dist-es/submodules/sts/index.js","require":"./dist-cjs/submodules/sts/index.js"}}}');
 
 /***/ })
 
@@ -74961,14 +63081,23 @@ const external_node_fs_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import
 const external_node_path_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:path");
 // EXTERNAL MODULE: external "node:stream"
 var external_node_stream_ = __nccwpck_require__(7075);
-// EXTERNAL MODULE: ./node_modules/unzipper/unzip.js
-var unzip = __nccwpck_require__(3835);
+// EXTERNAL MODULE: ./node_modules/yauzl/index.js
+var yauzl = __nccwpck_require__(663);
 ;// CONCATENATED MODULE: ./src/download.ts
 
 
 
 
 
+async function dumpStream(stream, path) {
+    const target = (0,external_node_fs_namespaceObject.createWriteStream)(path);
+    return new Promise((resolve, reject) => {
+        stream
+            .pipe(target)
+            .on('close', () => { resolve(path); })
+            .on('error', (err) => { reject(err); });
+    });
+}
 async function s3Stream(client, bucket, key) {
     const command = new dist_cjs.GetObjectCommand({ Bucket: bucket, Key: key });
     const response = await client.send(command);
@@ -74977,29 +63106,64 @@ async function s3Stream(client, bucket, key) {
     }
     throw new Error(`Unable to read bucket ${bucket} key ${key}`);
 }
-async function unzipStream(stream, path) {
+async function unzipFile(path, targetDir) {
     return new Promise((resolve, reject) => {
-        stream
-            .pipe((0,unzip.Extract)({ path }))
-            .on('close', () => { resolve(path); })
-            .on('error', (err) => { reject(err); });
+        yauzl.open(path, { lazyEntries: true }, (err, zipFile) => {
+            if (err) {
+                reject(err);
+            }
+            zipFile.readEntry();
+            zipFile.on('entry', (entry) => {
+                if (/\/$/.test(entry.fileName)) {
+                    const directory = (0,external_node_path_namespaceObject.join)(targetDir, entry.fileName);
+                    if (!(0,external_node_fs_namespaceObject.existsSync)(directory)) {
+                        (0,external_node_fs_namespaceObject.mkdirSync)(directory, { recursive: true });
+                    }
+                    zipFile.readEntry();
+                }
+                else {
+                    const directory = (0,external_node_path_namespaceObject.join)(targetDir, (0,external_node_path_namespaceObject.dirname)(entry.fileName));
+                    if (!(0,external_node_fs_namespaceObject.existsSync)(directory)) {
+                        (0,external_node_fs_namespaceObject.mkdirSync)(directory, { recursive: true });
+                    }
+                    zipFile.openReadStream(entry, (rsError, readStream) => {
+                        if (rsError) {
+                            reject(rsError);
+                        }
+                        const writeStream = (0,external_node_fs_namespaceObject.createWriteStream)((0,external_node_path_namespaceObject.join)(targetDir, entry.fileName));
+                        readStream
+                            .pipe(writeStream)
+                            .on('error', (writeError) => { reject(writeError); })
+                            .on('close', () => { zipFile.readEntry(); });
+                    });
+                }
+            });
+            zipFile.on('close', () => {
+                resolve(targetDir);
+            });
+        });
     });
 }
 async function withExtractedS3(client, bucket, key, callback) {
-    let tmpDir;
-    let result;
+    let downloadDir;
+    let extractDir;
     try {
-        tmpDir = (0,external_node_fs_namespaceObject.mkdtempSync)((0,external_node_path_namespaceObject.join)('.', 'tmp-zip-'));
+        downloadDir = (0,external_node_fs_namespaceObject.mkdtempSync)((0,external_node_path_namespaceObject.join)('.', 'tmp-zip-download-'));
+        extractDir = (0,external_node_fs_namespaceObject.mkdtempSync)((0,external_node_path_namespaceObject.join)('.', 'tmp-zip-'));
         const stream = await s3Stream(client, bucket, key);
-        const zipDir = await unzipStream(stream, tmpDir);
-        result = await Promise.resolve(callback(zipDir));
+        const zipFile = await dumpStream(stream, (0,external_node_path_namespaceObject.join)(downloadDir, 'download.zip'));
+        const zipDir = await unzipFile(zipFile, extractDir);
+        const result = await Promise.resolve(callback(zipDir));
+        return result;
     }
     finally {
-        if (tmpDir) {
-            (0,external_node_fs_namespaceObject.rmSync)(tmpDir, { force: true, recursive: true });
+        if (extractDir) {
+            (0,external_node_fs_namespaceObject.rmSync)(extractDir, { force: true, recursive: true });
+        }
+        if (downloadDir) {
+            (0,external_node_fs_namespaceObject.rmSync)(downloadDir, { force: true, recursive: true });
         }
     }
-    return result;
 }
 
 ;// CONCATENATED MODULE: ./src/utils.ts
@@ -75094,7 +63258,7 @@ async function main() {
     catch (error) {
         // Fail the workflow run if an error occurs
         if (error instanceof Error)
-            core.setFailed(error.message);
+            (0,core.setFailed)(error.message);
     }
 }
 void main();

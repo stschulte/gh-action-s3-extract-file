@@ -18,7 +18,7 @@ set -e
 RUNTIME_DEPENDENCIES=(
   "@actions/core"
   "@aws-sdk/client-s3"
-  "unzipper"
+  "yauzl"
 )
 
 # List of buildtime dependencies or developer
@@ -27,7 +27,7 @@ BUILDTIME_DEPENDENCIES=(
     "typescript"
     "@types/node"
 
-    "@types/unzipper"
+    "@types/yauzl"
     "@smithy/util-stream"
     "jszip"
     "aws-sdk-client-mock"
