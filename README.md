@@ -1,7 +1,7 @@
 # GitHub Action S3 Extract Files
 
 [![Continuous Integration](https://github.com/stschulte/gh-action-s3-extract-file/actions/workflows/ci.yml/badge.svg)](https://github.com/stschulte/gh-action-s3-extract-file/actions/workflows/ci.yml)
-[![Coverage Status](https://coveralls.io/repos/github/stschulte/gh-action-s3-extract-file/badge.svg?branch=main)](https://coveralls.io/github/stschulte/gh-action-s3-extract-file?branch=main)
+[![codecov](https://codecov.io/gh/stschulte/gh-action-s3-extract-file/graph/badge.svg?token=9TZB9WPY7L)](https://codecov.io/gh/stschulte/gh-action-s3-extract-file)
 
 This GitHub action can be used to extract certain files from a
 zipfile on an S3 bucket.
