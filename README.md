@@ -41,10 +41,10 @@ move the files `logo1.png` and `logo2.png` to our working directory as
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v5
 
   - name: Copy files
-    uses: stschulte/gh-action-s3-extract-file@v1
+    uses: stschulte/gh-action-s3-extract-file@v2
     with:
       bucket: my-bucket
       key: data.zip
