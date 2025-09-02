@@ -80,24 +80,26 @@ export async function withExtractedS3<R>(
   key: string,
   callback: (directory: string) => Promise<R> | R,
 ): Promise<R> {
-  let downloadDir: string | undefined;
-  let extractDir: string | undefined;
-  try {
-    downloadDir = mkdtempSync(join('.', 'tmp-zip-download-'));
-    extractDir = mkdtempSync(join('.', 'tmp-zip-'));
-
-    const stream = await s3Stream(client, bucket, key);
+  const stream = await s3Stream(client, bucket, key);
+  return withTmpDir(async (downloadDir) => {
     const zipFile = await dumpStream(stream, join(downloadDir, 'download.zip'));
-    const zipDir = await unzipFile(zipFile, extractDir);
-    const result = await Promise.resolve(callback(zipDir));
+    return withTmpDir(async (extractDir) => {
+      const zipDir = await unzipFile(zipFile, extractDir);
+      return Promise.resolve(callback(zipDir));
+    });
+  });
+}
+
+export async function withTmpDir<R>(cb: (directory: string) => Promise<R> | R): Promise<R> {
+  let tmpDir: string | undefined;
+  try {
+    tmpDir = mkdtempSync(join('.', 'gh-action-s3-extract-file'));
+    const result = await Promise.resolve(cb(tmpDir));
     return result;
   }
   finally {
-    if (extractDir) {
-      rmSync(extractDir, { force: true, recursive: true });
-    }
-    if (downloadDir) {
-      rmSync(downloadDir, { force: true, recursive: true });
+    if (tmpDir) {
+      rmSync(tmpDir, { force: true, recursive: true });
     }
   }
 }
