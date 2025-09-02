@@ -1,6 +1,6 @@
 {
   "name": "gh-action-s3-extract-file",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Extracts a file from S3 and copies specified files into the working directory",
   "type": "module",
   "exports": {
